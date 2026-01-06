@@ -1,8 +1,8 @@
 namespace Tela.Cliente
 {
-    public partial class Form1 : Form
+    public partial class Tela_P_Cliente : Form
     {
-        public Form1()
+        public Tela_P_Cliente()
         {
             InitializeComponent();
         }

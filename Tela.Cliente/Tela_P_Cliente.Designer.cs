@@ -1,6 +1,6 @@
 ﻿namespace Tela.Cliente
 {
-    partial class Form1
+    partial class Tela_P_Cliente
     {
         /// <summary>
         ///  Required designer variable.
