@@ -1,0 +1,6 @@
+@Shop.TelaFuncionario_HostAddress = http://localhost:5114
+
+GET {{Shop.TelaFuncionario_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Mysql.PetShop.Controllers
+namespace Shop.TelaFuncionario.Controllers
 {
     [ApiController]
     [Route("[controller]")]
