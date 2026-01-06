@@ -1,1 +1,5 @@
-<Solution />
+<Solution>
+  <Project Path="Mysql.PetShop/Mysql.PetShop.csproj" Id="bb04190b-d424-4339-b08e-ec5bf4166384" />
+  <Project Path="Tela.Cliente/Tela.Cliente.csproj" Id="7a41b248-761d-45eb-b4af-7f4cf3b25e99" />
+  <Project Path="Tela.Funcionario/Tela.Funcionario.csproj" Id="5dc8bea9-dfcd-4cf3-a28a-c2c24970df58" />
+</Solution>
