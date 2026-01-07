@@ -6,7 +6,7 @@ namespace PetShopAPI.Helpers
     public static class SecurityHelper
     {
         // Chaves de configuração (em produção, use variáveis de ambiente)
-        private static readonly string Key = "E#sT@cio$Sen@i%Pr0j3t0PetSh0p2026";
+        private static readonly string Key = "E#sT@cio$Sen@i%Pr0j3t0PetSh0p202";
         private static readonly string Iv = "VetorDeInic12345";
 
         // O método Encrypt deve ser público e estático
