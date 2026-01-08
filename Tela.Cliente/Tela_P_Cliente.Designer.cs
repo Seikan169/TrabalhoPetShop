@@ -104,24 +104,7 @@
             // 
             // BtnAgendar
             // 
-            this.BtnAgendar.Dock = DockStyle.Top;
-            this.BtnAgendar.FlatAppearance.BorderColor = Color.Blue;
-            this.BtnAgendar.FlatAppearance.BorderSize = 0;
-            this.BtnAgendar.FlatStyle = FlatStyle.Flat;
-            this.BtnAgendar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            this.BtnAgendar.ForeColor = Color.Black;
-            this.BtnAgendar.Image = (Image)resources.GetObject("BtnAgendar.Image");
-            this.BtnAgendar.ImageAlign = ContentAlignment.MiddleLeft;
-            this.BtnAgendar.Location = new Point(0, 0);
-            this.BtnAgendar.Name = "BtnAgendar";
-            this.BtnAgendar.Padding = new Padding(50, 0, 0, 0);
-            this.BtnAgendar.Size = new Size(196, 62);
-            this.BtnAgendar.TabIndex = 0;
-            this.BtnAgendar.Text = " Agendar";
-            this.BtnAgendar.TextAlign = ContentAlignment.MiddleRight;
-            this.BtnAgendar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            this.BtnAgendar.UseVisualStyleBackColor = true;
-            this.BtnAgendar.Click += this.button1_Click;
+           
             // 
             // panelCabecalho
             // 
