@@ -15,5 +15,7 @@ namespace Mysql.PetShop.Data
         public DbSet<Servico> TbServicos { get; set; }
         public DbSet<Pedido> TbPedidos { get; set; }
         public DbSet<ItemPedido> TbItensPedido { get; set; }
+        public DbSet<Endereco> TbEnderecos { get; set; }
+
     }
 }

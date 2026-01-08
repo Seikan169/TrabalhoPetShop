@@ -32,19 +32,16 @@
             TxtNomeCliente = new TextBox();
             TxtEmailCliente = new TextBox();
             TxtTelefoneCliente = new TextBox();
-            TxtCpfCliente = new TextBox();
             TxtSenhaCliente = new TextBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            label4 = new Label();
             TxtConfirSenhaCliente = new TextBox();
             label5 = new Label();
             label6 = new Label();
             textBox1 = new TextBox();
-            TxtCepCliente = new TextBox();
             label7 = new Label();
-            UfCliente = new TextBox();
+            TxtUfCliente = new TextBox();
             label8 = new Label();
             label9 = new Label();
             TxtLogCliente = new TextBox();
@@ -57,11 +54,12 @@
             label13 = new Label();
             TxtComplementoCliente = new TextBox();
             BtnSalvarCadastroCliente = new Button();
-            BtnConsultaCepCliente = new Button();
+            MkBoxCep = new MaskedTextBox();
             SuspendLayout();
             // 
             // TxtNomeCliente
             // 
+            TxtNomeCliente.Cursor = Cursors.IBeam;
             TxtNomeCliente.Location = new Point(10, 26);
             TxtNomeCliente.Margin = new Padding(3, 2, 3, 2);
             TxtNomeCliente.Name = "TxtNomeCliente";
@@ -70,10 +68,10 @@
             // 
             // TxtEmailCliente
             // 
-            TxtEmailCliente.Location = new Point(186, 26);
+            TxtEmailCliente.Location = new Point(10, 123);
             TxtEmailCliente.Margin = new Padding(3, 2, 3, 2);
             TxtEmailCliente.Name = "TxtEmailCliente";
-            TxtEmailCliente.Size = new Size(170, 23);
+            TxtEmailCliente.Size = new Size(347, 23);
             TxtEmailCliente.TabIndex = 1;
             // 
             // TxtTelefoneCliente
@@ -85,18 +83,9 @@
             TxtTelefoneCliente.Size = new Size(127, 23);
             TxtTelefoneCliente.TabIndex = 2;
             // 
-            // TxtCpfCliente
-            // 
-            TxtCpfCliente.Location = new Point(10, 123);
-            TxtCpfCliente.Margin = new Padding(3, 2, 3, 2);
-            TxtCpfCliente.Name = "TxtCpfCliente";
-            TxtCpfCliente.PlaceholderText = "Ex: 142.798.657-67";
-            TxtCpfCliente.Size = new Size(127, 23);
-            TxtCpfCliente.TabIndex = 3;
-            // 
             // TxtSenhaCliente
             // 
-            TxtSenhaCliente.Location = new Point(186, 74);
+            TxtSenhaCliente.Location = new Point(223, 26);
             TxtSenhaCliente.Margin = new Padding(3, 2, 3, 2);
             TxtSenhaCliente.Name = "TxtSenhaCliente";
             TxtSenhaCliente.Size = new Size(134, 23);
@@ -117,7 +106,7 @@
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
-            label2.Location = new Point(186, 7);
+            label2.Location = new Point(10, 106);
             label2.Name = "label2";
             label2.Size = new Size(41, 15);
             label2.TabIndex = 6;
@@ -133,30 +122,21 @@
             label3.TabIndex = 7;
             label3.Text = "Telefone";
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.Location = new Point(10, 106);
-            label4.Name = "label4";
-            label4.Size = new Size(28, 15);
-            label4.TabIndex = 8;
-            label4.Text = "CPF";
-            // 
             // TxtConfirSenhaCliente
             // 
-            TxtConfirSenhaCliente.Location = new Point(186, 123);
+            TxtConfirSenhaCliente.Location = new Point(223, 75);
             TxtConfirSenhaCliente.Margin = new Padding(3, 2, 3, 2);
             TxtConfirSenhaCliente.Name = "TxtConfirSenhaCliente";
             TxtConfirSenhaCliente.Size = new Size(134, 23);
             TxtConfirSenhaCliente.TabIndex = 10;
             TxtConfirSenhaCliente.UseSystemPasswordChar = true;
+            TxtConfirSenhaCliente.Leave += TxtConfirSenhaCliente_Leave;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.BackColor = Color.Transparent;
-            label5.Location = new Point(186, 106);
+            label5.Location = new Point(223, 58);
             label5.Name = "label5";
             label5.Size = new Size(96, 15);
             label5.TabIndex = 11;
@@ -166,7 +146,7 @@
             // 
             label6.AutoSize = true;
             label6.BackColor = Color.Transparent;
-            label6.Location = new Point(186, 57);
+            label6.Location = new Point(223, 9);
             label6.Name = "label6";
             label6.Size = new Size(39, 15);
             label6.TabIndex = 12;
@@ -183,15 +163,6 @@
             textBox1.Size = new Size(377, 9);
             textBox1.TabIndex = 13;
             // 
-            // TxtCepCliente
-            // 
-            TxtCepCliente.Location = new Point(10, 194);
-            TxtCepCliente.Margin = new Padding(3, 2, 3, 2);
-            TxtCepCliente.Name = "TxtCepCliente";
-            TxtCepCliente.PlaceholderText = "Ex: 30280-350";
-            TxtCepCliente.Size = new Size(97, 23);
-            TxtCepCliente.TabIndex = 14;
-            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -202,13 +173,13 @@
             label7.TabIndex = 15;
             label7.Text = "CEP";
             // 
-            // UfCliente
+            // TxtUfCliente
             // 
-            UfCliente.Location = new Point(10, 244);
-            UfCliente.Margin = new Padding(3, 2, 3, 2);
-            UfCliente.Name = "UfCliente";
-            UfCliente.Size = new Size(97, 23);
-            UfCliente.TabIndex = 16;
+            TxtUfCliente.Location = new Point(10, 244);
+            TxtUfCliente.Margin = new Padding(3, 2, 3, 2);
+            TxtUfCliente.Name = "TxtUfCliente";
+            TxtUfCliente.Size = new Size(97, 23);
+            TxtUfCliente.TabIndex = 16;
             // 
             // label8
             // 
@@ -318,23 +289,20 @@
             BtnSalvarCadastroCliente.Location = new Point(261, 337);
             BtnSalvarCadastroCliente.Margin = new Padding(3, 2, 3, 2);
             BtnSalvarCadastroCliente.Name = "BtnSalvarCadastroCliente";
-            BtnSalvarCadastroCliente.Size = new Size(88, 22);
+            BtnSalvarCadastroCliente.Size = new Size(88, 23);
             BtnSalvarCadastroCliente.TabIndex = 28;
             BtnSalvarCadastroCliente.Text = "Salvar";
             BtnSalvarCadastroCliente.UseVisualStyleBackColor = false;
+            BtnSalvarCadastroCliente.Click += BtnSalvarCadastroCliente_Click;
             // 
-            // BtnConsultaCepCliente
+            // MkBoxCep
             // 
-            BtnConsultaCepCliente.BackColor = SystemColors.MenuHighlight;
-            BtnConsultaCepCliente.FlatStyle = FlatStyle.Popup;
-            BtnConsultaCepCliente.Font = new Font("Century Gothic", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BtnConsultaCepCliente.Location = new Point(136, 194);
-            BtnConsultaCepCliente.Margin = new Padding(3, 2, 3, 2);
-            BtnConsultaCepCliente.Name = "BtnConsultaCepCliente";
-            BtnConsultaCepCliente.Size = new Size(127, 22);
-            BtnConsultaCepCliente.TabIndex = 29;
-            BtnConsultaCepCliente.Text = "Consultar CEP";
-            BtnConsultaCepCliente.UseVisualStyleBackColor = false;
+            MkBoxCep.Location = new Point(10, 195);
+            MkBoxCep.Mask = "00000-000";
+            MkBoxCep.Name = "MkBoxCep";
+            MkBoxCep.Size = new Size(100, 23);
+            MkBoxCep.TabIndex = 29;
+            MkBoxCep.Leave += MkBoxCep_Leave;
             // 
             // TelaCadastroUser
             // 
@@ -342,8 +310,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(383, 483);
-            Controls.Add(BtnConsultaCepCliente);
+            ClientSize = new Size(396, 483);
+            Controls.Add(MkBoxCep);
             Controls.Add(BtnSalvarCadastroCliente);
             Controls.Add(label13);
             Controls.Add(TxtComplementoCliente);
@@ -356,19 +324,16 @@
             Controls.Add(label9);
             Controls.Add(TxtLogCliente);
             Controls.Add(label8);
-            Controls.Add(UfCliente);
+            Controls.Add(TxtUfCliente);
             Controls.Add(label7);
-            Controls.Add(TxtCepCliente);
             Controls.Add(textBox1);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(TxtConfirSenhaCliente);
-            Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(TxtSenhaCliente);
-            Controls.Add(TxtCpfCliente);
             Controls.Add(TxtTelefoneCliente);
             Controls.Add(TxtEmailCliente);
             Controls.Add(TxtNomeCliente);
@@ -386,19 +351,16 @@
         private TextBox TxtNomeCliente;
         private TextBox TxtEmailCliente;
         private TextBox TxtTelefoneCliente;
-        private TextBox TxtCpfCliente;
         private TextBox TxtSenhaCliente;
         private Label label1;
         private Label label2;
         private Label label3;
-        private Label label4;
         private TextBox TxtConfirSenhaCliente;
         private Label label5;
         private Label label6;
         private TextBox textBox1;
-        private TextBox TxtCepCliente;
         private Label label7;
-        private TextBox UfCliente;
+        private TextBox TxtUfCliente;
         private Label label8;
         private Label label9;
         private TextBox TxtLogCliente;
@@ -411,6 +373,6 @@
         private Label label13;
         private TextBox TxtComplementoCliente;
         private Button BtnSalvarCadastroCliente;
-        private Button BtnConsultaCepCliente;
+        private MaskedTextBox MkBoxCep;
     }
 }

@@ -108,6 +108,7 @@
             BtnCadastrarCliente.TabIndex = 5;
             BtnCadastrarCliente.Text = "Cadastre-se";
             BtnCadastrarCliente.UseVisualStyleBackColor = false;
+            BtnCadastrarCliente.Click += BtnCadastrarCliente_Click;
             // 
             // label3
             // 

@@ -20,25 +20,44 @@ namespace PetShop.API.Controllers
         // POST: api/auth/cadastro
         // Usado para criar usuários com senha segura
         [HttpPost("cadastro")]
-        public IActionResult Cadastrar([FromBody] Usuario usuario)
+        public IActionResult Cadastrar([FromBody] CadastroCompletoRequest dados)
         {
-            // 1. Verificar se email já existe
-            if (_context.TbUsuarios.Any(u => u.Email == usuario.Email))
+            // 1. Verifica se e-mail existe
+            if (_context.TbUsuarios.Any(u => u.Email == dados.Email))
             {
                 return BadRequest("Este e-mail já está cadastrado.");
             }
 
-            // 2. CRIPTOGRAFAR A SENHA (HASH)
-            // O BCrypt gera um 'salt' automático, tornando impossível reverter
-            usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
+            // 2. Cria o Usuário
+            var novoUsuario = new Usuario
+            {
+                Nome = dados.Nome,
+                Email = dados.Email,
+                Senha = BCrypt.Net.BCrypt.HashPassword(dados.Senha), // Criptografa
+                Telefone = dados.Telefone,
+                TipoUsuario = dados.TipoUsuario,
+            };
 
-            // 3. Salvar no banco
-            _context.TbUsuarios.Add(usuario);
+            _context.TbUsuarios.Add(novoUsuario);
+            _context.SaveChanges(); // AQUI o banco gera o ID do usuário!
+
+            // 3. Cria o Endereço usando o ID do usuário recém-criado
+            var novoEndereco = new Endereco
+            {
+                UsuarioId = novoUsuario.Id, // Pega o ID gerado acima
+                Cep = dados.Cep,
+                Logradouro = dados.Logradouro,
+                Numero = dados.Numero,
+                Bairro = dados.Bairro,
+                Cidade = dados.Cidade,
+                Uf = dados.Uf,
+                Complemento = dados.Complemento
+            };
+
+            _context.TbEnderecos.Add(novoEndereco);
             _context.SaveChanges();
 
-            // Retorna sucesso (mas não retorna a senha!)
-            usuario.Senha = "";
-            return Ok(usuario);
+            return Ok(new { mensagem = "Usuário e endereço cadastrados com sucesso!" });
         }
 
         // POST: api/auth/login
@@ -81,5 +100,23 @@ namespace PetShop.API.Controllers
     {
         public string Email { get; set; }
         public string Senha { get; set; }
+    }
+    public class CadastroCompletoRequest
+    {
+        // Dados do Usuário
+        public string Nome { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }
+        public string Telefone { get; set; }
+        public string TipoUsuario { get; set; }
+
+        // Dados do Endereço
+        public string Cep { get; set; }
+        public string Logradouro { get; set; }
+        public string Numero { get; set; }
+        public string Bairro { get; set; }
+        public string Cidade { get; set; }
+        public string Uf { get; set; }
+        public string Complemento { get; set; }
     }
 }

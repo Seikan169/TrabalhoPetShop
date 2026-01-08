@@ -48,7 +48,78 @@ namespace Shop.TelaFuncionarios
                 return null; // Login falhou
             }
         }
+        public async Task<ViaCepResult> BuscarEnderecoPorCep(string cep)
+        {
+            // 1. Limpa o CEP (deixa só números)
+            string cepLimpo = cep.Replace("-", "").Replace(".", "").Trim();
+
+            if (cepLimpo.Length != 8) return null; // CEP inválido
+
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    // 2. Chama a API pública
+                    string url = $"https://viacep.com.br/ws/{cepLimpo}/json/";
+                    var response = await client.GetAsync(url);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        var dados = JsonConvert.DeserializeObject<ViaCepResult>(json);
+
+                        if (dados.Erro) return null; // CEP não existe
+
+                        return dados;
+                    }
+                }
+                catch
+                {
+                    // Sem internet ou erro na API
+                    return null;
+                }
+            }
+            return null;
+        }
+        public async Task<bool> CadastrarUsuario(
+                 string nome, string email, string senha, string telefone,
+                 string cep, string rua, string numero, string bairro, string cidade, string uf, string complemento)
+        {
+            using (var client = new HttpClient())
+            {
+                // Monta o pacote igualzinho ao DTO da API
+                var dados = new
+                {
+                    Nome = nome,
+                    Email = email,
+                    Senha = senha,
+                    Telefone = telefone,
+                    // Endereço
+                    Cep = cep,
+                    Logradouro = rua,
+                    Numero = numero,
+                    Bairro = bairro,
+                    Cidade = cidade,
+                    Uf = uf,
+                    Complemento = complemento
+                };
+
+                var json = JsonConvert.SerializeObject(dados);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                try
+                {
+                    var response = await client.PostAsync($"{_baseUrl}/api/auth/cadastro", content);
+                    return response.IsSuccessStatusCode;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
     }
+
 
     // Classe para receber a resposta da API organizada
     public class LoginResponse
@@ -57,5 +128,18 @@ namespace Shop.TelaFuncionarios
         public string Nome { get; set; }
         public string TipoUsuario { get; set; } // O mais importante!
         public string Mensagem { get; set; }
+    }
+
+
+
+
+
+    public class ViaCepResult
+    {
+        public string Logradouro { get; set; }
+        public string Bairro { get; set; }
+        public string Localidade { get; set; } // O ViaCEP chama Cidade de "Localidade"
+        public string Uf { get; set; }
+        public bool Erro { get; set; } // O ViaCEP devolve isso se não achar
     }
 }
