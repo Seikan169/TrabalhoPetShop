@@ -30,17 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPrincipalADM));
             panel1 = new Panel();
-            BtnControleFuncionario = new Button();
-            BtnAtendimentoADM = new Button();
-            BtnRelatorioADM = new Button();
-            BtnPainelFinanceiroADM = new Button();
-            BtnVoltarTelaPADM = new Button();
-            pictureBox1 = new PictureBox();
-            BtnControleProdutos = new Button();
-            BtnAgendamentoADM = new Button();
-            BtnPontoFuncionarioADM = new Button();
-            BtnConfigGeraisADM = new Button();
             BtnClentesCadastradosADM = new Button();
+            BtnAgendamentoADM = new Button();
+            pictureBox1 = new PictureBox();
+            BtnPainelFinanceiroADM = new Button();
+            BtnRelatorioADM = new Button();
+            BtnControleFuncionario = new Button();
+            BtnVoltarTelaP = new Button();
+            button1 = new Button();
+            BtnTelaFuncionario = new Button();
+            TxtNomeLogado = new TextBox();
+            button2 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -48,90 +48,50 @@
             // panel1
             // 
             panel1.BackColor = Color.DodgerBlue;
+            panel1.Controls.Add(button2);
+            panel1.Controls.Add(BtnTelaFuncionario);
+            panel1.Controls.Add(button1);
             panel1.Controls.Add(BtnClentesCadastradosADM);
-            panel1.Controls.Add(BtnConfigGeraisADM);
-            panel1.Controls.Add(BtnPontoFuncionarioADM);
             panel1.Controls.Add(BtnAgendamentoADM);
-            panel1.Controls.Add(BtnControleProdutos);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(BtnPainelFinanceiroADM);
             panel1.Controls.Add(BtnRelatorioADM);
-            panel1.Controls.Add(BtnAtendimentoADM);
             panel1.Controls.Add(BtnControleFuncionario);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(191, 472);
+            panel1.Size = new Size(206, 472);
             panel1.TabIndex = 0;
             // 
-            // BtnControleFuncionario
+            // BtnClentesCadastradosADM
             // 
-            BtnControleFuncionario.BackColor = SystemColors.ControlDarkDark;
-            BtnControleFuncionario.Cursor = Cursors.Hand;
-            BtnControleFuncionario.FlatAppearance.BorderSize = 0;
-            BtnControleFuncionario.FlatStyle = FlatStyle.Flat;
-            BtnControleFuncionario.ForeColor = Color.White;
-            BtnControleFuncionario.Location = new Point(0, 127);
-            BtnControleFuncionario.Name = "BtnControleFuncionario";
-            BtnControleFuncionario.Size = new Size(180, 29);
-            BtnControleFuncionario.TabIndex = 1;
-            BtnControleFuncionario.Text = "Usuários e Permissoões";
-            BtnControleFuncionario.TextAlign = ContentAlignment.MiddleLeft;
-            BtnControleFuncionario.UseVisualStyleBackColor = false;
+            BtnClentesCadastradosADM.BackColor = SystemColors.ControlDarkDark;
+            BtnClentesCadastradosADM.FlatAppearance.BorderSize = 0;
+            BtnClentesCadastradosADM.FlatStyle = FlatStyle.Flat;
+            BtnClentesCadastradosADM.ForeColor = Color.White;
+            BtnClentesCadastradosADM.Image = (Image)resources.GetObject("BtnClentesCadastradosADM.Image");
+            BtnClentesCadastradosADM.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnClentesCadastradosADM.Location = new Point(0, 265);
+            BtnClentesCadastradosADM.Name = "BtnClentesCadastradosADM";
+            BtnClentesCadastradosADM.Size = new Size(206, 29);
+            BtnClentesCadastradosADM.TabIndex = 6;
+            BtnClentesCadastradosADM.Text = "Clientes Cadastrados";
+            BtnClentesCadastradosADM.UseVisualStyleBackColor = false;
             // 
-            // BtnAtendimentoADM
+            // BtnAgendamentoADM
             // 
-            BtnAtendimentoADM.BackColor = SystemColors.ControlDarkDark;
-            BtnAtendimentoADM.FlatAppearance.BorderSize = 0;
-            BtnAtendimentoADM.FlatStyle = FlatStyle.Flat;
-            BtnAtendimentoADM.Location = new Point(0, 266);
-            BtnAtendimentoADM.Name = "BtnAtendimentoADM";
-            BtnAtendimentoADM.Size = new Size(180, 29);
-            BtnAtendimentoADM.TabIndex = 1;
-            BtnAtendimentoADM.Text = "Status de atendimento";
-            BtnAtendimentoADM.TextAlign = ContentAlignment.MiddleLeft;
-            BtnAtendimentoADM.UseVisualStyleBackColor = false;
-            // 
-            // BtnRelatorioADM
-            // 
-            BtnRelatorioADM.BackColor = SystemColors.ControlDarkDark;
-            BtnRelatorioADM.FlatAppearance.BorderSize = 0;
-            BtnRelatorioADM.FlatStyle = FlatStyle.Flat;
-            BtnRelatorioADM.Location = new Point(0, 440);
-            BtnRelatorioADM.Name = "BtnRelatorioADM";
-            BtnRelatorioADM.Size = new Size(94, 29);
-            BtnRelatorioADM.TabIndex = 1;
-            BtnRelatorioADM.Text = "Relatórios BI";
-            BtnRelatorioADM.TextAlign = ContentAlignment.MiddleLeft;
-            BtnRelatorioADM.UseVisualStyleBackColor = false;
-            // 
-            // BtnPainelFinanceiroADM
-            // 
-            BtnPainelFinanceiroADM.BackColor = SystemColors.ControlDarkDark;
-            BtnPainelFinanceiroADM.FlatAppearance.BorderSize = 0;
-            BtnPainelFinanceiroADM.FlatStyle = FlatStyle.Flat;
-            BtnPainelFinanceiroADM.Location = new Point(0, 311);
-            BtnPainelFinanceiroADM.Name = "BtnPainelFinanceiroADM";
-            BtnPainelFinanceiroADM.Size = new Size(180, 29);
-            BtnPainelFinanceiroADM.TabIndex = 1;
-            BtnPainelFinanceiroADM.Text = "Painel Financeiro";
-            BtnPainelFinanceiroADM.TextAlign = ContentAlignment.MiddleLeft;
-            BtnPainelFinanceiroADM.UseVisualStyleBackColor = false;
-            // 
-            // BtnVoltarTelaPADM
-            // 
-            BtnVoltarTelaPADM.BackColor = Color.Transparent;
-            BtnVoltarTelaPADM.BackgroundImage = (Image)resources.GetObject("BtnVoltarTelaPADM.BackgroundImage");
-            BtnVoltarTelaPADM.BackgroundImageLayout = ImageLayout.Stretch;
-            BtnVoltarTelaPADM.FlatAppearance.BorderSize = 0;
-            BtnVoltarTelaPADM.FlatStyle = FlatStyle.Flat;
-            BtnVoltarTelaPADM.ForeColor = Color.SteelBlue;
-            BtnVoltarTelaPADM.ImageAlign = ContentAlignment.MiddleRight;
-            BtnVoltarTelaPADM.Location = new Point(946, 12);
-            BtnVoltarTelaPADM.Name = "BtnVoltarTelaPADM";
-            BtnVoltarTelaPADM.Size = new Size(50, 50);
-            BtnVoltarTelaPADM.TabIndex = 1;
-            BtnVoltarTelaPADM.UseVisualStyleBackColor = false;
+            BtnAgendamentoADM.BackColor = SystemColors.ControlDarkDark;
+            BtnAgendamentoADM.FlatAppearance.BorderSize = 0;
+            BtnAgendamentoADM.FlatStyle = FlatStyle.Flat;
+            BtnAgendamentoADM.Image = (Image)resources.GetObject("BtnAgendamentoADM.Image");
+            BtnAgendamentoADM.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnAgendamentoADM.Location = new Point(0, 179);
+            BtnAgendamentoADM.Name = "BtnAgendamentoADM";
+            BtnAgendamentoADM.Size = new Size(206, 29);
+            BtnAgendamentoADM.TabIndex = 4;
+            BtnAgendamentoADM.Text = "Agendamento Clientes";
+            BtnAgendamentoADM.TextAlign = ContentAlignment.MiddleRight;
+            BtnAgendamentoADM.UseVisualStyleBackColor = false;
             // 
             // pictureBox1
             // 
@@ -146,72 +106,116 @@
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
-            // BtnControleProdutos
+            // BtnPainelFinanceiroADM
             // 
-            BtnControleProdutos.BackColor = SystemColors.ControlDarkDark;
-            BtnControleProdutos.FlatAppearance.BorderSize = 0;
-            BtnControleProdutos.FlatStyle = FlatStyle.Flat;
-            BtnControleProdutos.Location = new Point(0, 219);
-            BtnControleProdutos.Name = "BtnControleProdutos";
-            BtnControleProdutos.Size = new Size(180, 29);
-            BtnControleProdutos.TabIndex = 3;
-            BtnControleProdutos.Text = "Produtos em Estoque";
-            BtnControleProdutos.TextAlign = ContentAlignment.MiddleLeft;
-            BtnControleProdutos.UseVisualStyleBackColor = false;
+            BtnPainelFinanceiroADM.BackColor = SystemColors.ControlDarkDark;
+            BtnPainelFinanceiroADM.FlatAppearance.BorderSize = 0;
+            BtnPainelFinanceiroADM.FlatStyle = FlatStyle.Flat;
+            BtnPainelFinanceiroADM.Image = (Image)resources.GetObject("BtnPainelFinanceiroADM.Image");
+            BtnPainelFinanceiroADM.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnPainelFinanceiroADM.Location = new Point(0, 306);
+            BtnPainelFinanceiroADM.Name = "BtnPainelFinanceiroADM";
+            BtnPainelFinanceiroADM.Size = new Size(206, 29);
+            BtnPainelFinanceiroADM.TabIndex = 1;
+            BtnPainelFinanceiroADM.Text = "Painel Financeiro";
+            BtnPainelFinanceiroADM.UseVisualStyleBackColor = false;
             // 
-            // BtnAgendamentoADM
+            // BtnRelatorioADM
             // 
-            BtnAgendamentoADM.BackColor = SystemColors.ControlDarkDark;
-            BtnAgendamentoADM.FlatAppearance.BorderSize = 0;
-            BtnAgendamentoADM.FlatStyle = FlatStyle.Flat;
-            BtnAgendamentoADM.Location = new Point(0, 173);
-            BtnAgendamentoADM.Name = "BtnAgendamentoADM";
-            BtnAgendamentoADM.Size = new Size(180, 29);
-            BtnAgendamentoADM.TabIndex = 4;
-            BtnAgendamentoADM.Text = "Agendamento Clientes";
-            BtnAgendamentoADM.TextAlign = ContentAlignment.MiddleLeft;
-            BtnAgendamentoADM.UseVisualStyleBackColor = false;
+            BtnRelatorioADM.BackColor = SystemColors.ControlDarkDark;
+            BtnRelatorioADM.FlatAppearance.BorderSize = 0;
+            BtnRelatorioADM.FlatStyle = FlatStyle.Flat;
+            BtnRelatorioADM.Image = (Image)resources.GetObject("BtnRelatorioADM.Image");
+            BtnRelatorioADM.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnRelatorioADM.Location = new Point(0, 349);
+            BtnRelatorioADM.Name = "BtnRelatorioADM";
+            BtnRelatorioADM.Size = new Size(206, 29);
+            BtnRelatorioADM.TabIndex = 1;
+            BtnRelatorioADM.Text = "Relatórios ";
+            BtnRelatorioADM.UseVisualStyleBackColor = false;
             // 
-            // BtnPontoFuncionarioADM
+            // BtnControleFuncionario
             // 
-            BtnPontoFuncionarioADM.BackColor = SystemColors.ControlDarkDark;
-            BtnPontoFuncionarioADM.FlatAppearance.BorderSize = 0;
-            BtnPontoFuncionarioADM.FlatStyle = FlatStyle.Flat;
-            BtnPontoFuncionarioADM.Location = new Point(0, 356);
-            BtnPontoFuncionarioADM.Name = "BtnPontoFuncionarioADM";
-            BtnPontoFuncionarioADM.Size = new Size(180, 29);
-            BtnPontoFuncionarioADM.TabIndex = 5;
-            BtnPontoFuncionarioADM.Text = "Controle de Ponto";
-            BtnPontoFuncionarioADM.TextAlign = ContentAlignment.MiddleLeft;
-            BtnPontoFuncionarioADM.UseVisualStyleBackColor = false;
+            BtnControleFuncionario.BackColor = SystemColors.ControlDarkDark;
+            BtnControleFuncionario.Cursor = Cursors.Hand;
+            BtnControleFuncionario.FlatAppearance.BorderSize = 0;
+            BtnControleFuncionario.FlatStyle = FlatStyle.Flat;
+            BtnControleFuncionario.ForeColor = Color.White;
+            BtnControleFuncionario.Image = (Image)resources.GetObject("BtnControleFuncionario.Image");
+            BtnControleFuncionario.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnControleFuncionario.Location = new Point(0, 97);
+            BtnControleFuncionario.Name = "BtnControleFuncionario";
+            BtnControleFuncionario.Size = new Size(206, 29);
+            BtnControleFuncionario.TabIndex = 1;
+            BtnControleFuncionario.Text = "Cadastro de Funcionário";
+            BtnControleFuncionario.TextAlign = ContentAlignment.MiddleRight;
+            BtnControleFuncionario.UseVisualStyleBackColor = false;
             // 
-            // BtnConfigGeraisADM
+            // BtnVoltarTelaP
             // 
-            BtnConfigGeraisADM.BackColor = SystemColors.ControlDarkDark;
-            BtnConfigGeraisADM.Cursor = Cursors.Hand;
-            BtnConfigGeraisADM.FlatAppearance.BorderSize = 0;
-            BtnConfigGeraisADM.FlatStyle = FlatStyle.Flat;
-            BtnConfigGeraisADM.ForeColor = Color.White;
-            BtnConfigGeraisADM.Location = new Point(0, 81);
-            BtnConfigGeraisADM.Name = "BtnConfigGeraisADM";
-            BtnConfigGeraisADM.Size = new Size(180, 29);
-            BtnConfigGeraisADM.TabIndex = 2;
-            BtnConfigGeraisADM.Text = "Configurações Gerais";
-            BtnConfigGeraisADM.TextAlign = ContentAlignment.MiddleLeft;
-            BtnConfigGeraisADM.UseVisualStyleBackColor = false;
+            BtnVoltarTelaP.BackColor = Color.Transparent;
+            BtnVoltarTelaP.BackgroundImage = (Image)resources.GetObject("BtnVoltarTelaP.BackgroundImage");
+            BtnVoltarTelaP.BackgroundImageLayout = ImageLayout.Stretch;
+            BtnVoltarTelaP.FlatAppearance.BorderSize = 0;
+            BtnVoltarTelaP.FlatStyle = FlatStyle.Flat;
+            BtnVoltarTelaP.ForeColor = Color.SteelBlue;
+            BtnVoltarTelaP.ImageAlign = ContentAlignment.MiddleRight;
+            BtnVoltarTelaP.Location = new Point(946, 12);
+            BtnVoltarTelaP.Name = "BtnVoltarTelaP";
+            BtnVoltarTelaP.Size = new Size(50, 50);
+            BtnVoltarTelaP.TabIndex = 1;
+            BtnVoltarTelaP.UseVisualStyleBackColor = false;
             // 
-            // BtnClentesCadastradosADM
+            // button1
             // 
-            BtnClentesCadastradosADM.BackColor = SystemColors.ControlDarkDark;
-            BtnClentesCadastradosADM.FlatAppearance.BorderSize = 0;
-            BtnClentesCadastradosADM.FlatStyle = FlatStyle.Flat;
-            BtnClentesCadastradosADM.Location = new Point(0, 400);
-            BtnClentesCadastradosADM.Name = "BtnClentesCadastradosADM";
-            BtnClentesCadastradosADM.Size = new Size(180, 29);
-            BtnClentesCadastradosADM.TabIndex = 6;
-            BtnClentesCadastradosADM.Text = "Clientes Cadastrados";
-            BtnClentesCadastradosADM.TextAlign = ContentAlignment.MiddleLeft;
-            BtnClentesCadastradosADM.UseVisualStyleBackColor = false;
+            button1.BackColor = SystemColors.ControlDarkDark;
+            button1.Cursor = Cursors.Hand;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.ForeColor = Color.White;
+            button1.Image = (Image)resources.GetObject("button1.Image");
+            button1.ImageAlign = ContentAlignment.MiddleLeft;
+            button1.Location = new Point(0, 138);
+            button1.Name = "button1";
+            button1.Size = new Size(206, 29);
+            button1.TabIndex = 7;
+            button1.Text = "Buscar Funcionarios ";
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // BtnTelaFuncionario
+            // 
+            BtnTelaFuncionario.BackColor = SystemColors.ControlDarkDark;
+            BtnTelaFuncionario.FlatAppearance.BorderSize = 0;
+            BtnTelaFuncionario.FlatStyle = FlatStyle.Flat;
+            BtnTelaFuncionario.Image = (Image)resources.GetObject("BtnTelaFuncionario.Image");
+            BtnTelaFuncionario.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnTelaFuncionario.Location = new Point(0, 223);
+            BtnTelaFuncionario.Name = "BtnTelaFuncionario";
+            BtnTelaFuncionario.Size = new Size(206, 29);
+            BtnTelaFuncionario.TabIndex = 8;
+            BtnTelaFuncionario.Text = "Tela Funcionário";
+            BtnTelaFuncionario.UseVisualStyleBackColor = false;
+            // 
+            // TxtNomeLogado
+            // 
+            TxtNomeLogado.Location = new Point(212, 6);
+            TxtNomeLogado.Name = "TxtNomeLogado";
+            TxtNomeLogado.Size = new Size(153, 27);
+            TxtNomeLogado.TabIndex = 2;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.DodgerBlue;
+            button2.FlatStyle = FlatStyle.Popup;
+            button2.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button2.Image = (Image)resources.GetObject("button2.Image");
+            button2.ImageAlign = ContentAlignment.MiddleLeft;
+            button2.Location = new Point(12, 431);
+            button2.Name = "button2";
+            button2.Size = new Size(162, 29);
+            button2.TabIndex = 9;
+            button2.Text = "Sair";
+            button2.UseVisualStyleBackColor = false;
             // 
             // TelaPrincipalADM
             // 
@@ -221,7 +225,8 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1008, 472);
-            Controls.Add(BtnVoltarTelaPADM);
+            Controls.Add(TxtNomeLogado);
+            Controls.Add(BtnVoltarTelaP);
             Controls.Add(panel1);
             ForeColor = Color.Transparent;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -230,21 +235,22 @@
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Panel panel1;
         private Button BtnControleFuncionario;
-        private Button BtnAtendimentoADM;
         private Button BtnRelatorioADM;
         private Button BtnPainelFinanceiroADM;
-        private Button BtnVoltarTelaPADM;
+        private Button BtnVoltarTelaP;
         private PictureBox pictureBox1;
         private Button BtnAgendamentoADM;
-        private Button BtnControleProdutos;
         private Button BtnClentesCadastradosADM;
-        private Button BtnConfigGeraisADM;
-        private Button BtnPontoFuncionarioADM;
+        private Button BtnTelaFuncionario;
+        private Button button1;
+        private TextBox TxtNomeLogado;
+        private Button button2;
     }
 }
