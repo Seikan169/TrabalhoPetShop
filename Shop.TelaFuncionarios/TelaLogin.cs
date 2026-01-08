@@ -25,28 +25,61 @@ namespace Shop.TelaFuncionarios
                 return;
             }
 
-
             BtnEntrarLogin.Enabled = false;
-
             BtnEntrarLogin.Text = "Verificando...";
 
-            Login login = new Login();
-
-            bool sucesso = await login.FazerLogin(TxtUsuario.Text, TxtSenha.Text);
-
-
-            if (sucesso)
+            try
             {
-                // telaPrincipal = new TelaPrincipal();
-                // telaPrincipal.Show();
-                //this.Hide();
+                // 3. Chama a API
+                ApiService api = new ApiService();
+                var resultado = await api.FazerLogin(TxtUsuario.Text, TxtSenha.Text);
+
+                if (resultado != null)
+                {
+                    MessageBox.Show($"Bem-vindo, {resultado.Nome}!", "Sucesso");
+
+                    // 4. Redirecionamento INTELIGENTE
+                    if (resultado.TipoUsuario == "cliente")
+                    {
+                        // Abre tela do Cliente
+                        //FrmCliente tela = new FrmCliente();
+                        //tela.Show();
+                    }
+                    else if (resultado.TipoUsuario == "funcionario")
+                    {
+                        // Abre tela do Funcionário (ainda vamos criar, mas já deixa pronto)
+                        // FrmFuncionario tela = new FrmFuncionario();
+                        // tela.Show();
+                        MessageBox.Show("Abrindo painel do Funcionário...");
+                    }
+
+                    this.Hide(); // Esconde o login
+                }
+                else
+                {
+                    MessageBox.Show("Email ou senha incorretos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Usuário ou senha inválidos!");
+                MessageBox.Show("Erro técnico: " + ex.Message);
+            }
+            finally
+            {
+                // Libera o botão de novo
                 BtnEntrarLogin.Enabled = true;
                 BtnEntrarLogin.Text = "Entrar";
             }
+
+
+
+
+
+
+
+
+
+
         }
     }
 }

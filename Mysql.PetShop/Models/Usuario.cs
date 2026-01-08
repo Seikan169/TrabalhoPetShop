@@ -1,30 +1,29 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mysql.PetShop.Models
 {
+    [Table("tb_usuarios")] // Diz pro C# que essa classe é a tabela tb_usuarios
     public class Usuario
     {
-       
-            [Key]
-            public int Id { get; set; }
-            public string Nome { get; set; }
-            public string Email { get; set; }
-            public string SenhaHash { get; set; } // Aqui vai o hash do BCrypt
-            public string TipoUsuario { get; set; } = "Cliente"; // Padrão
+        [Key] // Diz que é a Chave Primária
+        [Column("id")] // Diz o nome exato da coluna no banco
+        public int Id { get; set; }
 
-            // Dados Sensíveis (Vão receber o texto criptografado pelo AES)
-            public string CpfCriptografado { get; set; }
-            public string TelefoneCriptografado { get; set; }
+        [Column("nome")]
+        public string Nome { get; set; }
 
-            // Endereço Público
-            public string Cep { get; set; }
-            public string Cidade { get; set; }
-            public string Uf { get; set; }
+        [Column("email")]
+        public string Email { get; set; }
 
-            // Endereço Sensível (Criptografado)
-            public string LogradouroCriptografado { get; set; }
-            public string NumeroCriptografado { get; set; }
-            public string ComplementoCriptografado { get; set; }
+        [Column("senha")]
+        public string Senha { get; set; }
 
+        [Column("tipo_usuario")]
+        public string TipoUsuario { get; set; } // 'cliente' ou 'funcionario'
+
+        [Column("telefone")]
+        public string Telefone { get; set; }
     }
+
 }
