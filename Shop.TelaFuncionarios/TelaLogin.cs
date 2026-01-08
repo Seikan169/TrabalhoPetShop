@@ -52,8 +52,15 @@ namespace Shop.TelaFuncionarios
                         // tela.Show();
                         MessageBox.Show("Abrindo painel do Funcionário...");
                     }
+                    else if (resultado.TipoUsuario =="adm")
+                    {
+                        // Abre tela do Administrador
+                        TelaPrincipalADM telaadm = new TelaPrincipalADM();
+                        telaadm.Show();
 
-                    this.Hide(); // Esconde o login
+                    }
+
+                        this.Hide(); // Esconde o login
                 }
                 else
                 {
