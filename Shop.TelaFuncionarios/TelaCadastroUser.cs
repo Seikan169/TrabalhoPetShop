@@ -28,7 +28,7 @@ namespace Shop.TelaFuncionarios
             if (string.IsNullOrWhiteSpace(TxtNomeCliente.Text) || 
                 (string.IsNullOrWhiteSpace(TxtEmailCliente.Text) || 
                 (string.IsNullOrWhiteSpace(TxtSenhaCliente.Text) || 
-                (string.IsNullOrWhiteSpace(TxtTelefoneCliente.Text) || 
+                (string.IsNullOrWhiteSpace(MkBoxTeleCLiente.Text) || 
                 (string.IsNullOrWhiteSpace(MkBoxCep.Text) || 
                 (string.IsNullOrWhiteSpace(TxtNúmeroCliente.Text) || 
                 (string.IsNullOrWhiteSpace(TxtComplementoCliente.Text))))))))
@@ -42,21 +42,47 @@ namespace Shop.TelaFuncionarios
             BtnSalvarCadastroCliente.Text = "Salvando...";
             Cursor = Cursors.WaitCursor;
 
-            ApiService api = new ApiService();
+            try
+            {
+                ApiService api = new ApiService();
 
-            bool sucesso =  await api.CadastrarUsuario(
-                TxtNomeCliente.Text,
-                TxtEmailCliente.Text,
-                TxtSenhaCliente.Text,
-                TxtTelefoneCliente.Text,
-                MkBoxCep.Text,
-                TxtLogCliente.Text,
-                TxtNúmeroCliente.Text,
-                TxtComplementoCliente.Text,
-                TxtBairroCliente.Text,
-                TxtCidadeCliente.Text,
-                TxtUfCliente.Text
-            );
+                bool sucesso = await api.CadastrarUsuario(
+                    TxtNomeCliente.Text,
+                    TxtEmailCliente.Text,
+                    TxtSenhaCliente.Text,
+                    MkBoxTeleCLiente.Text,
+                    MkBoxCep.Text,
+                    TxtLogCliente.Text,
+                    TxtNúmeroCliente.Text,
+                    TxtComplementoCliente.Text,
+                    TxtBairroCliente.Text,
+                    TxtCidadeCliente.Text,
+                    TxtUfCliente.Text
+                );
+
+
+                if (sucesso)
+                {
+                    MessageBox.Show("Cadastro realizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Ocorreu um erro ao cadastrar o usuário. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocorreu um erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                BtnSalvarCadastroCliente.Enabled = true;
+                BtnSalvarCadastroCliente.Text = "Salvar Cadastro";
+                Cursor = Cursors.Default;
+            }
+
+
 
 
         }
@@ -99,6 +125,8 @@ namespace Shop.TelaFuncionarios
             if (TxtSenhaCliente.Text != TxtConfirSenhaCliente.Text)
             {
                 MessageBox.Show("As senhas não coincidem. Por favor, verifique.", "Erro de Senha", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                TxtSenhaCliente.Clear();
+                TxtConfirSenhaCliente.Clear();
                 TxtSenhaCliente.Focus();
 
             }

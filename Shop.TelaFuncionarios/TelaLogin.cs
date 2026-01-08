@@ -65,7 +65,9 @@ namespace Shop.TelaFuncionarios
                 else
                 {
                     MessageBox.Show("Email ou senha incorretos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
                 }
+                
             }
             catch (Exception ex)
             {
@@ -77,13 +79,6 @@ namespace Shop.TelaFuncionarios
                 BtnEntrarLogin.Enabled = true;
                 BtnEntrarLogin.Text = "Entrar";
             }
-
-
-
-
-
-
-
 
 
 
