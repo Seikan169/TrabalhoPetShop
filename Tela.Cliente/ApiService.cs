@@ -1,5 +1,6 @@
 ﻿using Mysql.PetShop.Models;
 using Newtonsoft.Json;
+using Shop.TelaFuncionarios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -221,6 +222,34 @@ namespace Shop.TelaFuncionarios
         // A senha geralmente NÃO deve ser retornada para o DataGrid por segurança
         public string Telefone { get; set; }
 
+        public async Task<List<FuncionarioDTO>> BuscarFuncionariosAsync() // Novo método para buscar funcionários
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    // Note que usei a rota /api/usuarios. Ajuste se sua rota for diferente (ex: /api/funcionarios)
+                    var response = await client.GetAsync($"{_baseUrl}/api/usuarios/funcionarios");
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseString = await response.Content.ReadAsStringAsync();
+
+                        // Usando JsonConvert (Newtonsoft) que você já usa no resto da classe
+                        return JsonConvert.DeserializeObject<List<FuncionarioDTO>>(responseString);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Log de erro para depuração
+                    Console.WriteLine("Erro ao buscar funcionários: " + ex.Message);
+                }
+
+                return null;
+            }
+        }
+
+
         // Se o JSON vier como "tipo_usuario" (snake_case), use a anotação abaixo.
         // Se você configurou a API para retornar camelCase (tipoUsuario), não precisa.
         [System.Text.Json.Serialization.JsonPropertyName("tipo_usuario")]
@@ -229,6 +258,13 @@ namespace Shop.TelaFuncionarios
         [System.Text.Json.Serialization.JsonPropertyName("data_cadastro")]
         public DateTime DataCadastro { get; set; }
     }
+
+    }
+
+
+    
+
+
     // Classe para receber a resposta da API organizada
     public class LoginResponse
     {
@@ -237,8 +273,6 @@ namespace Shop.TelaFuncionarios
         public string TipoUsuario { get; set; } // O mais importante!
         public string Mensagem { get; set; }
     }
-
-
 
 
 
@@ -268,6 +302,8 @@ public class FuncionarioDTO // DTO = Data Transfer Object
     [System.Text.Json.Serialization.JsonPropertyName("data_cadastro")]
     public DateTime DataCadastro { get; set; }
 }
+
+
 
 
 

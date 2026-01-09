@@ -39,9 +39,38 @@ namespace Shop.TelaFuncionarios
             sairlogin.Show();
         }
 
-        private void BtnBuscarADM_Click(object sender, EventArgs e)
+        private async void BtnBuscarADM_Click(object sender, EventArgs e)
         {
-             
+            try
+            {
+               
+                this.Cursor = Cursors.WaitCursor;
+
+                ApiService apiService = new ApiService();
+
+                
+                var lista = await apiService.BuscarFuncionariosAsync();
+
+                if (lista != null && lista.Count > 0)
+                {
+                    DgwBuscarDados.DataSource = lista;
+                    DgwBuscarDados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                }
+                else
+                {
+                    MessageBox.Show("A API respondeu, mas a lista de funcionários está vazia.");
+                }
+            }
+            catch (Exception ex)
+            {
+                
+                MessageBox.Show(ex.Message, "Erro de Conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+               
+                this.Cursor = Cursors.Default;
+            }
         }
 
     }
