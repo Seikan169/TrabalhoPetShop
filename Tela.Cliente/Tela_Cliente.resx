@@ -121,7 +121,7 @@
   <data name="BtnSair.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        rQAAAK0BVE7WMAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACySURBVEhLY2Ag
+        rAAAAKwBhgk01AAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACySURBVEhLY2Ag
         Anyepa/9caZew6dZuldPlWu/R5cnGewv0F5xrlbn5f1unU9vp+v9+TRL7z8MHy/T/rslQ/MJOgbpQTcH
         J9hfoH0A2VBkvCVd63+xuSYGBulBNwcnGLWAIBi1gCAYXhY87NH9v79I5/+kDSv+31waQn0LXk3R+/9+
         ut7/2p2n/l9cnkB9C2B485be/48WutPOAprFAToetQAMRi0gCOhhAW0rfXRASbMFAO380qJRfT3fAAAA
@@ -131,7 +131,7 @@
   <data name="BtnMeusPets.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        rQAAAK0BVE7WMAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAASISURBVEhLtZR7
+        rAAAAKwBhgk01AAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAASISURBVEhLtZR7
         TFNnGMa/bBNK27Vc20J72tOWSy9rq7RHSgutUy5FaBEmYBFkXJNlIiBsytSJAQ3EZNzGdPuHTdiibIkh
         LjGDgc5tLvvD3SIsshgzR4SACYxNqvTyLqexHT0lm9uyJ/nl5HvP8z3v9+W8OQg9ubB4IetbEoSQkPry
         PykkBKkScdada2f1QKKQsn9hMDZpqL5/JRrtGfNmWcTsRB8BZk2Uy6SKdn/aq/UkKyLvsRm0HVT/PxI3
@@ -157,7 +157,7 @@
   <data name="BtnAgendar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        qwAAAKsB1E2SqwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAASySURBVEhLhZQL
+        qgAAAKoBBgpwTwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAASySURBVEhLhZQL
         TFNXGMe7zFAuXYoXWii10LUUCuXR8i62tFgo5SEKlIKADu1ERSmTOHwRp27RoAahmqox2QrMTcfGRCIM
         R6ZLlrllZsmSzaBL3NTNZ1CZyEac47/c64r1FOY/+SU353zf7zu597Qcjm9e4gcEFEQI+ecVorm/xYjp
         axECfjdZFCHgH4sPD74dJ6EfqsRBIwI6YCHTS9Z5Z05ZhkJSmvLqR8t0kQ/6HNk4t9GM4Q05yFKKHnK5

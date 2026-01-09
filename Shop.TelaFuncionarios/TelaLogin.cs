@@ -42,19 +42,12 @@ namespace Shop.TelaFuncionarios
                     // 4. Redirecionamento INTELIGENTE
                     if (resultado.TipoUsuario == "cliente")
                     {
-                        Tela_Cliente tela = new Tela_Cliente(resultado.Nome);
+                        Tela_Cliente tela = new Tela_Cliente(resultado.Nome,resultado.Id);
                         tela.Show();
                         MessageBox.Show("Abrindo painel do Cliente...");
                     }
                     else if (resultado.TipoUsuario == "funcionario")
-                    {
-
-                        
-                        // FrmFuncionario tela = new FrmFuncionario();
-                        // tela.Show();
-
-                        Tela_Cliente tela = new Tela_Cliente(resultado.Nome);
-                        tela.Show();
+                    {                      
 
                         MessageBox.Show("Abrindo painel do Funcionário...");
                     }

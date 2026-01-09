@@ -13,7 +13,7 @@ namespace Tela.Cliente
 {
     public partial class Tela_Cliente : Form
     {
-        public Tela_Cliente(string usuario)
+        public Tela_Cliente(string usuario, int id)
         {
 
             InitializeComponent();

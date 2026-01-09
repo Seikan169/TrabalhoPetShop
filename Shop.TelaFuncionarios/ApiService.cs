@@ -52,6 +52,32 @@ namespace Shop.TelaFuncionarios
             }
 
         }
+        public async Task<bool> EnviarPedido(int clienteId, DateTime dataAgendamento, List<int> idsServicos, decimal total)
+        {
+            using (var client = new HttpClient())
+            {
+                var pacote = new
+                {
+                    ClienteId = clienteId,
+                    DataAgendamento = dataAgendamento,
+                    ValorTotal = total,
+                    ServicosIds = idsServicos
+                };
+
+                var json = JsonConvert.SerializeObject(pacote);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                try
+                {
+                    var response = await client.PostAsync($"{_baseUrl}/api/pedidos", content);
+                    return response.IsSuccessStatusCode;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
 
         public class FuncionarioDTO // DTO = Data Transfer Object
         {
