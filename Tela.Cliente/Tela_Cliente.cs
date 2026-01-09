@@ -12,12 +12,14 @@ namespace Tela.Cliente
 {
     public partial class Tela_Cliente : Form
     {
-        public Tela_Cliente()
+        private int usuarioId;
+        public Tela_Cliente(int usuarioId)
         {
             InitializeComponent();
             tabControl1.Appearance = TabAppearance.FlatButtons;
             tabControl1.ItemSize = new Size(0, 1);
             tabControl1.SizeMode = TabSizeMode.Fixed;
+            usuarioId = usuarioId;
         }
 
         private void BtnAgendar_Click(object sender, EventArgs e)
