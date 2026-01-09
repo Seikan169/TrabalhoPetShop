@@ -93,37 +93,6 @@ namespace PetShop.API.Controllers
                 Mensagem = "Login realizado com sucesso"
             });
         }
-
-        [HttpGet("funcionarios")]
-        public IActionResult GetFuncionarios()
-        {
-            try
-            {
-                // 1. Busca no banco apenas quem tem TipoUsuario = "funcionario"
-                var listaFuncionarios = _context.TbUsuarios
-                    .Where(u => u.TipoUsuario == "funcionario")
-                    // 2. O .Select é IMPORTANTE: ele evita enviar a SENHA para o Windows Forms
-                    .Select(u => new
-                    {
-                        u.Id,
-                        u.Nome,
-                        u.Email,
-                        u.Telefone,
-                        u.TipoUsuario,
-                        // Se tiver DataCadastro no model, pode por: u.DataCadastro
-                    })
-                    .ToList();
-
-                return Ok(listaFuncionarios);
-            }
-            catch (System.Exception ex)
-            {
-                return BadRequest("Erro ao buscar funcionários: " + ex.Message);
-            }
-        }
-
-
-
     }
 
     // Classe auxiliar só para receber os dados do JSON de login
