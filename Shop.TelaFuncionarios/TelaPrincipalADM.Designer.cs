@@ -51,13 +51,13 @@
             // panel1
             // 
             panel1.BackColor = Color.DodgerBlue;
+            panel1.Controls.Add(BtnSairADM);
             panel1.Controls.Add(BtnRelatorioADM);
             panel1.Controls.Add(BtnPainelFinanceiroADM);
             panel1.Controls.Add(BtnClentesCadastradosADM);
             panel1.Controls.Add(BtnTelaFuncionario);
             panel1.Controls.Add(BtnAgendamentoADM);
             panel1.Controls.Add(BtnBuscarADM);
-            panel1.Controls.Add(BtnSairADM);
             panel1.Controls.Add(BtnControleFuncionario);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(TxtNomeLogado);
@@ -164,13 +164,14 @@
             // BtnSairADM
             // 
             BtnSairADM.BackColor = Color.DodgerBlue;
+            BtnSairADM.Dock = DockStyle.Bottom;
             BtnSairADM.FlatStyle = FlatStyle.Popup;
             BtnSairADM.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             BtnSairADM.Image = (Image)resources.GetObject("BtnSairADM.Image");
             BtnSairADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnSairADM.Location = new Point(22, 450);
+            BtnSairADM.Location = new Point(0, 443);
             BtnSairADM.Name = "BtnSairADM";
-            BtnSairADM.Size = new Size(162, 29);
+            BtnSairADM.Size = new Size(206, 40);
             BtnSairADM.TabIndex = 10;
             BtnSairADM.Text = "Sair";
             BtnSairADM.UseVisualStyleBackColor = false;
@@ -229,11 +230,13 @@
             // 
             // DgwBuscarDados
             // 
+            DgwBuscarDados.AllowUserToAddRows = false;
             DgwBuscarDados.BackgroundColor = Color.White;
             DgwBuscarDados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DgwBuscarDados.Dock = DockStyle.Fill;
             DgwBuscarDados.Location = new Point(0, 0);
             DgwBuscarDados.Name = "DgwBuscarDados";
+            DgwBuscarDados.ReadOnly = true;
             DgwBuscarDados.RowHeadersWidth = 51;
             DgwBuscarDados.Size = new Size(816, 432);
             DgwBuscarDados.TabIndex = 0;

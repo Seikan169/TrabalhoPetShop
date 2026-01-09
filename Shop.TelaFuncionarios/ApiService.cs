@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Shop.TelaFuncionarios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -167,7 +168,41 @@ namespace Shop.TelaFuncionarios
                 }
             }
         }
+
+        public async Task<List<FuncionarioDTO>> BuscarFuncionariosAsync() // Novo método para buscar funcionários
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    // Note que usei a rota /api/usuarios. Ajuste se sua rota for diferente (ex: /api/funcionarios)
+                    var response = await client.GetAsync($"{_baseUrl}/api/usuarios/funcionarios");
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseString = await response.Content.ReadAsStringAsync();
+
+                        // Usando JsonConvert (Newtonsoft) que você já usa no resto da classe
+                        return JsonConvert.DeserializeObject<List<FuncionarioDTO>>(responseString);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Log de erro para depuração
+                    Console.WriteLine("Erro ao buscar funcionários: " + ex.Message);
+                }
+
+                return null;
+            }
+        }
+
+
+
+
     }
+
+
+    
 
 
     // Classe para receber a resposta da API organizada
@@ -178,8 +213,6 @@ namespace Shop.TelaFuncionarios
         public string TipoUsuario { get; set; } // O mais importante!
         public string Mensagem { get; set; }
     }
-
-
 
 
 
@@ -209,6 +242,8 @@ public class FuncionarioDTO // DTO = Data Transfer Object
     [System.Text.Json.Serialization.JsonPropertyName("data_cadastro")]
     public DateTime DataCadastro { get; set; }
 }
+
+
 
 
 
