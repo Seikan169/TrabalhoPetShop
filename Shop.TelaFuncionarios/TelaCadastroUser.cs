@@ -54,10 +54,10 @@ namespace Shop.TelaFuncionarios
                     MkBoxCep.Text,
                     TxtLogCliente.Text,
                     TxtNúmeroCliente.Text,
-                    TxtComplementoCliente.Text,
                     TxtBairroCliente.Text,
                     TxtCidadeCliente.Text,
-                    TxtUfCliente.Text
+                    TxtUfCliente.Text,
+                    TxtComplementoCliente.Text
                 );
 
 
@@ -68,7 +68,7 @@ namespace Shop.TelaFuncionarios
                 }
                 else
                 {
-                    MessageBox.Show("Ocorreu um erro ao cadastrar o usuário. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Não foi possível cadastrar.\nVerifique se o e-mail já existe.", "Erro");
                 }
             }
             catch (Exception ex)
