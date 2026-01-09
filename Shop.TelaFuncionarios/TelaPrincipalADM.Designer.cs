@@ -29,23 +29,26 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPrincipalADM));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            BtnSairADM = new Button();
             BtnRelatorioADM = new Button();
             BtnPainelFinanceiroADM = new Button();
             BtnClentesCadastradosADM = new Button();
             BtnTelaFuncionario = new Button();
             BtnAgendamentoADM = new Button();
             BtnBuscarADM = new Button();
-            BtnSairADM = new Button();
             BtnControleFuncionario = new Button();
             pictureBox1 = new PictureBox();
             TxtNomeLogado = new TextBox();
             PanelCentralADM = new Panel();
-            DgwBuscarDados = new DataGridView();
+            DgvPricipal = new DataGridView();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             PanelCentralADM.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)DgwBuscarDados).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DgvPricipal).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -63,9 +66,27 @@
             panel1.Controls.Add(TxtNomeLogado);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(206, 483);
+            panel1.Size = new Size(180, 421);
             panel1.TabIndex = 0;
+            // 
+            // BtnSairADM
+            // 
+            BtnSairADM.BackColor = Color.DodgerBlue;
+            BtnSairADM.Dock = DockStyle.Bottom;
+            BtnSairADM.FlatStyle = FlatStyle.Popup;
+            BtnSairADM.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BtnSairADM.Image = (Image)resources.GetObject("BtnSairADM.Image");
+            BtnSairADM.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnSairADM.Location = new Point(0, 391);
+            BtnSairADM.Margin = new Padding(3, 2, 3, 2);
+            BtnSairADM.Name = "BtnSairADM";
+            BtnSairADM.Size = new Size(180, 30);
+            BtnSairADM.TabIndex = 10;
+            BtnSairADM.Text = "Sair";
+            BtnSairADM.UseVisualStyleBackColor = false;
+            BtnSairADM.Click += BtnSairADM_Click;
             // 
             // BtnRelatorioADM
             // 
@@ -75,9 +96,10 @@
             BtnRelatorioADM.FlatStyle = FlatStyle.Flat;
             BtnRelatorioADM.Image = (Image)resources.GetObject("BtnRelatorioADM.Image");
             BtnRelatorioADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnRelatorioADM.Location = new Point(0, 398);
+            BtnRelatorioADM.Location = new Point(0, 301);
+            BtnRelatorioADM.Margin = new Padding(3, 2, 3, 2);
             BtnRelatorioADM.Name = "BtnRelatorioADM";
-            BtnRelatorioADM.Size = new Size(206, 46);
+            BtnRelatorioADM.Size = new Size(180, 34);
             BtnRelatorioADM.TabIndex = 1;
             BtnRelatorioADM.Text = "Relatórios ";
             BtnRelatorioADM.UseVisualStyleBackColor = false;
@@ -90,9 +112,10 @@
             BtnPainelFinanceiroADM.FlatStyle = FlatStyle.Flat;
             BtnPainelFinanceiroADM.Image = (Image)resources.GetObject("BtnPainelFinanceiroADM.Image");
             BtnPainelFinanceiroADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnPainelFinanceiroADM.Location = new Point(0, 358);
+            BtnPainelFinanceiroADM.Location = new Point(0, 271);
+            BtnPainelFinanceiroADM.Margin = new Padding(3, 2, 3, 2);
             BtnPainelFinanceiroADM.Name = "BtnPainelFinanceiroADM";
-            BtnPainelFinanceiroADM.Size = new Size(206, 40);
+            BtnPainelFinanceiroADM.Size = new Size(180, 30);
             BtnPainelFinanceiroADM.TabIndex = 1;
             BtnPainelFinanceiroADM.Text = "Painel Financeiro";
             BtnPainelFinanceiroADM.UseVisualStyleBackColor = false;
@@ -106,9 +129,10 @@
             BtnClentesCadastradosADM.ForeColor = Color.White;
             BtnClentesCadastradosADM.Image = (Image)resources.GetObject("BtnClentesCadastradosADM.Image");
             BtnClentesCadastradosADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnClentesCadastradosADM.Location = new Point(0, 306);
+            BtnClentesCadastradosADM.Location = new Point(0, 232);
+            BtnClentesCadastradosADM.Margin = new Padding(3, 2, 3, 2);
             BtnClentesCadastradosADM.Name = "BtnClentesCadastradosADM";
-            BtnClentesCadastradosADM.Size = new Size(206, 52);
+            BtnClentesCadastradosADM.Size = new Size(180, 39);
             BtnClentesCadastradosADM.TabIndex = 6;
             BtnClentesCadastradosADM.Text = "    Clientes Cadastrados";
             BtnClentesCadastradosADM.UseVisualStyleBackColor = false;
@@ -121,9 +145,10 @@
             BtnTelaFuncionario.FlatStyle = FlatStyle.Flat;
             BtnTelaFuncionario.Image = (Image)resources.GetObject("BtnTelaFuncionario.Image");
             BtnTelaFuncionario.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnTelaFuncionario.Location = new Point(0, 260);
+            BtnTelaFuncionario.Location = new Point(0, 198);
+            BtnTelaFuncionario.Margin = new Padding(3, 2, 3, 2);
             BtnTelaFuncionario.Name = "BtnTelaFuncionario";
-            BtnTelaFuncionario.Size = new Size(206, 46);
+            BtnTelaFuncionario.Size = new Size(180, 34);
             BtnTelaFuncionario.TabIndex = 8;
             BtnTelaFuncionario.Text = "Tela Funcionário";
             BtnTelaFuncionario.UseVisualStyleBackColor = false;
@@ -136,9 +161,10 @@
             BtnAgendamentoADM.FlatStyle = FlatStyle.Flat;
             BtnAgendamentoADM.Image = (Image)resources.GetObject("BtnAgendamentoADM.Image");
             BtnAgendamentoADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnAgendamentoADM.Location = new Point(0, 215);
+            BtnAgendamentoADM.Location = new Point(0, 164);
+            BtnAgendamentoADM.Margin = new Padding(3, 2, 3, 2);
             BtnAgendamentoADM.Name = "BtnAgendamentoADM";
-            BtnAgendamentoADM.Size = new Size(206, 45);
+            BtnAgendamentoADM.Size = new Size(180, 34);
             BtnAgendamentoADM.TabIndex = 4;
             BtnAgendamentoADM.Text = "    Agendamento Clientes";
             BtnAgendamentoADM.UseVisualStyleBackColor = false;
@@ -153,29 +179,14 @@
             BtnBuscarADM.ForeColor = Color.White;
             BtnBuscarADM.Image = (Image)resources.GetObject("BtnBuscarADM.Image");
             BtnBuscarADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnBuscarADM.Location = new Point(0, 177);
+            BtnBuscarADM.Location = new Point(0, 136);
+            BtnBuscarADM.Margin = new Padding(3, 2, 3, 2);
             BtnBuscarADM.Name = "BtnBuscarADM";
-            BtnBuscarADM.Size = new Size(206, 38);
+            BtnBuscarADM.Size = new Size(180, 28);
             BtnBuscarADM.TabIndex = 7;
             BtnBuscarADM.Text = "  Buscar Funcionarios ";
             BtnBuscarADM.UseVisualStyleBackColor = false;
             BtnBuscarADM.Click += BtnBuscarADM_Click;
-            // 
-            // BtnSairADM
-            // 
-            BtnSairADM.BackColor = Color.DodgerBlue;
-            BtnSairADM.Dock = DockStyle.Bottom;
-            BtnSairADM.FlatStyle = FlatStyle.Popup;
-            BtnSairADM.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BtnSairADM.Image = (Image)resources.GetObject("BtnSairADM.Image");
-            BtnSairADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnSairADM.Location = new Point(0, 443);
-            BtnSairADM.Name = "BtnSairADM";
-            BtnSairADM.Size = new Size(206, 40);
-            BtnSairADM.TabIndex = 10;
-            BtnSairADM.Text = "Sair";
-            BtnSairADM.UseVisualStyleBackColor = false;
-            BtnSairADM.Click += BtnSairADM_Click;
             // 
             // BtnControleFuncionario
             // 
@@ -187,9 +198,10 @@
             BtnControleFuncionario.ForeColor = Color.White;
             BtnControleFuncionario.Image = (Image)resources.GetObject("BtnControleFuncionario.Image");
             BtnControleFuncionario.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnControleFuncionario.Location = new Point(0, 118);
+            BtnControleFuncionario.Location = new Point(0, 92);
+            BtnControleFuncionario.Margin = new Padding(3, 2, 3, 2);
             BtnControleFuncionario.Name = "BtnControleFuncionario";
-            BtnControleFuncionario.Size = new Size(206, 59);
+            BtnControleFuncionario.Size = new Size(180, 44);
             BtnControleFuncionario.TabIndex = 1;
             BtnControleFuncionario.Text = "Cadastro de Funcionário";
             BtnControleFuncionario.TextAlign = ContentAlignment.MiddleRight;
@@ -203,9 +215,10 @@
             pictureBox1.BorderStyle = BorderStyle.Fixed3D;
             pictureBox1.Dock = DockStyle.Top;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(0, 27);
+            pictureBox1.Location = new Point(0, 23);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(206, 91);
+            pictureBox1.Size = new Size(180, 69);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
@@ -215,51 +228,87 @@
             // 
             TxtNomeLogado.Dock = DockStyle.Top;
             TxtNomeLogado.Location = new Point(0, 0);
+            TxtNomeLogado.Margin = new Padding(3, 2, 3, 2);
             TxtNomeLogado.Name = "TxtNomeLogado";
-            TxtNomeLogado.Size = new Size(206, 27);
+            TxtNomeLogado.Size = new Size(180, 23);
             TxtNomeLogado.TabIndex = 2;
             // 
             // PanelCentralADM
             // 
             PanelCentralADM.BackColor = Color.Transparent;
-            PanelCentralADM.Controls.Add(DgwBuscarDados);
-            PanelCentralADM.Location = new Point(223, 27);
+            PanelCentralADM.Controls.Add(DgvPricipal);
+            PanelCentralADM.Dock = DockStyle.Fill;
+            PanelCentralADM.Location = new Point(180, 0);
+            PanelCentralADM.Margin = new Padding(3, 2, 3, 2);
             PanelCentralADM.Name = "PanelCentralADM";
-            PanelCentralADM.Size = new Size(816, 432);
+            PanelCentralADM.Size = new Size(792, 421);
             PanelCentralADM.TabIndex = 2;
             // 
-            // DgwBuscarDados
+            // DgvPricipal
             // 
-            DgwBuscarDados.AllowUserToAddRows = false;
-            DgwBuscarDados.BackgroundColor = Color.White;
-            DgwBuscarDados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DgwBuscarDados.Dock = DockStyle.Fill;
-            DgwBuscarDados.Location = new Point(0, 0);
-            DgwBuscarDados.Name = "DgwBuscarDados";
-            DgwBuscarDados.ReadOnly = true;
-            DgwBuscarDados.RowHeadersWidth = 51;
-            DgwBuscarDados.Size = new Size(816, 432);
-            DgwBuscarDados.TabIndex = 0;
+            DgvPricipal.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DgvPricipal.BackgroundColor = Color.Silver;
+            DgvPricipal.BorderStyle = BorderStyle.None;
+            DgvPricipal.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            DgvPricipal.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.Lime;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.Padding = new Padding(0, 0, 40, 0);
+            dataGridViewCellStyle1.SelectionBackColor = Color.RoyalBlue;
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            DgvPricipal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            DgvPricipal.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.Padding = new Padding(0, 0, 35, 0);
+            dataGridViewCellStyle2.SelectionBackColor = Color.DarkOrange;
+            dataGridViewCellStyle2.SelectionForeColor = Color.RoyalBlue;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            DgvPricipal.DefaultCellStyle = dataGridViewCellStyle2;
+            DgvPricipal.Dock = DockStyle.Fill;
+            DgvPricipal.EnableHeadersVisualStyles = false;
+            DgvPricipal.GridColor = Color.Black;
+            DgvPricipal.Location = new Point(0, 0);
+            DgvPricipal.Name = "DgvPricipal";
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.Salmon;
+            dataGridViewCellStyle3.SelectionForeColor = Color.RoyalBlue;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            DgvPricipal.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            DgvPricipal.RowHeadersVisible = false;
+            DgvPricipal.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
+            DgvPricipal.Size = new Size(792, 421);
+            DgvPricipal.TabIndex = 1;
             // 
             // TelaPrincipalADM
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveCaption;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1051, 483);
+            ClientSize = new Size(972, 421);
             Controls.Add(PanelCentralADM);
             Controls.Add(panel1);
             ForeColor = Color.Transparent;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 2, 3, 2);
             Name = "TelaPrincipalADM";
             Text = "TelaPrincipalADM";
+            Load += TelaPrincipalADM_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             PanelCentralADM.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)DgwBuscarDados).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DgvPricipal).EndInit();
             ResumeLayout(false);
         }
 
@@ -277,6 +326,6 @@
         private TextBox TxtNomeLogado;
         private Button BtnSairADM;
         private Panel PanelCentralADM;
-        private DataGridView DgwBuscarDados;
+        private DataGridView DgvPricipal;
     }
 }

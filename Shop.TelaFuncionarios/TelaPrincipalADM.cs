@@ -26,7 +26,7 @@ namespace Shop.TelaFuncionarios
         {
 
         }
-       
+
 
         private void BtnControleFuncionario_Click(object sender, EventArgs e)
         {
@@ -41,37 +41,46 @@ namespace Shop.TelaFuncionarios
 
         private async void BtnBuscarADM_Click(object sender, EventArgs e)
         {
+            await CarregarGrid();
+
+        }
+
+        private async Task CarregarGrid()
+        {
             try
             {
-               
-                this.Cursor = Cursors.WaitCursor;
+                DgvPricipal.MultiSelect = false;
 
-                ApiService apiService = new ApiService();
+                // 2. Seleciona a LINHA inteira (resolve o erro e fica visualmente melhor)
+                DgvPricipal.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                // 1. Configura o visual do Grid (opcional, mas bom pra ficar bonito)
+                DgvPricipal.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                
-                var lista = await apiService.BuscarFuncionariosAsync();
+                // 2. Chama a API
+                ApiService api = new ApiService();
+                var lista = await api.GetFuncionarios();
 
-                if (lista != null && lista.Count > 0)
-                {
-                    DgwBuscarDados.DataSource = lista;
-                    DgwBuscarDados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                }
-                else
-                {
-                    MessageBox.Show("A API respondeu, mas a lista de funcionários está vazia.");
-                }
+                // 3. Joga os dados no Grid
+                DgvPricipal.DataSource = lista;
+
+                DgvPricipal.DefaultCellStyle.ForeColor = Color.Black;
+                DgvPricipal.DefaultCellStyle.BackColor = Color.White;
+
+                DgvPricipal.DefaultCellStyle.SelectionBackColor = Color.Orange;
+                DgvPricipal.DefaultCellStyle.SelectionForeColor = Color.White;
+                // 4. Esconde colunas que não precisa ver (opcional)
+                if (DgvPricipal.Columns["Id"] != null)
+                    DgvPricipal.Columns["Id"].Visible = false;
             }
             catch (Exception ex)
             {
-                
-                MessageBox.Show(ex.Message, "Erro de Conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-               
-                this.Cursor = Cursors.Default;
+                MessageBox.Show("Erro ao carregar funcionários: " + ex.Message);
             }
         }
 
+        private void TelaPrincipalADM_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

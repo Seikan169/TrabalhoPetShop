@@ -13,7 +13,7 @@ namespace Shop.TelaFuncionarios
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Tela_Cliente("Usuário Teste", 1));
+            Application.Run(new Tela_Cliente("Gabriel",1));
         }
     }
 }

@@ -192,7 +192,10 @@ namespace Tela.Cliente
 
             // Alinhamentos
             DgvCarrinho.Columns["Preco"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
             DgvCarrinho.Columns["btnRemover"].Width = 40;
+            
+
 
             // --- Configuração da Tabela de Serviços (Esquerda) ---
             DgvServicos.ReadOnly = true;              // Ninguém edita texto
