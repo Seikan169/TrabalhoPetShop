@@ -47,7 +47,7 @@ namespace Shop.TelaFuncionarios
                     }
                     else if (resultado.TipoUsuario == "funcionario")
                     {
-                        // Abre tela do Funcionário (ainda vamos criar, mas já deixa pronto)
+                        
                         // FrmFuncionario tela = new FrmFuncionario();
                         // tela.Show();
                         MessageBox.Show("Abrindo painel do Funcionário...");
