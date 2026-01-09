@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tela.Cliente;
 
 namespace Shop.TelaFuncionarios
 {
@@ -41,15 +42,14 @@ namespace Shop.TelaFuncionarios
                     // 4. Redirecionamento INTELIGENTE
                     if (resultado.TipoUsuario == "cliente")
                     {
-                        // Abre tela do Cliente
-                        //FrmCliente tela = new FrmCliente();
-                        //tela.Show();
+                        Tela_Cliente tela = new Tela_Cliente(resultado.Nome);
+                        tela.Show();
+                        MessageBox.Show("Abrindo painel do Cliente...");
                     }
                     else if (resultado.TipoUsuario == "funcionario")
                     {
-                        // Abre tela do Funcionário (ainda vamos criar, mas já deixa pronto)
-                        // FrmFuncionario tela = new FrmFuncionario();
-                        // tela.Show();
+                        Tela_Cliente tela = new Tela_Cliente(resultado.Nome);
+                        tela.Show();
                         MessageBox.Show("Abrindo painel do Funcionário...");
                     }
                     else if (resultado.TipoUsuario == "adm")
@@ -79,8 +79,6 @@ namespace Shop.TelaFuncionarios
                 BtnEntrarLogin.Enabled = true;
                 BtnEntrarLogin.Text = "Entrar";
             }
-
-
 
         }
 
