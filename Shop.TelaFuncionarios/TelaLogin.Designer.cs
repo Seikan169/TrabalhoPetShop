@@ -153,6 +153,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "TelaLogin";
             Text = "TelaLogin";
+            Load += TelaLogin_Load;
             ResumeLayout(false);
             PerformLayout();
         }

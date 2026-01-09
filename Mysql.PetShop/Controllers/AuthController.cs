@@ -93,6 +93,27 @@ namespace PetShop.API.Controllers
                 Mensagem = "Login realizado com sucesso"
             });
         }
+        // GET: api/auth/funcionarios
+        [HttpGet("funcionarios")]
+        public IActionResult GetFuncionarios()
+        {
+            // Busca no banco apenas quem é 'funcionario'
+            var lista = _context.TbUsuarios
+                .Where(u => u.TipoUsuario == "funcionario")
+                .Select(u => new
+                {
+                    // Selecionamos apenas os dados seguros (sem senha!)
+                    Id = u.Id,
+                    Nome = u.Nome,
+                    Email = u.Email,
+                    Telefone = u.Telefone,
+                    TipoUsuario = u.TipoUsuario,
+                    DataCadastro = u.DataCadastro // Se tiver esse campo no banco
+                })
+                .ToList();
+
+            return Ok(lista);
+        }
     }
 
     // Classe auxiliar só para receber os dados do JSON de login

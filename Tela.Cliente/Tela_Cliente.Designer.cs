@@ -29,30 +29,54 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Tela_Cliente));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             PnlLateral = new Panel();
             BtnSair = new Button();
             BtnMeusPets = new Button();
             BtnAgendar = new Button();
             PnlCabeca = new Panel();
+            LblBemvindo = new Label();
             PnlPricipal = new Panel();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            splitContainer1 = new SplitContainer();
             DgvServicos = new DataGridView();
+            panel2 = new Panel();
+            BtnAdicionar = new Button();
+            panel1 = new Panel();
+            CmbPetAgendar = new ComboBox();
+            LblPetCuidado = new Label();
+            LblResumo = new Label();
+            DgvCarrinho = new DataGridView();
+            PnlRodapePagar = new Panel();
+            BtnFinalizar = new Button();
+            LblData = new Label();
+            DtpData = new DateTimePicker();
+            LblTotal = new Label();
+            PnlCabecaPagamneto = new Panel();
+            LblPedido = new Label();
             tabPage2 = new TabPage();
-            LblBemvindo = new Label();
-            LblCuidado = new Label();
-            CmbPetAgendamento = new ComboBox();
-            button1 = new Button();
-            dateTimePicker1 = new DateTimePicker();
-            label1 = new Label();
+            LblResumoP = new Label();
             PnlLateral.SuspendLayout();
             PnlCabeca.SuspendLayout();
             PnlPricipal.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
+            splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DgvServicos).BeginInit();
+            panel2.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DgvCarrinho).BeginInit();
+            PnlRodapePagar.SuspendLayout();
+            PnlCabecaPagamneto.SuspendLayout();
             SuspendLayout();
             // 
             // PnlLateral
@@ -141,6 +165,19 @@
             PnlCabeca.Size = new Size(1251, 100);
             PnlCabeca.TabIndex = 1;
             // 
+            // LblBemvindo
+            // 
+            LblBemvindo.BackColor = Color.RoyalBlue;
+            LblBemvindo.Dock = DockStyle.Fill;
+            LblBemvindo.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            LblBemvindo.ForeColor = Color.White;
+            LblBemvindo.Location = new Point(0, 0);
+            LblBemvindo.Name = "LblBemvindo";
+            LblBemvindo.Size = new Size(1247, 96);
+            LblBemvindo.TabIndex = 0;
+            LblBemvindo.Text = "label1";
+            LblBemvindo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // PnlPricipal
             // 
             PnlPricipal.BackColor = Color.RoyalBlue;
@@ -166,12 +203,7 @@
             // 
             tabPage1.BackColor = Color.FromArgb(64, 64, 64);
             tabPage1.BorderStyle = BorderStyle.Fixed3D;
-            tabPage1.Controls.Add(label1);
-            tabPage1.Controls.Add(dateTimePicker1);
-            tabPage1.Controls.Add(button1);
-            tabPage1.Controls.Add(CmbPetAgendamento);
-            tabPage1.Controls.Add(LblCuidado);
-            tabPage1.Controls.Add(DgvServicos);
+            tabPage1.Controls.Add(splitContainer1);
             tabPage1.ForeColor = SystemColors.ControlText;
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
@@ -180,35 +212,261 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "TbpAgendar";
             // 
+            // splitContainer1
+            // 
+            splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.Location = new Point(3, 3);
+            splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            splitContainer1.Panel1.Controls.Add(DgvServicos);
+            splitContainer1.Panel1.Controls.Add(panel2);
+            splitContainer1.Panel1.Controls.Add(panel1);
+            splitContainer1.Panel1.Controls.Add(LblResumo);
+            // 
+            // splitContainer1.Panel2
+            // 
+            splitContainer1.Panel2.Controls.Add(DgvCarrinho);
+            splitContainer1.Panel2.Controls.Add(PnlRodapePagar);
+            splitContainer1.Panel2.Controls.Add(PnlCabecaPagamneto);
+            splitContainer1.Size = new Size(1233, 505);
+            splitContainer1.SplitterDistance = 700;
+            splitContainer1.SplitterWidth = 5;
+            splitContainer1.TabIndex = 11;
+            // 
             // DgvServicos
             // 
-            DgvServicos.BackgroundColor = Color.White;
+            DgvServicos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DgvServicos.BackgroundColor = Color.Silver;
             DgvServicos.BorderStyle = BorderStyle.None;
             DgvServicos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            DgvServicos.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.Lime;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.Padding = new Padding(0, 0, 40, 0);
+            dataGridViewCellStyle1.SelectionBackColor = Color.RoyalBlue;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            DgvServicos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            DgvServicos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.Padding = new Padding(0, 0, 35, 0);
+            dataGridViewCellStyle2.SelectionBackColor = Color.DarkOrange;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            DgvServicos.DefaultCellStyle = dataGridViewCellStyle2;
+            DgvServicos.Dock = DockStyle.Fill;
+            DgvServicos.EnableHeadersVisualStyles = false;
+            DgvServicos.Location = new Point(0, 100);
+            DgvServicos.Name = "DgvServicos";
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.RoyalBlue;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.Padding = new Padding(0, 0, 40, 0);
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.Salmon;
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            DgvServicos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            DgvServicos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.Padding = new Padding(0, 0, 35, 0);
-            dataGridViewCellStyle4.SelectionBackColor = Color.DarkOrange;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            DgvServicos.DefaultCellStyle = dataGridViewCellStyle4;
-            DgvServicos.EnableHeadersVisualStyles = false;
-            DgvServicos.Location = new Point(1, 55);
-            DgvServicos.Name = "DgvServicos";
-            DgvServicos.Size = new Size(464, 423);
+            DgvServicos.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            DgvServicos.RowHeadersVisible = false;
+            DgvServicos.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
+            DgvServicos.Size = new Size(700, 355);
             DgvServicos.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(BtnAdicionar);
+            panel2.Dock = DockStyle.Bottom;
+            panel2.Location = new Point(0, 455);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(700, 50);
+            panel2.TabIndex = 9;
+            // 
+            // BtnAdicionar
+            // 
+            BtnAdicionar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            BtnAdicionar.BackColor = Color.RoyalBlue;
+            BtnAdicionar.Cursor = Cursors.Hand;
+            BtnAdicionar.FlatStyle = FlatStyle.Flat;
+            BtnAdicionar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BtnAdicionar.ForeColor = Color.White;
+            BtnAdicionar.Image = (Image)resources.GetObject("BtnAdicionar.Image");
+            BtnAdicionar.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnAdicionar.Location = new Point(519, 6);
+            BtnAdicionar.Name = "BtnAdicionar";
+            BtnAdicionar.Size = new Size(178, 32);
+            BtnAdicionar.TabIndex = 0;
+            BtnAdicionar.Text = "Adicionar ao Carrinho";
+            BtnAdicionar.TextAlign = ContentAlignment.MiddleRight;
+            BtnAdicionar.UseVisualStyleBackColor = false;
+            BtnAdicionar.Click += BtnAdicionar_Click;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(CmbPetAgendar);
+            panel1.Controls.Add(LblPetCuidado);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(700, 100);
+            panel1.TabIndex = 8;
+            // 
+            // CmbPetAgendar
+            // 
+            CmbPetAgendar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            CmbPetAgendar.FormattingEnabled = true;
+            CmbPetAgendar.Location = new Point(3, 32);
+            CmbPetAgendar.Name = "CmbPetAgendar";
+            CmbPetAgendar.Size = new Size(267, 25);
+            CmbPetAgendar.TabIndex = 1;
+            // 
+            // LblPetCuidado
+            // 
+            LblPetCuidado.AutoSize = true;
+            LblPetCuidado.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            LblPetCuidado.ForeColor = Color.White;
+            LblPetCuidado.Location = new Point(3, 4);
+            LblPetCuidado.Name = "LblPetCuidado";
+            LblPetCuidado.Size = new Size(267, 25);
+            LblPetCuidado.TabIndex = 0;
+            LblPetCuidado.Text = "Quem vai receber o cuidado?";
+            // 
+            // LblResumo
+            // 
+            LblResumo.AutoSize = true;
+            LblResumo.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblResumo.ForeColor = Color.White;
+            LblResumo.Location = new Point(81, -89);
+            LblResumo.Name = "LblResumo";
+            LblResumo.Size = new Size(153, 21);
+            LblResumo.TabIndex = 7;
+            LblResumo.Text = "Resumo do Pedido";
+            // 
+            // DgvCarrinho
+            // 
+            DgvCarrinho.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DgvCarrinho.BackgroundColor = Color.Silver;
+            DgvCarrinho.BorderStyle = BorderStyle.None;
+            DgvCarrinho.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            DgvCarrinho.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.Lime;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.Padding = new Padding(0, 0, 40, 0);
+            dataGridViewCellStyle4.SelectionBackColor = Color.RoyalBlue;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            DgvCarrinho.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            DgvCarrinho.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.Padding = new Padding(0, 0, 35, 0);
+            dataGridViewCellStyle5.SelectionBackColor = Color.DarkOrange;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            DgvCarrinho.DefaultCellStyle = dataGridViewCellStyle5;
+            DgvCarrinho.Dock = DockStyle.Fill;
+            DgvCarrinho.EnableHeadersVisualStyles = false;
+            DgvCarrinho.Location = new Point(0, 57);
+            DgvCarrinho.Name = "DgvCarrinho";
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = Color.PaleTurquoise;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            DgvCarrinho.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            DgvCarrinho.RowHeadersVisible = false;
+            DgvCarrinho.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DgvCarrinho.Size = new Size(528, 348);
+            DgvCarrinho.TabIndex = 2;
+            DgvCarrinho.CellContentClick += DgvCarrinho_CellContentClick;
+            // 
+            // PnlRodapePagar
+            // 
+            PnlRodapePagar.Controls.Add(BtnFinalizar);
+            PnlRodapePagar.Controls.Add(LblData);
+            PnlRodapePagar.Controls.Add(DtpData);
+            PnlRodapePagar.Controls.Add(LblTotal);
+            PnlRodapePagar.Dock = DockStyle.Bottom;
+            PnlRodapePagar.Location = new Point(0, 405);
+            PnlRodapePagar.Name = "PnlRodapePagar";
+            PnlRodapePagar.Size = new Size(528, 100);
+            PnlRodapePagar.TabIndex = 1;
+            // 
+            // BtnFinalizar
+            // 
+            BtnFinalizar.FlatStyle = FlatStyle.Flat;
+            BtnFinalizar.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnFinalizar.ForeColor = Color.White;
+            BtnFinalizar.Location = new Point(329, 28);
+            BtnFinalizar.Name = "BtnFinalizar";
+            BtnFinalizar.Size = new Size(183, 45);
+            BtnFinalizar.TabIndex = 4;
+            BtnFinalizar.Text = "Solicitar pedido ";
+            BtnFinalizar.UseVisualStyleBackColor = true;
+            BtnFinalizar.Click += BtnFinalizar_Click;
+            // 
+            // LblData
+            // 
+            LblData.AutoSize = true;
+            LblData.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            LblData.ForeColor = Color.White;
+            LblData.Location = new Point(3, 49);
+            LblData.Name = "LblData";
+            LblData.Size = new Size(134, 25);
+            LblData.TabIndex = 3;
+            LblData.Text = "Para quando?";
+            // 
+            // DtpData
+            // 
+            DtpData.CustomFormat = "dd/MM/yyyy HH:mm";
+            DtpData.Format = DateTimePickerFormat.Custom;
+            DtpData.Location = new Point(143, 50);
+            DtpData.Name = "DtpData";
+            DtpData.Size = new Size(135, 23);
+            DtpData.TabIndex = 2;
+            // 
+            // LblTotal
+            // 
+            LblTotal.AutoSize = true;
+            LblTotal.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            LblTotal.ForeColor = Color.White;
+            LblTotal.Location = new Point(3, 5);
+            LblTotal.Name = "LblTotal";
+            LblTotal.Size = new Size(172, 32);
+            LblTotal.TabIndex = 1;
+            LblTotal.Text = "Total: R$ 0,00";
+            // 
+            // PnlCabecaPagamneto
+            // 
+            PnlCabecaPagamneto.Controls.Add(LblPedido);
+            PnlCabecaPagamneto.Dock = DockStyle.Top;
+            PnlCabecaPagamneto.Location = new Point(0, 0);
+            PnlCabecaPagamneto.Name = "PnlCabecaPagamneto";
+            PnlCabecaPagamneto.Size = new Size(528, 57);
+            PnlCabecaPagamneto.TabIndex = 0;
+            // 
+            // LblPedido
+            // 
+            LblPedido.Dock = DockStyle.Fill;
+            LblPedido.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            LblPedido.ForeColor = Color.White;
+            LblPedido.Location = new Point(0, 0);
+            LblPedido.Name = "LblPedido";
+            LblPedido.Size = new Size(528, 57);
+            LblPedido.TabIndex = 1;
+            LblPedido.Text = "Resumo do Pedido";
+            LblPedido.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // tabPage2
             // 
@@ -220,69 +478,17 @@
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // LblBemvindo
+            // LblResumoP
             // 
-            LblBemvindo.BackColor = Color.RoyalBlue;
-            LblBemvindo.Dock = DockStyle.Fill;
-            LblBemvindo.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            LblBemvindo.Location = new Point(0, 0);
-            LblBemvindo.Name = "LblBemvindo";
-            LblBemvindo.Size = new Size(1247, 96);
-            LblBemvindo.TabIndex = 0;
-            LblBemvindo.Text = "label1";
-            LblBemvindo.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // LblCuidado
-            // 
-            LblCuidado.AutoSize = true;
-            LblCuidado.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblCuidado.ForeColor = Color.White;
-            LblCuidado.Location = new Point(1, 2);
-            LblCuidado.Name = "LblCuidado";
-            LblCuidado.Size = new Size(231, 21);
-            LblCuidado.TabIndex = 1;
-            LblCuidado.Text = "Quem vai receber o cuidado?";
-            // 
-            // CmbPetAgendamento
-            // 
-            CmbPetAgendamento.FormattingEnabled = true;
-            CmbPetAgendamento.Location = new Point(1, 26);
-            CmbPetAgendamento.Name = "CmbPetAgendamento";
-            CmbPetAgendamento.Size = new Size(125, 23);
-            CmbPetAgendamento.TabIndex = 2;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.RoyalBlue;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(1, 482);
-            button1.Name = "button1";
-            button1.Size = new Size(162, 28);
-            button1.TabIndex = 4;
-            button1.Text = "Adicionar ao Carrinho";
-            button1.UseVisualStyleBackColor = false;
-            // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Location = new Point(276, 486);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(189, 23);
-            dateTimePicker1.TabIndex = 5;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(178, 486);
-            label1.Name = "label1";
-            label1.Size = new Size(92, 17);
-            label1.TabIndex = 6;
-            label1.Text = "Para quando?";
+            LblResumoP.Dock = DockStyle.Fill;
+            LblResumoP.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            LblResumoP.ForeColor = Color.White;
+            LblResumoP.Location = new Point(0, 0);
+            LblResumoP.Name = "LblResumoP";
+            LblResumoP.Size = new Size(817, 43);
+            LblResumoP.TabIndex = 0;
+            LblResumoP.Text = "Resumo do Pedido";
+            LblResumoP.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Tela_Cliente
             // 
@@ -300,8 +506,19 @@
             PnlPricipal.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            tabPage1.PerformLayout();
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel1.PerformLayout();
+            splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)DgvServicos).EndInit();
+            panel2.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)DgvCarrinho).EndInit();
+            PnlRodapePagar.ResumeLayout(false);
+            PnlRodapePagar.PerformLayout();
+            PnlCabecaPagamneto.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -316,12 +533,24 @@
         private Button BtnAgendar;
         private Button BtnMeusPets;
         private Button BtnSair;
-        private DataGridView DgvServicos;
         private Label LblBemvindo;
-        private Label LblCuidado;
-        private Button button1;
-        private ComboBox CmbPetAgendamento;
-        private Label label1;
-        private DateTimePicker dateTimePicker1;
+        private Label LblResumo;
+        private SplitContainer splitContainer1;
+        private Panel panel1;
+        private Label LblPetCuidado;
+        private DataGridView DgvServicos;
+        private Panel panel2;
+        private Button BtnAdicionar;
+        private ComboBox CmbPetAgendar;
+        private Panel panel3;
+        private Label LblResumoP;
+        private Panel PnlRodapePagar;
+        private Panel PnlCabecaPagamneto;
+        private Label LblPedido;
+        private DateTimePicker DtpData;
+        private Label LblTotal;
+        private Button BtnFinalizar;
+        private Label LblData;
+        private DataGridView DgvCarrinho;
     }
 }

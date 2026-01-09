@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Mysql.PetShop.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Mysql.PetShop.Models;
 
 namespace Shop.TelaFuncionarios
 {
@@ -15,6 +17,32 @@ namespace Shop.TelaFuncionarios
         
         private readonly string _baseUrl = "https://localhost:7214";
 
+
+        
+        public async Task<List<Servico>> GetServicos()
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    // Chama a sua API
+                    var response = await client.GetAsync($"{_baseUrl}/api/servicos");
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseString = await response.Content.ReadAsStringAsync();
+                        return JsonConvert.DeserializeObject<List<Servico>>(responseString);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Erro ao buscar serviços: " + ex.Message);
+                    return new List<Servico>();
+                }
+                return new List<Servico>();
+            }
+        }
+        
         public async Task<LoginResponse> FazerLogin(string email, string senha)
         {
             using (var client = new HttpClient())
@@ -78,24 +106,31 @@ namespace Shop.TelaFuncionarios
                 }
             }
         }
-
-        public class FuncionarioDTO // DTO = Data Transfer Object
+        public async Task<List<FuncionarioDTO>> GetFuncionarios()
         {
-            public int Id { get; set; }
-            public string Nome { get; set; }
-            public string Email { get; set; }
-            // A senha geralmente NÃO deve ser retornada para o DataGrid por segurança
-            public string Telefone { get; set; }
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    // Chama o endpoint que criamos acima
+                    var response = await client.GetAsync($"{_baseUrl}/api/auth/funcionarios");
 
-            // Se o JSON vier como "tipo_usuario" (snake_case), use a anotação abaixo.
-            // Se você configurou a API para retornar camelCase (tipoUsuario), não precisa.
-            [System.Text.Json.Serialization.JsonPropertyName("tipo_usuario")]
-            public string TipoUsuario { get; set; }
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        // Transforma o JSON em uma lista de objetos
+                        return JsonConvert.DeserializeObject<List<FuncionarioDTO>>(json);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Logar erro ou relançar se necessário
+                }
 
-            [System.Text.Json.Serialization.JsonPropertyName("data_cadastro")]
-            public DateTime DataCadastro { get; set; }
+                // Retorna uma lista vazia se der erro, para não quebrar o DataGrid
+                return new List<FuncionarioDTO>();
+            }
         }
-        
 
         public async Task<ViaCepResult> BuscarEnderecoPorCep(string cep)
         {
@@ -170,6 +205,30 @@ namespace Shop.TelaFuncionarios
     }
 
 
+    public class Servico
+    {
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public string Descricao { get; set; }
+        public decimal Preco { get; set; }
+        public int TempoEstimado { get; set; }
+    }
+    public class FuncionarioDTO // DTO = Data Transfer Object
+    {
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public string Email { get; set; }
+        // A senha geralmente NÃO deve ser retornada para o DataGrid por segurança
+        public string Telefone { get; set; }
+
+        // Se o JSON vier como "tipo_usuario" (snake_case), use a anotação abaixo.
+        // Se você configurou a API para retornar camelCase (tipoUsuario), não precisa.
+        [System.Text.Json.Serialization.JsonPropertyName("tipo_usuario")]
+        public string TipoUsuario { get; set; }
+
+        [System.Text.Json.Serialization.JsonPropertyName("data_cadastro")]
+        public DateTime DataCadastro { get; set; }
+    }
     // Classe para receber a resposta da API organizada
     public class LoginResponse
     {

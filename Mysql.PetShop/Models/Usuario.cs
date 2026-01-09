@@ -24,6 +24,9 @@ namespace Mysql.PetShop.Models
 
         [Column("telefone")]
         public string Telefone { get; set; }
+
+        [Column("data_cadastro")]
+        public DateTime DataCadastro { get; set; } 
     }
 
 }

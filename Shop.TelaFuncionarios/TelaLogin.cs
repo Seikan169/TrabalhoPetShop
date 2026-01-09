@@ -42,12 +42,12 @@ namespace Shop.TelaFuncionarios
                     // 4. Redirecionamento INTELIGENTE
                     if (resultado.TipoUsuario == "cliente")
                     {
-                        Tela_Cliente tela = new Tela_Cliente(resultado.Nome,resultado.Id);
+                        Tela_Cliente tela = new Tela_Cliente(resultado.Nome, resultado.Id);
                         tela.Show();
                         MessageBox.Show("Abrindo painel do Cliente...");
                     }
                     else if (resultado.TipoUsuario == "funcionario")
-                    {                      
+                    {
 
                         MessageBox.Show("Abrindo painel do Funcionário...");
                     }
@@ -64,9 +64,9 @@ namespace Shop.TelaFuncionarios
                 else
                 {
                     MessageBox.Show("Email ou senha incorretos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    
+
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -86,6 +86,11 @@ namespace Shop.TelaFuncionarios
             TelaCadastroUser cliente = new TelaCadastroUser();
 
             cliente.ShowDialog();
+
+        }
+
+        private void TelaLogin_Load(object sender, EventArgs e)
+        {
 
         }
     }

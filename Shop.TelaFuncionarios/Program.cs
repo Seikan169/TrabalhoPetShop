@@ -1,3 +1,5 @@
+using Tela.Cliente;
+
 namespace Shop.TelaFuncionarios
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace Shop.TelaFuncionarios
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new TelaPrincipalADM());
+            Application.Run(new Tela_Cliente("Usuário Teste", 1));
         }
     }
 }
