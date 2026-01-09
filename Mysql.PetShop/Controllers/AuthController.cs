@@ -17,7 +17,7 @@ namespace PetShop.API.Controllers
             _context = context;
         }
 
-       
+        // POST: api/auth/cadastro
         // Usado para criar usuários com senha segura
         [HttpPost("cadastro")]
         public IActionResult Cadastrar([FromBody] CadastroCompletoRequest dados)

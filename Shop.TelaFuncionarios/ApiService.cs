@@ -94,7 +94,6 @@ namespace Shop.TelaFuncionarios
                     Email = email,
                     Senha = senha,
                     Telefone = telefone,
-                    tipoUsuario = "Cliente", // Sempre Cliente aqui
                     // Endereço
                     Cep = cep,
                     Logradouro = rua,
