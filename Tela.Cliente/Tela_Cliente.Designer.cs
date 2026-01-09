@@ -35,6 +35,9 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             PnlLateral = new Panel();
             BtnSair = new Button();
             BtnMeusPets = new Button();
@@ -54,6 +57,8 @@
             LblResumo = new Label();
             DgvCarrinho = new DataGridView();
             PnlRodapePagar = new Panel();
+            LblObservacao = new Label();
+            TxtObservacoes = new TextBox();
             BtnFinalizar = new Button();
             LblData = new Label();
             DtpData = new DateTimePicker();
@@ -61,6 +66,26 @@
             PnlCabecaPagamneto = new Panel();
             LblPedido = new Label();
             tabPage2 = new TabPage();
+            splitContainer2 = new SplitContainer();
+            DgvMeusPets = new DataGridView();
+            PnlTituloMeuspets = new Panel();
+            LblMeusPets = new Label();
+            PnlCadastroPet = new Panel();
+            NumericUpPESO = new NumericUpDown();
+            BtnSalvar = new Button();
+            label1 = new Label();
+            LblNascimento = new Label();
+            DtpNascimentoPet = new DateTimePicker();
+            TxtBoxCor = new TextBox();
+            LblCor = new Label();
+            TxtBoxRaca = new TextBox();
+            LblRaca = new Label();
+            CbmEspecie = new ComboBox();
+            LblEspecie = new Label();
+            LblNomePet = new Label();
+            TxtNomePet = new TextBox();
+            PnlNovoCadastro = new Panel();
+            LblCadastro = new Label();
             LblResumoP = new Label();
             PnlLateral.SuspendLayout();
             PnlCabeca.SuspendLayout();
@@ -77,6 +102,16 @@
             ((System.ComponentModel.ISupportInitialize)DgvCarrinho).BeginInit();
             PnlRodapePagar.SuspendLayout();
             PnlCabecaPagamneto.SuspendLayout();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
+            splitContainer2.Panel1.SuspendLayout();
+            splitContainer2.Panel2.SuspendLayout();
+            splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DgvMeusPets).BeginInit();
+            PnlTituloMeuspets.SuspendLayout();
+            PnlCadastroPet.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)NumericUpPESO).BeginInit();
+            PnlNovoCadastro.SuspendLayout();
             SuspendLayout();
             // 
             // PnlLateral
@@ -214,6 +249,7 @@
             // 
             // splitContainer1
             // 
+            splitContainer1.BorderStyle = BorderStyle.Fixed3D;
             splitContainer1.Dock = DockStyle.Fill;
             splitContainer1.Location = new Point(3, 3);
             splitContainer1.Name = "splitContainer1";
@@ -275,16 +311,16 @@
             DgvServicos.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             DgvServicos.RowHeadersVisible = false;
             DgvServicos.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
-            DgvServicos.Size = new Size(700, 355);
+            DgvServicos.Size = new Size(696, 351);
             DgvServicos.TabIndex = 0;
             // 
             // panel2
             // 
             panel2.Controls.Add(BtnAdicionar);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 455);
+            panel2.Location = new Point(0, 451);
             panel2.Name = "panel2";
-            panel2.Size = new Size(700, 50);
+            panel2.Size = new Size(696, 50);
             panel2.TabIndex = 9;
             // 
             // BtnAdicionar
@@ -297,7 +333,7 @@
             BtnAdicionar.ForeColor = Color.White;
             BtnAdicionar.Image = (Image)resources.GetObject("BtnAdicionar.Image");
             BtnAdicionar.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnAdicionar.Location = new Point(519, 6);
+            BtnAdicionar.Location = new Point(515, 6);
             BtnAdicionar.Name = "BtnAdicionar";
             BtnAdicionar.Size = new Size(178, 32);
             BtnAdicionar.TabIndex = 0;
@@ -313,7 +349,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(700, 100);
+            panel1.Size = new Size(696, 100);
             panel1.TabIndex = 8;
             // 
             // CmbPetAgendar
@@ -387,32 +423,54 @@
             DgvCarrinho.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             DgvCarrinho.RowHeadersVisible = false;
             DgvCarrinho.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            DgvCarrinho.Size = new Size(528, 348);
+            DgvCarrinho.Size = new Size(524, 287);
             DgvCarrinho.TabIndex = 2;
             DgvCarrinho.CellContentClick += DgvCarrinho_CellContentClick;
             // 
             // PnlRodapePagar
             // 
+            PnlRodapePagar.Controls.Add(LblObservacao);
+            PnlRodapePagar.Controls.Add(TxtObservacoes);
             PnlRodapePagar.Controls.Add(BtnFinalizar);
             PnlRodapePagar.Controls.Add(LblData);
             PnlRodapePagar.Controls.Add(DtpData);
             PnlRodapePagar.Controls.Add(LblTotal);
             PnlRodapePagar.Dock = DockStyle.Bottom;
-            PnlRodapePagar.Location = new Point(0, 405);
+            PnlRodapePagar.Location = new Point(0, 344);
             PnlRodapePagar.Name = "PnlRodapePagar";
-            PnlRodapePagar.Size = new Size(528, 100);
+            PnlRodapePagar.Size = new Size(524, 157);
             PnlRodapePagar.TabIndex = 1;
+            // 
+            // LblObservacao
+            // 
+            LblObservacao.AutoSize = true;
+            LblObservacao.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblObservacao.ForeColor = Color.White;
+            LblObservacao.Location = new Point(3, 3);
+            LblObservacao.Name = "LblObservacao";
+            LblObservacao.Size = new Size(351, 21);
+            LblObservacao.TabIndex = 6;
+            LblObservacao.Text = "Observações (Ex: Cão bravo, trazer lacinho...)";
+            // 
+            // TxtObservacoes
+            // 
+            TxtObservacoes.Location = new Point(3, 27);
+            TxtObservacoes.Multiline = true;
+            TxtObservacoes.Name = "TxtObservacoes";
+            TxtObservacoes.ScrollBars = ScrollBars.Vertical;
+            TxtObservacoes.Size = new Size(510, 62);
+            TxtObservacoes.TabIndex = 5;
             // 
             // BtnFinalizar
             // 
             BtnFinalizar.FlatStyle = FlatStyle.Flat;
             BtnFinalizar.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnFinalizar.ForeColor = Color.White;
-            BtnFinalizar.Location = new Point(329, 28);
+            BtnFinalizar.Location = new Point(318, 94);
             BtnFinalizar.Name = "BtnFinalizar";
-            BtnFinalizar.Size = new Size(183, 45);
+            BtnFinalizar.Size = new Size(195, 62);
             BtnFinalizar.TabIndex = 4;
-            BtnFinalizar.Text = "Solicitar pedido ";
+            BtnFinalizar.Text = "Finalizar Agendamento";
             BtnFinalizar.UseVisualStyleBackColor = true;
             BtnFinalizar.Click += BtnFinalizar_Click;
             // 
@@ -421,7 +479,7 @@
             LblData.AutoSize = true;
             LblData.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             LblData.ForeColor = Color.White;
-            LblData.Location = new Point(3, 49);
+            LblData.Location = new Point(3, 128);
             LblData.Name = "LblData";
             LblData.Size = new Size(134, 25);
             LblData.TabIndex = 3;
@@ -431,7 +489,7 @@
             // 
             DtpData.CustomFormat = "dd/MM/yyyy HH:mm";
             DtpData.Format = DateTimePickerFormat.Custom;
-            DtpData.Location = new Point(143, 50);
+            DtpData.Location = new Point(143, 129);
             DtpData.Name = "DtpData";
             DtpData.Size = new Size(135, 23);
             DtpData.TabIndex = 2;
@@ -441,7 +499,7 @@
             LblTotal.AutoSize = true;
             LblTotal.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             LblTotal.ForeColor = Color.White;
-            LblTotal.Location = new Point(3, 5);
+            LblTotal.Location = new Point(3, 94);
             LblTotal.Name = "LblTotal";
             LblTotal.Size = new Size(172, 32);
             LblTotal.TabIndex = 1;
@@ -453,7 +511,7 @@
             PnlCabecaPagamneto.Dock = DockStyle.Top;
             PnlCabecaPagamneto.Location = new Point(0, 0);
             PnlCabecaPagamneto.Name = "PnlCabecaPagamneto";
-            PnlCabecaPagamneto.Size = new Size(528, 57);
+            PnlCabecaPagamneto.Size = new Size(524, 57);
             PnlCabecaPagamneto.TabIndex = 0;
             // 
             // LblPedido
@@ -463,20 +521,296 @@
             LblPedido.ForeColor = Color.White;
             LblPedido.Location = new Point(0, 0);
             LblPedido.Name = "LblPedido";
-            LblPedido.Size = new Size(528, 57);
+            LblPedido.Size = new Size(524, 57);
             LblPedido.TabIndex = 1;
             LblPedido.Text = "Resumo do Pedido";
             LblPedido.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // tabPage2
             // 
+            tabPage2.BackColor = Color.Silver;
+            tabPage2.BorderStyle = BorderStyle.Fixed3D;
+            tabPage2.Controls.Add(splitContainer2);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(1243, 515);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
-            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer2
+            // 
+            splitContainer2.Dock = DockStyle.Fill;
+            splitContainer2.Location = new Point(3, 3);
+            splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            splitContainer2.Panel1.BackColor = Color.FromArgb(64, 64, 64);
+            splitContainer2.Panel1.Controls.Add(DgvMeusPets);
+            splitContainer2.Panel1.Controls.Add(PnlTituloMeuspets);
+            // 
+            // splitContainer2.Panel2
+            // 
+            splitContainer2.Panel2.BackColor = Color.FromArgb(64, 64, 64);
+            splitContainer2.Panel2.Controls.Add(PnlCadastroPet);
+            splitContainer2.Panel2.Controls.Add(PnlNovoCadastro);
+            splitContainer2.Size = new Size(1233, 505);
+            splitContainer2.SplitterDistance = 750;
+            splitContainer2.TabIndex = 0;
+            // 
+            // DgvMeusPets
+            // 
+            DgvMeusPets.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DgvMeusPets.BackgroundColor = Color.Silver;
+            DgvMeusPets.BorderStyle = BorderStyle.Fixed3D;
+            DgvMeusPets.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            DgvMeusPets.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.Padding = new Padding(0, 0, 40, 0);
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            DgvMeusPets.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            DgvMeusPets.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.Padding = new Padding(0, 0, 35, 0);
+            dataGridViewCellStyle8.SelectionBackColor = Color.DarkOrange;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            DgvMeusPets.DefaultCellStyle = dataGridViewCellStyle8;
+            DgvMeusPets.Dock = DockStyle.Fill;
+            DgvMeusPets.EnableHeadersVisualStyles = false;
+            DgvMeusPets.Location = new Point(0, 51);
+            DgvMeusPets.Name = "DgvMeusPets";
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = SystemColors.Control;
+            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle9.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = Color.Salmon;
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            DgvMeusPets.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            DgvMeusPets.RowHeadersVisible = false;
+            DgvMeusPets.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DgvMeusPets.Size = new Size(750, 454);
+            DgvMeusPets.TabIndex = 1;
+            DgvMeusPets.CellContentClick += DgvMeusPets_CellContentClick;
+            // 
+            // PnlTituloMeuspets
+            // 
+            PnlTituloMeuspets.BorderStyle = BorderStyle.Fixed3D;
+            PnlTituloMeuspets.Controls.Add(LblMeusPets);
+            PnlTituloMeuspets.Dock = DockStyle.Top;
+            PnlTituloMeuspets.Location = new Point(0, 0);
+            PnlTituloMeuspets.Name = "PnlTituloMeuspets";
+            PnlTituloMeuspets.Size = new Size(750, 51);
+            PnlTituloMeuspets.TabIndex = 0;
+            // 
+            // LblMeusPets
+            // 
+            LblMeusPets.BackColor = Color.RoyalBlue;
+            LblMeusPets.Dock = DockStyle.Fill;
+            LblMeusPets.FlatStyle = FlatStyle.Flat;
+            LblMeusPets.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblMeusPets.ForeColor = Color.White;
+            LblMeusPets.Image = (Image)resources.GetObject("LblMeusPets.Image");
+            LblMeusPets.ImageAlign = ContentAlignment.MiddleLeft;
+            LblMeusPets.Location = new Point(0, 0);
+            LblMeusPets.Name = "LblMeusPets";
+            LblMeusPets.RightToLeft = RightToLeft.No;
+            LblMeusPets.Size = new Size(746, 47);
+            LblMeusPets.TabIndex = 0;
+            LblMeusPets.Text = "Meus Amigos Cadastrados";
+            LblMeusPets.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // PnlCadastroPet
+            // 
+            PnlCadastroPet.BackColor = Color.DimGray;
+            PnlCadastroPet.BorderStyle = BorderStyle.Fixed3D;
+            PnlCadastroPet.Controls.Add(NumericUpPESO);
+            PnlCadastroPet.Controls.Add(BtnSalvar);
+            PnlCadastroPet.Controls.Add(label1);
+            PnlCadastroPet.Controls.Add(LblNascimento);
+            PnlCadastroPet.Controls.Add(DtpNascimentoPet);
+            PnlCadastroPet.Controls.Add(TxtBoxCor);
+            PnlCadastroPet.Controls.Add(LblCor);
+            PnlCadastroPet.Controls.Add(TxtBoxRaca);
+            PnlCadastroPet.Controls.Add(LblRaca);
+            PnlCadastroPet.Controls.Add(CbmEspecie);
+            PnlCadastroPet.Controls.Add(LblEspecie);
+            PnlCadastroPet.Controls.Add(LblNomePet);
+            PnlCadastroPet.Controls.Add(TxtNomePet);
+            PnlCadastroPet.Dock = DockStyle.Right;
+            PnlCadastroPet.Location = new Point(179, 51);
+            PnlCadastroPet.Name = "PnlCadastroPet";
+            PnlCadastroPet.Size = new Size(300, 454);
+            PnlCadastroPet.TabIndex = 15;
+            // 
+            // NumericUpPESO
+            // 
+            NumericUpPESO.DecimalPlaces = 2;
+            NumericUpPESO.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            NumericUpPESO.Location = new Point(20, 333);
+            NumericUpPESO.Name = "NumericUpPESO";
+            NumericUpPESO.Size = new Size(96, 27);
+            NumericUpPESO.TabIndex = 27;
+            // 
+            // BtnSalvar
+            // 
+            BtnSalvar.FlatAppearance.BorderColor = Color.Black;
+            BtnSalvar.FlatStyle = FlatStyle.Flat;
+            BtnSalvar.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnSalvar.ForeColor = Color.White;
+            BtnSalvar.Location = new Point(20, 380);
+            BtnSalvar.Name = "BtnSalvar";
+            BtnSalvar.Size = new Size(161, 51);
+            BtnSalvar.TabIndex = 26;
+            BtnSalvar.Text = "Salvar";
+            BtnSalvar.UseVisualStyleBackColor = true;
+            BtnSalvar.Click += BtnSalvar_Click_1;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(20, 305);
+            label1.Name = "label1";
+            label1.Size = new Size(96, 25);
+            label1.TabIndex = 25;
+            label1.Text = "Peso (Kg)";
+            // 
+            // LblNascimento
+            // 
+            LblNascimento.AutoSize = true;
+            LblNascimento.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblNascimento.ForeColor = Color.White;
+            LblNascimento.Location = new Point(20, 247);
+            LblNascimento.Name = "LblNascimento";
+            LblNascimento.Size = new Size(117, 25);
+            LblNascimento.TabIndex = 24;
+            LblNascimento.Text = "Nascimento";
+            // 
+            // DtpNascimentoPet
+            // 
+            DtpNascimentoPet.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            DtpNascimentoPet.Format = DateTimePickerFormat.Short;
+            DtpNascimentoPet.Location = new Point(20, 275);
+            DtpNascimentoPet.Name = "DtpNascimentoPet";
+            DtpNascimentoPet.Size = new Size(161, 27);
+            DtpNascimentoPet.TabIndex = 23;
+            // 
+            // TxtBoxCor
+            // 
+            TxtBoxCor.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            TxtBoxCor.Location = new Point(20, 217);
+            TxtBoxCor.Name = "TxtBoxCor";
+            TxtBoxCor.Size = new Size(161, 27);
+            TxtBoxCor.TabIndex = 22;
+            // 
+            // LblCor
+            // 
+            LblCor.AutoSize = true;
+            LblCor.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblCor.ForeColor = Color.White;
+            LblCor.Location = new Point(20, 189);
+            LblCor.Name = "LblCor";
+            LblCor.Size = new Size(44, 25);
+            LblCor.TabIndex = 21;
+            LblCor.Text = "Cor";
+            // 
+            // TxtBoxRaca
+            // 
+            TxtBoxRaca.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            TxtBoxRaca.Location = new Point(20, 159);
+            TxtBoxRaca.Name = "TxtBoxRaca";
+            TxtBoxRaca.Size = new Size(161, 27);
+            TxtBoxRaca.TabIndex = 20;
+            // 
+            // LblRaca
+            // 
+            LblRaca.AutoSize = true;
+            LblRaca.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblRaca.ForeColor = Color.White;
+            LblRaca.Location = new Point(20, 131);
+            LblRaca.Name = "LblRaca";
+            LblRaca.Size = new Size(53, 25);
+            LblRaca.TabIndex = 19;
+            LblRaca.Text = "Raça";
+            // 
+            // CbmEspecie
+            // 
+            CbmEspecie.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            CbmEspecie.FormattingEnabled = true;
+            CbmEspecie.Items.AddRange(new object[] { "Cachorro", "Gato", "Ave", "Outros" });
+            CbmEspecie.Location = new Point(20, 100);
+            CbmEspecie.Name = "CbmEspecie";
+            CbmEspecie.Size = new Size(161, 28);
+            CbmEspecie.TabIndex = 18;
+            // 
+            // LblEspecie
+            // 
+            LblEspecie.AutoSize = true;
+            LblEspecie.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblEspecie.ForeColor = Color.White;
+            LblEspecie.Location = new Point(20, 72);
+            LblEspecie.Name = "LblEspecie";
+            LblEspecie.Size = new Size(76, 25);
+            LblEspecie.TabIndex = 17;
+            LblEspecie.Text = "Especíe";
+            // 
+            // LblNomePet
+            // 
+            LblNomePet.AutoSize = true;
+            LblNomePet.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblNomePet.ForeColor = Color.White;
+            LblNomePet.Location = new Point(20, 13);
+            LblNomePet.Name = "LblNomePet";
+            LblNomePet.Size = new Size(66, 25);
+            LblNomePet.TabIndex = 16;
+            LblNomePet.Text = "Nome";
+            // 
+            // TxtNomePet
+            // 
+            TxtNomePet.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            TxtNomePet.Location = new Point(20, 42);
+            TxtNomePet.Name = "TxtNomePet";
+            TxtNomePet.Size = new Size(161, 27);
+            TxtNomePet.TabIndex = 15;
+            // 
+            // PnlNovoCadastro
+            // 
+            PnlNovoCadastro.BackColor = Color.RoyalBlue;
+            PnlNovoCadastro.BorderStyle = BorderStyle.Fixed3D;
+            PnlNovoCadastro.Controls.Add(LblCadastro);
+            PnlNovoCadastro.Dock = DockStyle.Top;
+            PnlNovoCadastro.Location = new Point(0, 0);
+            PnlNovoCadastro.Name = "PnlNovoCadastro";
+            PnlNovoCadastro.Size = new Size(479, 51);
+            PnlNovoCadastro.TabIndex = 0;
+            // 
+            // LblCadastro
+            // 
+            LblCadastro.BackColor = Color.Transparent;
+            LblCadastro.Dock = DockStyle.Fill;
+            LblCadastro.FlatStyle = FlatStyle.Flat;
+            LblCadastro.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblCadastro.ForeColor = Color.White;
+            LblCadastro.Image = (Image)resources.GetObject("LblCadastro.Image");
+            LblCadastro.ImageAlign = ContentAlignment.MiddleLeft;
+            LblCadastro.Location = new Point(0, 0);
+            LblCadastro.Name = "LblCadastro";
+            LblCadastro.Size = new Size(475, 47);
+            LblCadastro.TabIndex = 1;
+            LblCadastro.Text = "Novo Cadastro";
+            LblCadastro.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // LblResumoP
             // 
@@ -501,6 +835,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Tela_Cliente";
             Text = "Tela_Cliente";
+            Resize += Tela_Cliente_Resize;
             PnlLateral.ResumeLayout(false);
             PnlCabeca.ResumeLayout(false);
             PnlPricipal.ResumeLayout(false);
@@ -519,6 +854,17 @@
             PnlRodapePagar.ResumeLayout(false);
             PnlRodapePagar.PerformLayout();
             PnlCabecaPagamneto.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
+            splitContainer2.Panel1.ResumeLayout(false);
+            splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
+            splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)DgvMeusPets).EndInit();
+            PnlTituloMeuspets.ResumeLayout(false);
+            PnlCadastroPet.ResumeLayout(false);
+            PnlCadastroPet.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)NumericUpPESO).EndInit();
+            PnlNovoCadastro.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -542,7 +888,7 @@
         private Panel panel2;
         private Button BtnAdicionar;
         private ComboBox CmbPetAgendar;
-        private Panel panel3;
+        private Panel PnlTituloMeuspets;
         private Label LblResumoP;
         private Panel PnlRodapePagar;
         private Panel PnlCabecaPagamneto;
@@ -552,5 +898,26 @@
         private Button BtnFinalizar;
         private Label LblData;
         private DataGridView DgvCarrinho;
+        private Label LblObservacao;
+        private TextBox TxtObservacoes;
+        private SplitContainer splitContainer2;
+        private Label LblMeusPets;
+        private DataGridView DgvMeusPets;
+        private Panel PnlNovoCadastro;
+        private Label LblCadastro;
+        private Panel PnlCadastroPet;
+        private NumericUpDown NumericUpPESO;
+        private Button BtnSalvar;
+        private Label label1;
+        private Label LblNascimento;
+        private DateTimePicker DtpNascimentoPet;
+        private TextBox TxtBoxCor;
+        private Label LblCor;
+        private TextBox TxtBoxRaca;
+        private Label LblRaca;
+        private ComboBox CbmEspecie;
+        private Label LblEspecie;
+        private Label LblNomePet;
+        private TextBox TxtNomePet;
     }
 }

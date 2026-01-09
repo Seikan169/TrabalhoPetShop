@@ -27,5 +27,6 @@ namespace Mysql.PetShop.Models
 
         // Lista de itens dentro desse pedido
         public List<ItemPedido> Itens { get; set; }
+        public string Observacoes { get;  set; }
     }
 }

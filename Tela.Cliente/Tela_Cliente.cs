@@ -23,10 +23,15 @@ namespace Tela.Cliente
     public partial class Tela_Cliente : Form
     {
         List<Shop.TelaFuncionarios.Servico> carrinho = new List<Shop.TelaFuncionarios.Servico>();
+        private int _usuarioIdLogado;
         public Tela_Cliente(string usuario, int id)
         {
             InitializeComponent();
+
+
             this.Load += FrmCliente_Load;
+
+            _usuarioIdLogado = id;
 
             LblBemvindo.Text = $"Olá, {usuario}! Vamos agendar um cuidado para seu pet hoje?";
             tabControl1.Appearance = TabAppearance.FlatButtons;
@@ -34,6 +39,9 @@ namespace Tela.Cliente
             tabControl1.SizeMode = TabSizeMode.Fixed;
 
         }
+
+
+
 
         private void BtnAgendar_Click(object sender, EventArgs e)
         {
@@ -57,31 +65,61 @@ namespace Tela.Cliente
         }
 
         // 2. Método para buscar os pets do cliente na API
-        private async Task CarregarPetsDoCliente()
+        private int _idPetEmEdicao = 0; // 0 significa que é um NOVO cadastro
+        private async Task CarregarMeusPets()
         {
             try
             {
-                // ApiService api = new ApiService();
-                // Você precisará criar esse método 'GetMeusPets' na ApiService depois
-                // Ou usar um endpoint que filtre por cliente
-                // Por enquanto, vamos simular que a API devolveu:
+                ApiService api = new ApiService();
+                var lista = await api.GetMeusPets(_usuarioIdLogado);
+                DgvMeusPets.DataSource = lista;
 
-                List<PetComboItem> meusPets = new List<PetComboItem>();
+                // Configuração visual básica
+                DgvMeusPets.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                // 2. Faz a altura da linha aumentar para caber o texto
+                DgvMeusPets.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
-                // --- AQUI VOCÊ VAI CHAMAR SUA API NO FUTURO ---
-                // var petsApi = await api.GetPets(_usuarioIdLogado);
+                DgvMeusPets.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                DgvMeusPets.RowTemplate.Height = 35; // Altura boa para clicar
+                DgvMeusPets.AllowUserToAddRows = false;
 
-                // Simulação pra você ver o design funcionando agora:
-                meusPets.Add(new PetComboItem { Id = 1, Nome = "Rex (Teste)" });
-                meusPets.Add(new PetComboItem { Id = 2, Nome = "Lulu (Teste)" });
+                // --- ADICIONA OS BOTÕES (SÓ SE AINDA NÃO EXISTIREM) ---
+                if (DgvMeusPets.Columns["btnEditar"] == null)
+                {
+                    // 1. Coluna EDITAR (Imagem)
+                    DataGridViewImageColumn imgEdit = new DataGridViewImageColumn();
+                    imgEdit.Name = "btnEditar"; // Mantivemos o nome para o clique funcionar
+                    imgEdit.HeaderText = "";
+                    // Pega a imagem dos recursos que você acabou de adicionar
+                    imgEdit.Image = Properties.Resources.icone_editar;
+                    imgEdit.Width = 40;
+                    // Centraliza a imagem na célula
+                    imgEdit.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    // Tira a borda feia de botão quando clica
+                    imgEdit.CellTemplate.Style.BackColor = Color.White; // Ou a cor do seu grid
 
-                CmbPetAgendar.DataSource = meusPets;
-                CmbPetAgendar.DisplayMember = "Nome";
-                CmbPetAgendar.ValueMember = "Id";
+                    DgvMeusPets.Columns.Add(imgEdit);
+
+                    // 2. Coluna EXCLUIR (Imagem)
+                    DataGridViewImageColumn imgDel = new DataGridViewImageColumn();
+                    imgDel.Name = "btnExcluir"; // Mantivemos o nome
+                    imgDel.HeaderText = "";
+                    // Pega a imagem dos recursos
+                    imgDel.Image = Properties.Resources.icone_excluir;
+                    imgDel.Width = 40;
+                    imgDel.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    imgDel.CellTemplate.Style.BackColor = Color.White;
+
+                    DgvMeusPets.Columns.Add(imgDel);
+                }
+
+                // Esconde colunas técnicas (ID, ClienteId)
+                if (DgvMeusPets.Columns["Id"] != null) DgvMeusPets.Columns["Id"].Visible = false;
+                if (DgvMeusPets.Columns["ClienteId"] != null) DgvMeusPets.Columns["ClienteId"].Visible = false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao carregar pets: " + ex.Message);
+                MessageBox.Show("Erro ao carregar lista: " + ex.Message);
             }
         }
         private async Task CarregarServicosReais()
@@ -152,8 +190,11 @@ namespace Tela.Cliente
         // 3. Chame isso no Load
         private async void FrmCliente_Load(object sender, EventArgs e)
         {
+
+
             await CarregarServicosReais(); // Já tínhamos esse
-            await CarregarPetsDoCliente(); // Novo
+            await CarregarMeusPets(); // Novo
+            BtnSalvar.BackColor = Color.FromArgb(0, 184, 148); // Verde água
             BtnFinalizar.BackColor = Color.FromArgb(0, 184, 148); // Verde água
             BtnFinalizar.Font = new Font("Bold ", 12, FontStyle.Bold);
 
@@ -194,7 +235,7 @@ namespace Tela.Cliente
             DgvCarrinho.Columns["Preco"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             DgvCarrinho.Columns["btnRemover"].Width = 40;
-            
+
 
 
             // --- Configuração da Tabela de Serviços (Esquerda) ---
@@ -212,9 +253,62 @@ namespace Tela.Cliente
             DgvCarrinho.MultiSelect = false;
         }
 
-        private void BtnFinalizar_Click(object sender, EventArgs e)
+        private async void BtnFinalizar_Click(object sender, EventArgs e)
         {
+            if (carrinho.Count == 0)
+            {
+                MessageBox.Show("Seu carrinho está vazio!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            if (CmbPetAgendar.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor, selecione qual Pet receberá o cuidado.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            BtnFinalizar.Enabled = false; // Evita cliques múltiplos
+            BtnFinalizar.Text = "Processando...";
+
+            try
+            {
+                decimal valortotal = carrinho.Sum(x => x.Preco);
+                List<int> servicosIds = carrinho.Select(x => x.Id).ToList();
+
+                DateTime dataEscolhida = DtpData.Value;
+
+                string Obs = TxtObservacoes.Text;
+
+                //chama a api 
+
+                ApiService api = new ApiService();
+
+                bool sucesso = await api.EnviarPedido(_usuarioIdLogado, dataEscolhida, servicosIds, valortotal, Obs);
+
+                if (sucesso)
+                {
+                    MessageBox.Show("Agendamento realizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    carrinho.Clear();
+                    TxtObservacoes.Text = "";
+                    DgvCarrinho.Rows.Clear();
+                    AtualizarTotal();
+                }
+                else
+                {
+                    MessageBox.Show("Falha ao realizar o agendamento. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Erro técnico: " + ex.Message);
+            }
+            finally
+            {
+                BtnFinalizar.Enabled = true;
+                BtnFinalizar.Text = "Finalizar Agendamento";
+            }
         }
 
         private void BtnAdicionar_Click(object sender, EventArgs e)
@@ -262,6 +356,156 @@ namespace Tela.Cliente
                 // 3. Atualiza o Total
                 AtualizarTotal();
             }
+        }
+        private void limparCamposPet()
+        {
+            TxtNomePet.Text = "";
+            CbmEspecie.SelectedIndex = 0;
+            TxtBoxRaca.Text = "";
+            TxtBoxCor.Text = "";
+            DtpNascimentoPet.Value = DateTime.Now;
+            NumericUpPESO.Value = 0;
+
+            _idPetEmEdicao = 0;
+            BtnSalvar.Text = "Salvar";
+            BtnSalvar.BackColor = Color.SeaGreen; // Volta para a cor original (verde)
+        }
+
+
+        private async void BtnSalvar_Click(object sender, EventArgs e)
+        {
+            // --- VALIDAÇÕES (Mantenha as suas, estão ótimas) ---
+            if (string.IsNullOrWhiteSpace(TxtNomePet.Text))
+            {
+                MessageBox.Show("O nome do pet é obrigatório!");
+                TxtNomePet.Focus();
+                return;
+            }
+
+            // Validação Espécie (Importante adicionar para não quebrar se estiver vazio)
+            if (CbmEspecie.SelectedIndex == -1)
+            {
+                MessageBox.Show("Selecione a espécie do pet.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(TxtBoxRaca.Text))
+            {
+                MessageBox.Show("Por favor, digite a Raça do pet.");
+                TxtBoxRaca.Focus();
+                return;
+            }
+
+            if (NumericUpPESO.Value <= 0)
+            {
+                MessageBox.Show("O Peso deve ser maior que zero.");
+                NumericUpPESO.Focus();
+                return;
+            }
+
+            // --- MONTAGEM DO OBJETO ---
+            var petDto = new PetDTO
+            {
+                // 1. AQUI ESTÁ O SEGREDO: Passamos o ID da variável global
+                Id = _idPetEmEdicao,
+
+                ClienteId = _usuarioIdLogado,
+                Nome = TxtNomePet.Text,
+                Especie = CbmEspecie.SelectedItem.ToString(),
+                Raca = TxtBoxRaca.Text,
+                Cor = TxtBoxCor.Text,
+                DataNascimento = DtpNascimentoPet.Value,
+                Peso = NumericUpPESO.Value
+            };
+
+            // --- PREPARAÇÃO VISUAL ---
+            BtnSalvar.Enabled = false;
+            BtnSalvar.Text = _idPetEmEdicao == 0 ? "Salvando..." : "Atualizando..."; // Texto dinâmico
+
+            ApiService api = new ApiService();
+            bool sucesso;
+
+            // --- 2. A DECISÃO: É NOVO OU É EDIÇÃO? ---
+            if (_idPetEmEdicao == 0)
+            {
+                // Se o ID for 0, é um cadastro NOVO
+                sucesso = await api.CadastrarPet(petDto);
+            }
+            else
+            {
+                // Se o ID for diferente de 0, é uma EDIÇÃO
+                sucesso = await api.EditarPet(petDto);
+            }
+
+            // --- RESULTADO ---
+            if (sucesso)
+            {
+                string msg = _idPetEmEdicao == 0 ? "Pet cadastrado!" : "Pet atualizado com sucesso!";
+                MessageBox.Show(msg, "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                limparCamposPet();      // Limpa os campos
+                await CarregarMeusPets(); // Atualiza a tabela
+            }
+            else
+            {
+                MessageBox.Show("Erro ao processar. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            BtnSalvar.Enabled = true;
+            BtnSalvar.Text = "Salvar"; // Volta o texto ao normal
+        }
+
+        private void Tela_Cliente_Resize(object sender, EventArgs e)
+        {
+
+        }
+        
+        private async void DgvMeusPets_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return; // Clicou no cabeçalho
+
+            // Pega o objeto Pet da linha clicada
+            var petSelecionado = (PetDTO)DgvMeusPets.Rows[e.RowIndex].DataBoundItem;
+
+            // --- AÇÃO: EXCLUIR 🗑️ ---
+            if (DgvMeusPets.Columns[e.ColumnIndex].Name == "btnExcluir")
+            {
+                var confirmacao = MessageBox.Show($"Tem certeza que deseja remover o {petSelecionado.Nome}?",
+                                                  "Excluir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (confirmacao == DialogResult.Yes)
+                {
+                    ApiService api = new ApiService();
+                    await api.ExcluirPet(petSelecionado.Id);
+                    await CarregarMeusPets(); // Atualiza a lista
+                }
+            }
+
+            // --- AÇÃO: EDITAR ✏️ ---
+            if (DgvMeusPets.Columns[e.ColumnIndex].Name == "btnEditar")
+            {
+                // 1. Joga os dados da tabela para os campos da direita
+                TxtNomePet.Text = petSelecionado.Nome;
+                CbmEspecie.Text = petSelecionado.Especie;
+                TxtBoxRaca.Text = petSelecionado.Raca;
+                TxtBoxCor.Text = petSelecionado.Cor;
+                DtpNascimentoPet.Value = petSelecionado.DataNascimento;
+                // txtPeso.Text = petSelecionado.Peso.ToString(); // Se for TextBox
+                NumericUpPESO.Value = petSelecionado.Peso;           // Se for NumericUpDown
+
+                // 2. Guarda o ID para sabermos qual atualizar
+                _idPetEmEdicao = petSelecionado.Id;
+
+                // 3. Muda o texto do botão para o usuário saber
+                BtnSalvar.Text = "Atualizar Pet";
+                BtnSalvar.BackColor = Color.Orange; // Destaque visual
+            }
+
+        }
+
+        private void BtnSalvar_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 

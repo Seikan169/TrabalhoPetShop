@@ -81,7 +81,7 @@ namespace Shop.TelaFuncionarios
             }
 
         }
-        public async Task<bool> EnviarPedido(int clienteId, DateTime dataAgendamento, List<int> idsServicos, decimal total)
+        public async Task<bool> EnviarPedido(int clienteId, DateTime dataAgendamento, List<int> idsServicos, decimal total, string observacoes)
         {
             using (var client = new HttpClient())
             {
@@ -90,7 +90,9 @@ namespace Shop.TelaFuncionarios
                     ClienteId = clienteId,
                     DataAgendamento = dataAgendamento,
                     ValorTotal = total,
-                    ServicosIds = idsServicos
+                    ServicosIds = idsServicos,
+                    Observacoes = observacoes
+
                 };
 
                 var json = JsonConvert.SerializeObject(pacote);
@@ -203,8 +205,81 @@ namespace Shop.TelaFuncionarios
                 }
             }
         }
-    }
+        public async Task<List<PetDTO>> GetMeusPets(int clienteId)
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var response = await client.GetAsync($"{_baseUrl}/api/pets/meus-pets/{clienteId}");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        return JsonConvert.DeserializeObject<List<PetDTO>>(json);
+                    }
+                }
+                catch { }
+                return new List<PetDTO>();
+            }
+        }
+        public async Task<bool> CadastrarPet(PetDTO pet)
+        {
+            using (var client = new HttpClient())
+            {
+                var json = JsonConvert.SerializeObject(pet);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
 
+                try
+                {
+                    var response = await client.PostAsync($"{_baseUrl}/api/pets", content);
+                    return response.IsSuccessStatusCode;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+        public async Task<bool> EditarPet(PetDTO pet)
+        {
+            using (var client = new HttpClient())
+            {
+                var json = JsonConvert.SerializeObject(pet);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                try
+                {
+                    var response = await client.PutAsync($"{_baseUrl}/api/pets/{pet.Id}", content);
+                    return response.IsSuccessStatusCode;
+                }
+                catch { return false; }
+            }
+        }
+
+        // Excluir
+        public async Task<bool> ExcluirPet(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var response = await client.DeleteAsync($"{_baseUrl}/api/pets/{id}");
+                    return response.IsSuccessStatusCode;
+                }
+                catch { return false; }
+            }
+        }
+    }
+    public class PetDTO
+    {
+        public int Id { get; set; }
+        public int ClienteId { get; set; }
+        public string Nome { get; set; }
+        public string Especie { get; set; }
+        public string Raca { get; set; }
+        public string Cor { get; set; }
+        public DateTime DataNascimento { get; set; }
+        public decimal Peso { get; set; }
+    }
 
     public class Servico
     {

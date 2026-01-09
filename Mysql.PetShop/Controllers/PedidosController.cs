@@ -26,7 +26,8 @@ namespace Mysql.PetShop.Controllers
                 DataPedido = DateTime.Now,
                 DataAgendamento = dados.DataAgendamento,
                 ValorTotal = dados.ValorTotal,
-                Status = "pendente"
+                Status = "pendente",
+                Observacoes = dados.Observacoes
             };
 
             _context.TbPedidos.Add(novoPedido);

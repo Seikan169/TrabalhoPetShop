@@ -6,30 +6,19 @@ namespace Mysql.PetShop.Models
     [Table("tb_pets")]
     public class Pet
     {
-        [Key]
-        [Column("id")]
         public int Id { get; set; }
 
         [Column("cliente_id")]
         public int ClienteId { get; set; }
 
-        [Column("nome")]
         public string Nome { get; set; }
+        public string Especie { get; set; } // Cachorro, Gato...
+        public string Raca { get; set; }
+        public string Cor { get; set; }
 
-        [Column("idade")]
-        public int Idade { get; set; }
+        [Column("data_nascimento")]
+        public DateTime DataNascimento { get; set; }
 
-        [Column("porte")]
-        public string Porte { get; set; }
-
-        [Column("comportamento")]
-        public string Comportamento { get; set; } // Manso, Agressivo
-
-        [Column("observacoes")]
-        public string Observacoes { get; set; }
-
-        // Relacionamento (Opcional, mas ajuda)
-        [ForeignKey("ClienteId")]
-        public Usuario Cliente { get; set; }
+        public decimal Peso { get; set; }
     }
 }
