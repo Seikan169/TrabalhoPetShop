@@ -2,8 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Shop.TelaFuncionarios
 {
@@ -47,7 +50,27 @@ namespace Shop.TelaFuncionarios
 
                 return null; // Login falhou
             }
+
         }
+
+        public class FuncionarioDTO // DTO = Data Transfer Object
+        {
+            public int Id { get; set; }
+            public string Nome { get; set; }
+            public string Email { get; set; }
+            // A senha geralmente NÃO deve ser retornada para o DataGrid por segurança
+            public string Telefone { get; set; }
+
+            // Se o JSON vier como "tipo_usuario" (snake_case), use a anotação abaixo.
+            // Se você configurou a API para retornar camelCase (tipoUsuario), não precisa.
+            [System.Text.Json.Serialization.JsonPropertyName("tipo_usuario")]
+            public string TipoUsuario { get; set; }
+
+            [System.Text.Json.Serialization.JsonPropertyName("data_cadastro")]
+            public DateTime DataCadastro { get; set; }
+        }
+        
+
         public async Task<ViaCepResult> BuscarEnderecoPorCep(string cep)
         {
             // 1. Limpa o CEP (deixa só números)
@@ -143,3 +166,23 @@ namespace Shop.TelaFuncionarios
         public bool Erro { get; set; } // O ViaCEP devolve isso se não achar
     }
 }
+
+public class FuncionarioDTO // DTO = Data Transfer Object
+{
+    public int Id { get; set; }
+    public string Nome { get; set; }
+    public string Email { get; set; }
+    // A senha geralmente NÃO deve ser retornada para o DataGrid por segurança
+    public string Telefone { get; set; }
+
+    // Se o JSON vier como "tipo_usuario" (snake_case), use a anotação abaixo.
+    // Se você configurou a API para retornar camelCase (tipoUsuario), não precisa.
+    [System.Text.Json.Serialization.JsonPropertyName("tipo_usuario")]
+    public string TipoUsuario { get; set; }
+
+    [System.Text.Json.Serialization.JsonPropertyName("data_cadastro")]
+    public DateTime DataCadastro { get; set; }
+}
+
+
+

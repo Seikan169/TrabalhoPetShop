@@ -8,12 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Tela.Cliente
 {
     public partial class Tela_Cliente : Form
     {
-        public Tela_Cliente()
+        public Tela_Cliente(string usuario)
         {
+
             InitializeComponent();
             tabControl1.Appearance = TabAppearance.FlatButtons;
             tabControl1.ItemSize = new Size(0, 1);

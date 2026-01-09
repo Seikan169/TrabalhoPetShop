@@ -1,3 +1,9 @@
+using System;
+using System.Windows.Forms;
+using Tela.Cliente;
+
+
+
 namespace Tela.Cliente
 {
     internal static class Program
@@ -11,7 +17,7 @@ namespace Tela.Cliente
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Tela_Cliente());
+            
         }
     }
 }
