@@ -205,6 +205,26 @@ namespace Shop.TelaFuncionarios
                 }
             }
         }
+        public async Task<List<Servico>> PesquisarServicos(string termo)
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    // Chama a rota nova passando o termo na URL
+                    var response = await client.GetAsync($"{_baseUrl}/api/servicos/buscar?termo={termo}");
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        return JsonConvert.DeserializeObject<List<Servico>>(json);
+                    }
+                }
+                catch { } // Se der erro, retorna lista vazia
+
+                return new List<Servico>();
+            }
+        }
         public async Task<List<PetDTO>> GetMeusPets(int clienteId)
         {
             using (var client = new HttpClient())

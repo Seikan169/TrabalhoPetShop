@@ -24,5 +24,22 @@ namespace Mysql.PetShop.Controllers
         {
             return await _context.TbServicos.ToListAsync();
         }
+        // GET: api/servicos/buscar?termo=banho
+        [HttpGet("buscar")]
+        public async Task<ActionResult<IEnumerable<Servico>>> BuscarServicos([FromQuery] string termo)
+        {
+            // Se não digitar nada, retorna tudo
+            if (string.IsNullOrWhiteSpace(termo))
+            {
+                return await _context.TbServicos.ToListAsync();
+            }
+
+            // O "Contains" vira um "LIKE '%termo%'" no SQL automaticamente
+            var resultados = await _context.TbServicos
+                                           .Where(s => s.Nome.Contains(termo) || s.Descricao.Contains(termo))
+                                           .ToListAsync();
+
+            return resultados;
+        }
     }
 }

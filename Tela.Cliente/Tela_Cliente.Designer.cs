@@ -52,6 +52,8 @@
             panel2 = new Panel();
             BtnAdicionar = new Button();
             panel1 = new Panel();
+            BtnBuscar = new Button();
+            TxtBuscarPorNome = new TextBox();
             CmbPetAgendar = new ComboBox();
             LblPetCuidado = new Label();
             LblResumo = new Label();
@@ -71,6 +73,8 @@
             PnlTituloMeuspets = new Panel();
             LblMeusPets = new Label();
             PnlCadastroPet = new Panel();
+            BtnCancelar = new Button();
+            LblStatusEdicao = new Label();
             NumericUpPESO = new NumericUpDown();
             BtnSalvar = new Button();
             label1 = new Label();
@@ -146,6 +150,7 @@
             BtnSair.TextAlign = ContentAlignment.MiddleRight;
             BtnSair.TextImageRelation = TextImageRelation.ImageBeforeText;
             BtnSair.UseVisualStyleBackColor = true;
+            BtnSair.Click += BtnSair_Click;
             // 
             // BtnMeusPets
             // 
@@ -344,6 +349,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(BtnBuscar);
+            panel1.Controls.Add(TxtBuscarPorNome);
             panel1.Controls.Add(CmbPetAgendar);
             panel1.Controls.Add(LblPetCuidado);
             panel1.Dock = DockStyle.Top;
@@ -352,13 +359,33 @@
             panel1.Size = new Size(696, 100);
             panel1.TabIndex = 8;
             // 
+            // BtnBuscar
+            // 
+            BtnBuscar.BackgroundImage = (Image)resources.GetObject("BtnBuscar.BackgroundImage");
+            BtnBuscar.BackgroundImageLayout = ImageLayout.Stretch;
+            BtnBuscar.Location = new Point(196, 70);
+            BtnBuscar.Name = "BtnBuscar";
+            BtnBuscar.Size = new Size(24, 26);
+            BtnBuscar.TabIndex = 3;
+            BtnBuscar.UseVisualStyleBackColor = true;
+            BtnBuscar.Click += BtnBuscar_Click;
+            // 
+            // TxtBuscarPorNome
+            // 
+            TxtBuscarPorNome.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            TxtBuscarPorNome.Location = new Point(3, 70);
+            TxtBuscarPorNome.Name = "TxtBuscarPorNome";
+            TxtBuscarPorNome.Size = new Size(187, 27);
+            TxtBuscarPorNome.TabIndex = 2;
+            TxtBuscarPorNome.KeyDown += TxtBuscarPorNome_KeyDown;
+            // 
             // CmbPetAgendar
             // 
-            CmbPetAgendar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            CmbPetAgendar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             CmbPetAgendar.FormattingEnabled = true;
             CmbPetAgendar.Location = new Point(3, 32);
             CmbPetAgendar.Name = "CmbPetAgendar";
-            CmbPetAgendar.Size = new Size(267, 25);
+            CmbPetAgendar.Size = new Size(267, 29);
             CmbPetAgendar.TabIndex = 1;
             // 
             // LblPetCuidado
@@ -602,6 +629,7 @@
             DgvMeusPets.Size = new Size(750, 454);
             DgvMeusPets.TabIndex = 1;
             DgvMeusPets.CellContentClick += DgvMeusPets_CellContentClick;
+            DgvMeusPets.CellFormatting += DgvMeusPets_CellFormatting;
             // 
             // PnlTituloMeuspets
             // 
@@ -634,6 +662,8 @@
             // 
             PnlCadastroPet.BackColor = Color.DimGray;
             PnlCadastroPet.BorderStyle = BorderStyle.Fixed3D;
+            PnlCadastroPet.Controls.Add(BtnCancelar);
+            PnlCadastroPet.Controls.Add(LblStatusEdicao);
             PnlCadastroPet.Controls.Add(NumericUpPESO);
             PnlCadastroPet.Controls.Add(BtnSalvar);
             PnlCadastroPet.Controls.Add(label1);
@@ -653,11 +683,38 @@
             PnlCadastroPet.Size = new Size(300, 454);
             PnlCadastroPet.TabIndex = 15;
             // 
+            // BtnCancelar
+            // 
+            BtnCancelar.BackColor = Color.Red;
+            BtnCancelar.FlatAppearance.BorderColor = Color.Black;
+            BtnCancelar.FlatStyle = FlatStyle.Flat;
+            BtnCancelar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnCancelar.ForeColor = Color.White;
+            BtnCancelar.Location = new Point(196, 395);
+            BtnCancelar.Name = "BtnCancelar";
+            BtnCancelar.Size = new Size(97, 51);
+            BtnCancelar.TabIndex = 29;
+            BtnCancelar.Text = "Cancelar";
+            BtnCancelar.UseVisualStyleBackColor = false;
+            BtnCancelar.Visible = false;
+            BtnCancelar.Click += BtnCancelar_Click;
+            // 
+            // LblStatusEdicao
+            // 
+            LblStatusEdicao.AutoSize = true;
+            LblStatusEdicao.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblStatusEdicao.ForeColor = Color.Orange;
+            LblStatusEdicao.Location = new Point(13, 1);
+            LblStatusEdicao.Name = "LblStatusEdicao";
+            LblStatusEdicao.Size = new Size(53, 21);
+            LblStatusEdicao.TabIndex = 28;
+            LblStatusEdicao.Text = "Nono";
+            // 
             // NumericUpPESO
             // 
             NumericUpPESO.DecimalPlaces = 2;
             NumericUpPESO.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            NumericUpPESO.Location = new Point(20, 333);
+            NumericUpPESO.Location = new Point(13, 348);
             NumericUpPESO.Name = "NumericUpPESO";
             NumericUpPESO.Size = new Size(96, 27);
             NumericUpPESO.TabIndex = 27;
@@ -668,11 +725,11 @@
             BtnSalvar.FlatStyle = FlatStyle.Flat;
             BtnSalvar.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnSalvar.ForeColor = Color.White;
-            BtnSalvar.Location = new Point(20, 380);
+            BtnSalvar.Location = new Point(3, 395);
             BtnSalvar.Name = "BtnSalvar";
-            BtnSalvar.Size = new Size(161, 51);
+            BtnSalvar.Size = new Size(187, 51);
             BtnSalvar.TabIndex = 26;
-            BtnSalvar.Text = "Salvar";
+            BtnSalvar.Text = "Cadastrar Pet";
             BtnSalvar.UseVisualStyleBackColor = true;
             BtnSalvar.Click += BtnSalvar_Click_1;
             // 
@@ -681,7 +738,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(20, 305);
+            label1.Location = new Point(13, 320);
             label1.Name = "label1";
             label1.Size = new Size(96, 25);
             label1.TabIndex = 25;
@@ -692,7 +749,7 @@
             LblNascimento.AutoSize = true;
             LblNascimento.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LblNascimento.ForeColor = Color.White;
-            LblNascimento.Location = new Point(20, 247);
+            LblNascimento.Location = new Point(13, 262);
             LblNascimento.Name = "LblNascimento";
             LblNascimento.Size = new Size(117, 25);
             LblNascimento.TabIndex = 24;
@@ -702,7 +759,7 @@
             // 
             DtpNascimentoPet.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             DtpNascimentoPet.Format = DateTimePickerFormat.Short;
-            DtpNascimentoPet.Location = new Point(20, 275);
+            DtpNascimentoPet.Location = new Point(13, 290);
             DtpNascimentoPet.Name = "DtpNascimentoPet";
             DtpNascimentoPet.Size = new Size(161, 27);
             DtpNascimentoPet.TabIndex = 23;
@@ -710,7 +767,7 @@
             // TxtBoxCor
             // 
             TxtBoxCor.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TxtBoxCor.Location = new Point(20, 217);
+            TxtBoxCor.Location = new Point(13, 232);
             TxtBoxCor.Name = "TxtBoxCor";
             TxtBoxCor.Size = new Size(161, 27);
             TxtBoxCor.TabIndex = 22;
@@ -720,7 +777,7 @@
             LblCor.AutoSize = true;
             LblCor.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LblCor.ForeColor = Color.White;
-            LblCor.Location = new Point(20, 189);
+            LblCor.Location = new Point(13, 204);
             LblCor.Name = "LblCor";
             LblCor.Size = new Size(44, 25);
             LblCor.TabIndex = 21;
@@ -729,7 +786,7 @@
             // TxtBoxRaca
             // 
             TxtBoxRaca.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TxtBoxRaca.Location = new Point(20, 159);
+            TxtBoxRaca.Location = new Point(13, 174);
             TxtBoxRaca.Name = "TxtBoxRaca";
             TxtBoxRaca.Size = new Size(161, 27);
             TxtBoxRaca.TabIndex = 20;
@@ -739,7 +796,7 @@
             LblRaca.AutoSize = true;
             LblRaca.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LblRaca.ForeColor = Color.White;
-            LblRaca.Location = new Point(20, 131);
+            LblRaca.Location = new Point(13, 146);
             LblRaca.Name = "LblRaca";
             LblRaca.Size = new Size(53, 25);
             LblRaca.TabIndex = 19;
@@ -747,10 +804,10 @@
             // 
             // CbmEspecie
             // 
-            CbmEspecie.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            CbmEspecie.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             CbmEspecie.FormattingEnabled = true;
             CbmEspecie.Items.AddRange(new object[] { "Cachorro", "Gato", "Ave", "Outros" });
-            CbmEspecie.Location = new Point(20, 100);
+            CbmEspecie.Location = new Point(13, 115);
             CbmEspecie.Name = "CbmEspecie";
             CbmEspecie.Size = new Size(161, 28);
             CbmEspecie.TabIndex = 18;
@@ -760,7 +817,7 @@
             LblEspecie.AutoSize = true;
             LblEspecie.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LblEspecie.ForeColor = Color.White;
-            LblEspecie.Location = new Point(20, 72);
+            LblEspecie.Location = new Point(13, 87);
             LblEspecie.Name = "LblEspecie";
             LblEspecie.Size = new Size(76, 25);
             LblEspecie.TabIndex = 17;
@@ -771,7 +828,7 @@
             LblNomePet.AutoSize = true;
             LblNomePet.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LblNomePet.ForeColor = Color.White;
-            LblNomePet.Location = new Point(20, 13);
+            LblNomePet.Location = new Point(13, 29);
             LblNomePet.Name = "LblNomePet";
             LblNomePet.Size = new Size(66, 25);
             LblNomePet.TabIndex = 16;
@@ -780,7 +837,7 @@
             // TxtNomePet
             // 
             TxtNomePet.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TxtNomePet.Location = new Point(20, 42);
+            TxtNomePet.Location = new Point(13, 57);
             TxtNomePet.Name = "TxtNomePet";
             TxtNomePet.Size = new Size(161, 27);
             TxtNomePet.TabIndex = 15;
@@ -919,5 +976,9 @@
         private Label LblEspecie;
         private Label LblNomePet;
         private TextBox TxtNomePet;
+        private Button BtnCancelar;
+        private Label LblStatusEdicao;
+        private Button BtnBuscar;
+        private TextBox TxtBuscarPorNome;
     }
 }
