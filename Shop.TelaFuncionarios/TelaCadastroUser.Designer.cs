@@ -55,26 +55,28 @@
             BtnSalvarCadastroCliente = new Button();
             MkBoxCep = new MaskedTextBox();
             MkBoxTeleCLiente = new MaskedTextBox();
+            MkcboxCpfCliente = new MaskedTextBox();
+            label4 = new Label();
             SuspendLayout();
             // 
             // TxtNomeCliente
             // 
             TxtNomeCliente.Cursor = Cursors.IBeam;
-            TxtNomeCliente.Location = new Point(11, 35);
+            TxtNomeCliente.Location = new Point(5, 26);
             TxtNomeCliente.Name = "TxtNomeCliente";
             TxtNomeCliente.Size = new Size(182, 27);
             TxtNomeCliente.TabIndex = 0;
             // 
             // TxtEmailCliente
             // 
-            TxtEmailCliente.Location = new Point(11, 164);
+            TxtEmailCliente.Location = new Point(4, 209);
             TxtEmailCliente.Name = "TxtEmailCliente";
             TxtEmailCliente.Size = new Size(396, 27);
             TxtEmailCliente.TabIndex = 1;
             // 
             // TxtSenhaCliente
             // 
-            TxtSenhaCliente.Location = new Point(255, 35);
+            TxtSenhaCliente.Location = new Point(254, 26);
             TxtSenhaCliente.Name = "TxtSenhaCliente";
             TxtSenhaCliente.Size = new Size(153, 27);
             TxtSenhaCliente.TabIndex = 4;
@@ -84,7 +86,7 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Location = new Point(11, 11);
+            label1.Location = new Point(5, 2);
             label1.Name = "label1";
             label1.Size = new Size(50, 20);
             label1.TabIndex = 5;
@@ -94,7 +96,7 @@
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
-            label2.Location = new Point(11, 141);
+            label2.Location = new Point(4, 186);
             label2.Name = "label2";
             label2.Size = new Size(52, 20);
             label2.TabIndex = 6;
@@ -104,7 +106,7 @@
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
-            label3.Location = new Point(11, 76);
+            label3.Location = new Point(4, 58);
             label3.Name = "label3";
             label3.Size = new Size(66, 20);
             label3.TabIndex = 7;
@@ -112,7 +114,7 @@
             // 
             // TxtConfirSenhaCliente
             // 
-            TxtConfirSenhaCliente.Location = new Point(255, 100);
+            TxtConfirSenhaCliente.Location = new Point(254, 82);
             TxtConfirSenhaCliente.Name = "TxtConfirSenhaCliente";
             TxtConfirSenhaCliente.Size = new Size(153, 27);
             TxtConfirSenhaCliente.TabIndex = 10;
@@ -123,7 +125,7 @@
             // 
             label5.AutoSize = true;
             label5.BackColor = Color.Transparent;
-            label5.Location = new Point(255, 77);
+            label5.Location = new Point(254, 59);
             label5.Name = "label5";
             label5.Size = new Size(119, 20);
             label5.TabIndex = 11;
@@ -133,7 +135,7 @@
             // 
             label6.AutoSize = true;
             label6.BackColor = Color.Transparent;
-            label6.Location = new Point(255, 12);
+            label6.Location = new Point(254, 3);
             label6.Name = "label6";
             label6.Size = new Size(49, 20);
             label6.TabIndex = 12;
@@ -143,17 +145,17 @@
             // 
             textBox1.BackColor = SystemColors.HotTrack;
             textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Location = new Point(5, 217);
+            textBox1.Location = new Point(-3, 242);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(431, 12);
+            textBox1.Size = new Size(455, 12);
             textBox1.TabIndex = 13;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.BackColor = Color.Transparent;
-            label7.Location = new Point(11, 236);
+            label7.Location = new Point(12, 261);
             label7.Name = "label7";
             label7.Size = new Size(34, 20);
             label7.TabIndex = 15;
@@ -161,7 +163,7 @@
             // 
             // TxtUfCliente
             // 
-            TxtUfCliente.Location = new Point(11, 325);
+            TxtUfCliente.Location = new Point(12, 350);
             TxtUfCliente.Name = "TxtUfCliente";
             TxtUfCliente.Size = new Size(110, 27);
             TxtUfCliente.TabIndex = 16;
@@ -170,7 +172,7 @@
             // 
             label8.AutoSize = true;
             label8.BackColor = Color.Transparent;
-            label8.Location = new Point(11, 301);
+            label8.Location = new Point(12, 326);
             label8.Name = "label8";
             label8.Size = new Size(26, 20);
             label8.TabIndex = 17;
@@ -180,7 +182,7 @@
             // 
             label9.AutoSize = true;
             label9.BackColor = Color.Transparent;
-            label9.Location = new Point(154, 303);
+            label9.Location = new Point(155, 328);
             label9.Name = "label9";
             label9.Size = new Size(87, 20);
             label9.TabIndex = 19;
@@ -188,7 +190,7 @@
             // 
             // TxtLogCliente
             // 
-            TxtLogCliente.Location = new Point(155, 325);
+            TxtLogCliente.Location = new Point(156, 350);
             TxtLogCliente.Name = "TxtLogCliente";
             TxtLogCliente.Size = new Size(252, 27);
             TxtLogCliente.TabIndex = 18;
@@ -197,7 +199,7 @@
             // 
             label10.AutoSize = true;
             label10.BackColor = Color.Transparent;
-            label10.Location = new Point(153, 369);
+            label10.Location = new Point(154, 394);
             label10.Name = "label10";
             label10.Size = new Size(49, 20);
             label10.TabIndex = 21;
@@ -205,7 +207,7 @@
             // 
             // TxtBairroCliente
             // 
-            TxtBairroCliente.Location = new Point(154, 392);
+            TxtBairroCliente.Location = new Point(155, 417);
             TxtBairroCliente.Name = "TxtBairroCliente";
             TxtBairroCliente.Size = new Size(253, 27);
             TxtBairroCliente.TabIndex = 20;
@@ -214,7 +216,7 @@
             // 
             label11.AutoSize = true;
             label11.BackColor = Color.Transparent;
-            label11.Location = new Point(11, 369);
+            label11.Location = new Point(12, 394);
             label11.Name = "label11";
             label11.Size = new Size(56, 20);
             label11.TabIndex = 23;
@@ -222,7 +224,7 @@
             // 
             // TxtCidadeCliente
             // 
-            TxtCidadeCliente.Location = new Point(11, 392);
+            TxtCidadeCliente.Location = new Point(12, 417);
             TxtCidadeCliente.Name = "TxtCidadeCliente";
             TxtCidadeCliente.Size = new Size(110, 27);
             TxtCidadeCliente.TabIndex = 22;
@@ -231,7 +233,7 @@
             // 
             label12.AutoSize = true;
             label12.BackColor = Color.Transparent;
-            label12.Location = new Point(11, 427);
+            label12.Location = new Point(12, 452);
             label12.Name = "label12";
             label12.Size = new Size(63, 20);
             label12.TabIndex = 25;
@@ -239,7 +241,7 @@
             // 
             // TxtNúmeroCliente
             // 
-            TxtNúmeroCliente.Location = new Point(11, 449);
+            TxtNúmeroCliente.Location = new Point(12, 474);
             TxtNúmeroCliente.Name = "TxtNúmeroCliente";
             TxtNúmeroCliente.Size = new Size(110, 27);
             TxtNúmeroCliente.TabIndex = 24;
@@ -248,7 +250,7 @@
             // 
             label13.AutoSize = true;
             label13.BackColor = Color.Transparent;
-            label13.Location = new Point(151, 427);
+            label13.Location = new Point(152, 452);
             label13.Name = "label13";
             label13.Size = new Size(104, 20);
             label13.TabIndex = 27;
@@ -256,7 +258,7 @@
             // 
             // TxtComplementoCliente
             // 
-            TxtComplementoCliente.Location = new Point(152, 449);
+            TxtComplementoCliente.Location = new Point(153, 474);
             TxtComplementoCliente.Name = "TxtComplementoCliente";
             TxtComplementoCliente.Size = new Size(110, 27);
             TxtComplementoCliente.TabIndex = 26;
@@ -266,7 +268,7 @@
             BtnSalvarCadastroCliente.BackColor = SystemColors.MenuHighlight;
             BtnSalvarCadastroCliente.FlatStyle = FlatStyle.Popup;
             BtnSalvarCadastroCliente.Font = new Font("Century Gothic", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BtnSalvarCadastroCliente.Location = new Point(298, 449);
+            BtnSalvarCadastroCliente.Location = new Point(299, 474);
             BtnSalvarCadastroCliente.Name = "BtnSalvarCadastroCliente";
             BtnSalvarCadastroCliente.Size = new Size(101, 31);
             BtnSalvarCadastroCliente.TabIndex = 28;
@@ -276,7 +278,7 @@
             // 
             // MkBoxCep
             // 
-            MkBoxCep.Location = new Point(11, 260);
+            MkBoxCep.Location = new Point(12, 285);
             MkBoxCep.Margin = new Padding(3, 4, 3, 4);
             MkBoxCep.Mask = "00000-000";
             MkBoxCep.Name = "MkBoxCep";
@@ -286,11 +288,29 @@
             // 
             // MkBoxTeleCLiente
             // 
-            MkBoxTeleCLiente.Location = new Point(12, 100);
+            MkBoxTeleCLiente.Location = new Point(5, 82);
             MkBoxTeleCLiente.Mask = "(00) 00000-0000";
             MkBoxTeleCLiente.Name = "MkBoxTeleCLiente";
-            MkBoxTeleCLiente.Size = new Size(149, 27);
+            MkBoxTeleCLiente.Size = new Size(182, 27);
             MkBoxTeleCLiente.TabIndex = 30;
+            // 
+            // MkcboxCpfCliente
+            // 
+            MkcboxCpfCliente.Location = new Point(6, 145);
+            MkcboxCpfCliente.Mask = "000.000.000-00";
+            MkcboxCpfCliente.Name = "MkcboxCpfCliente";
+            MkcboxCpfCliente.Size = new Size(181, 27);
+            MkcboxCpfCliente.TabIndex = 32;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.Location = new Point(5, 121);
+            label4.Name = "label4";
+            label4.Size = new Size(32, 20);
+            label4.TabIndex = 31;
+            label4.Text = "Cpf";
             // 
             // TelaCadastroUser
             // 
@@ -298,7 +318,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(453, 644);
+            ClientSize = new Size(453, 669);
+            Controls.Add(MkcboxCpfCliente);
+            Controls.Add(label4);
             Controls.Add(MkBoxTeleCLiente);
             Controls.Add(MkBoxCep);
             Controls.Add(BtnSalvarCadastroCliente);
@@ -361,5 +383,7 @@
         private Button BtnSalvarCadastroCliente;
         private MaskedTextBox MkBoxCep;
         private MaskedTextBox MkBoxTeleCLiente;
+        private MaskedTextBox MkcboxCpfCliente;
+        private Label label4;
     }
 }

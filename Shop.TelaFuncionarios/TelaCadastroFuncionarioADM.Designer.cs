@@ -31,6 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaCadastroFuncionarioADM));
             TabCInformacoesFuncionario = new TabControl();
             TacInfoPessoal = new TabPage();
+            label2 = new Label();
+            TxtSenhaFun = new TextBox();
+            MkboxDataFun = new MaskedTextBox();
+            CheKCadastroFun = new CheckBox();
             BtnCancelarCadastroFun = new Button();
             BtnCadatrarFun = new Button();
             BtnFecharCadastroFun = new Button();
@@ -41,31 +45,29 @@
             label4 = new Label();
             ComBGeneroFun = new ComboBox();
             label3 = new Label();
-            TxtDataNascimentoFun = new TextBox();
-            label2 = new Label();
-            TxtRGFun = new TextBox();
             TxtCpf = new Label();
             label1 = new Label();
             MskBoxFuncioCPF = new MaskedTextBox();
             TxtNomeFuncionario = new TextBox();
             TabcEnderecoFun = new TabPage();
-            MaskCepFun = new MaskedTextBox();
-            BtnConsultarCepFun = new Button();
-            BtnTelaADM = new Button();
-            TxtBairroFun = new TextBox();
-            TxtRuaFun = new TextBox();
-            textBox3 = new TextBox();
-            TxtNumFun = new TextBox();
-            TxtCidadeFun = new TextBox();
-            TxtCompleFun = new TextBox();
-            label7 = new Label();
-            label8 = new Label();
-            TxtUfFun = new TextBox();
-            label9 = new Label();
-            label10 = new Label();
-            label11 = new Label();
+            label13 = new Label();
             label12 = new Label();
-            CheKCadastroFun = new CheckBox();
+            label11 = new Label();
+            label10 = new Label();
+            label9 = new Label();
+            label8 = new Label();
+            label7 = new Label();
+            TxtCompleFun = new TextBox();
+            TxtCidadeFun = new TextBox();
+            TxtNumFun = new TextBox();
+            TxtUfFun = new TextBox();
+            textBox3 = new TextBox();
+            TxtRuaFun = new TextBox();
+            TxtBairroFun = new TextBox();
+            MaskCepFun = new MaskedTextBox();
+            BtnTelaADM = new Button();
+            label14 = new Label();
+            MskBoxTelefoneFun = new MaskedTextBox();
             TabCInformacoesFuncionario.SuspendLayout();
             TacInfoPessoal.SuspendLayout();
             TabcEnderecoFun.SuspendLayout();
@@ -75,15 +77,21 @@
             // 
             TabCInformacoesFuncionario.Controls.Add(TacInfoPessoal);
             TabCInformacoesFuncionario.Controls.Add(TabcEnderecoFun);
-            TabCInformacoesFuncionario.Location = new Point(80, 12);
+            TabCInformacoesFuncionario.Dock = DockStyle.Fill;
+            TabCInformacoesFuncionario.Location = new Point(0, 0);
             TabCInformacoesFuncionario.Name = "TabCInformacoesFuncionario";
             TabCInformacoesFuncionario.SelectedIndex = 0;
-            TabCInformacoesFuncionario.Size = new Size(753, 458);
+            TabCInformacoesFuncionario.Size = new Size(1011, 514);
             TabCInformacoesFuncionario.TabIndex = 1;
             // 
             // TacInfoPessoal
             // 
             TacInfoPessoal.BackgroundImage = (Image)resources.GetObject("TacInfoPessoal.BackgroundImage");
+            TacInfoPessoal.Controls.Add(label14);
+            TacInfoPessoal.Controls.Add(MskBoxTelefoneFun);
+            TacInfoPessoal.Controls.Add(label2);
+            TacInfoPessoal.Controls.Add(TxtSenhaFun);
+            TacInfoPessoal.Controls.Add(MkboxDataFun);
             TacInfoPessoal.Controls.Add(CheKCadastroFun);
             TacInfoPessoal.Controls.Add(BtnCancelarCadastroFun);
             TacInfoPessoal.Controls.Add(BtnCadatrarFun);
@@ -95,9 +103,6 @@
             TacInfoPessoal.Controls.Add(label4);
             TacInfoPessoal.Controls.Add(ComBGeneroFun);
             TacInfoPessoal.Controls.Add(label3);
-            TacInfoPessoal.Controls.Add(TxtDataNascimentoFun);
-            TacInfoPessoal.Controls.Add(label2);
-            TacInfoPessoal.Controls.Add(TxtRGFun);
             TacInfoPessoal.Controls.Add(TxtCpf);
             TacInfoPessoal.Controls.Add(label1);
             TacInfoPessoal.Controls.Add(MskBoxFuncioCPF);
@@ -105,10 +110,45 @@
             TacInfoPessoal.Location = new Point(4, 29);
             TacInfoPessoal.Name = "TacInfoPessoal";
             TacInfoPessoal.Padding = new Padding(3);
-            TacInfoPessoal.Size = new Size(745, 425);
+            TacInfoPessoal.Size = new Size(1003, 481);
             TacInfoPessoal.TabIndex = 2;
             TacInfoPessoal.Text = "Dados Gerais";
             TacInfoPessoal.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(446, 91);
+            label2.Name = "label2";
+            label2.Size = new Size(49, 20);
+            label2.TabIndex = 23;
+            label2.Text = "Senha";
+            // 
+            // TxtSenhaFun
+            // 
+            TxtSenhaFun.Location = new Point(446, 115);
+            TxtSenhaFun.Name = "TxtSenhaFun";
+            TxtSenhaFun.Size = new Size(158, 27);
+            TxtSenhaFun.TabIndex = 22;
+            // 
+            // MkboxDataFun
+            // 
+            MkboxDataFun.Location = new Point(549, 38);
+            MkboxDataFun.Mask = "00/00/0000";
+            MkboxDataFun.Name = "MkboxDataFun";
+            MkboxDataFun.Size = new Size(125, 27);
+            MkboxDataFun.TabIndex = 21;
+            MkboxDataFun.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            // 
+            // CheKCadastroFun
+            // 
+            CheKCadastroFun.AutoSize = true;
+            CheKCadastroFun.Location = new Point(799, 326);
+            CheKCadastroFun.Name = "CheKCadastroFun";
+            CheKCadastroFun.Size = new Size(180, 24);
+            CheKCadastroFun.TabIndex = 19;
+            CheKCadastroFun.Text = "Aplicar Usuário Admin";
+            CheKCadastroFun.UseVisualStyleBackColor = true;
             // 
             // BtnCancelarCadastroFun
             // 
@@ -133,6 +173,7 @@
             BtnCadatrarFun.TabIndex = 17;
             BtnCadatrarFun.Text = "Cadastrar";
             BtnCadatrarFun.UseVisualStyleBackColor = false;
+            BtnCadatrarFun.Click += BtnCadatrarFun_Click;
             // 
             // BtnFecharCadastroFun
             // 
@@ -143,7 +184,7 @@
             BtnFecharCadastroFun.FlatStyle = FlatStyle.Flat;
             BtnFecharCadastroFun.ForeColor = Color.SteelBlue;
             BtnFecharCadastroFun.ImageAlign = ContentAlignment.MiddleRight;
-            BtnFecharCadastroFun.Location = new Point(689, 15);
+            BtnFecharCadastroFun.Location = new Point(945, 15);
             BtnFecharCadastroFun.Name = "BtnFecharCadastroFun";
             BtnFecharCadastroFun.Size = new Size(50, 50);
             BtnFecharCadastroFun.TabIndex = 16;
@@ -163,7 +204,7 @@
             TxtObservaFun.Location = new Point(18, 177);
             TxtObservaFun.Multiline = true;
             TxtObservaFun.Name = "TxtObservaFun";
-            TxtObservaFun.Size = new Size(635, 134);
+            TxtObservaFun.Size = new Size(961, 143);
             TxtObservaFun.TabIndex = 12;
             // 
             // label5
@@ -203,34 +244,11 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(537, 15);
+            label3.Location = new Point(549, 15);
             label3.Name = "label3";
             label3.Size = new Size(124, 20);
             label3.TabIndex = 7;
             label3.Text = "Data Nascimento";
-            // 
-            // TxtDataNascimentoFun
-            // 
-            TxtDataNascimentoFun.Location = new Point(537, 38);
-            TxtDataNascimentoFun.Name = "TxtDataNascimentoFun";
-            TxtDataNascimentoFun.Size = new Size(125, 27);
-            TxtDataNascimentoFun.TabIndex = 6;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(379, 15);
-            label2.Name = "label2";
-            label2.Size = new Size(28, 20);
-            label2.TabIndex = 5;
-            label2.Text = "RG";
-            // 
-            // TxtRGFun
-            // 
-            TxtRGFun.Location = new Point(379, 38);
-            TxtRGFun.Name = "TxtRGFun";
-            TxtRGFun.Size = new Size(119, 27);
-            TxtRGFun.TabIndex = 4;
             // 
             // TxtCpf
             // 
@@ -269,6 +287,7 @@
             // TabcEnderecoFun
             // 
             TabcEnderecoFun.BackgroundImage = (Image)resources.GetObject("TabcEnderecoFun.BackgroundImage");
+            TabcEnderecoFun.Controls.Add(label13);
             TabcEnderecoFun.Controls.Add(label12);
             TabcEnderecoFun.Controls.Add(label11);
             TabcEnderecoFun.Controls.Add(label10);
@@ -283,126 +302,41 @@
             TabcEnderecoFun.Controls.Add(TxtRuaFun);
             TabcEnderecoFun.Controls.Add(TxtBairroFun);
             TabcEnderecoFun.Controls.Add(MaskCepFun);
-            TabcEnderecoFun.Controls.Add(BtnConsultarCepFun);
             TabcEnderecoFun.Controls.Add(BtnTelaADM);
             TabcEnderecoFun.Location = new Point(4, 29);
             TabcEnderecoFun.Name = "TabcEnderecoFun";
             TabcEnderecoFun.Padding = new Padding(3);
-            TabcEnderecoFun.Size = new Size(745, 425);
+            TabcEnderecoFun.Size = new Size(1003, 481);
             TabcEnderecoFun.TabIndex = 3;
             TabcEnderecoFun.Text = "Endereço";
             TabcEnderecoFun.UseVisualStyleBackColor = true;
             // 
-            // MaskCepFun
+            // label13
             // 
-            MaskCepFun.Location = new Point(33, 31);
-            MaskCepFun.Mask = "00000-000";
-            MaskCepFun.Name = "MaskCepFun";
-            MaskCepFun.Size = new Size(125, 27);
-            MaskCepFun.TabIndex = 19;
+            label13.AutoSize = true;
+            label13.Location = new Point(33, 8);
+            label13.Name = "label13";
+            label13.Size = new Size(35, 20);
+            label13.TabIndex = 30;
+            label13.Text = "Cep";
             // 
-            // BtnConsultarCepFun
+            // label12
             // 
-            BtnConsultarCepFun.BackColor = SystemColors.HotTrack;
-            BtnConsultarCepFun.FlatStyle = FlatStyle.Popup;
-            BtnConsultarCepFun.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BtnConsultarCepFun.Location = new Point(174, 31);
-            BtnConsultarCepFun.Name = "BtnConsultarCepFun";
-            BtnConsultarCepFun.Size = new Size(100, 27);
-            BtnConsultarCepFun.TabIndex = 18;
-            BtnConsultarCepFun.Text = "Consultar ";
-            BtnConsultarCepFun.UseVisualStyleBackColor = false;
+            label12.AutoSize = true;
+            label12.Location = new Point(255, 232);
+            label12.Name = "label12";
+            label12.Size = new Size(63, 20);
+            label12.TabIndex = 29;
+            label12.Text = "Número";
             // 
-            // BtnTelaADM
+            // label11
             // 
-            BtnTelaADM.BackColor = Color.Transparent;
-            BtnTelaADM.BackgroundImage = (Image)resources.GetObject("BtnTelaADM.BackgroundImage");
-            BtnTelaADM.BackgroundImageLayout = ImageLayout.Stretch;
-            BtnTelaADM.FlatAppearance.BorderSize = 0;
-            BtnTelaADM.FlatStyle = FlatStyle.Flat;
-            BtnTelaADM.ForeColor = Color.SteelBlue;
-            BtnTelaADM.ImageAlign = ContentAlignment.MiddleRight;
-            BtnTelaADM.Location = new Point(677, 19);
-            BtnTelaADM.Name = "BtnTelaADM";
-            BtnTelaADM.Size = new Size(50, 50);
-            BtnTelaADM.TabIndex = 17;
-            BtnTelaADM.UseVisualStyleBackColor = false;
-            // 
-            // TxtBairroFun
-            // 
-            TxtBairroFun.Location = new Point(33, 127);
-            TxtBairroFun.Name = "TxtBairroFun";
-            TxtBairroFun.Size = new Size(230, 27);
-            TxtBairroFun.TabIndex = 20;
-            // 
-            // TxtRuaFun
-            // 
-            TxtRuaFun.Location = new Point(33, 190);
-            TxtRuaFun.Name = "TxtRuaFun";
-            TxtRuaFun.Size = new Size(230, 27);
-            TxtRuaFun.TabIndex = 21;
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(41, 255);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(125, 27);
-            textBox3.TabIndex = 22;
-            // 
-            // TxtNumFun
-            // 
-            TxtNumFun.Location = new Point(357, 127);
-            TxtNumFun.Name = "TxtNumFun";
-            TxtNumFun.Size = new Size(125, 27);
-            TxtNumFun.TabIndex = 23;
-            // 
-            // TxtCidadeFun
-            // 
-            TxtCidadeFun.Location = new Point(33, 323);
-            TxtCidadeFun.Name = "TxtCidadeFun";
-            TxtCidadeFun.Size = new Size(125, 27);
-            TxtCidadeFun.TabIndex = 23;
-            // 
-            // TxtCompleFun
-            // 
-            TxtCompleFun.Location = new Point(357, 190);
-            TxtCompleFun.Name = "TxtCompleFun";
-            TxtCompleFun.Size = new Size(125, 27);
-            TxtCompleFun.TabIndex = 24;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(33, 104);
-            label7.Name = "label7";
-            label7.Size = new Size(49, 20);
-            label7.TabIndex = 25;
-            label7.Text = "Bairro";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(33, 167);
-            label8.Name = "label8";
-            label8.Size = new Size(34, 20);
-            label8.TabIndex = 26;
-            label8.Text = "Rua";
-            // 
-            // TxtUfFun
-            // 
-            TxtUfFun.Location = new Point(33, 255);
-            TxtUfFun.Name = "TxtUfFun";
-            TxtUfFun.Size = new Size(125, 27);
-            TxtUfFun.TabIndex = 22;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(33, 232);
-            label9.Name = "label9";
-            label9.Size = new Size(26, 20);
-            label9.TabIndex = 27;
-            label9.Text = "UF";
+            label11.AutoSize = true;
+            label11.Location = new Point(255, 300);
+            label11.Name = "label11";
+            label11.Size = new Size(104, 20);
+            label11.TabIndex = 29;
+            label11.Text = "Complemento";
             // 
             // label10
             // 
@@ -413,33 +347,122 @@
             label10.TabIndex = 28;
             label10.Text = "Cidade";
             // 
-            // label11
+            // label9
             // 
-            label11.AutoSize = true;
-            label11.Location = new Point(357, 167);
-            label11.Name = "label11";
-            label11.Size = new Size(104, 20);
-            label11.TabIndex = 29;
-            label11.Text = "Complemento";
+            label9.AutoSize = true;
+            label9.Location = new Point(33, 232);
+            label9.Name = "label9";
+            label9.Size = new Size(26, 20);
+            label9.TabIndex = 27;
+            label9.Text = "UF";
             // 
-            // label12
+            // label8
             // 
-            label12.AutoSize = true;
-            label12.Location = new Point(357, 104);
-            label12.Name = "label12";
-            label12.Size = new Size(63, 20);
-            label12.TabIndex = 29;
-            label12.Text = "Número";
+            label8.AutoSize = true;
+            label8.Location = new Point(33, 167);
+            label8.Name = "label8";
+            label8.Size = new Size(34, 20);
+            label8.TabIndex = 26;
+            label8.Text = "Rua";
             // 
-            // CheKCadastroFun
+            // label7
             // 
-            CheKCadastroFun.AutoSize = true;
-            CheKCadastroFun.Location = new Point(473, 116);
-            CheKCadastroFun.Name = "CheKCadastroFun";
-            CheKCadastroFun.Size = new Size(180, 24);
-            CheKCadastroFun.TabIndex = 19;
-            CheKCadastroFun.Text = "Aplicar Usuário Admin";
-            CheKCadastroFun.UseVisualStyleBackColor = true;
+            label7.AutoSize = true;
+            label7.Location = new Point(33, 104);
+            label7.Name = "label7";
+            label7.Size = new Size(49, 20);
+            label7.TabIndex = 25;
+            label7.Text = "Bairro";
+            // 
+            // TxtCompleFun
+            // 
+            TxtCompleFun.Location = new Point(255, 323);
+            TxtCompleFun.Name = "TxtCompleFun";
+            TxtCompleFun.Size = new Size(125, 27);
+            TxtCompleFun.TabIndex = 24;
+            // 
+            // TxtCidadeFun
+            // 
+            TxtCidadeFun.Location = new Point(33, 323);
+            TxtCidadeFun.Name = "TxtCidadeFun";
+            TxtCidadeFun.Size = new Size(125, 27);
+            TxtCidadeFun.TabIndex = 23;
+            // 
+            // TxtNumFun
+            // 
+            TxtNumFun.Location = new Point(255, 255);
+            TxtNumFun.Name = "TxtNumFun";
+            TxtNumFun.Size = new Size(125, 27);
+            TxtNumFun.TabIndex = 23;
+            // 
+            // TxtUfFun
+            // 
+            TxtUfFun.Location = new Point(33, 255);
+            TxtUfFun.Name = "TxtUfFun";
+            TxtUfFun.Size = new Size(125, 27);
+            TxtUfFun.TabIndex = 22;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(41, 255);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(125, 27);
+            textBox3.TabIndex = 22;
+            // 
+            // TxtRuaFun
+            // 
+            TxtRuaFun.Location = new Point(33, 190);
+            TxtRuaFun.Name = "TxtRuaFun";
+            TxtRuaFun.Size = new Size(570, 27);
+            TxtRuaFun.TabIndex = 21;
+            // 
+            // TxtBairroFun
+            // 
+            TxtBairroFun.Location = new Point(33, 127);
+            TxtBairroFun.Name = "TxtBairroFun";
+            TxtBairroFun.Size = new Size(570, 27);
+            TxtBairroFun.TabIndex = 20;
+            // 
+            // MaskCepFun
+            // 
+            MaskCepFun.Location = new Point(33, 31);
+            MaskCepFun.Mask = "00000-000";
+            MaskCepFun.Name = "MaskCepFun";
+            MaskCepFun.Size = new Size(125, 27);
+            MaskCepFun.TabIndex = 19;
+            // 
+            // BtnTelaADM
+            // 
+            BtnTelaADM.BackColor = Color.Transparent;
+            BtnTelaADM.BackgroundImage = (Image)resources.GetObject("BtnTelaADM.BackgroundImage");
+            BtnTelaADM.BackgroundImageLayout = ImageLayout.Stretch;
+            BtnTelaADM.FlatAppearance.BorderSize = 0;
+            BtnTelaADM.FlatStyle = FlatStyle.Flat;
+            BtnTelaADM.ForeColor = Color.SteelBlue;
+            BtnTelaADM.ImageAlign = ContentAlignment.MiddleRight;
+            BtnTelaADM.Location = new Point(922, 31);
+            BtnTelaADM.Name = "BtnTelaADM";
+            BtnTelaADM.Size = new Size(50, 50);
+            BtnTelaADM.TabIndex = 17;
+            BtnTelaADM.UseVisualStyleBackColor = false;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(384, 15);
+            label14.Name = "label14";
+            label14.Size = new Size(66, 20);
+            label14.TabIndex = 25;
+            label14.Text = "Telefone";
+            // 
+            // MskBoxTelefoneFun
+            // 
+            MskBoxTelefoneFun.Location = new Point(384, 38);
+            MskBoxTelefoneFun.Mask = "(00) 00000-0000";
+            MskBoxTelefoneFun.Name = "MskBoxTelefoneFun";
+            MskBoxTelefoneFun.Size = new Size(125, 27);
+            MskBoxTelefoneFun.TabIndex = 24;
+            MskBoxTelefoneFun.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             // 
             // TelaCadastroFuncionarioADM
             // 
@@ -450,6 +473,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TelaCadastroFuncionarioADM";
             Text = "TelaCadastroFuncionarioADM";
+            Load += TelaCadastroFuncionarioADM_Load;
             TabCInformacoesFuncionario.ResumeLayout(false);
             TacInfoPessoal.ResumeLayout(false);
             TacInfoPessoal.PerformLayout();
@@ -466,10 +490,6 @@
         private Label label1;
         private MaskedTextBox MskBoxFuncioCPF;
         private Label TxtCpf;
-        private Label label2;
-        private TextBox TxtRGFun;
-        private Label label3;
-        private TextBox TxtDataNascimentoFun;
         private Label label4;
         private ComboBox ComBGeneroFun;
         private Label label5;
@@ -480,7 +500,6 @@
         private Button BtnCancelarCadastroFun;
         private Button BtnCadatrarFun;
         private MaskedTextBox MaskCepFun;
-        private Button BtnConsultarCepFun;
         private Button BtnTelaADM;
         private TextBox TxtCompleFun;
         private TextBox TxtCidadeFun;
@@ -496,5 +515,12 @@
         private Label label8;
         private TextBox TxtUfFun;
         private CheckBox CheKCadastroFun;
+        private Label label3;
+        private MaskedTextBox MkboxDataFun;
+        private Label label2;
+        private TextBox TxtSenhaFun;
+        private Label label13;
+        private Label label14;
+        private MaskedTextBox MskBoxTelefoneFun;
     }
 }

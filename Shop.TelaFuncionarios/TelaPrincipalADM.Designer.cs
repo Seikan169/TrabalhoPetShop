@@ -66,9 +66,8 @@
             panel1.Controls.Add(TxtNomeLogado);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(180, 421);
+            panel1.Size = new Size(206, 561);
             panel1.TabIndex = 0;
             // 
             // BtnSairADM
@@ -79,10 +78,9 @@
             BtnSairADM.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             BtnSairADM.Image = (Image)resources.GetObject("BtnSairADM.Image");
             BtnSairADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnSairADM.Location = new Point(0, 391);
-            BtnSairADM.Margin = new Padding(3, 2, 3, 2);
+            BtnSairADM.Location = new Point(0, 508);
             BtnSairADM.Name = "BtnSairADM";
-            BtnSairADM.Size = new Size(180, 30);
+            BtnSairADM.Size = new Size(206, 53);
             BtnSairADM.TabIndex = 10;
             BtnSairADM.Text = "Sair";
             BtnSairADM.UseVisualStyleBackColor = false;
@@ -96,10 +94,9 @@
             BtnRelatorioADM.FlatStyle = FlatStyle.Flat;
             BtnRelatorioADM.Image = (Image)resources.GetObject("BtnRelatorioADM.Image");
             BtnRelatorioADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnRelatorioADM.Location = new Point(0, 301);
-            BtnRelatorioADM.Margin = new Padding(3, 2, 3, 2);
+            BtnRelatorioADM.Location = new Point(0, 396);
             BtnRelatorioADM.Name = "BtnRelatorioADM";
-            BtnRelatorioADM.Size = new Size(180, 34);
+            BtnRelatorioADM.Size = new Size(206, 47);
             BtnRelatorioADM.TabIndex = 1;
             BtnRelatorioADM.Text = "Relatórios ";
             BtnRelatorioADM.UseVisualStyleBackColor = false;
@@ -112,10 +109,9 @@
             BtnPainelFinanceiroADM.FlatStyle = FlatStyle.Flat;
             BtnPainelFinanceiroADM.Image = (Image)resources.GetObject("BtnPainelFinanceiroADM.Image");
             BtnPainelFinanceiroADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnPainelFinanceiroADM.Location = new Point(0, 271);
-            BtnPainelFinanceiroADM.Margin = new Padding(3, 2, 3, 2);
+            BtnPainelFinanceiroADM.Location = new Point(0, 356);
             BtnPainelFinanceiroADM.Name = "BtnPainelFinanceiroADM";
-            BtnPainelFinanceiroADM.Size = new Size(180, 30);
+            BtnPainelFinanceiroADM.Size = new Size(206, 40);
             BtnPainelFinanceiroADM.TabIndex = 1;
             BtnPainelFinanceiroADM.Text = "Painel Financeiro";
             BtnPainelFinanceiroADM.UseVisualStyleBackColor = false;
@@ -129,10 +125,9 @@
             BtnClentesCadastradosADM.ForeColor = Color.White;
             BtnClentesCadastradosADM.Image = (Image)resources.GetObject("BtnClentesCadastradosADM.Image");
             BtnClentesCadastradosADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnClentesCadastradosADM.Location = new Point(0, 232);
-            BtnClentesCadastradosADM.Margin = new Padding(3, 2, 3, 2);
+            BtnClentesCadastradosADM.Location = new Point(0, 304);
             BtnClentesCadastradosADM.Name = "BtnClentesCadastradosADM";
-            BtnClentesCadastradosADM.Size = new Size(180, 39);
+            BtnClentesCadastradosADM.Size = new Size(206, 52);
             BtnClentesCadastradosADM.TabIndex = 6;
             BtnClentesCadastradosADM.Text = "    Clientes Cadastrados";
             BtnClentesCadastradosADM.UseVisualStyleBackColor = false;
@@ -145,10 +140,9 @@
             BtnTelaFuncionario.FlatStyle = FlatStyle.Flat;
             BtnTelaFuncionario.Image = (Image)resources.GetObject("BtnTelaFuncionario.Image");
             BtnTelaFuncionario.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnTelaFuncionario.Location = new Point(0, 198);
-            BtnTelaFuncionario.Margin = new Padding(3, 2, 3, 2);
+            BtnTelaFuncionario.Location = new Point(0, 259);
             BtnTelaFuncionario.Name = "BtnTelaFuncionario";
-            BtnTelaFuncionario.Size = new Size(180, 34);
+            BtnTelaFuncionario.Size = new Size(206, 45);
             BtnTelaFuncionario.TabIndex = 8;
             BtnTelaFuncionario.Text = "Tela Funcionário";
             BtnTelaFuncionario.UseVisualStyleBackColor = false;
@@ -161,10 +155,9 @@
             BtnAgendamentoADM.FlatStyle = FlatStyle.Flat;
             BtnAgendamentoADM.Image = (Image)resources.GetObject("BtnAgendamentoADM.Image");
             BtnAgendamentoADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnAgendamentoADM.Location = new Point(0, 164);
-            BtnAgendamentoADM.Margin = new Padding(3, 2, 3, 2);
+            BtnAgendamentoADM.Location = new Point(0, 214);
             BtnAgendamentoADM.Name = "BtnAgendamentoADM";
-            BtnAgendamentoADM.Size = new Size(180, 34);
+            BtnAgendamentoADM.Size = new Size(206, 45);
             BtnAgendamentoADM.TabIndex = 4;
             BtnAgendamentoADM.Text = "    Agendamento Clientes";
             BtnAgendamentoADM.UseVisualStyleBackColor = false;
@@ -179,10 +172,9 @@
             BtnBuscarADM.ForeColor = Color.White;
             BtnBuscarADM.Image = (Image)resources.GetObject("BtnBuscarADM.Image");
             BtnBuscarADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnBuscarADM.Location = new Point(0, 136);
-            BtnBuscarADM.Margin = new Padding(3, 2, 3, 2);
+            BtnBuscarADM.Location = new Point(0, 177);
             BtnBuscarADM.Name = "BtnBuscarADM";
-            BtnBuscarADM.Size = new Size(180, 28);
+            BtnBuscarADM.Size = new Size(206, 37);
             BtnBuscarADM.TabIndex = 7;
             BtnBuscarADM.Text = "  Buscar Funcionarios ";
             BtnBuscarADM.UseVisualStyleBackColor = false;
@@ -198,10 +190,9 @@
             BtnControleFuncionario.ForeColor = Color.White;
             BtnControleFuncionario.Image = (Image)resources.GetObject("BtnControleFuncionario.Image");
             BtnControleFuncionario.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnControleFuncionario.Location = new Point(0, 92);
-            BtnControleFuncionario.Margin = new Padding(3, 2, 3, 2);
+            BtnControleFuncionario.Location = new Point(0, 118);
             BtnControleFuncionario.Name = "BtnControleFuncionario";
-            BtnControleFuncionario.Size = new Size(180, 44);
+            BtnControleFuncionario.Size = new Size(206, 59);
             BtnControleFuncionario.TabIndex = 1;
             BtnControleFuncionario.Text = "Cadastro de Funcionário";
             BtnControleFuncionario.TextAlign = ContentAlignment.MiddleRight;
@@ -215,10 +206,9 @@
             pictureBox1.BorderStyle = BorderStyle.Fixed3D;
             pictureBox1.Dock = DockStyle.Top;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(0, 23);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(0, 27);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(180, 69);
+            pictureBox1.Size = new Size(206, 91);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
@@ -228,9 +218,8 @@
             // 
             TxtNomeLogado.Dock = DockStyle.Top;
             TxtNomeLogado.Location = new Point(0, 0);
-            TxtNomeLogado.Margin = new Padding(3, 2, 3, 2);
             TxtNomeLogado.Name = "TxtNomeLogado";
-            TxtNomeLogado.Size = new Size(180, 23);
+            TxtNomeLogado.Size = new Size(206, 27);
             TxtNomeLogado.TabIndex = 2;
             // 
             // PanelCentralADM
@@ -238,10 +227,9 @@
             PanelCentralADM.BackColor = Color.Transparent;
             PanelCentralADM.Controls.Add(DgvPricipal);
             PanelCentralADM.Dock = DockStyle.Fill;
-            PanelCentralADM.Location = new Point(180, 0);
-            PanelCentralADM.Margin = new Padding(3, 2, 3, 2);
+            PanelCentralADM.Location = new Point(206, 0);
             PanelCentralADM.Name = "PanelCentralADM";
-            PanelCentralADM.Size = new Size(792, 421);
+            PanelCentralADM.Size = new Size(905, 561);
             PanelCentralADM.TabIndex = 2;
             // 
             // DgvPricipal
@@ -264,7 +252,7 @@
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.ForeColor = Color.Transparent;
             dataGridViewCellStyle2.Padding = new Padding(0, 0, 35, 0);
             dataGridViewCellStyle2.SelectionBackColor = Color.DarkOrange;
             dataGridViewCellStyle2.SelectionForeColor = Color.RoyalBlue;
@@ -274,6 +262,7 @@
             DgvPricipal.EnableHeadersVisualStyles = false;
             DgvPricipal.GridColor = Color.Black;
             DgvPricipal.Location = new Point(0, 0);
+            DgvPricipal.Margin = new Padding(3, 4, 3, 4);
             DgvPricipal.Name = "DgvPricipal";
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
@@ -284,23 +273,23 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             DgvPricipal.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             DgvPricipal.RowHeadersVisible = false;
+            DgvPricipal.RowHeadersWidth = 51;
             DgvPricipal.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
-            DgvPricipal.Size = new Size(792, 421);
+            DgvPricipal.Size = new Size(905, 561);
             DgvPricipal.TabIndex = 1;
             // 
             // TelaPrincipalADM
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveCaption;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(972, 421);
+            ClientSize = new Size(1111, 561);
             Controls.Add(PanelCentralADM);
             Controls.Add(panel1);
             ForeColor = Color.Transparent;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 2, 3, 2);
             Name = "TelaPrincipalADM";
             Text = "TelaPrincipalADM";
             Load += TelaPrincipalADM_Load;
