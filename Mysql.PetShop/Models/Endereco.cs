@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mysql.PetShop.Models
 {
-    [Table("tb_enderecos")]
+    [Table("enderecos")]
     public class Endereco
     {
         [Key]

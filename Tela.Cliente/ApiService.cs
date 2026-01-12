@@ -85,26 +85,25 @@ namespace Shop.TelaFuncionarios
             }
 
         }
-        public async Task<bool> EnviarPedido(int clienteId, DateTime dataAgendamento, List<int> idsServicos, decimal total, string observacoes)
+        // No arquivo ApiService.cs
+
+        public async Task<bool> SalvarPedido(object pedidoCompleto)
         {
-            using (var client = new HttpClient())
+            // Ignora SSL (para testes locais)
+            var handler = new HttpClientHandler();
+            handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
+
+            using (var client = new HttpClient(handler))
             {
-                var pacote = new
-                {
-                    ClienteId = clienteId,
-                    DataAgendamento = dataAgendamento,
-                    ValorTotal = total,
-                    ServicosIds = idsServicos,
-                    Observacoes = observacoes
-
-                };
-
-                var json = JsonConvert.SerializeObject(pacote);
+                // Transforma o objeto (com PetId, Itens, etc) em JSON
+                var json = JsonConvert.SerializeObject(pedidoCompleto);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                 try
                 {
+                    // Envia para a API (ajuste a porta se necessário)
                     var response = await client.PostAsync($"{_baseUrl}/api/pedidos", content);
+
                     return response.IsSuccessStatusCode;
                 }
                 catch
@@ -174,7 +173,7 @@ namespace Shop.TelaFuncionarios
         }
         public async Task<bool> CadastrarUsuario(
                  string nome, string email, string senha, string telefone,
-                 string cep, string rua, string numero, string bairro, string cidade, string uf, string complemento)
+                 string cep, string rua, string numero, string bairro, string cidade, string uf, string complemento,string cpf, DateTime datanascimento)
         {
             using (var client = new HttpClient())
             {
@@ -192,7 +191,9 @@ namespace Shop.TelaFuncionarios
                     Bairro = bairro,
                     Cidade = cidade,
                     Uf = uf,
-                    Complemento = complemento
+                    Complemento = complemento,
+                    Cpf = cpf,
+                    Data = datanascimento.ToString("yyyy-MM-dd")
                 };
 
                 var json = JsonConvert.SerializeObject(dados);

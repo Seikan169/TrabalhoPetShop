@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaFuncionariocs));
             PnlTelaFuncionario = new Panel();
             BtnConcluidos = new Button();
@@ -35,13 +38,25 @@
             BtnProximosAtendimentos = new Button();
             pictureBox1 = new PictureBox();
             BtnSairFuncionario = new Button();
+            DgvServicos = new DataGridView();
+            PnlCabeca = new Panel();
+            LblTitulo = new Label();
+            PnlBuscarNome = new Panel();
+            TxtBuscarPorNome = new TextBox();
+            BtnBuscar = new Button();
+            BtnCancelados = new Button();
             PnlTelaFuncionario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DgvServicos).BeginInit();
+            PnlCabeca.SuspendLayout();
+            PnlBuscarNome.SuspendLayout();
             SuspendLayout();
             // 
             // PnlTelaFuncionario
             // 
             PnlTelaFuncionario.BackColor = SystemColors.HotTrack;
+            PnlTelaFuncionario.BorderStyle = BorderStyle.FixedSingle;
+            PnlTelaFuncionario.Controls.Add(BtnCancelados);
             PnlTelaFuncionario.Controls.Add(BtnConcluidos);
             PnlTelaFuncionario.Controls.Add(BtnIniciados);
             PnlTelaFuncionario.Controls.Add(BtnProximosAtendimentos);
@@ -51,7 +66,7 @@
             PnlTelaFuncionario.Location = new Point(0, 0);
             PnlTelaFuncionario.Margin = new Padding(3, 2, 3, 2);
             PnlTelaFuncionario.Name = "PnlTelaFuncionario";
-            PnlTelaFuncionario.Size = new Size(183, 507);
+            PnlTelaFuncionario.Size = new Size(201, 507);
             PnlTelaFuncionario.TabIndex = 0;
             // 
             // BtnConcluidos
@@ -67,7 +82,7 @@
             BtnConcluidos.Location = new Point(0, 246);
             BtnConcluidos.Margin = new Padding(3, 2, 3, 2);
             BtnConcluidos.Name = "BtnConcluidos";
-            BtnConcluidos.Size = new Size(183, 37);
+            BtnConcluidos.Size = new Size(199, 37);
             BtnConcluidos.TabIndex = 5;
             BtnConcluidos.Text = "     Concluídos";
             BtnConcluidos.TextAlign = ContentAlignment.MiddleLeft;
@@ -86,7 +101,7 @@
             BtnIniciados.Location = new Point(0, 202);
             BtnIniciados.Margin = new Padding(3, 2, 3, 2);
             BtnIniciados.Name = "BtnIniciados";
-            BtnIniciados.Size = new Size(183, 44);
+            BtnIniciados.Size = new Size(199, 44);
             BtnIniciados.TabIndex = 4;
             BtnIniciados.Text = "    Atendimento Iniciado";
             BtnIniciados.TextAlign = ContentAlignment.MiddleRight;
@@ -106,7 +121,7 @@
             BtnProximosAtendimentos.Margin = new Padding(3, 2, 3, 2);
             BtnProximosAtendimentos.Name = "BtnProximosAtendimentos";
             BtnProximosAtendimentos.RightToLeft = RightToLeft.No;
-            BtnProximosAtendimentos.Size = new Size(183, 44);
+            BtnProximosAtendimentos.Size = new Size(199, 44);
             BtnProximosAtendimentos.TabIndex = 1;
             BtnProximosAtendimentos.Text = "    Fila de Atendimentos";
             BtnProximosAtendimentos.UseVisualStyleBackColor = false;
@@ -122,7 +137,7 @@
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(183, 158);
+            pictureBox1.Size = new Size(199, 158);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
@@ -138,13 +153,127 @@
             BtnSairFuncionario.ForeColor = Color.White;
             BtnSairFuncionario.Image = (Image)resources.GetObject("BtnSairFuncionario.Image");
             BtnSairFuncionario.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnSairFuncionario.Location = new Point(0, 470);
+            BtnSairFuncionario.Location = new Point(0, 468);
             BtnSairFuncionario.Margin = new Padding(3, 2, 3, 2);
             BtnSairFuncionario.Name = "BtnSairFuncionario";
-            BtnSairFuncionario.Size = new Size(183, 37);
+            BtnSairFuncionario.Size = new Size(199, 37);
             BtnSairFuncionario.TabIndex = 1;
             BtnSairFuncionario.Text = "Sair";
             BtnSairFuncionario.UseVisualStyleBackColor = false;
+            // 
+            // DgvServicos
+            // 
+            DgvServicos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DgvServicos.BackgroundColor = Color.Silver;
+            DgvServicos.BorderStyle = BorderStyle.Fixed3D;
+            DgvServicos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            DgvServicos.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.Lime;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.Padding = new Padding(0, 0, 40, 0);
+            dataGridViewCellStyle1.SelectionBackColor = Color.RoyalBlue;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            DgvServicos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            DgvServicos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.Padding = new Padding(0, 0, 35, 0);
+            dataGridViewCellStyle2.SelectionBackColor = Color.DarkOrange;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            DgvServicos.DefaultCellStyle = dataGridViewCellStyle2;
+            DgvServicos.Dock = DockStyle.Fill;
+            DgvServicos.EnableHeadersVisualStyles = false;
+            DgvServicos.Location = new Point(201, 59);
+            DgvServicos.Name = "DgvServicos";
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.Salmon;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            DgvServicos.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            DgvServicos.RowHeadersVisible = false;
+            DgvServicos.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
+            DgvServicos.Size = new Size(711, 448);
+            DgvServicos.TabIndex = 1;
+            // 
+            // PnlCabeca
+            // 
+            PnlCabeca.BackColor = SystemColors.HotTrack;
+            PnlCabeca.BorderStyle = BorderStyle.Fixed3D;
+            PnlCabeca.Controls.Add(LblTitulo);
+            PnlCabeca.Controls.Add(PnlBuscarNome);
+            PnlCabeca.Dock = DockStyle.Top;
+            PnlCabeca.Location = new Point(201, 0);
+            PnlCabeca.Name = "PnlCabeca";
+            PnlCabeca.Size = new Size(711, 59);
+            PnlCabeca.TabIndex = 2;
+            // 
+            // LblTitulo
+            // 
+            LblTitulo.Dock = DockStyle.Fill;
+            LblTitulo.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblTitulo.Location = new Point(168, 0);
+            LblTitulo.Name = "LblTitulo";
+            LblTitulo.Size = new Size(539, 55);
+            LblTitulo.TabIndex = 0;
+            LblTitulo.Text = "label1";
+            LblTitulo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // PnlBuscarNome
+            // 
+            PnlBuscarNome.BackColor = SystemColors.HotTrack;
+            PnlBuscarNome.Controls.Add(TxtBuscarPorNome);
+            PnlBuscarNome.Controls.Add(BtnBuscar);
+            PnlBuscarNome.Dock = DockStyle.Left;
+            PnlBuscarNome.Location = new Point(0, 0);
+            PnlBuscarNome.Name = "PnlBuscarNome";
+            PnlBuscarNome.Size = new Size(168, 55);
+            PnlBuscarNome.TabIndex = 5;
+            // 
+            // TxtBuscarPorNome
+            // 
+            TxtBuscarPorNome.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            TxtBuscarPorNome.Location = new Point(4, 22);
+            TxtBuscarPorNome.Name = "TxtBuscarPorNome";
+            TxtBuscarPorNome.Size = new Size(103, 27);
+            TxtBuscarPorNome.TabIndex = 3;
+            // 
+            // BtnBuscar
+            // 
+            BtnBuscar.BackgroundImage = (Image)resources.GetObject("BtnBuscar.BackgroundImage");
+            BtnBuscar.BackgroundImageLayout = ImageLayout.Stretch;
+            BtnBuscar.Location = new Point(109, 22);
+            BtnBuscar.Name = "BtnBuscar";
+            BtnBuscar.Size = new Size(24, 27);
+            BtnBuscar.TabIndex = 4;
+            BtnBuscar.UseVisualStyleBackColor = true;
+            // 
+            // BtnCancelados
+            // 
+            BtnCancelados.BackColor = SystemColors.ControlDarkDark;
+            BtnCancelados.Cursor = Cursors.Hand;
+            BtnCancelados.Dock = DockStyle.Top;
+            BtnCancelados.FlatStyle = FlatStyle.Flat;
+            BtnCancelados.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BtnCancelados.ForeColor = Color.White;
+            BtnCancelados.Image = (Image)resources.GetObject("BtnCancelados.Image");
+            BtnCancelados.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnCancelados.Location = new Point(0, 283);
+            BtnCancelados.Margin = new Padding(3, 2, 3, 2);
+            BtnCancelados.Name = "BtnCancelados";
+            BtnCancelados.Size = new Size(199, 37);
+            BtnCancelados.TabIndex = 6;
+            BtnCancelados.Text = "     Concluídos";
+            BtnCancelados.TextAlign = ContentAlignment.MiddleLeft;
+            BtnCancelados.UseVisualStyleBackColor = false;
             // 
             // TelaFuncionariocs
             // 
@@ -153,12 +282,18 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(912, 507);
+            Controls.Add(DgvServicos);
+            Controls.Add(PnlCabeca);
             Controls.Add(PnlTelaFuncionario);
             Margin = new Padding(3, 2, 3, 2);
             Name = "TelaFuncionariocs";
             Text = "TelaFuncionariocs";
             PnlTelaFuncionario.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DgvServicos).EndInit();
+            PnlCabeca.ResumeLayout(false);
+            PnlBuscarNome.ResumeLayout(false);
+            PnlBuscarNome.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -170,5 +305,12 @@
         private PictureBox pictureBox1;
         private Button BtnIniciados;
         private Button BtnConcluidos;
+        private DataGridView DgvServicos;
+        private Panel PnlCabeca;
+        private Label LblTitulo;
+        private TextBox TxtBuscarPorNome;
+        private Button BtnBuscar;
+        private Panel PnlBuscarNome;
+        private Button BtnCancelados;
     }
 }

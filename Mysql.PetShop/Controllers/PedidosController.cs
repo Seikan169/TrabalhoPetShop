@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Mysql.PetShop.Data;
 using Mysql.PetShop.Models;
 
@@ -17,12 +18,13 @@ namespace Mysql.PetShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult CriarPedido([FromBody] PedidoRequest dados)
+        public async Task<IActionResult> CriarPedido([FromBody] Pedido dados)
         {
-            // 1. Cria o Cabeçalho do Pedido
+            // 1. Cria o Cabeçalho do Pedido (TbPedido)
             var novoPedido = new Pedido
             {
                 ClienteId = dados.ClienteId,
+                PetId = dados.PetId,            // <--- O CAMPO NOVO IMPORTANTE
                 DataPedido = DateTime.Now,
                 DataAgendamento = dados.DataAgendamento,
                 ValorTotal = dados.ValorTotal,
@@ -31,33 +33,30 @@ namespace Mysql.PetShop.Controllers
             };
 
             _context.TbPedidos.Add(novoPedido);
-            _context.SaveChanges(); // Salva para gerar o ID do pedido (ex: Pedido #55)
 
-            // 2. Cria os Itens (loop nos serviços)
-            // Primeiro, buscamos os preços atuais no banco para garantir segurança
-            var servicosDoBanco = _context.TbServicos
-                                    .Where(s => dados.ServicosIds.Contains(s.Id))
-                                    .ToList();
+            // Salva assincronamente para gerar o ID
+            await _context.SaveChangesAsync();
 
-            foreach (var servicoId in dados.ServicosIds)
+            // 2. Cria os Itens do Pedido
+            // O Front-end já mandou a lista com IDs e Preços (dados.Itens)
+            foreach (var item in dados.Itens)
             {
-                var infoServico = servicosDoBanco.FirstOrDefault(s => s.Id == servicoId);
-
-                if (infoServico != null)
+                var novoItem = new ItemPedido
                 {
-                    var novoItem = new ItemPedido
-                    {
-                        PedidoId = novoPedido.Id, // Usa o ID gerado acima
-                        ServicoId = servicoId,
-                        PrecoUnitario = infoServico.Preco
-                    };
-                    _context.TbItensPedido.Add(novoItem);
-                }
+                    PedidoId = novoPedido.Id,      // ID gerado acima
+                    ServicoId = item.ServicoId,    // ID que veio do Front
+                    PrecoUnitario = item.PrecoUnitario // Preço que veio do Front (Snapshot)
+                };
+
+                _context.TbItensPedido.Add(novoItem);
             }
 
-            _context.SaveChanges(); // Salva todos os itens
+            await _context.SaveChangesAsync(); // Salva os itens
 
-            return Ok(new { mensagem = $"Pedido #{novoPedido.Id} realizado com sucesso!" });
+            return Ok(new { mensagem = $"Pedido #{novoPedido.Id} realizado com sucesso!", id = novoPedido.Id });
         }
+
+
+
     }
 }

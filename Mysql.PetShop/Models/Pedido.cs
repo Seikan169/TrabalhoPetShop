@@ -3,12 +3,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mysql.PetShop.Models
 {
-    [Table("tb_pedidos")]
+    [Table("pedidos")]
     public class Pedido
     {
         [Key]
         [Column("id")]
         public int Id { get; set; }
+        [Column("pet_id")]
+        public int PetId { get; set; } // A coluna nova
 
         [Column("cliente_id")]
         public int ClienteId { get; set; }
@@ -28,5 +30,8 @@ namespace Mysql.PetShop.Models
         // Lista de itens dentro desse pedido
         public List<ItemPedido> Itens { get; set; }
         public string Observacoes { get;  set; }
+
+        [ForeignKey("PetId")]
+        public virtual Pet Pet { get; set; }
     }
 }

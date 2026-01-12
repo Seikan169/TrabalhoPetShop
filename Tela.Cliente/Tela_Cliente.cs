@@ -335,6 +335,7 @@ namespace Tela.Cliente
                 MessageBox.Show("Por favor, selecione qual Pet receberá o cuidado.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            int idPetSelecionado = Convert.ToInt32(CmbPetAgendar.SelectedValue);
 
             BtnFinalizar.Enabled = false; // Evita cliques múltiplos
             BtnFinalizar.Text = "Processando...";
@@ -342,7 +343,21 @@ namespace Tela.Cliente
             try
             {
                 decimal valortotal = carrinho.Sum(x => x.Preco);
-                List<int> servicosIds = carrinho.Select(x => x.Id).ToList();
+                var listaItens = carrinho.Select(item => new
+                {
+                    ServicoId = item.Id,
+                    PrecoUnitario = item.Preco
+                }).ToList();
+
+                var pedidoDto = new
+                {
+                    ClienteId = _usuarioIdLogado,
+                    PetId = idPetSelecionado, // <--- O NOVO CAMPO OBRIGATÓRIO
+                    DataAgendamento = DtpData.Value,
+                    ValorTotal = valortotal,
+                    Observacoes = TxtObservacoes.Text,
+                    Itens = listaItens
+                };
 
                 DateTime dataEscolhida = DtpData.Value;
 
@@ -352,21 +367,24 @@ namespace Tela.Cliente
 
                 ApiService api = new ApiService();
 
-                bool sucesso = await api.EnviarPedido(_usuarioIdLogado, dataEscolhida, servicosIds, valortotal, Obs);
+                bool sucesso = await api.SalvarPedido(pedidoDto);
 
                 if (sucesso)
                 {
                     MessageBox.Show("Agendamento realizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     carrinho.Clear();
-                    TxtObservacoes.Text = "";
+                    TxtObservacoes.Clear();
                     DgvCarrinho.Rows.Clear();
-                    AtualizarTotal();
+                    AtualizarTotal(); // Zera o label de total
+                    CmbPetAgendar.SelectedIndex = -1; // Reseta o combo
                 }
                 else
-                {
+                { 
+
                     MessageBox.Show("Falha ao realizar o agendamento. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
+                
             }
             catch (Exception ex)
             {

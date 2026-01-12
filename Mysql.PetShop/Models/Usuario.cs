@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mysql.PetShop.Models
 {
-    [Table("tb_usuarios")] // Diz pro C# que essa classe é a tabela tb_usuarios
+    [Table("usuarios")] // Diz pro C# que essa classe é a tabela tb_usuarios
     public class Usuario
     {
         [Key] // Diz que é a Chave Primária

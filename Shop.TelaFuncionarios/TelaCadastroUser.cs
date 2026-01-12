@@ -42,6 +42,11 @@ namespace Shop.TelaFuncionarios
             BtnSalvarCadastroCliente.Text = "Salvando...";
             Cursor = Cursors.WaitCursor;
 
+            
+
+            string cpf = MkBoxCpf.Text.Replace(".", "").Replace("-", "").Trim();
+            DateTime data;
+
             try
             {
                 ApiService api = new ApiService();
@@ -57,7 +62,10 @@ namespace Shop.TelaFuncionarios
                     TxtComplementoCliente.Text,
                     TxtBairroCliente.Text,
                     TxtCidadeCliente.Text,
-                    TxtUfCliente.Text
+                    TxtUfCliente.Text,
+                    cpf,
+                    data = Convert.ToDateTime(DtpickNascimento.Text)
+                    
                 );
 
 
