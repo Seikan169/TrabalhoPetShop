@@ -482,7 +482,7 @@ namespace Tela.Cliente
                 CbmEspecie.Text = petSelecionado.Especie;
                 TxtBoxRaca.Text = petSelecionado.Raca;
                 TxtBoxCor.Text = petSelecionado.Cor;
-                DtpNascimentoPet.Value = petSelecionado.DataNascimento;
+                DtpNascimentoPet.Value = petSelecionado.dataNascimento;
                 // txtPeso.Text = petSelecionado.Peso.ToString(); // Se for TextBox
                 NumericUpPESO.Value = petSelecionado.Peso;           // Se for NumericUpDown
 
@@ -556,7 +556,7 @@ namespace Tela.Cliente
                 Especie = CbmEspecie.SelectedItem.ToString(),
                 Raca = TxtBoxRaca.Text,
                 Cor = TxtBoxCor.Text,
-                DataNascimento = DtpNascimentoPet.Value,
+                dataNascimento = DtpNascimentoPet.Value,
                 Peso = NumericUpPESO.Value
             };
 
