@@ -16,6 +16,15 @@ namespace Mysql.PetShop.Models
         [Column("email")]
         public string Email { get; set; }
 
+        [Column("cpf")]
+        public string Cpf { get; set; }
+
+        [Column("dataNascimento")]
+        public DateTime dataNascimento { get; set; }
+
+        [Column("observacao")]
+        public string Observacao { get; set; }
+
         [Column("senha")]
         public string Senha { get; set; }
 

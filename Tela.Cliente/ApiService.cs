@@ -10,6 +10,10 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Mysql.PetShop.Models;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Text;
+using System.Drawing;
 
 namespace Shop.TelaFuncionarios
 {
@@ -205,6 +209,10 @@ namespace Shop.TelaFuncionarios
                 }
             }
         }
+
+
+        
+
         public async Task<List<PetDTO>> GetMeusPets(int clienteId)
         {
             using (var client = new HttpClient())
@@ -222,6 +230,8 @@ namespace Shop.TelaFuncionarios
                 return new List<PetDTO>();
             }
         }
+
+
         public async Task<bool> CadastrarPet(PetDTO pet)
         {
             using (var client = new HttpClient())
@@ -277,7 +287,7 @@ namespace Shop.TelaFuncionarios
         public string Especie { get; set; }
         public string Raca { get; set; }
         public string Cor { get; set; }
-        public DateTime DataNascimento { get; set; }
+        public DateTime dataNascimento { get; set; }
         public decimal Peso { get; set; }
     }
 
@@ -294,6 +304,13 @@ namespace Shop.TelaFuncionarios
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }
+
+        public string CPF { get; set; }
+
+        public string dataNascimento { get; set; }
+
+        public string Observacao { get; set; }
+
         // A senha geralmente NÃO deve ser retornada para o DataGrid por segurança
         public string Telefone { get; set; }
 
@@ -323,6 +340,8 @@ namespace Shop.TelaFuncionarios
         public bool Erro { get; set; } // O ViaCEP devolve isso se não achar
     }
 }
+
+
 
 
 
