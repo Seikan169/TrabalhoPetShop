@@ -1,19 +1,20 @@
 ﻿using Mysql.PetShop.Models;
+using Mysql.PetShop.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json;
 using Shop.TelaFuncionarios;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Policy;
+using System.Text;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Mysql.PetShop.Models;
-using System.Net.Http;
-using Newtonsoft.Json;
-using System.Text;
-using System.Drawing;
 
 namespace Shop.TelaFuncionarios
 {
@@ -293,6 +294,24 @@ namespace Shop.TelaFuncionarios
                 {
                     return false;
                 }
+            }
+        }
+        public async Task<DataTable> GetPedidosPendentes()
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var response = await client.GetAsync($"{_baseUrl}/api/pedidos/pendentes");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        // Dica: Usamos DataTable para o Grid aceitar qualquer coluna que vier da API
+                        return JsonConvert.DeserializeObject<DataTable>(json);
+                    }
+                }
+                catch { }
+                return null;
             }
         }
         public async Task<bool> EditarPet(PetDTO pet)

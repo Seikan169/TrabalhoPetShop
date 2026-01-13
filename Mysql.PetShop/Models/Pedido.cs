@@ -33,5 +33,7 @@ namespace Mysql.PetShop.Models
 
         [ForeignKey("PetId")]
         public virtual Pet Pet { get; set; }
+        [ForeignKey("ClienteId")]
+        public virtual Usuario Cliente { get; set; }
     }
 }
