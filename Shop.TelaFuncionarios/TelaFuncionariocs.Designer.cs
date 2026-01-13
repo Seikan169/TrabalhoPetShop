@@ -233,6 +233,7 @@
             DgvPedidos.Size = new Size(763, 416);
             DgvPedidos.TabIndex = 1;
             DgvPedidos.CellContentClick += DgvPedidos_CellContentClick;
+            DgvPedidos.CellFormatting += DgvPedidos_CellFormatting;
             DgvPedidos.SelectionChanged += DgvPedidos_SelectionChanged;
             // 
             // PnlCabeca

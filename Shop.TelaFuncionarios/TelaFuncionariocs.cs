@@ -85,6 +85,11 @@ namespace Shop.TelaFuncionarios
             DgvPedidos.DefaultCellStyle.SelectionForeColor = Color.White;
             DgvPedidos.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
             DgvPedidos.RowsDefaultCellStyle.BackColor = Color.White;
+            // Permite que o texto quebre para a linha de baixo
+            DgvPedidos.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Ajusta a altura da linha automaticamente conforme o conteúdo
+            DgvPedidos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
         private void FormatarColunasDados()
         {
@@ -292,6 +297,35 @@ namespace Shop.TelaFuncionarios
             catch (Exception ex)
             {
                 // Só para garantir que não feche o app se digitar algo estranho
+            }
+        }
+
+        private void DgvPedidos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Verifica se é a coluna de Status
+            if (DgvPedidos.Columns[e.ColumnIndex].Name == "status" && e.Value != null)
+            {
+                // Capitaliza a primeira letra (ex: pendente -> Pendente)
+                string texto = e.Value.ToString();
+                e.Value = char.ToUpper(texto[0]) + texto.Substring(1);
+            }
+            if (DgvPedidos.Columns[e.ColumnIndex].Name == "status" && e.Value != null)
+            {
+                string status = e.Value.ToString().ToLower();
+
+                if (status == "pendente")
+                {
+                    e.CellStyle.ForeColor = Color.OrangeRed; // Laranja forte
+                    e.CellStyle.SelectionForeColor = Color.Yellow; // Amarelo quando selecionado
+                }
+                else if (status == "em_andamento")
+                {
+                    e.CellStyle.ForeColor = Color.Blue;
+                }
+                else if (status == "concluido")
+                {
+                    e.CellStyle.ForeColor = Color.Green;
+                }
             }
         }
     }
