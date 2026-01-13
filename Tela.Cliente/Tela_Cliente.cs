@@ -11,13 +11,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using Mysql.PetShop.Models;
-
-
-
-
-
-
-
 namespace Tela.Cliente
 {
     public partial class Tela_Cliente : Form
@@ -349,6 +342,7 @@ namespace Tela.Cliente
                     PrecoUnitario = item.Preco
                 }).ToList();
 
+                string dataselec = DtpData.Value.ToString("yyyy-MM-dd");
                 var pedidoDto = new
                 {
                     ClienteId = _usuarioIdLogado,
@@ -356,10 +350,11 @@ namespace Tela.Cliente
                     DataAgendamento = DtpData.Value,
                     ValorTotal = valortotal,
                     Observacoes = TxtObservacoes.Text,
-                    Itens = listaItens
+                    Itens = listaItens,
+                    Data_Escolhida = dataselec 
                 };
 
-                DateTime dataEscolhida = DtpData.Value;
+               
 
                 string Obs = TxtObservacoes.Text;
 

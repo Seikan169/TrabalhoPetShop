@@ -18,42 +18,55 @@ namespace Mysql.PetShop.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CriarPedido([FromBody] Pedido dados)
+        public async Task<IActionResult> CriarPedido([FromBody] PedidoRequestDto dados) // <--- MUDOU AQUI
         {
             // 1. Cria o Cabeçalho do Pedido (TbPedido)
             var novoPedido = new Pedido
             {
                 ClienteId = dados.ClienteId,
-                PetId = dados.PetId,            // <--- O CAMPO NOVO IMPORTANTE
+                PetId = dados.PetId,
                 DataPedido = DateTime.Now,
                 DataAgendamento = dados.DataAgendamento,
                 ValorTotal = dados.ValorTotal,
-                Status = "pendente",
+                Status = "pendente", // Como definimos aqui, a API parará de exigir que venha do front
                 Observacoes = dados.Observacoes
             };
 
             _context.TbPedidos.Add(novoPedido);
-
-            // Salva assincronamente para gerar o ID
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(); // Gera o ID do Pedido
 
             // 2. Cria os Itens do Pedido
-            // O Front-end já mandou a lista com IDs e Preços (dados.Itens)
             foreach (var item in dados.Itens)
             {
                 var novoItem = new ItemPedido
                 {
-                    PedidoId = novoPedido.Id,      // ID gerado acima
-                    ServicoId = item.ServicoId,    // ID que veio do Front
-                    PrecoUnitario = item.PrecoUnitario // Preço que veio do Front (Snapshot)
+                    PedidoId = novoPedido.Id,
+                    ServicoId = item.ServicoId,
+                    PrecoUnitario = item.PrecoUnitario
                 };
 
                 _context.TbItensPedido.Add(novoItem);
             }
 
-            await _context.SaveChangesAsync(); // Salva os itens
+            await _context.SaveChangesAsync();
 
             return Ok(new { mensagem = $"Pedido #{novoPedido.Id} realizado com sucesso!", id = novoPedido.Id });
+        }
+
+        public class PedidoRequestDto
+        {
+            public int ClienteId { get; set; }
+            public int PetId { get; set; }
+            public DateTime DataAgendamento { get; set; }
+            public decimal ValorTotal { get; set; }
+            public string Observacoes { get; set; }
+            public List<ItemPedidoRequestDto> Itens { get; set; }
+        }
+
+        public class ItemPedidoRequestDto
+        {
+            public int ServicoId { get; set; }
+            public decimal PrecoUnitario { get; set; }
         }
 
 

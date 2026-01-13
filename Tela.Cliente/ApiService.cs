@@ -89,25 +89,33 @@ namespace Shop.TelaFuncionarios
 
         public async Task<bool> SalvarPedido(object pedidoCompleto)
         {
-            // Ignora SSL (para testes locais)
             var handler = new HttpClientHandler();
             handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
 
             using (var client = new HttpClient(handler))
             {
-                // Transforma o objeto (com PetId, Itens, etc) em JSON
                 var json = JsonConvert.SerializeObject(pedidoCompleto);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                 try
                 {
-                    // Envia para a API (ajuste a porta se necessário)
                     var response = await client.PostAsync($"{_baseUrl}/api/pedidos", content);
 
-                    return response.IsSuccessStatusCode;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        // AQUI ESTÁ A MÁGICA: Lê o erro que a API devolveu
+                        string erroDetalhado = await response.Content.ReadAsStringAsync();
+                        MessageBox.Show($"Erro da API: {erroDetalhado}", "Detalhe do Erro");
+                        return false;
+                    }
                 }
-                catch
+                catch (Exception ex)
                 {
+                    MessageBox.Show($"Erro de Conexão: {ex.Message}");
                     return false;
                 }
             }
