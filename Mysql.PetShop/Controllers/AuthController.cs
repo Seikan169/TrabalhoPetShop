@@ -36,6 +36,11 @@ namespace PetShop.API.Controllers
                 Senha = BCrypt.Net.BCrypt.HashPassword(dados.Senha), // Criptografa
                 Telefone = dados.Telefone,
                 TipoUsuario = dados.TipoUsuario,
+                Cpf = dados.Cpf,
+                dataNascimento = dados.DataNascimento,
+                DataCadastro = DateTime.UtcNow,
+                Observacao = dados.Observacao
+
             };
 
             _context.TbUsuarios.Add(novoUsuario);
@@ -130,6 +135,10 @@ namespace PetShop.API.Controllers
         public string Senha { get; set; }
         public string Telefone { get; set; }
         public string TipoUsuario { get; set; }
+        public string Cpf { get; set; } 
+        public DateTime DataNascimento { get; set; }
+
+        public string Observacao { get; set; }
 
         // Dados do Endereço
         public string Cep { get; set; }

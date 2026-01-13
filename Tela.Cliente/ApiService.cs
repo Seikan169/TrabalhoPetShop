@@ -172,18 +172,31 @@ namespace Shop.TelaFuncionarios
             return null;
         }
         public async Task<bool> CadastrarUsuario(
-                 string nome, string email, string senha, string telefone,
-                 string cep, string rua, string numero, string bairro, string cidade, string uf, string complemento,string cpf, DateTime datanascimento)
+            string nome, string email, string senha, string telefone,
+            string cep, string rua, string numero, string bairro, string cidade, string uf, string complemento, string cpf, DateTime datanascimento, string tipouser)
         {
             using (var client = new HttpClient())
             {
-                // Monta o pacote igualzinho ao DTO da API
+                // Limpa o CPF antes de enviar
+                string cpfLimpo = cpf.Replace(".", "").Replace("-", "").Replace(",", "").Trim();
+                string tipoUsuarioAjustado = "Cliente";
+
                 var dados = new
                 {
                     Nome = nome,
                     Email = email,
                     Senha = senha,
                     Telefone = telefone,
+                    Cpf = cpfLimpo,
+
+                    // CORREÇÃO CRÍTICA:
+                    // 1. O nome DEVE ser DataNascimento (igual ao erro da API)
+                    // 2. Formatamos para o padrão universal "ano-mês-dia" para evitar erro
+                    DataNascimento = datanascimento.ToString("yyyy-MM-dd"),
+
+                    TipoUsuario = tipoUsuarioAjustado,
+                    Observacao = "", // Campo vazio para não quebrar
+
                     // Endereço
                     Cep = cep,
                     Logradouro = rua,
@@ -191,9 +204,7 @@ namespace Shop.TelaFuncionarios
                     Bairro = bairro,
                     Cidade = cidade,
                     Uf = uf,
-                    Complemento = complemento,
-                    Cpf = cpf,
-                    Data = datanascimento.ToString("yyyy-MM-dd")
+                    Complemento = complemento
                 };
 
                 var json = JsonConvert.SerializeObject(dados);
@@ -202,9 +213,18 @@ namespace Shop.TelaFuncionarios
                 try
                 {
                     var response = await client.PostAsync($"{_baseUrl}/api/auth/cadastro", content);
+
+                    // SE DER ERRO, VAMOS LER O MOTIVO REAL:
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        string erroRetorno = await response.Content.ReadAsStringAsync();
+                       
+                        // (Isso ajuda a ver se é 'Email duplicado' ou 'Data inválida')
+                    }
+
                     return response.IsSuccessStatusCode;
                 }
-                catch
+                catch (Exception ex)
                 {
                     return false;
                 }

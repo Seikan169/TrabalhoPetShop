@@ -57,7 +57,7 @@
             MkBoxTeleCLiente = new MaskedTextBox();
             MkBoxCpf = new MaskedTextBox();
             label4 = new Label();
-            DtpickNascimento = new DateTimePicker();
+            DatapickNascimento = new DateTimePicker();
             label14 = new Label();
             PnlCadastroUser = new Panel();
             PnlCadastroUser.SuspendLayout();
@@ -66,25 +66,28 @@
             // TxtNomeCliente
             // 
             TxtNomeCliente.Cursor = Cursors.IBeam;
-            TxtNomeCliente.Location = new Point(3, 28);
+            TxtNomeCliente.Location = new Point(3, 21);
+            TxtNomeCliente.Margin = new Padding(3, 2, 3, 2);
             TxtNomeCliente.Name = "TxtNomeCliente";
-            TxtNomeCliente.Size = new Size(182, 27);
+            TxtNomeCliente.Size = new Size(160, 23);
             TxtNomeCliente.TabIndex = 0;
             // 
             // TxtEmailCliente
             // 
             TxtEmailCliente.Cursor = Cursors.IBeam;
-            TxtEmailCliente.Location = new Point(3, 210);
+            TxtEmailCliente.Location = new Point(3, 158);
+            TxtEmailCliente.Margin = new Padding(3, 2, 3, 2);
             TxtEmailCliente.Name = "TxtEmailCliente";
-            TxtEmailCliente.Size = new Size(396, 27);
-            TxtEmailCliente.TabIndex = 1;
+            TxtEmailCliente.Size = new Size(347, 23);
+            TxtEmailCliente.TabIndex = 3;
             // 
             // TxtSenhaCliente
             // 
             TxtSenhaCliente.Cursor = Cursors.IBeam;
-            TxtSenhaCliente.Location = new Point(252, 28);
+            TxtSenhaCliente.Location = new Point(220, 21);
+            TxtSenhaCliente.Margin = new Padding(3, 2, 3, 2);
             TxtSenhaCliente.Name = "TxtSenhaCliente";
-            TxtSenhaCliente.Size = new Size(153, 27);
+            TxtSenhaCliente.Size = new Size(134, 23);
             TxtSenhaCliente.TabIndex = 4;
             TxtSenhaCliente.UseSystemPasswordChar = true;
             // 
@@ -92,9 +95,9 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Location = new Point(3, 4);
+            label1.Location = new Point(3, 3);
             label1.Name = "label1";
-            label1.Size = new Size(50, 20);
+            label1.Size = new Size(40, 15);
             label1.TabIndex = 5;
             label1.Text = "Nome";
             // 
@@ -102,9 +105,9 @@
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
-            label2.Location = new Point(3, 188);
+            label2.Location = new Point(3, 141);
             label2.Name = "label2";
-            label2.Size = new Size(52, 20);
+            label2.Size = new Size(41, 15);
             label2.TabIndex = 6;
             label2.Text = "E-mail";
             // 
@@ -112,19 +115,20 @@
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
-            label3.Location = new Point(3, 60);
+            label3.Location = new Point(3, 45);
             label3.Name = "label3";
-            label3.Size = new Size(66, 20);
+            label3.Size = new Size(52, 15);
             label3.TabIndex = 7;
             label3.Text = "Telefone";
             // 
             // TxtConfirSenhaCliente
             // 
             TxtConfirSenhaCliente.Cursor = Cursors.IBeam;
-            TxtConfirSenhaCliente.Location = new Point(252, 84);
+            TxtConfirSenhaCliente.Location = new Point(220, 63);
+            TxtConfirSenhaCliente.Margin = new Padding(3, 2, 3, 2);
             TxtConfirSenhaCliente.Name = "TxtConfirSenhaCliente";
-            TxtConfirSenhaCliente.Size = new Size(153, 27);
-            TxtConfirSenhaCliente.TabIndex = 10;
+            TxtConfirSenhaCliente.Size = new Size(134, 23);
+            TxtConfirSenhaCliente.TabIndex = 5;
             TxtConfirSenhaCliente.UseSystemPasswordChar = true;
             TxtConfirSenhaCliente.Leave += TxtConfirSenhaCliente_Leave;
             // 
@@ -132,9 +136,9 @@
             // 
             label5.AutoSize = true;
             label5.BackColor = Color.Transparent;
-            label5.Location = new Point(252, 60);
+            label5.Location = new Point(220, 45);
             label5.Name = "label5";
-            label5.Size = new Size(119, 20);
+            label5.Size = new Size(96, 15);
             label5.TabIndex = 11;
             label5.Text = "Confirmar Senha";
             // 
@@ -142,9 +146,9 @@
             // 
             label6.AutoSize = true;
             label6.BackColor = Color.Transparent;
-            label6.Location = new Point(252, 4);
+            label6.Location = new Point(220, 3);
             label6.Name = "label6";
-            label6.Size = new Size(49, 20);
+            label6.Size = new Size(39, 15);
             label6.TabIndex = 12;
             label6.Text = "Senha";
             // 
@@ -152,37 +156,39 @@
             // 
             textBox1.BackColor = SystemColors.HotTrack;
             textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Location = new Point(-5, 244);
+            textBox1.Location = new Point(-4, 183);
+            textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(455, 12);
+            textBox1.Size = new Size(398, 9);
             textBox1.TabIndex = 13;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.BackColor = Color.Transparent;
-            label7.Location = new Point(9, 262);
+            label7.Location = new Point(8, 196);
             label7.Name = "label7";
-            label7.Size = new Size(34, 20);
+            label7.Size = new Size(28, 15);
             label7.TabIndex = 15;
             label7.Text = "CEP";
             // 
             // TxtUfCliente
             // 
             TxtUfCliente.Cursor = Cursors.IBeam;
-            TxtUfCliente.Location = new Point(9, 342);
+            TxtUfCliente.Location = new Point(8, 256);
+            TxtUfCliente.Margin = new Padding(3, 2, 3, 2);
             TxtUfCliente.Name = "TxtUfCliente";
-            TxtUfCliente.Size = new Size(110, 27);
+            TxtUfCliente.Size = new Size(97, 23);
             TxtUfCliente.TabIndex = 16;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.BackColor = Color.Transparent;
-            label8.Location = new Point(9, 318);
+            label8.Location = new Point(8, 238);
             label8.Name = "label8";
-            label8.Size = new Size(26, 20);
+            label8.Size = new Size(21, 15);
             label8.TabIndex = 17;
             label8.Text = "UF";
             // 
@@ -190,101 +196,107 @@
             // 
             label9.AutoSize = true;
             label9.BackColor = Color.Transparent;
-            label9.Location = new Point(153, 265);
+            label9.Location = new Point(134, 199);
             label9.Name = "label9";
-            label9.Size = new Size(87, 20);
+            label9.Size = new Size(69, 15);
             label9.TabIndex = 19;
             label9.Text = "Logradouro";
             // 
             // TxtLogCliente
             // 
             TxtLogCliente.Cursor = Cursors.IBeam;
-            TxtLogCliente.Location = new Point(153, 286);
+            TxtLogCliente.Location = new Point(134, 214);
+            TxtLogCliente.Margin = new Padding(3, 2, 3, 2);
             TxtLogCliente.Name = "TxtLogCliente";
-            TxtLogCliente.Size = new Size(252, 27);
+            TxtLogCliente.Size = new Size(221, 23);
             TxtLogCliente.TabIndex = 18;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.BackColor = Color.Transparent;
-            label10.Location = new Point(152, 332);
+            label10.Location = new Point(133, 249);
             label10.Name = "label10";
-            label10.Size = new Size(49, 20);
+            label10.Size = new Size(38, 15);
             label10.TabIndex = 21;
             label10.Text = "Bairro";
             // 
             // TxtBairroCliente
             // 
             TxtBairroCliente.Cursor = Cursors.IBeam;
-            TxtBairroCliente.Location = new Point(153, 354);
+            TxtBairroCliente.Location = new Point(134, 266);
+            TxtBairroCliente.Margin = new Padding(3, 2, 3, 2);
             TxtBairroCliente.Name = "TxtBairroCliente";
-            TxtBairroCliente.Size = new Size(253, 27);
+            TxtBairroCliente.Size = new Size(222, 23);
             TxtBairroCliente.TabIndex = 20;
             // 
             // label11
             // 
             label11.AutoSize = true;
             label11.BackColor = Color.Transparent;
-            label11.Location = new Point(9, 374);
+            label11.Location = new Point(8, 280);
             label11.Name = "label11";
-            label11.Size = new Size(56, 20);
+            label11.Size = new Size(44, 15);
             label11.TabIndex = 23;
             label11.Text = "Cidade";
             // 
             // TxtCidadeCliente
             // 
             TxtCidadeCliente.Cursor = Cursors.IBeam;
-            TxtCidadeCliente.Location = new Point(9, 396);
+            TxtCidadeCliente.Location = new Point(8, 297);
+            TxtCidadeCliente.Margin = new Padding(3, 2, 3, 2);
             TxtCidadeCliente.Name = "TxtCidadeCliente";
-            TxtCidadeCliente.Size = new Size(110, 27);
-            TxtCidadeCliente.TabIndex = 22;
+            TxtCidadeCliente.Size = new Size(97, 23);
+            TxtCidadeCliente.TabIndex = 8;
             // 
             // label12
             // 
             label12.AutoSize = true;
             label12.BackColor = Color.Transparent;
-            label12.Location = new Point(9, 431);
+            label12.Location = new Point(8, 323);
             label12.Name = "label12";
-            label12.Size = new Size(63, 20);
+            label12.Size = new Size(51, 15);
             label12.TabIndex = 25;
             label12.Text = "Número";
             // 
             // TxtNúmeroCliente
             // 
             TxtNúmeroCliente.Cursor = Cursors.IBeam;
-            TxtNúmeroCliente.Location = new Point(9, 454);
+            TxtNúmeroCliente.Location = new Point(8, 340);
+            TxtNúmeroCliente.Margin = new Padding(3, 2, 3, 2);
             TxtNúmeroCliente.Name = "TxtNúmeroCliente";
-            TxtNúmeroCliente.Size = new Size(110, 27);
-            TxtNúmeroCliente.TabIndex = 24;
+            TxtNúmeroCliente.Size = new Size(97, 23);
+            TxtNúmeroCliente.TabIndex = 9;
             // 
             // label13
             // 
             label13.AutoSize = true;
             label13.BackColor = Color.Transparent;
-            label13.Location = new Point(150, 389);
+            label13.Location = new Point(131, 292);
             label13.Name = "label13";
-            label13.Size = new Size(104, 20);
+            label13.Size = new Size(84, 15);
             label13.TabIndex = 27;
             label13.Text = "Complemento";
             // 
             // TxtComplementoCliente
             // 
             TxtComplementoCliente.Cursor = Cursors.IBeam;
-            TxtComplementoCliente.Location = new Point(151, 412);
+            TxtComplementoCliente.Location = new Point(132, 309);
+            TxtComplementoCliente.Margin = new Padding(3, 2, 3, 2);
             TxtComplementoCliente.Name = "TxtComplementoCliente";
-            TxtComplementoCliente.Size = new Size(110, 27);
-            TxtComplementoCliente.TabIndex = 26;
+            TxtComplementoCliente.Size = new Size(97, 23);
+            TxtComplementoCliente.TabIndex = 10;
             // 
             // BtnSalvarCadastroCliente
             // 
             BtnSalvarCadastroCliente.BackColor = SystemColors.MenuHighlight;
-            BtnSalvarCadastroCliente.Cursor = Cursors.WaitCursor;
+            BtnSalvarCadastroCliente.Cursor = Cursors.Hand;
             BtnSalvarCadastroCliente.FlatStyle = FlatStyle.Popup;
             BtnSalvarCadastroCliente.Font = new Font("Century Gothic", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BtnSalvarCadastroCliente.Location = new Point(297, 412);
+            BtnSalvarCadastroCliente.Location = new Point(262, 309);
+            BtnSalvarCadastroCliente.Margin = new Padding(3, 2, 3, 2);
             BtnSalvarCadastroCliente.Name = "BtnSalvarCadastroCliente";
-            BtnSalvarCadastroCliente.Size = new Size(101, 31);
+            BtnSalvarCadastroCliente.Size = new Size(88, 29);
             BtnSalvarCadastroCliente.TabIndex = 28;
             BtnSalvarCadastroCliente.Text = "Salvar";
             BtnSalvarCadastroCliente.UseVisualStyleBackColor = false;
@@ -293,59 +305,59 @@
             // MkBoxCep
             // 
             MkBoxCep.Cursor = Cursors.IBeam;
-            MkBoxCep.Location = new Point(9, 286);
-            MkBoxCep.Margin = new Padding(3, 4, 3, 4);
+            MkBoxCep.Location = new Point(8, 214);
             MkBoxCep.Mask = "00000-000";
             MkBoxCep.Name = "MkBoxCep";
-            MkBoxCep.Size = new Size(114, 27);
-            MkBoxCep.TabIndex = 29;
+            MkBoxCep.Size = new Size(100, 23);
+            MkBoxCep.TabIndex = 7;
             MkBoxCep.Leave += MkBoxCep_Leave;
             // 
             // MkBoxTeleCLiente
             // 
             MkBoxTeleCLiente.Cursor = Cursors.IBeam;
-            MkBoxTeleCLiente.Location = new Point(3, 84);
+            MkBoxTeleCLiente.Location = new Point(3, 63);
+            MkBoxTeleCLiente.Margin = new Padding(3, 2, 3, 2);
             MkBoxTeleCLiente.Mask = "(00) 00000-0000";
             MkBoxTeleCLiente.Name = "MkBoxTeleCLiente";
-            MkBoxTeleCLiente.Size = new Size(182, 27);
-            MkBoxTeleCLiente.TabIndex = 30;
+            MkBoxTeleCLiente.Size = new Size(160, 23);
+            MkBoxTeleCLiente.TabIndex = 1;
             // 
             // MkBoxCpf
             // 
             MkBoxCpf.Cursor = Cursors.IBeam;
-            MkBoxCpf.Location = new Point(4, 146);
+            MkBoxCpf.Location = new Point(4, 110);
+            MkBoxCpf.Margin = new Padding(3, 2, 3, 2);
             MkBoxCpf.Mask = "000.000.000-00";
             MkBoxCpf.Name = "MkBoxCpf";
-            MkBoxCpf.Size = new Size(181, 27);
-            MkBoxCpf.TabIndex = 32;
+            MkBoxCpf.Size = new Size(159, 23);
+            MkBoxCpf.TabIndex = 2;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.BackColor = Color.Transparent;
-            label4.Location = new Point(3, 122);
+            label4.Location = new Point(3, 92);
             label4.Name = "label4";
-            label4.Size = new Size(106, 20);
+            label4.Size = new Size(85, 15);
             label4.TabIndex = 31;
             label4.Text = "Cpf (Opcional)";
             // 
-            // DtpickNascimento
+            // DatapickNascimento
             // 
-            DtpickNascimento.Cursor = Cursors.Hand;
-            DtpickNascimento.Format = DateTimePickerFormat.Short;
-            DtpickNascimento.Location = new Point(252, 142);
-            DtpickNascimento.Margin = new Padding(3, 4, 3, 4);
-            DtpickNascimento.Name = "DtpickNascimento";
-            DtpickNascimento.Size = new Size(153, 27);
-            DtpickNascimento.TabIndex = 33;
+            DatapickNascimento.Cursor = Cursors.Hand;
+            DatapickNascimento.Format = DateTimePickerFormat.Short;
+            DatapickNascimento.Location = new Point(220, 106);
+            DatapickNascimento.Name = "DatapickNascimento";
+            DatapickNascimento.Size = new Size(134, 23);
+            DatapickNascimento.TabIndex = 6;
             // 
             // label14
             // 
             label14.AutoSize = true;
             label14.BackColor = Color.Transparent;
-            label14.Location = new Point(252, 122);
+            label14.Location = new Point(220, 92);
             label14.Name = "label14";
-            label14.Size = new Size(124, 20);
+            label14.Size = new Size(98, 15);
             label14.TabIndex = 34;
             label14.Text = "Data Nascimento";
             // 
@@ -355,7 +367,7 @@
             PnlCadastroUser.Controls.Add(TxtNomeCliente);
             PnlCadastroUser.Controls.Add(label14);
             PnlCadastroUser.Controls.Add(TxtEmailCliente);
-            PnlCadastroUser.Controls.Add(DtpickNascimento);
+            PnlCadastroUser.Controls.Add(DatapickNascimento);
             PnlCadastroUser.Controls.Add(TxtSenhaCliente);
             PnlCadastroUser.Controls.Add(MkBoxCpf);
             PnlCadastroUser.Controls.Add(label1);
@@ -383,20 +395,22 @@
             PnlCadastroUser.Controls.Add(label9);
             PnlCadastroUser.Controls.Add(TxtBairroCliente);
             PnlCadastroUser.Location = new Point(0, 0);
+            PnlCadastroUser.Margin = new Padding(3, 2, 3, 2);
             PnlCadastroUser.Name = "PnlCadastroUser";
-            PnlCadastroUser.Size = new Size(442, 637);
+            PnlCadastroUser.Size = new Size(387, 478);
             PnlCadastroUser.TabIndex = 35;
             // 
             // TelaCadastroUser
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(441, 636);
+            ClientSize = new Size(444, 477);
             Controls.Add(PnlCadastroUser);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 2, 3, 2);
             Name = "TelaCadastroUser";
             Text = "TelaCadastroUser";
             Load += TelaCadastroUser_Load;
@@ -435,7 +449,7 @@
         private MaskedTextBox MkBoxTeleCLiente;
         private MaskedTextBox MkBoxCpf;
         private Label label4;
-        private DateTimePicker DtpickNascimento;
+        private DateTimePicker DatapickNascimento;
         private Label label14;
         private Panel PnlCadastroUser;
     }

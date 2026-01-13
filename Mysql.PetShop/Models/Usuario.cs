@@ -19,7 +19,7 @@ namespace Mysql.PetShop.Models
         [Column("cpf")]
         public string Cpf { get; set; }
 
-        [Column("dataNascimento")]
+        [Column("data_nascimento")]
         public DateTime dataNascimento { get; set; }
 
         [Column("observacao")]
