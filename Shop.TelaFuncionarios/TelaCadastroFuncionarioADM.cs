@@ -27,7 +27,14 @@ namespace Shop.TelaFuncionarios
 
         }
 
-       
-        
+        private void PnlCadastroFun_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void CheKCadastroFun_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

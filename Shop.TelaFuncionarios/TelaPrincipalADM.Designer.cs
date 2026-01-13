@@ -73,6 +73,7 @@
             // BtnSairADM
             // 
             BtnSairADM.BackColor = Color.DodgerBlue;
+            BtnSairADM.Cursor = Cursors.Hand;
             BtnSairADM.Dock = DockStyle.Bottom;
             BtnSairADM.FlatStyle = FlatStyle.Popup;
             BtnSairADM.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -89,6 +90,7 @@
             // BtnRelatorioADM
             // 
             BtnRelatorioADM.BackColor = SystemColors.ControlDarkDark;
+            BtnRelatorioADM.Cursor = Cursors.Hand;
             BtnRelatorioADM.Dock = DockStyle.Top;
             BtnRelatorioADM.FlatAppearance.BorderSize = 0;
             BtnRelatorioADM.FlatStyle = FlatStyle.Flat;
@@ -104,6 +106,7 @@
             // BtnPainelFinanceiroADM
             // 
             BtnPainelFinanceiroADM.BackColor = SystemColors.ControlDarkDark;
+            BtnPainelFinanceiroADM.Cursor = Cursors.Hand;
             BtnPainelFinanceiroADM.Dock = DockStyle.Top;
             BtnPainelFinanceiroADM.FlatAppearance.BorderSize = 0;
             BtnPainelFinanceiroADM.FlatStyle = FlatStyle.Flat;
@@ -119,6 +122,7 @@
             // BtnClentesCadastradosADM
             // 
             BtnClentesCadastradosADM.BackColor = SystemColors.ControlDarkDark;
+            BtnClentesCadastradosADM.Cursor = Cursors.Hand;
             BtnClentesCadastradosADM.Dock = DockStyle.Top;
             BtnClentesCadastradosADM.FlatAppearance.BorderSize = 0;
             BtnClentesCadastradosADM.FlatStyle = FlatStyle.Flat;
@@ -135,6 +139,7 @@
             // BtnTelaFuncionario
             // 
             BtnTelaFuncionario.BackColor = SystemColors.ControlDarkDark;
+            BtnTelaFuncionario.Cursor = Cursors.Hand;
             BtnTelaFuncionario.Dock = DockStyle.Top;
             BtnTelaFuncionario.FlatAppearance.BorderSize = 0;
             BtnTelaFuncionario.FlatStyle = FlatStyle.Flat;
@@ -150,6 +155,7 @@
             // BtnAgendamentoADM
             // 
             BtnAgendamentoADM.BackColor = SystemColors.ControlDarkDark;
+            BtnAgendamentoADM.Cursor = Cursors.Hand;
             BtnAgendamentoADM.Dock = DockStyle.Top;
             BtnAgendamentoADM.FlatAppearance.BorderSize = 0;
             BtnAgendamentoADM.FlatStyle = FlatStyle.Flat;

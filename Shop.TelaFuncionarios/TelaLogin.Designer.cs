@@ -37,15 +37,17 @@
             BtnCadastrarCliente = new Button();
             label3 = new Label();
             label4 = new Label();
+            PnlTelaLogin = new Panel();
+            PnlTelaLogin.SuspendLayout();
             SuspendLayout();
             // 
             // TxtUsuario
             // 
+            TxtUsuario.Cursor = Cursors.IBeam;
             TxtUsuario.Font = new Font("Arial", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            TxtUsuario.Location = new Point(433, 258);
-            TxtUsuario.Margin = new Padding(3, 2, 3, 2);
+            TxtUsuario.Location = new Point(349, 179);
             TxtUsuario.Name = "TxtUsuario";
-            TxtUsuario.Size = new Size(205, 24);
+            TxtUsuario.Size = new Size(234, 28);
             TxtUsuario.TabIndex = 0;
             // 
             // label1
@@ -53,22 +55,22 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Century Gothic", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(433, 236);
+            label1.Location = new Point(349, 149);
             label1.Name = "label1";
-            label1.Size = new Size(78, 23);
+            label1.Size = new Size(79, 27);
             label1.TabIndex = 1;
-            label1.Text = "Usuário";
+            label1.Text = "Email:";
             // 
             // BtnEntrarLogin
             // 
             BtnEntrarLogin.BackColor = SystemColors.ControlDarkDark;
+            BtnEntrarLogin.Cursor = Cursors.WaitCursor;
             BtnEntrarLogin.FlatStyle = FlatStyle.Popup;
             BtnEntrarLogin.Font = new Font("Century Gothic", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
             BtnEntrarLogin.ForeColor = SystemColors.ButtonHighlight;
-            BtnEntrarLogin.Location = new Point(660, 339);
-            BtnEntrarLogin.Margin = new Padding(3, 2, 3, 2);
+            BtnEntrarLogin.Location = new Point(349, 299);
             BtnEntrarLogin.Name = "BtnEntrarLogin";
-            BtnEntrarLogin.Size = new Size(82, 22);
+            BtnEntrarLogin.Size = new Size(94, 29);
             BtnEntrarLogin.TabIndex = 2;
             BtnEntrarLogin.Text = "Entrar";
             BtnEntrarLogin.UseVisualStyleBackColor = false;
@@ -79,32 +81,32 @@
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Century Gothic", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(433, 289);
+            label2.Location = new Point(349, 219);
             label2.Name = "label2";
-            label2.Size = new Size(67, 23);
+            label2.Size = new Size(88, 27);
             label2.TabIndex = 3;
-            label2.Text = "Senha";
+            label2.Text = "Senha:";
             // 
             // TxtSenha
             // 
+            TxtSenha.Cursor = Cursors.IBeam;
             TxtSenha.Font = new Font("Arial", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            TxtSenha.Location = new Point(433, 311);
-            TxtSenha.Margin = new Padding(3, 2, 3, 2);
+            TxtSenha.Location = new Point(349, 249);
             TxtSenha.Name = "TxtSenha";
-            TxtSenha.Size = new Size(205, 24);
+            TxtSenha.Size = new Size(234, 28);
             TxtSenha.TabIndex = 4;
             TxtSenha.UseSystemPasswordChar = true;
             // 
             // BtnCadastrarCliente
             // 
             BtnCadastrarCliente.BackColor = SystemColors.ControlDarkDark;
+            BtnCadastrarCliente.Cursor = Cursors.WaitCursor;
             BtnCadastrarCliente.FlatStyle = FlatStyle.Popup;
             BtnCadastrarCliente.Font = new Font("Century Gothic", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
             BtnCadastrarCliente.ForeColor = SystemColors.ButtonFace;
-            BtnCadastrarCliente.Location = new Point(747, 339);
-            BtnCadastrarCliente.Margin = new Padding(3, 2, 3, 2);
+            BtnCadastrarCliente.Location = new Point(455, 299);
             BtnCadastrarCliente.Name = "BtnCadastrarCliente";
-            BtnCadastrarCliente.Size = new Size(112, 22);
+            BtnCadastrarCliente.Size = new Size(128, 29);
             BtnCadastrarCliente.TabIndex = 5;
             BtnCadastrarCliente.Text = "Cadastre-se";
             BtnCadastrarCliente.UseVisualStyleBackColor = false;
@@ -114,11 +116,12 @@
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
+            label3.BorderStyle = BorderStyle.Fixed3D;
             label3.Font = new Font("Microsoft Sans Serif", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = SystemColors.HotTrack;
-            label3.Location = new Point(66, 44);
+            label3.Location = new Point(32, 23);
             label3.Name = "label3";
-            label3.Size = new Size(539, 55);
+            label3.Size = new Size(673, 71);
             label3.TabIndex = 6;
             label3.Text = "Bem-Vindo à PetWORD";
             // 
@@ -126,36 +129,47 @@
             // 
             label4.AutoSize = true;
             label4.BackColor = Color.Transparent;
+            label4.BorderStyle = BorderStyle.Fixed3D;
             label4.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = SystemColors.HotTrack;
-            label4.Location = new Point(134, 94);
+            label4.Location = new Point(115, 94);
             label4.Name = "label4";
-            label4.Size = new Size(540, 29);
+            label4.Size = new Size(666, 38);
             label4.TabIndex = 7;
             label4.Text = "Um Mundo Onde Seu Parceiro(a) se Sente Bem!!";
             // 
+            // PnlTelaLogin
+            // 
+            PnlTelaLogin.BackColor = Color.Transparent;
+            PnlTelaLogin.BorderStyle = BorderStyle.Fixed3D;
+            PnlTelaLogin.Controls.Add(label3);
+            PnlTelaLogin.Controls.Add(BtnCadastrarCliente);
+            PnlTelaLogin.Controls.Add(label4);
+            PnlTelaLogin.Controls.Add(TxtUsuario);
+            PnlTelaLogin.Controls.Add(TxtSenha);
+            PnlTelaLogin.Controls.Add(label1);
+            PnlTelaLogin.Controls.Add(label2);
+            PnlTelaLogin.Controls.Add(BtnEntrarLogin);
+            PnlTelaLogin.Location = new Point(2, 0);
+            PnlTelaLogin.Name = "PnlTelaLogin";
+            PnlTelaLogin.Size = new Size(990, 497);
+            PnlTelaLogin.TabIndex = 8;
+            // 
             // TelaLogin
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(870, 370);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(BtnCadastrarCliente);
-            Controls.Add(TxtSenha);
-            Controls.Add(label2);
-            Controls.Add(BtnEntrarLogin);
-            Controls.Add(label1);
-            Controls.Add(TxtUsuario);
+            ClientSize = new Size(994, 493);
+            Controls.Add(PnlTelaLogin);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 2, 3, 2);
             Name = "TelaLogin";
             Text = "TelaLogin";
             Load += TelaLogin_Load;
+            PnlTelaLogin.ResumeLayout(false);
+            PnlTelaLogin.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -168,5 +182,6 @@
         private Button BtnCadastrarCliente;
         private Label label3;
         private Label label4;
+        private Panel PnlTelaLogin;
     }
 }
