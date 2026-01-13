@@ -182,13 +182,35 @@ namespace Shop.TelaFuncionarios
         }
         public async Task<bool> CadastrarUsuario(
             string nome, string email, string senha, string telefone,
-            string cep, string rua, string numero, string bairro, string cidade, string uf, string complemento, string cpf, DateTime datanascimento, string tipouser)
+            string cep, string rua, string numero, string bairro, string cidade, string uf, string complemento, string cpf, DateTime datanascimento, string tipouser, string observacao)
         {
             using (var client = new HttpClient())
             {
                 // Limpa o CPF antes de enviar
                 string cpfLimpo = cpf.Replace(".", "").Replace("-", "").Replace(",", "").Trim();
-                string tipoUsuarioAjustado = "Cliente";
+                string tipoUsuarioAjustado;
+
+                if (tipouser == null)
+                {
+                    tipoUsuarioAjustado = "cliente"; // Valor padrão se nulo
+                    observacao = "Cliente Cadastrado no app";
+                }
+                else if (tipouser.Equals("funcionário", StringComparison.OrdinalIgnoreCase))
+                {
+                    tipoUsuarioAjustado = "funcionario";
+                }
+                else 
+                {
+                    tipoUsuarioAjustado = "adm";
+
+                }
+
+                if (cpf == null)
+                {
+                    cpfLimpo = "Cliente não quis colocar o cpf";
+
+                }
+
 
                 var dados = new
                 {
@@ -204,7 +226,7 @@ namespace Shop.TelaFuncionarios
                     DataNascimento = datanascimento.ToString("yyyy-MM-dd"),
 
                     TipoUsuario = tipoUsuarioAjustado,
-                    Observacao = "", // Campo vazio para não quebrar
+                    Observacao = observacao, // Campo vazio para não quebrar
 
                     // Endereço
                     Cep = cep,

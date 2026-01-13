@@ -46,9 +46,9 @@
             TxtBuscarPorNome = new TextBox();
             BtnBuscar = new Button();
             PnlRodaPe = new Panel();
+            BtnInicarAtendimento = new Button();
             BtnCancelar = new Button();
-            BtnFinalizarServico = new Button();
-            BtnIniciar = new Button();
+            BtnFinalizarAtendimento = new Button();
             PnlTelaFuncionario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DgvPedidos).BeginInit();
@@ -296,14 +296,36 @@
             // 
             PnlRodaPe.BackColor = SystemColors.HotTrack;
             PnlRodaPe.BorderStyle = BorderStyle.Fixed3D;
+            PnlRodaPe.Controls.Add(BtnInicarAtendimento);
             PnlRodaPe.Controls.Add(BtnCancelar);
-            PnlRodaPe.Controls.Add(BtnFinalizarServico);
-            PnlRodaPe.Controls.Add(BtnIniciar);
+            PnlRodaPe.Controls.Add(BtnFinalizarAtendimento);
             PnlRodaPe.Dock = DockStyle.Bottom;
             PnlRodaPe.Location = new Point(201, 475);
             PnlRodaPe.Name = "PnlRodaPe";
             PnlRodaPe.Size = new Size(763, 59);
             PnlRodaPe.TabIndex = 3;
+            // 
+            // BtnInicarAtendimento
+            // 
+            BtnInicarAtendimento.BackColor = Color.LightSeaGreen;
+            BtnInicarAtendimento.Cursor = Cursors.Hand;
+            BtnInicarAtendimento.FlatAppearance.BorderSize = 0;
+            BtnInicarAtendimento.FlatStyle = FlatStyle.Flat;
+            BtnInicarAtendimento.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnInicarAtendimento.ForeColor = Color.White;
+            BtnInicarAtendimento.Image = (Image)resources.GetObject("BtnInicarAtendimento.Image");
+            BtnInicarAtendimento.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnInicarAtendimento.Location = new Point(-2, 4);
+            BtnInicarAtendimento.Margin = new Padding(10, 5, 10, 5);
+            BtnInicarAtendimento.Name = "BtnInicarAtendimento";
+            BtnInicarAtendimento.Size = new Size(200, 48);
+            BtnInicarAtendimento.TabIndex = 5;
+            BtnInicarAtendimento.Text = "Iniciar Atendimento";
+            BtnInicarAtendimento.TextAlign = ContentAlignment.MiddleRight;
+            BtnInicarAtendimento.TextImageRelation = TextImageRelation.ImageBeforeText;
+            BtnInicarAtendimento.UseVisualStyleBackColor = false;
+            BtnInicarAtendimento.Visible = false;
+            BtnInicarAtendimento.Click += BtnInicarAtendimento_Click;
             // 
             // BtnCancelar
             // 
@@ -315,7 +337,7 @@
             BtnCancelar.ForeColor = Color.White;
             BtnCancelar.Image = (Image)resources.GetObject("BtnCancelar.Image");
             BtnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnCancelar.Location = new Point(416, 4);
+            BtnCancelar.Location = new Point(420, 4);
             BtnCancelar.Margin = new Padding(10, 5, 10, 5);
             BtnCancelar.Name = "BtnCancelar";
             BtnCancelar.Size = new Size(190, 48);
@@ -327,49 +349,27 @@
             BtnCancelar.Visible = false;
             BtnCancelar.Click += btnCancelar_Click;
             // 
-            // BtnFinalizarServico
+            // BtnFinalizarAtendimento
             // 
-            BtnFinalizarServico.BackColor = Color.SeaGreen;
-            BtnFinalizarServico.Cursor = Cursors.Hand;
-            BtnFinalizarServico.FlatAppearance.BorderSize = 0;
-            BtnFinalizarServico.FlatStyle = FlatStyle.Flat;
-            BtnFinalizarServico.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BtnFinalizarServico.ForeColor = Color.White;
-            BtnFinalizarServico.Image = (Image)resources.GetObject("BtnFinalizarServico.Image");
-            BtnFinalizarServico.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnFinalizarServico.Location = new Point(210, 4);
-            BtnFinalizarServico.Margin = new Padding(10, 5, 10, 5);
-            BtnFinalizarServico.Name = "BtnFinalizarServico";
-            BtnFinalizarServico.Size = new Size(200, 48);
-            BtnFinalizarServico.TabIndex = 1;
-            BtnFinalizarServico.Text = "Finalizar Serviço";
-            BtnFinalizarServico.TextAlign = ContentAlignment.MiddleRight;
-            BtnFinalizarServico.TextImageRelation = TextImageRelation.ImageBeforeText;
-            BtnFinalizarServico.UseVisualStyleBackColor = false;
-            BtnFinalizarServico.Visible = false;
-            BtnFinalizarServico.Click += btnIniciar_Click;
-            // 
-            // BtnIniciar
-            // 
-            BtnIniciar.BackColor = Color.LightSeaGreen;
-            BtnIniciar.Cursor = Cursors.Hand;
-            BtnIniciar.FlatAppearance.BorderSize = 0;
-            BtnIniciar.FlatStyle = FlatStyle.Flat;
-            BtnIniciar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BtnIniciar.ForeColor = Color.White;
-            BtnIniciar.Image = (Image)resources.GetObject("BtnIniciar.Image");
-            BtnIniciar.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnIniciar.Location = new Point(4, 4);
-            BtnIniciar.Margin = new Padding(10, 5, 10, 5);
-            BtnIniciar.Name = "BtnIniciar";
-            BtnIniciar.Size = new Size(200, 48);
-            BtnIniciar.TabIndex = 0;
-            BtnIniciar.Text = "Iniciar Atendimento";
-            BtnIniciar.TextAlign = ContentAlignment.MiddleRight;
-            BtnIniciar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            BtnIniciar.UseVisualStyleBackColor = false;
-            BtnIniciar.Visible = false;
-            BtnIniciar.Click += btnIniciar_Click;
+            BtnFinalizarAtendimento.BackColor = Color.SeaGreen;
+            BtnFinalizarAtendimento.Cursor = Cursors.Hand;
+            BtnFinalizarAtendimento.FlatAppearance.BorderSize = 0;
+            BtnFinalizarAtendimento.FlatStyle = FlatStyle.Flat;
+            BtnFinalizarAtendimento.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnFinalizarAtendimento.ForeColor = Color.White;
+            BtnFinalizarAtendimento.Image = (Image)resources.GetObject("BtnFinalizarAtendimento.Image");
+            BtnFinalizarAtendimento.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnFinalizarAtendimento.Location = new Point(209, 4);
+            BtnFinalizarAtendimento.Margin = new Padding(10, 5, 10, 5);
+            BtnFinalizarAtendimento.Name = "BtnFinalizarAtendimento";
+            BtnFinalizarAtendimento.Size = new Size(200, 48);
+            BtnFinalizarAtendimento.TabIndex = 4;
+            BtnFinalizarAtendimento.Text = "Finalizar Serviço";
+            BtnFinalizarAtendimento.TextAlign = ContentAlignment.MiddleRight;
+            BtnFinalizarAtendimento.TextImageRelation = TextImageRelation.ImageBeforeText;
+            BtnFinalizarAtendimento.UseVisualStyleBackColor = false;
+            BtnFinalizarAtendimento.Visible = false;
+            BtnFinalizarAtendimento.Click += BtnFinalizarAtendimento_Click;
             // 
             // TelaFuncionariocs
             // 
@@ -412,8 +412,8 @@
         private Panel PnlBuscarNome;
         private Button BtnCancelados;
         private Panel PnlRodaPe;
-        private Button BtnIniciar;
-        private Button BtnFinalizarServico;
         private Button BtnCancelar;
+        private Button BtnInicarAtendimento;
+        private Button BtnFinalizarAtendimento;
     }
 }

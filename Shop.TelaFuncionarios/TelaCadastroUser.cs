@@ -46,6 +46,7 @@ namespace Shop.TelaFuncionarios
             {
                 // Limpeza do CPF
                 string cpf = MkBoxCpf.Text.Replace(".", "").Replace("-", "").Trim();
+               
 
                 ApiService api = new ApiService();
 
@@ -69,7 +70,8 @@ namespace Shop.TelaFuncionarios
 
                     cpf,
                     DatapickNascimento.Value,
-                    "Cliente" // Passa a string direta, fica mais limpo
+                    "Cliente",
+                    ""
                 );
 
                 if (sucesso)

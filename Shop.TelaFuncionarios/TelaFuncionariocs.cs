@@ -179,7 +179,7 @@ namespace Shop.TelaFuncionarios
             // Confirmação
             if (MessageBox.Show($"Deseja mudar o status para {novoStatus.ToUpper()}?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                BtnIniciar.Enabled = false; // Trava botões para não clicar 2x
+                BtnInicarAtendimento.Enabled = false; // Trava botões para não clicar 2x
 
                 ApiService api = new ApiService();
 
@@ -203,19 +203,12 @@ namespace Shop.TelaFuncionarios
                     MessageBox.Show("Erro ao atualizar status na API.");
                 }
 
-                BtnIniciar.Enabled = true;
+                BtnInicarAtendimento.Enabled = true;
             }
         }
 
         // Eventos de Clique dos Botões Coloridos
-        private async void btnIniciar_Click(object sender, EventArgs e)
-        {
-            await MudarStatusPedido("concluido");
-        }
 
-        private async void btnConcluir_Click(object sender, EventArgs e)
-        {
-        }
 
         private async void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -226,8 +219,8 @@ namespace Shop.TelaFuncionarios
         private void DgvPedidos_SelectionChanged(object sender, EventArgs e)
         {
             // 1. Reseta tudo
-            BtnIniciar.Visible = false;
-            BtnFinalizarServico.Visible = false;
+            BtnInicarAtendimento.Visible = false;
+            BtnFinalizarAtendimento.Visible = false;
             BtnCancelar.Visible = false;
 
             if (DgvPedidos.SelectedRows.Count == 0) return;
@@ -241,12 +234,12 @@ namespace Shop.TelaFuncionarios
                 switch (statusAtual)
                 {
                     case "pendente":
-                        BtnIniciar.Visible = true;
+                        BtnInicarAtendimento.Visible = true;
                         BtnCancelar.Visible = true;
                         break;
 
                     case "em_andamento":
-                        BtnFinalizarServico.Visible = true;
+                        BtnFinalizarAtendimento.Visible = true;
                         break;
                 }
             }
@@ -327,6 +320,16 @@ namespace Shop.TelaFuncionarios
                     e.CellStyle.ForeColor = Color.Green;
                 }
             }
+        }
+
+        private async void BtnInicarAtendimento_Click(object sender, EventArgs e)
+        {
+            await MudarStatusPedido("em_andamento");
+        }
+
+        private async void BtnFinalizarAtendimento_Click(object sender, EventArgs e)
+        {
+            await MudarStatusPedido("concluido");
         }
     }
 }
