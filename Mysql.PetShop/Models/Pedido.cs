@@ -1,16 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mysql.PetShop.Models
 {
-    [Table("pedidos")]
+    [Table("pedidos")] // Confirme se no banco é 'tb_pedidos' ou só 'pedidos'
     public class Pedido
     {
         [Key]
         [Column("id")]
         public int Id { get; set; }
+
         [Column("pet_id")]
-        public int PetId { get; set; } // A coluna nova
+        public int PetId { get; set; }
 
         [Column("cliente_id")]
         public int ClienteId { get; set; }
@@ -25,15 +28,20 @@ namespace Mysql.PetShop.Models
         public decimal ValorTotal { get; set; }
 
         [Column("status")]
-        public string Status { get; set; } // pendente, confirmado, etc.
+        public string Status { get; set; }
 
-        // Lista de itens dentro desse pedido
-        public List<ItemPedido> Itens { get; set; }
-        public string Observacoes { get;  set; }
+        [Column("observacoes")] // Adicionei o mapeamento da coluna caso falte
+        public string Observacoes { get; set; }
+
+        // --- RELACIONAMENTOS ---
 
         [ForeignKey("PetId")]
         public virtual Pet Pet { get; set; }
+
         [ForeignKey("ClienteId")]
         public virtual Usuario Cliente { get; set; }
+
+        // Mantenha APENAS esta linha para a lista de itens
+        public virtual ICollection<ItemPedido> Itens { get; set; }
     }
 }

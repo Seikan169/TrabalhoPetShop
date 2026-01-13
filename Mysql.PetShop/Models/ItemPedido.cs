@@ -19,8 +19,14 @@ namespace Mysql.PetShop.Models
         [Column("preco_unitario")]
         public decimal PrecoUnitario { get; set; }
 
-        // Referência para saber qual serviço é
+        // --- RELACIONAMENTOS ---
+
+        // Isso permite o .Include(p => p.Itens) funcionar na volta
+        [ForeignKey("PedidoId")]
+        public virtual Pedido Pedido { get; set; }
+
+        // --- ISSO É CRUCIAL PARA APARECER A DESCRIÇÃO "BANHO" ---
         [ForeignKey("ServicoId")]
-        public Servico Servico { get; set; }
+        public virtual Servico Servico { get; set; }
     }
 }

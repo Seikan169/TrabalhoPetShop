@@ -36,7 +36,7 @@
             BtnCancelados = new Button();
             BtnConcluidos = new Button();
             BtnIniciados = new Button();
-            BtnProximosAtendimentos = new Button();
+            BtnFila = new Button();
             pictureBox1 = new PictureBox();
             BtnSairFuncionario = new Button();
             DgvPedidos = new DataGridView();
@@ -45,11 +45,16 @@
             PnlBuscarNome = new Panel();
             TxtBuscarPorNome = new TextBox();
             BtnBuscar = new Button();
+            PnlRodaPe = new Panel();
+            BtnCancelar = new Button();
+            BtnFinalizarServico = new Button();
+            BtnIniciar = new Button();
             PnlTelaFuncionario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DgvPedidos).BeginInit();
             PnlCabeca.SuspendLayout();
             PnlBuscarNome.SuspendLayout();
+            PnlRodaPe.SuspendLayout();
             SuspendLayout();
             // 
             // PnlTelaFuncionario
@@ -59,7 +64,7 @@
             PnlTelaFuncionario.Controls.Add(BtnCancelados);
             PnlTelaFuncionario.Controls.Add(BtnConcluidos);
             PnlTelaFuncionario.Controls.Add(BtnIniciados);
-            PnlTelaFuncionario.Controls.Add(BtnProximosAtendimentos);
+            PnlTelaFuncionario.Controls.Add(BtnFila);
             PnlTelaFuncionario.Controls.Add(pictureBox1);
             PnlTelaFuncionario.Controls.Add(BtnSairFuncionario);
             PnlTelaFuncionario.Dock = DockStyle.Left;
@@ -87,6 +92,7 @@
             BtnCancelados.Text = "     Cancelados";
             BtnCancelados.TextAlign = ContentAlignment.MiddleLeft;
             BtnCancelados.UseVisualStyleBackColor = false;
+            BtnCancelados.Click += BtnCancelados_Click;
             // 
             // BtnConcluidos
             // 
@@ -106,6 +112,7 @@
             BtnConcluidos.Text = "     Concluídos";
             BtnConcluidos.TextAlign = ContentAlignment.MiddleLeft;
             BtnConcluidos.UseVisualStyleBackColor = false;
+            BtnConcluidos.Click += BtnConcluidos_Click;
             // 
             // BtnIniciados
             // 
@@ -124,26 +131,27 @@
             BtnIniciados.TabIndex = 4;
             BtnIniciados.Text = "  Atendimento Iniciado";
             BtnIniciados.UseVisualStyleBackColor = false;
+            BtnIniciados.Click += BtnIniciados_Click;
             // 
-            // BtnProximosAtendimentos
+            // BtnFila
             // 
-            BtnProximosAtendimentos.BackColor = SystemColors.ControlDarkDark;
-            BtnProximosAtendimentos.Cursor = Cursors.Hand;
-            BtnProximosAtendimentos.Dock = DockStyle.Top;
-            BtnProximosAtendimentos.FlatStyle = FlatStyle.Flat;
-            BtnProximosAtendimentos.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BtnProximosAtendimentos.ForeColor = Color.White;
-            BtnProximosAtendimentos.Image = (Image)resources.GetObject("BtnProximosAtendimentos.Image");
-            BtnProximosAtendimentos.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnProximosAtendimentos.Location = new Point(0, 158);
-            BtnProximosAtendimentos.Margin = new Padding(3, 2, 3, 2);
-            BtnProximosAtendimentos.Name = "BtnProximosAtendimentos";
-            BtnProximosAtendimentos.RightToLeft = RightToLeft.No;
-            BtnProximosAtendimentos.Size = new Size(199, 56);
-            BtnProximosAtendimentos.TabIndex = 1;
-            BtnProximosAtendimentos.Text = " Fila de Atendimentos";
-            BtnProximosAtendimentos.UseVisualStyleBackColor = false;
-            BtnProximosAtendimentos.Click += BtnProximosAtendimentos_Click;
+            BtnFila.BackColor = SystemColors.ControlDarkDark;
+            BtnFila.Cursor = Cursors.Hand;
+            BtnFila.Dock = DockStyle.Top;
+            BtnFila.FlatStyle = FlatStyle.Flat;
+            BtnFila.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BtnFila.ForeColor = Color.White;
+            BtnFila.Image = (Image)resources.GetObject("BtnFila.Image");
+            BtnFila.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnFila.Location = new Point(0, 158);
+            BtnFila.Margin = new Padding(3, 2, 3, 2);
+            BtnFila.Name = "BtnFila";
+            BtnFila.RightToLeft = RightToLeft.No;
+            BtnFila.Size = new Size(199, 56);
+            BtnFila.TabIndex = 1;
+            BtnFila.Text = " Fila de Atendimentos";
+            BtnFila.UseVisualStyleBackColor = false;
+            BtnFila.Click += BtnProximosAtendimentos_Click;
             // 
             // pictureBox1
             // 
@@ -192,7 +200,7 @@
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle1.ForeColor = Color.White;
             dataGridViewCellStyle1.Padding = new Padding(0, 0, 40, 0);
-            dataGridViewCellStyle1.SelectionBackColor = Color.RoyalBlue;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Lime;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             DgvPedidos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
@@ -209,6 +217,7 @@
             DgvPedidos.Dock = DockStyle.Fill;
             DgvPedidos.EnableHeadersVisualStyles = false;
             DgvPedidos.Location = new Point(201, 59);
+            DgvPedidos.Margin = new Padding(10, 5, 10, 5);
             DgvPedidos.Name = "DgvPedidos";
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = SystemColors.Control;
@@ -220,9 +229,11 @@
             DgvPedidos.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             DgvPedidos.RowHeadersVisible = false;
             DgvPedidos.RowHeadersWidth = 51;
-            DgvPedidos.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
-            DgvPedidos.Size = new Size(763, 475);
+            DgvPedidos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DgvPedidos.Size = new Size(763, 416);
             DgvPedidos.TabIndex = 1;
+            DgvPedidos.CellContentClick += DgvPedidos_CellContentClick;
+            DgvPedidos.SelectionChanged += DgvPedidos_SelectionChanged;
             // 
             // PnlCabeca
             // 
@@ -266,6 +277,7 @@
             TxtBuscarPorNome.Name = "TxtBuscarPorNome";
             TxtBuscarPorNome.Size = new Size(103, 27);
             TxtBuscarPorNome.TabIndex = 3;
+            TxtBuscarPorNome.TextChanged += TxtBuscarPorNome_TextChanged;
             // 
             // BtnBuscar
             // 
@@ -277,6 +289,86 @@
             BtnBuscar.Size = new Size(24, 27);
             BtnBuscar.TabIndex = 4;
             BtnBuscar.UseVisualStyleBackColor = true;
+            BtnBuscar.Click += BtnBuscar_Click;
+            // 
+            // PnlRodaPe
+            // 
+            PnlRodaPe.BackColor = SystemColors.HotTrack;
+            PnlRodaPe.BorderStyle = BorderStyle.Fixed3D;
+            PnlRodaPe.Controls.Add(BtnCancelar);
+            PnlRodaPe.Controls.Add(BtnFinalizarServico);
+            PnlRodaPe.Controls.Add(BtnIniciar);
+            PnlRodaPe.Dock = DockStyle.Bottom;
+            PnlRodaPe.Location = new Point(201, 475);
+            PnlRodaPe.Name = "PnlRodaPe";
+            PnlRodaPe.Size = new Size(763, 59);
+            PnlRodaPe.TabIndex = 3;
+            // 
+            // BtnCancelar
+            // 
+            BtnCancelar.BackColor = Color.Crimson;
+            BtnCancelar.Cursor = Cursors.Hand;
+            BtnCancelar.FlatAppearance.BorderSize = 0;
+            BtnCancelar.FlatStyle = FlatStyle.Flat;
+            BtnCancelar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnCancelar.ForeColor = Color.White;
+            BtnCancelar.Image = (Image)resources.GetObject("BtnCancelar.Image");
+            BtnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnCancelar.Location = new Point(416, 4);
+            BtnCancelar.Margin = new Padding(10, 5, 10, 5);
+            BtnCancelar.Name = "BtnCancelar";
+            BtnCancelar.Size = new Size(190, 48);
+            BtnCancelar.TabIndex = 2;
+            BtnCancelar.Text = "Cancelar Pedido";
+            BtnCancelar.TextAlign = ContentAlignment.MiddleRight;
+            BtnCancelar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            BtnCancelar.UseVisualStyleBackColor = false;
+            BtnCancelar.Visible = false;
+            BtnCancelar.Click += btnCancelar_Click;
+            // 
+            // BtnFinalizarServico
+            // 
+            BtnFinalizarServico.BackColor = Color.SeaGreen;
+            BtnFinalizarServico.Cursor = Cursors.Hand;
+            BtnFinalizarServico.FlatAppearance.BorderSize = 0;
+            BtnFinalizarServico.FlatStyle = FlatStyle.Flat;
+            BtnFinalizarServico.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnFinalizarServico.ForeColor = Color.White;
+            BtnFinalizarServico.Image = (Image)resources.GetObject("BtnFinalizarServico.Image");
+            BtnFinalizarServico.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnFinalizarServico.Location = new Point(210, 4);
+            BtnFinalizarServico.Margin = new Padding(10, 5, 10, 5);
+            BtnFinalizarServico.Name = "BtnFinalizarServico";
+            BtnFinalizarServico.Size = new Size(200, 48);
+            BtnFinalizarServico.TabIndex = 1;
+            BtnFinalizarServico.Text = "Finalizar Serviço";
+            BtnFinalizarServico.TextAlign = ContentAlignment.MiddleRight;
+            BtnFinalizarServico.TextImageRelation = TextImageRelation.ImageBeforeText;
+            BtnFinalizarServico.UseVisualStyleBackColor = false;
+            BtnFinalizarServico.Visible = false;
+            BtnFinalizarServico.Click += btnIniciar_Click;
+            // 
+            // BtnIniciar
+            // 
+            BtnIniciar.BackColor = Color.LightSeaGreen;
+            BtnIniciar.Cursor = Cursors.Hand;
+            BtnIniciar.FlatAppearance.BorderSize = 0;
+            BtnIniciar.FlatStyle = FlatStyle.Flat;
+            BtnIniciar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnIniciar.ForeColor = Color.White;
+            BtnIniciar.Image = (Image)resources.GetObject("BtnIniciar.Image");
+            BtnIniciar.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnIniciar.Location = new Point(4, 4);
+            BtnIniciar.Margin = new Padding(10, 5, 10, 5);
+            BtnIniciar.Name = "BtnIniciar";
+            BtnIniciar.Size = new Size(200, 48);
+            BtnIniciar.TabIndex = 0;
+            BtnIniciar.Text = "Iniciar Atendimento";
+            BtnIniciar.TextAlign = ContentAlignment.MiddleRight;
+            BtnIniciar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            BtnIniciar.UseVisualStyleBackColor = false;
+            BtnIniciar.Visible = false;
+            BtnIniciar.Click += btnIniciar_Click;
             // 
             // TelaFuncionariocs
             // 
@@ -286,6 +378,7 @@
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(964, 534);
             Controls.Add(DgvPedidos);
+            Controls.Add(PnlRodaPe);
             Controls.Add(PnlCabeca);
             Controls.Add(PnlTelaFuncionario);
             Margin = new Padding(3, 2, 3, 2);
@@ -298,6 +391,7 @@
             PnlCabeca.ResumeLayout(false);
             PnlBuscarNome.ResumeLayout(false);
             PnlBuscarNome.PerformLayout();
+            PnlRodaPe.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -305,7 +399,7 @@
 
         private Panel PnlTelaFuncionario;
         private Button BtnSairFuncionario;
-        private Button BtnProximosAtendimentos;
+        private Button BtnFila;
         private PictureBox pictureBox1;
         private Button BtnIniciados;
         private Button BtnConcluidos;
@@ -316,5 +410,9 @@
         private Button BtnBuscar;
         private Panel PnlBuscarNome;
         private Button BtnCancelados;
+        private Panel PnlRodaPe;
+        private Button BtnIniciar;
+        private Button BtnFinalizarServico;
+        private Button BtnCancelar;
     }
 }

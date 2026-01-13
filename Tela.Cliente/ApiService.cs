@@ -296,22 +296,62 @@ namespace Shop.TelaFuncionarios
                 }
             }
         }
-        public async Task<DataTable> GetPedidosPendentes()
+        public async Task<DataTable> GetPedidosPorStatus(string status)
         {
             using (var client = new HttpClient())
             {
-                try
+                // Ignora certificado SSL (padrão desenvolvimento)
+                var handler = new HttpClientHandler();
+                handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
+
+                using (var clientHttp = new HttpClient(handler))
                 {
-                    var response = await client.GetAsync($"{_baseUrl}/api/pedidos/pendentes");
-                    if (response.IsSuccessStatusCode)
+                    try
                     {
-                        var json = await response.Content.ReadAsStringAsync();
-                        // Dica: Usamos DataTable para o Grid aceitar qualquer coluna que vier da API
-                        return JsonConvert.DeserializeObject<DataTable>(json);
+                        // Monta a URL: ex: .../api/pedidos?status=pendente
+                        string url = $"{_baseUrl}/api/pedidos?status={status}";
+
+                        var response = await clientHttp.GetAsync(url);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var json = await response.Content.ReadAsStringAsync();
+                            return JsonConvert.DeserializeObject<DataTable>(json);
+                        }
+                    }
+                    catch { }
+                    return null;
+                }
+            }
+        }
+        // Adicione dentro da classe ApiService
+        public async Task<bool> AtualizarStatus(int idPedido, string novoStatus)
+        {
+            using (var client = new HttpClient())
+            {
+                // Ignora SSL local
+                var handler = new HttpClientHandler();
+                handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
+
+                using (var http = new HttpClient(handler))
+                {
+                    try
+                    {
+                        // Vamos mandar o status novo como uma string JSON
+                        // Aspas duplas são necessárias para ser um JSON válido de string
+                        var content = new StringContent($"\"{novoStatus}\"", Encoding.UTF8, "application/json");
+
+                        // Chama a rota PUT: /api/pedidos/{id}/status
+                        var url = $"{_baseUrl}/api/pedidos/{idPedido}/status";
+
+                        var response = await http.PutAsync(url, content);
+
+                        return response.IsSuccessStatusCode;
+                    }
+                    catch
+                    {
+                        return false;
                     }
                 }
-                catch { }
-                return null;
             }
         }
         public async Task<bool> EditarPet(PetDTO pet)
