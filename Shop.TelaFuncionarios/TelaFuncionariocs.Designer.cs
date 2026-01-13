@@ -66,7 +66,7 @@
             PnlTelaFuncionario.Location = new Point(0, 0);
             PnlTelaFuncionario.Margin = new Padding(3, 2, 3, 2);
             PnlTelaFuncionario.Name = "PnlTelaFuncionario";
-            PnlTelaFuncionario.Size = new Size(201, 507);
+            PnlTelaFuncionario.Size = new Size(201, 534);
             PnlTelaFuncionario.TabIndex = 0;
             // 
             // BtnCancelados
@@ -172,7 +172,7 @@
             BtnSairFuncionario.ForeColor = Color.White;
             BtnSairFuncionario.Image = (Image)resources.GetObject("BtnSairFuncionario.Image");
             BtnSairFuncionario.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnSairFuncionario.Location = new Point(0, 468);
+            BtnSairFuncionario.Location = new Point(0, 495);
             BtnSairFuncionario.Margin = new Padding(3, 2, 3, 2);
             BtnSairFuncionario.Name = "BtnSairFuncionario";
             BtnSairFuncionario.Size = new Size(199, 37);
@@ -221,7 +221,7 @@
             DgvPedidos.RowHeadersVisible = false;
             DgvPedidos.RowHeadersWidth = 51;
             DgvPedidos.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
-            DgvPedidos.Size = new Size(711, 448);
+            DgvPedidos.Size = new Size(763, 475);
             DgvPedidos.TabIndex = 1;
             // 
             // PnlCabeca
@@ -233,7 +233,7 @@
             PnlCabeca.Dock = DockStyle.Top;
             PnlCabeca.Location = new Point(201, 0);
             PnlCabeca.Name = "PnlCabeca";
-            PnlCabeca.Size = new Size(711, 59);
+            PnlCabeca.Size = new Size(763, 59);
             PnlCabeca.TabIndex = 2;
             // 
             // LblTitulo
@@ -242,7 +242,7 @@
             LblTitulo.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LblTitulo.Location = new Point(168, 0);
             LblTitulo.Name = "LblTitulo";
-            LblTitulo.Size = new Size(539, 55);
+            LblTitulo.Size = new Size(591, 55);
             LblTitulo.TabIndex = 0;
             LblTitulo.Text = "label1";
             LblTitulo.TextAlign = ContentAlignment.MiddleCenter;
@@ -284,7 +284,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(912, 507);
+            ClientSize = new Size(964, 534);
             Controls.Add(DgvPedidos);
             Controls.Add(PnlCabeca);
             Controls.Add(PnlTelaFuncionario);
