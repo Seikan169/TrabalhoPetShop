@@ -108,6 +108,28 @@ namespace Mysql.PetShop.Controllers
 
             return NoContent(); // Retorna 204 (Sucesso sem conteúdo)
         }
+        // GET: api/pedidos/cliente/5
+        [HttpGet("cliente/{clienteId}")]
+        public async Task<ActionResult<IEnumerable<object>>> GetPedidosDoCliente(int clienteId)
+        {
+            var pedidos = await _context.TbPedidos
+                .Include(p => p.Pet)
+                .Include(p => p.Itens).ThenInclude(i => i.Servico)
+                .Where(p => p.ClienteId == clienteId) // <--- O FILTRO IMPORTANTE
+                .OrderByDescending(p => p.DataAgendamento) // Mais recentes primeiro
+                .Select(p => new
+                {
+                    Id = p.Id,
+                    Pet = p.Pet.Nome,
+                    Servicos = string.Join(", ", p.Itens.Select(i => i.Servico.Nome)),
+                    Data = p.DataAgendamento,
+                    Total = p.ValorTotal,
+                    Status = p.Status
+                })
+                .ToListAsync();
+
+            return Ok(pedidos);
+        }
 
         public class PedidoRequestDto
         {

@@ -220,13 +220,11 @@ namespace Shop.TelaFuncionarios
                     Telefone = telefone,
                     Cpf = cpfLimpo,
 
-                    // CORREÇÃO CRÍTICA:
-                    // 1. O nome DEVE ser DataNascimento (igual ao erro da API)
-                    // 2. Formatamos para o padrão universal "ano-mês-dia" para evitar erro
+                    
                     DataNascimento = datanascimento.ToString("yyyy-MM-dd"),
 
                     TipoUsuario = tipoUsuarioAjustado,
-                    Observacao = observacao, // Campo vazio para não quebrar
+                    Observacao = observacao, 
 
                     // Endereço
                     Cep = cep,
@@ -296,6 +294,20 @@ namespace Shop.TelaFuncionarios
                 }
                 catch { }
                 return new List<PetDTO>();
+            }
+        }
+        public async Task<DataTable> GetMeusPedidosCliente(int idCliente)
+        {
+            using (var client = new HttpClient())
+            {
+                // ... (seu código padrão de HttpClient aqui) ...
+                var response = await client.GetAsync($"{_baseUrl}/api/pedidos/cliente/{idCliente}");
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<DataTable>(json);
+                }
+                return null;
             }
         }
 
