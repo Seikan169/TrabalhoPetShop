@@ -31,26 +31,25 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaCadastroFuncionarioADM));
             TabCInformacoesFuncionario = new TabControl();
             TacInfoPessoal = new TabPage();
-            label14 = new Label();
-            MskBoxTelefoneFun = new MaskedTextBox();
-            label2 = new Label();
-            TxtSenhaFun = new TextBox();
-            MkboxDataFun = new MaskedTextBox();
-            CheKCadastroFun = new CheckBox();
+            BtnFecharCadastroFun = new Button();
             BtnCancelarCadastroFun = new Button();
             BtnCadatrarFun = new Button();
-            BtnFecharCadastroFun = new Button();
             label6 = new Label();
             TxtObservaFun = new TextBox();
-            label5 = new Label();
-            TxtEmailFun = new TextBox();
-            label4 = new Label();
-            ComBGeneroFun = new ComboBox();
             label3 = new Label();
+            label14 = new Label();
+            MskBoxTelefoneFun = new MaskedTextBox();
             TxtCpf = new Label();
-            label1 = new Label();
             MskBoxFuncioCPF = new MaskedTextBox();
             TxtNomeFuncionario = new TextBox();
+            label1 = new Label();
+            PnlCadastroFun = new Panel();
+            RdoValidarADM = new RadioButton();
+            DatapickFuncNas = new DateTimePicker();
+            label5 = new Label();
+            TxtEmailFun = new TextBox();
+            label2 = new Label();
+            TxtSenhaFun = new TextBox();
             TabcEnderecoFun = new TabPage();
             label13 = new Label();
             label12 = new Label();
@@ -68,11 +67,10 @@
             TxtBairroFun = new TextBox();
             MaskCepFun = new MaskedTextBox();
             BtnTelaADM = new Button();
-            PnlCadastroFun = new Panel();
             TabCInformacoesFuncionario.SuspendLayout();
             TacInfoPessoal.SuspendLayout();
-            TabcEnderecoFun.SuspendLayout();
             PnlCadastroFun.SuspendLayout();
+            TabcEnderecoFun.SuspendLayout();
             SuspendLayout();
             // 
             // TabCInformacoesFuncionario
@@ -94,18 +92,11 @@
             TacInfoPessoal.Controls.Add(BtnCadatrarFun);
             TacInfoPessoal.Controls.Add(label6);
             TacInfoPessoal.Controls.Add(TxtObservaFun);
-            TacInfoPessoal.Controls.Add(label2);
-            TacInfoPessoal.Controls.Add(TxtSenhaFun);
             TacInfoPessoal.Controls.Add(label3);
-            TacInfoPessoal.Controls.Add(MkboxDataFun);
             TacInfoPessoal.Controls.Add(label14);
             TacInfoPessoal.Controls.Add(MskBoxTelefoneFun);
             TacInfoPessoal.Controls.Add(TxtCpf);
             TacInfoPessoal.Controls.Add(MskBoxFuncioCPF);
-            TacInfoPessoal.Controls.Add(label5);
-            TacInfoPessoal.Controls.Add(TxtEmailFun);
-            TacInfoPessoal.Controls.Add(label4);
-            TacInfoPessoal.Controls.Add(ComBGeneroFun);
             TacInfoPessoal.Controls.Add(TxtNomeFuncionario);
             TacInfoPessoal.Controls.Add(label1);
             TacInfoPessoal.Controls.Add(PnlCadastroFun);
@@ -117,63 +108,22 @@
             TacInfoPessoal.Text = "Dados Gerais";
             TacInfoPessoal.UseVisualStyleBackColor = true;
             // 
-            // label14
+            // BtnFecharCadastroFun
             // 
-            label14.AutoSize = true;
-            label14.Location = new Point(384, 15);
-            label14.Name = "label14";
-            label14.Size = new Size(66, 20);
-            label14.TabIndex = 25;
-            label14.Text = "Telefone";
-            // 
-            // MskBoxTelefoneFun
-            // 
-            MskBoxTelefoneFun.Cursor = Cursors.IBeam;
-            MskBoxTelefoneFun.Location = new Point(384, 38);
-            MskBoxTelefoneFun.Mask = "(00) 00000-0000";
-            MskBoxTelefoneFun.Name = "MskBoxTelefoneFun";
-            MskBoxTelefoneFun.Size = new Size(125, 27);
-            MskBoxTelefoneFun.TabIndex = 24;
-            MskBoxTelefoneFun.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(446, 91);
-            label2.Name = "label2";
-            label2.Size = new Size(49, 20);
-            label2.TabIndex = 23;
-            label2.Text = "Senha";
-            // 
-            // TxtSenhaFun
-            // 
-            TxtSenhaFun.Cursor = Cursors.IBeam;
-            TxtSenhaFun.Location = new Point(446, 115);
-            TxtSenhaFun.Name = "TxtSenhaFun";
-            TxtSenhaFun.Size = new Size(158, 27);
-            TxtSenhaFun.TabIndex = 22;
-            // 
-            // MkboxDataFun
-            // 
-            MkboxDataFun.Cursor = Cursors.IBeam;
-            MkboxDataFun.Location = new Point(549, 38);
-            MkboxDataFun.Mask = "00/00/0000";
-            MkboxDataFun.Name = "MkboxDataFun";
-            MkboxDataFun.Size = new Size(125, 27);
-            MkboxDataFun.TabIndex = 21;
-            MkboxDataFun.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            // 
-            // CheKCadastroFun
-            // 
-            CheKCadastroFun.AutoSize = true;
-            CheKCadastroFun.Cursor = Cursors.Hand;
-            CheKCadastroFun.Location = new Point(656, 114);
-            CheKCadastroFun.Name = "CheKCadastroFun";
-            CheKCadastroFun.Size = new Size(231, 24);
-            CheKCadastroFun.TabIndex = 19;
-            CheKCadastroFun.Text = "Aplicar Usuário Administrador";
-            CheKCadastroFun.UseVisualStyleBackColor = true;
-            CheKCadastroFun.CheckedChanged += CheKCadastroFun_CheckedChanged;
+            BtnFecharCadastroFun.BackColor = Color.Transparent;
+            BtnFecharCadastroFun.BackgroundImage = (Image)resources.GetObject("BtnFecharCadastroFun.BackgroundImage");
+            BtnFecharCadastroFun.BackgroundImageLayout = ImageLayout.Stretch;
+            BtnFecharCadastroFun.Cursor = Cursors.Hand;
+            BtnFecharCadastroFun.FlatAppearance.BorderSize = 0;
+            BtnFecharCadastroFun.FlatStyle = FlatStyle.Flat;
+            BtnFecharCadastroFun.ForeColor = Color.SteelBlue;
+            BtnFecharCadastroFun.ImageAlign = ContentAlignment.MiddleRight;
+            BtnFecharCadastroFun.Location = new Point(929, 15);
+            BtnFecharCadastroFun.Name = "BtnFecharCadastroFun";
+            BtnFecharCadastroFun.Size = new Size(50, 50);
+            BtnFecharCadastroFun.TabIndex = 16;
+            BtnFecharCadastroFun.UseVisualStyleBackColor = false;
+            BtnFecharCadastroFun.Click += BtnFecharCadastroFun_Click;
             // 
             // BtnCancelarCadastroFun
             // 
@@ -202,22 +152,6 @@
             BtnCadatrarFun.UseVisualStyleBackColor = false;
             BtnCadatrarFun.Click += BtnCadatrarFun_Click;
             // 
-            // BtnFecharCadastroFun
-            // 
-            BtnFecharCadastroFun.BackColor = Color.Transparent;
-            BtnFecharCadastroFun.BackgroundImage = (Image)resources.GetObject("BtnFecharCadastroFun.BackgroundImage");
-            BtnFecharCadastroFun.BackgroundImageLayout = ImageLayout.Stretch;
-            BtnFecharCadastroFun.Cursor = Cursors.Hand;
-            BtnFecharCadastroFun.FlatAppearance.BorderSize = 0;
-            BtnFecharCadastroFun.FlatStyle = FlatStyle.Flat;
-            BtnFecharCadastroFun.ForeColor = Color.SteelBlue;
-            BtnFecharCadastroFun.ImageAlign = ContentAlignment.MiddleRight;
-            BtnFecharCadastroFun.Location = new Point(929, 15);
-            BtnFecharCadastroFun.Name = "BtnFecharCadastroFun";
-            BtnFecharCadastroFun.Size = new Size(50, 50);
-            BtnFecharCadastroFun.TabIndex = 16;
-            BtnFecharCadastroFun.UseVisualStyleBackColor = false;
-            // 
             // label6
             // 
             label6.AutoSize = true;
@@ -236,42 +170,6 @@
             TxtObservaFun.Size = new Size(961, 143);
             TxtObservaFun.TabIndex = 12;
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(209, 92);
-            label5.Name = "label5";
-            label5.Size = new Size(46, 20);
-            label5.TabIndex = 11;
-            label5.Text = "Email";
-            // 
-            // TxtEmailFun
-            // 
-            TxtEmailFun.Cursor = Cursors.IBeam;
-            TxtEmailFun.Location = new Point(209, 115);
-            TxtEmailFun.Name = "TxtEmailFun";
-            TxtEmailFun.Size = new Size(207, 27);
-            TxtEmailFun.TabIndex = 10;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(18, 91);
-            label4.Name = "label4";
-            label4.Size = new Size(57, 20);
-            label4.TabIndex = 9;
-            label4.Text = "Gênero";
-            // 
-            // ComBGeneroFun
-            // 
-            ComBGeneroFun.Cursor = Cursors.Hand;
-            ComBGeneroFun.FormattingEnabled = true;
-            ComBGeneroFun.Items.AddRange(new object[] { "Masculino", "Feminino", "Outros" });
-            ComBGeneroFun.Location = new Point(18, 114);
-            ComBGeneroFun.Name = "ComBGeneroFun";
-            ComBGeneroFun.Size = new Size(151, 28);
-            ComBGeneroFun.TabIndex = 8;
-            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -281,6 +179,25 @@
             label3.TabIndex = 7;
             label3.Text = "Data Nascimento";
             // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(384, 15);
+            label14.Name = "label14";
+            label14.Size = new Size(66, 20);
+            label14.TabIndex = 25;
+            label14.Text = "Telefone";
+            // 
+            // MskBoxTelefoneFun
+            // 
+            MskBoxTelefoneFun.Cursor = Cursors.IBeam;
+            MskBoxTelefoneFun.Location = new Point(384, 38);
+            MskBoxTelefoneFun.Mask = "(00) 00000-0000";
+            MskBoxTelefoneFun.Name = "MskBoxTelefoneFun";
+            MskBoxTelefoneFun.Size = new Size(125, 27);
+            MskBoxTelefoneFun.TabIndex = 24;
+            MskBoxTelefoneFun.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            // 
             // TxtCpf
             // 
             TxtCpf.AutoSize = true;
@@ -289,15 +206,6 @@
             TxtCpf.Size = new Size(125, 20);
             TxtCpf.TabIndex = 3;
             TxtCpf.Text = "CPF (Obrigatório)";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(18, 15);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 20);
-            label1.TabIndex = 2;
-            label1.Text = "Nome";
             // 
             // MskBoxFuncioCPF
             // 
@@ -316,6 +224,84 @@
             TxtNomeFuncionario.Name = "TxtNomeFuncionario";
             TxtNomeFuncionario.Size = new Size(157, 27);
             TxtNomeFuncionario.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(18, 15);
+            label1.Name = "label1";
+            label1.Size = new Size(50, 20);
+            label1.TabIndex = 2;
+            label1.Text = "Nome";
+            // 
+            // PnlCadastroFun
+            // 
+            PnlCadastroFun.Controls.Add(RdoValidarADM);
+            PnlCadastroFun.Controls.Add(DatapickFuncNas);
+            PnlCadastroFun.Controls.Add(label5);
+            PnlCadastroFun.Controls.Add(TxtEmailFun);
+            PnlCadastroFun.Controls.Add(label2);
+            PnlCadastroFun.Controls.Add(TxtSenhaFun);
+            PnlCadastroFun.Location = new Point(0, 3);
+            PnlCadastroFun.Name = "PnlCadastroFun";
+            PnlCadastroFun.Size = new Size(1001, 462);
+            PnlCadastroFun.TabIndex = 26;
+            PnlCadastroFun.Paint += PnlCadastroFun_Paint;
+            // 
+            // RdoValidarADM
+            // 
+            RdoValidarADM.AutoSize = true;
+            RdoValidarADM.Location = new Point(513, 103);
+            RdoValidarADM.Name = "RdoValidarADM";
+            RdoValidarADM.Size = new Size(216, 24);
+            RdoValidarADM.TabIndex = 28;
+            RdoValidarADM.TabStop = true;
+            RdoValidarADM.Text = "Permissão de Administrador";
+            RdoValidarADM.UseVisualStyleBackColor = true;
+            // 
+            // DatapickFuncNas
+            // 
+            DatapickFuncNas.Cursor = Cursors.Hand;
+            DatapickFuncNas.Format = DateTimePickerFormat.Short;
+            DatapickFuncNas.Location = new Point(549, 36);
+            DatapickFuncNas.Margin = new Padding(3, 4, 3, 4);
+            DatapickFuncNas.Name = "DatapickFuncNas";
+            DatapickFuncNas.Size = new Size(153, 27);
+            DatapickFuncNas.TabIndex = 27;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(18, 79);
+            label5.Name = "label5";
+            label5.Size = new Size(46, 20);
+            label5.TabIndex = 11;
+            label5.Text = "Email";
+            // 
+            // TxtEmailFun
+            // 
+            TxtEmailFun.Cursor = Cursors.IBeam;
+            TxtEmailFun.Location = new Point(18, 102);
+            TxtEmailFun.Name = "TxtEmailFun";
+            TxtEmailFun.Size = new Size(207, 27);
+            TxtEmailFun.TabIndex = 10;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(285, 79);
+            label2.Name = "label2";
+            label2.Size = new Size(49, 20);
+            label2.TabIndex = 23;
+            label2.Text = "Senha";
+            // 
+            // TxtSenhaFun
+            // 
+            TxtSenhaFun.Cursor = Cursors.IBeam;
+            TxtSenhaFun.Location = new Point(285, 102);
+            TxtSenhaFun.Name = "TxtSenhaFun";
+            TxtSenhaFun.Size = new Size(158, 27);
+            TxtSenhaFun.TabIndex = 22;
             // 
             // TabcEnderecoFun
             // 
@@ -464,6 +450,7 @@
             MaskCepFun.Name = "MaskCepFun";
             MaskCepFun.Size = new Size(125, 27);
             MaskCepFun.TabIndex = 19;
+            MaskCepFun.Leave += MaskCepFun_Leave;
             // 
             // BtnTelaADM
             // 
@@ -480,15 +467,6 @@
             BtnTelaADM.TabIndex = 17;
             BtnTelaADM.UseVisualStyleBackColor = false;
             // 
-            // PnlCadastroFun
-            // 
-            PnlCadastroFun.Controls.Add(CheKCadastroFun);
-            PnlCadastroFun.Location = new Point(0, 3);
-            PnlCadastroFun.Name = "PnlCadastroFun";
-            PnlCadastroFun.Size = new Size(1001, 462);
-            PnlCadastroFun.TabIndex = 26;
-            PnlCadastroFun.Paint += PnlCadastroFun_Paint;
-            // 
             // TelaCadastroFuncionarioADM
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -502,10 +480,10 @@
             TabCInformacoesFuncionario.ResumeLayout(false);
             TacInfoPessoal.ResumeLayout(false);
             TacInfoPessoal.PerformLayout();
-            TabcEnderecoFun.ResumeLayout(false);
-            TabcEnderecoFun.PerformLayout();
             PnlCadastroFun.ResumeLayout(false);
             PnlCadastroFun.PerformLayout();
+            TabcEnderecoFun.ResumeLayout(false);
+            TabcEnderecoFun.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -517,8 +495,6 @@
         private Label label1;
         private MaskedTextBox MskBoxFuncioCPF;
         private Label TxtCpf;
-        private Label label4;
-        private ComboBox ComBGeneroFun;
         private Label label5;
         private TextBox TxtEmailFun;
         private TextBox TxtObservaFun;
@@ -541,14 +517,14 @@
         private Label label9;
         private Label label8;
         private TextBox TxtUfFun;
-        private CheckBox CheKCadastroFun;
         private Label label3;
-        private MaskedTextBox MkboxDataFun;
         private Label label2;
         private TextBox TxtSenhaFun;
         private Label label13;
         private Label label14;
         private MaskedTextBox MskBoxTelefoneFun;
         private Panel PnlCadastroFun;
+        private DateTimePicker DatapickFuncNas;
+        private RadioButton RdoValidarADM;
     }
 }

@@ -67,7 +67,7 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(206, 561);
+            panel1.Size = new Size(206, 532);
             panel1.TabIndex = 0;
             // 
             // BtnSairADM
@@ -79,7 +79,7 @@
             BtnSairADM.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             BtnSairADM.Image = (Image)resources.GetObject("BtnSairADM.Image");
             BtnSairADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnSairADM.Location = new Point(0, 508);
+            BtnSairADM.Location = new Point(0, 479);
             BtnSairADM.Name = "BtnSairADM";
             BtnSairADM.Size = new Size(206, 53);
             BtnSairADM.TabIndex = 10;
@@ -235,7 +235,7 @@
             PanelCentralADM.Dock = DockStyle.Fill;
             PanelCentralADM.Location = new Point(206, 0);
             PanelCentralADM.Name = "PanelCentralADM";
-            PanelCentralADM.Size = new Size(905, 561);
+            PanelCentralADM.Size = new Size(739, 532);
             PanelCentralADM.TabIndex = 2;
             // 
             // DgvPricipal
@@ -281,7 +281,7 @@
             DgvPricipal.RowHeadersVisible = false;
             DgvPricipal.RowHeadersWidth = 51;
             DgvPricipal.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
-            DgvPricipal.Size = new Size(905, 561);
+            DgvPricipal.Size = new Size(739, 532);
             DgvPricipal.TabIndex = 1;
             // 
             // TelaPrincipalADM
@@ -291,7 +291,7 @@
             BackColor = SystemColors.InactiveCaption;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1111, 561);
+            ClientSize = new Size(945, 532);
             Controls.Add(PanelCentralADM);
             Controls.Add(panel1);
             ForeColor = Color.Transparent;

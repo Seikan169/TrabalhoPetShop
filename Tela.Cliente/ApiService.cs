@@ -195,7 +195,7 @@ namespace Shop.TelaFuncionarios
                     tipoUsuarioAjustado = "cliente"; // Valor padrão se nulo
                     observacao = "Cliente Cadastrado no app";
                 }
-                else if (tipouser.Equals("funcionário", StringComparison.OrdinalIgnoreCase))
+                else if (tipouser == "funcionario")
                 {
                     tipoUsuarioAjustado = "funcionario";
                 }

@@ -30,7 +30,8 @@ namespace Shop.TelaFuncionarios
 
         private void BtnControleFuncionario_Click(object sender, EventArgs e)
         {
-
+            TelaCadastroFuncionarioADM telacadfun = new TelaCadastroFuncionarioADM();
+            telacadfun.Show();
         }
 
         private void BtnSairADM_Click(object sender, EventArgs e)
