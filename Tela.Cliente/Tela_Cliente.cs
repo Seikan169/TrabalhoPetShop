@@ -28,7 +28,7 @@ namespace Tela.Cliente
 
             LblBemvindo.Text = $"Olá, {usuario}! Vamos agendar um cuidado para seu pet hoje?";
             tabControl1.Appearance = TabAppearance.FlatButtons;
-            tabControl1.ItemSize = new Size(0, 1);
+            tabControl1.ItemSize = new Size(0, 2);
             tabControl1.SizeMode = TabSizeMode.Fixed;
 
         }
@@ -80,6 +80,7 @@ namespace Tela.Cliente
 
         // 2. Método para buscar os pets do cliente na API
         private int _idPetEmEdicao = 0; // 0 significa que é um NOVO cadastro
+
         private async Task CarregarMeusPets()
         {
             try
@@ -351,10 +352,10 @@ namespace Tela.Cliente
                     ValorTotal = valortotal,
                     Observacoes = TxtObservacoes.Text,
                     Itens = listaItens,
-                    Data_Escolhida = dataselec 
+                    Data_Escolhida = dataselec
                 };
 
-               
+
 
                 string Obs = TxtObservacoes.Text;
 
@@ -374,12 +375,12 @@ namespace Tela.Cliente
                     CmbPetAgendar.SelectedIndex = -1; // Reseta o combo
                 }
                 else
-                { 
+                {
 
                     MessageBox.Show("Falha ao realizar o agendamento. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -637,7 +638,7 @@ namespace Tela.Cliente
             this.Close();
         }
 
-        private  async void BtnBuscar_Click(object sender, EventArgs e)
+        private async void BtnBuscar_Click(object sender, EventArgs e)
         {
             string termo = TxtBuscarPorNome.Text;
 
@@ -681,6 +682,116 @@ namespace Tela.Cliente
 
                 // Evita aquele barulhinho de "plim" do Windows
                 e.SuppressKeyPress = true;
+            }
+        }
+
+        private async void BtnMeusPedidos_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 2; // Vai para a terceira aba
+            await CarregarAcompanhar();
+        }
+
+        private async Task CarregarAcompanhar()
+        {
+            try
+            {
+                // Limpa visualmente antes de buscar
+                DgvAcompanhar.DataSource = null;
+
+                ApiService api = new ApiService();
+                // Busca os pedidos do usuário logado
+                var dados = await api.GetMeusPedidosCliente(_usuarioIdLogado);
+
+                if (dados != null)
+                {
+                    DgvAcompanhar.DataSource = dados;
+                    ConfigurarGridAcompanhamento(); // Chama a formatação visual
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar seus pedidos: " + ex.Message);
+            }
+        }
+        private void ConfigurarGridAcompanhamento()
+        {
+            // 1. Configurações Gerais do Grid
+            DgvAcompanhar.EnableHeadersVisualStyles = false;
+            DgvAcompanhar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DgvAcompanhar.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DgvAcompanhar.ReadOnly = true;
+            DgvAcompanhar.AllowUserToAddRows = false;
+            DgvAcompanhar.RowHeadersVisible = false;
+            DgvAcompanhar.RowTemplate.Height = 40; // Altura boa para visualização
+            DgvAcompanhar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing; // Trava a altura
+            DgvAcompanhar.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centraliza o texto verticalmente também
+
+            if (DgvAcompanhar.Columns.Contains("status"))
+            {
+                DgvAcompanhar.Columns["Status"].HeaderText = "Situação Atual"; // Texto mais amigável
+                DgvAcompanhar.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            // 4. Formatação das Colunas (R$, Data, Títulos)
+            if (DgvAcompanhar.Columns.Contains("Total"))
+            {
+                DgvAcompanhar.Columns["Total"].DefaultCellStyle.Format = "C2"; // R$
+                DgvAcompanhar.Columns["Total"].HeaderText = "Valor Total";
+                DgvAcompanhar.Columns["Total"].Width = 100;
+                DgvAcompanhar.Columns["Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+
+            if (DgvAcompanhar.Columns.Contains("Data"))
+            {
+                DgvAcompanhar.Columns["Data"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
+                DgvAcompanhar.Columns["Data"].HeaderText = "Data do Agendamento";
+                DgvAcompanhar.Columns["Data"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+
+            if (DgvAcompanhar.Columns.Contains("Pet"))
+            {
+                DgvAcompanhar.Columns["Pet"].HeaderText = "Pet";
+                DgvAcompanhar.Columns["Pet"].Width = 80;
+            }
+
+            if (DgvAcompanhar.Columns.Contains("Servicos"))
+            {
+                DgvAcompanhar.Columns["Servicos"].HeaderText = "Serviços Solicitados";
+                // Quebra de linha automática para caber todos os serviços
+                DgvAcompanhar.Columns["Servicos"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                DgvAcompanhar.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            }
+
+            // Esconde ID se aparecer
+            if (DgvAcompanhar.Columns.Contains("Id")) DgvAcompanhar.Columns["Id"].Visible = false;
+
+            // Remove e adiciona para garantir que está ligado
+            DgvAcompanhar.CellFormatting -= DgvAcompanhar_CellFormatting;
+            DgvAcompanhar.CellFormatting += DgvAcompanhar_CellFormatting;
+
+
+        }
+
+        private void DgvAcompanhar_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Verifica se a coluna é "Status"
+            if (DgvAcompanhar.Columns[e.ColumnIndex].Name == "status" && e.Value != null)
+            {
+                string statusBruto = e.Value.ToString().ToLower();
+
+                // 1. Limpa o texto (Tira o _ e deixa a primeira letra maiúscula)
+                // Dica: Você pode forçar o texto exato que quer que apareça
+                if (statusBruto == "em_andamento") e.Value = "Em Andamento";
+                else if (statusBruto == "concluido") e.Value = "Concluído";
+                else if (statusBruto == "pendente") e.Value = "Pendente";
+                else if (statusBruto == "cancelado") e.Value = "Cancelado";
+
+                // 2. As cores (Mantenha ou ajuste)
+                e.CellStyle.Font = new Font(DgvAcompanhar.Font, FontStyle.Bold);
+
+                if (statusBruto == "concluido") e.CellStyle.ForeColor = Color.Green;
+                else if (statusBruto == "cancelado") e.CellStyle.ForeColor = Color.Red;
+                else if (statusBruto == "em_andamento") e.CellStyle.ForeColor = Color.Blue;
+                else e.CellStyle.ForeColor = Color.DarkOrange;
             }
         }
     }
