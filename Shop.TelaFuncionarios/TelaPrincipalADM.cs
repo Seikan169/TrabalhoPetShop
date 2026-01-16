@@ -92,6 +92,81 @@ namespace Shop.TelaFuncionarios
 
             // 2. Carrega os dados
             await CarregarDashboard();
+            await CarregarUltimosPedidos();
+        }
+        private async Task CarregarUltimosPedidos()
+        {
+            try
+            {
+                ApiService api = new ApiService();
+                // 1. Busca todos os pedidos (reaproveita o método que já existe)
+                var todosPedidos = await api.GetTodosAgendamentos();
+
+                if (todosPedidos != null && todosPedidos.Rows.Count > 0)
+                {
+                    // 2. A MÁGICA: Pega apenas os 5 primeiros registros
+                    // O .AsEnumerable() permite usar LINQ no DataTable
+                    var top5 = todosPedidos.AsEnumerable()
+                                           .Take(5)
+                                           .CopyToDataTable();
+
+                    // 3. Joga no Grid
+                    DgvUltimosPedidos.DataSource = top5;
+
+                    // 4. Aplica o visual bonito (Criaremos esse método ajustado abaixo)
+                    ConfigurarEstiloResumo(DgvUltimosPedidos);
+                }
+                else
+                {
+                    // Se não tiver pedidos, esconde o grid ou não faz nada
+                    DgvUltimosPedidos.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar últimos pedidos: " + ex.Message);
+            }
+        }
+        private void ConfigurarEstiloResumo(DataGridView dgv)
+        {
+            // Limpa estilo anterior
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.ReadOnly = true;
+            dgv.AllowUserToAddRows = false;
+            dgv.RowHeadersVisible = false;
+            dgv.BorderStyle = BorderStyle.None;
+
+            // Cabeçalho Discreto (Cinza Claro ou Branco)
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.WhiteSmoke;
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black; // Texto Preto
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            dgv.ColumnHeadersHeight = 30;
+
+            // Linhas
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+            dgv.DefaultCellStyle.SelectionBackColor = Color.AliceBlue; // Azul bem clarinho ao selecionar
+            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+            dgv.RowsDefaultCellStyle.BackColor = Color.White;
+
+            // --- ESCONDER COLUNAS DESNECESSÁRIAS ---
+            // No resumo, só precisamos ver: Cliente, Pet, Serviço, Valor e Status
+            if (dgv.Columns.Contains("Id")) dgv.Columns["Id"].Visible = false;
+            if (dgv.Columns.Contains("Data")) dgv.Columns["Data"].Visible = false; // Opcional: Se quiser economizar espaço
+
+            // Formatação de Moeda
+            if (dgv.Columns.Contains("Total"))
+            {
+                dgv.Columns["Total"].HeaderText = "Valor";
+                dgv.Columns["Total"].DefaultCellStyle.Format = "C2";
+                dgv.Columns["Total"].Width = 80;
+            }
+
+            // --- LIGA O EVENTO DE CORES DO STATUS ---
+            dgv.CellFormatting -= DgvPrincipal_CellFormatting; // Reaproveita o formatador que já criamos!
+            dgv.CellFormatting += DgvPrincipal_CellFormatting;
         }
         private async Task CarregarDashboard()
         {

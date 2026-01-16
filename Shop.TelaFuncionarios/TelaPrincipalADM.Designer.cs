@@ -63,6 +63,7 @@
             LblTitulo = new Label();
             LblDATA = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
+            DgvUltimosPedidos = new DataGridView();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             PanelCentralADM.SuspendLayout();
@@ -73,6 +74,7 @@
             PnlCardClientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DgvPricipal).BeginInit();
             PnLCabeca.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DgvUltimosPedidos).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -273,6 +275,7 @@
             // PanelCentralADM
             // 
             PanelCentralADM.BackColor = Color.Transparent;
+            PanelCentralADM.Controls.Add(DgvUltimosPedidos);
             PanelCentralADM.Controls.Add(FlowPanelGrafico);
             PanelCentralADM.Controls.Add(DgvPricipal);
             PanelCentralADM.Controls.Add(PnLCabeca);
@@ -301,6 +304,7 @@
             // PnlCardVendas
             // 
             PnlCardVendas.BackColor = Color.RoyalBlue;
+            PnlCardVendas.BorderStyle = BorderStyle.Fixed3D;
             PnlCardVendas.Controls.Add(label2);
             PnlCardVendas.Controls.Add(LblVendaHj);
             PnlCardVendas.Location = new Point(23, 23);
@@ -318,7 +322,7 @@
             label2.Location = new Point(0, 0);
             label2.Name = "label2";
             label2.RightToLeft = RightToLeft.No;
-            label2.Size = new Size(250, 45);
+            label2.Size = new Size(246, 45);
             label2.TabIndex = 2;
             label2.Text = "Vendas Hoje: ";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -336,6 +340,7 @@
             // panel2
             // 
             panel2.BackColor = Color.BlueViolet;
+            panel2.BorderStyle = BorderStyle.Fixed3D;
             panel2.Controls.Add(LblValorMes);
             panel2.Controls.Add(LblMes);
             panel2.Location = new Point(279, 23);
@@ -362,13 +367,14 @@
             LblMes.ImageAlign = ContentAlignment.MiddleRight;
             LblMes.Location = new Point(0, 0);
             LblMes.Name = "LblMes";
-            LblMes.Size = new Size(250, 34);
+            LblMes.Size = new Size(246, 34);
             LblMes.TabIndex = 4;
             LblMes.Text = "Vendas do mês ";
             // 
             // PnlVendasCard
             // 
             PnlVendasCard.BackColor = Color.DarkOrange;
+            PnlVendasCard.BorderStyle = BorderStyle.Fixed3D;
             PnlVendasCard.Controls.Add(LblQtdPendentes);
             PnlVendasCard.Controls.Add(lBLPendente);
             PnlVendasCard.Location = new Point(535, 23);
@@ -394,13 +400,14 @@
             lBLPendente.ImageAlign = ContentAlignment.MiddleRight;
             lBLPendente.Location = new Point(0, 0);
             lBLPendente.Name = "lBLPendente";
-            lBLPendente.Size = new Size(250, 34);
+            lBLPendente.Size = new Size(246, 34);
             lBLPendente.TabIndex = 3;
             lBLPendente.Text = "Pendente";
             // 
             // PnlCardClientes
             // 
             PnlCardClientes.BackColor = Color.SeaGreen;
+            PnlCardClientes.BorderStyle = BorderStyle.Fixed3D;
             PnlCardClientes.Controls.Add(LblQTDClientes);
             PnlCardClientes.Controls.Add(LblClientes);
             PnlCardClientes.Location = new Point(791, 23);
@@ -426,7 +433,7 @@
             LblClientes.ImageAlign = ContentAlignment.MiddleRight;
             LblClientes.Location = new Point(0, 0);
             LblClientes.Name = "LblClientes";
-            LblClientes.Size = new Size(250, 34);
+            LblClientes.Size = new Size(246, 34);
             LblClientes.TabIndex = 4;
             LblClientes.Text = "Clientes";
             // 
@@ -521,6 +528,15 @@
             timer1.Interval = 1000;
             timer1.Tick += timer1_Tick;
             // 
+            // DgvUltimosPedidos
+            // 
+            DgvUltimosPedidos.BorderStyle = BorderStyle.Fixed3D;
+            DgvUltimosPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DgvUltimosPedidos.Location = new Point(6, 237);
+            DgvUltimosPedidos.Name = "DgvUltimosPedidos";
+            DgvUltimosPedidos.Size = new Size(1107, 306);
+            DgvUltimosPedidos.TabIndex = 4;
+            // 
             // TelaPrincipalADM
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -551,6 +567,7 @@
             PnlCardClientes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DgvPricipal).EndInit();
             PnLCabeca.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)DgvUltimosPedidos).EndInit();
             ResumeLayout(false);
         }
 
@@ -588,5 +605,6 @@
         private Label LblTitulo;
         private Label LblDATA;
         private System.Windows.Forms.Timer timer1;
+        private DataGridView DgvUltimosPedidos;
     }
 }
