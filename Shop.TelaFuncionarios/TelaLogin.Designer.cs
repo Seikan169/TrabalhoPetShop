@@ -64,8 +64,8 @@
             // BtnEntrarLogin
             // 
             BtnEntrarLogin.BackColor = SystemColors.ControlDarkDark;
-            BtnEntrarLogin.Cursor = Cursors.WaitCursor;
-            BtnEntrarLogin.FlatStyle = FlatStyle.Popup;
+            BtnEntrarLogin.Cursor = Cursors.Hand;
+            BtnEntrarLogin.FlatStyle = FlatStyle.Flat;
             BtnEntrarLogin.Font = new Font("Century Gothic", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
             BtnEntrarLogin.ForeColor = SystemColors.ButtonHighlight;
             BtnEntrarLogin.Location = new Point(349, 299);
@@ -100,7 +100,7 @@
             // BtnCadastrarCliente
             // 
             BtnCadastrarCliente.BackColor = SystemColors.ControlDarkDark;
-            BtnCadastrarCliente.Cursor = Cursors.WaitCursor;
+            BtnCadastrarCliente.Cursor = Cursors.Hand;
             BtnCadastrarCliente.FlatStyle = FlatStyle.Popup;
             BtnCadastrarCliente.Font = new Font("Century Gothic", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
             BtnCadastrarCliente.ForeColor = SystemColors.ButtonFace;
@@ -116,12 +116,11 @@
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
-            label3.BorderStyle = BorderStyle.Fixed3D;
             label3.Font = new Font("Microsoft Sans Serif", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = SystemColors.HotTrack;
             label3.Location = new Point(32, 23);
             label3.Name = "label3";
-            label3.Size = new Size(673, 71);
+            label3.Size = new Size(671, 69);
             label3.TabIndex = 6;
             label3.Text = "Bem-Vindo à PetWORD";
             // 
@@ -129,12 +128,11 @@
             // 
             label4.AutoSize = true;
             label4.BackColor = Color.Transparent;
-            label4.BorderStyle = BorderStyle.Fixed3D;
             label4.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = SystemColors.HotTrack;
             label4.Location = new Point(115, 94);
             label4.Name = "label4";
-            label4.Size = new Size(666, 38);
+            label4.Size = new Size(664, 36);
             label4.TabIndex = 7;
             label4.Text = "Um Mundo Onde Seu Parceiro(a) se Sente Bem!!";
             // 
@@ -163,7 +161,11 @@
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(994, 493);
             Controls.Add(PnlTelaLogin);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MaximumSize = new Size(1012, 540);
+            MinimumSize = new Size(1012, 540);
             Name = "TelaLogin";
             Text = "TelaLogin";
             Load += TelaLogin_Load;

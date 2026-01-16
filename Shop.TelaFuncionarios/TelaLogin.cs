@@ -16,6 +16,14 @@ namespace Shop.TelaFuncionarios
         public TelaLogin()
         {
             InitializeComponent();
+
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            // Desativa o botão de maximizar
+            this.MaximizeBox = false;
+
+            // Opcional: Centraliza a tela ao abrir
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private async void BtnEntrarLogin_Click(object sender, EventArgs e)
