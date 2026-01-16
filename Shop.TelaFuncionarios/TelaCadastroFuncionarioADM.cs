@@ -158,8 +158,34 @@ namespace Shop.TelaFuncionarios
         }
 
         private void BtnFecharCadastroFun_Click(object sender, EventArgs e)
-        { 
+        {
             this.Close(); // Isso fecha a tela de cadastro onde você está
+        }
+
+        private void TabcEnderecoFun_Click(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void BtnCancelarCadastroFun_Click(object sender, EventArgs e)
+        {
+
+            TxtNomeFuncionario.Clear();
+            TxtEmailFun.Clear();
+            TxtSenhaFun.Clear();
+            MskBoxTelefoneFun.Clear();
+            MskBoxFuncioCPF.Clear();
+            MskBoxTelefoneFun.Clear();
+            TxtObservaFun.Clear();
+
+            MaskCepFun.Clear();
+            TxtRuaFun.Clear();
+            TxtNumFun.Clear();
+            TxtBairroFun.Clear();
+            TxtCidadeFun.Clear();
+            TxtUfFun.Clear();
+            TxtCompleFun.Clear();
         }
     }
 }

@@ -66,7 +66,6 @@
             TxtRuaFun = new TextBox();
             TxtBairroFun = new TextBox();
             MaskCepFun = new MaskedTextBox();
-            BtnTelaADM = new Button();
             TabCInformacoesFuncionario.SuspendLayout();
             TacInfoPessoal.SuspendLayout();
             PnlCadastroFun.SuspendLayout();
@@ -137,6 +136,7 @@
             BtnCancelarCadastroFun.TabIndex = 18;
             BtnCancelarCadastroFun.Text = "Cancelar";
             BtnCancelarCadastroFun.UseVisualStyleBackColor = false;
+            BtnCancelarCadastroFun.Click += BtnCancelarCadastroFun_Click;
             // 
             // BtnCadatrarFun
             // 
@@ -322,7 +322,6 @@
             TabcEnderecoFun.Controls.Add(TxtRuaFun);
             TabcEnderecoFun.Controls.Add(TxtBairroFun);
             TabcEnderecoFun.Controls.Add(MaskCepFun);
-            TabcEnderecoFun.Controls.Add(BtnTelaADM);
             TabcEnderecoFun.Location = new Point(4, 29);
             TabcEnderecoFun.Name = "TabcEnderecoFun";
             TabcEnderecoFun.Padding = new Padding(3);
@@ -330,10 +329,14 @@
             TabcEnderecoFun.TabIndex = 3;
             TabcEnderecoFun.Text = "Endereço";
             TabcEnderecoFun.UseVisualStyleBackColor = true;
+            TabcEnderecoFun.Click += TabcEnderecoFun_Click;
             // 
             // label13
             // 
             label13.AutoSize = true;
+            label13.BackColor = Color.Transparent;
+            label13.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label13.ForeColor = Color.Black;
             label13.Location = new Point(33, 8);
             label13.Name = "label13";
             label13.Size = new Size(35, 20);
@@ -343,25 +346,28 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(255, 232);
+            label12.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label12.Location = new Point(33, 79);
             label12.Name = "label12";
-            label12.Size = new Size(63, 20);
+            label12.Size = new Size(67, 20);
             label12.TabIndex = 29;
             label12.Text = "Número";
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(255, 300);
+            label11.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label11.Location = new Point(33, 147);
             label11.Name = "label11";
-            label11.Size = new Size(104, 20);
+            label11.Size = new Size(108, 20);
             label11.TabIndex = 29;
             label11.Text = "Complemento";
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(33, 300);
+            label10.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.Location = new Point(33, 270);
             label10.Name = "label10";
             label10.Size = new Size(56, 20);
             label10.TabIndex = 28;
@@ -370,77 +376,80 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(33, 232);
+            label9.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.Location = new Point(33, 201);
             label9.Name = "label9";
-            label9.Size = new Size(26, 20);
+            label9.Size = new Size(28, 20);
             label9.TabIndex = 27;
             label9.Text = "UF";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(33, 167);
+            label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(33, 386);
             label8.Name = "label8";
-            label8.Size = new Size(34, 20);
+            label8.Size = new Size(36, 20);
             label8.TabIndex = 26;
             label8.Text = "Rua";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(33, 104);
+            label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Location = new Point(33, 323);
             label7.Name = "label7";
-            label7.Size = new Size(49, 20);
+            label7.Size = new Size(52, 20);
             label7.TabIndex = 25;
             label7.Text = "Bairro";
             // 
             // TxtCompleFun
             // 
-            TxtCompleFun.Location = new Point(255, 323);
+            TxtCompleFun.Location = new Point(33, 170);
             TxtCompleFun.Name = "TxtCompleFun";
             TxtCompleFun.Size = new Size(125, 27);
             TxtCompleFun.TabIndex = 24;
             // 
             // TxtCidadeFun
             // 
-            TxtCidadeFun.Location = new Point(33, 323);
+            TxtCidadeFun.Location = new Point(33, 293);
             TxtCidadeFun.Name = "TxtCidadeFun";
             TxtCidadeFun.Size = new Size(125, 27);
             TxtCidadeFun.TabIndex = 23;
             // 
             // TxtNumFun
             // 
-            TxtNumFun.Location = new Point(255, 255);
+            TxtNumFun.Location = new Point(33, 102);
             TxtNumFun.Name = "TxtNumFun";
             TxtNumFun.Size = new Size(125, 27);
             TxtNumFun.TabIndex = 23;
             // 
             // TxtUfFun
             // 
-            TxtUfFun.Location = new Point(33, 255);
+            TxtUfFun.Location = new Point(33, 224);
             TxtUfFun.Name = "TxtUfFun";
             TxtUfFun.Size = new Size(125, 27);
             TxtUfFun.TabIndex = 22;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(41, 255);
+            textBox3.Location = new Point(33, 224);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(125, 27);
             textBox3.TabIndex = 22;
             // 
             // TxtRuaFun
             // 
-            TxtRuaFun.Location = new Point(33, 190);
+            TxtRuaFun.Location = new Point(33, 409);
             TxtRuaFun.Name = "TxtRuaFun";
-            TxtRuaFun.Size = new Size(570, 27);
+            TxtRuaFun.Size = new Size(450, 27);
             TxtRuaFun.TabIndex = 21;
             // 
             // TxtBairroFun
             // 
-            TxtBairroFun.Location = new Point(33, 127);
+            TxtBairroFun.Location = new Point(33, 346);
             TxtBairroFun.Name = "TxtBairroFun";
-            TxtBairroFun.Size = new Size(570, 27);
+            TxtBairroFun.Size = new Size(450, 27);
             TxtBairroFun.TabIndex = 20;
             // 
             // MaskCepFun
@@ -451,21 +460,6 @@
             MaskCepFun.Size = new Size(125, 27);
             MaskCepFun.TabIndex = 19;
             MaskCepFun.Leave += MaskCepFun_Leave;
-            // 
-            // BtnTelaADM
-            // 
-            BtnTelaADM.BackColor = Color.Transparent;
-            BtnTelaADM.BackgroundImage = (Image)resources.GetObject("BtnTelaADM.BackgroundImage");
-            BtnTelaADM.BackgroundImageLayout = ImageLayout.Stretch;
-            BtnTelaADM.FlatAppearance.BorderSize = 0;
-            BtnTelaADM.FlatStyle = FlatStyle.Flat;
-            BtnTelaADM.ForeColor = Color.SteelBlue;
-            BtnTelaADM.ImageAlign = ContentAlignment.MiddleRight;
-            BtnTelaADM.Location = new Point(933, 8);
-            BtnTelaADM.Name = "BtnTelaADM";
-            BtnTelaADM.Size = new Size(50, 50);
-            BtnTelaADM.TabIndex = 17;
-            BtnTelaADM.UseVisualStyleBackColor = false;
             // 
             // TelaCadastroFuncionarioADM
             // 
@@ -503,7 +497,6 @@
         private Button BtnCancelarCadastroFun;
         private Button BtnCadatrarFun;
         private MaskedTextBox MaskCepFun;
-        private Button BtnTelaADM;
         private TextBox TxtCompleFun;
         private TextBox TxtCidadeFun;
         private TextBox TxtNumFun;

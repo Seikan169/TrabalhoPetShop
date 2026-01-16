@@ -37,6 +37,7 @@ namespace Shop.TelaFuncionarios
         private void BtnSairADM_Click(object sender, EventArgs e)
         {
             TelaLogin sairlogin = new TelaLogin();
+            this.Close();
             sairlogin.Show();
         }
 
