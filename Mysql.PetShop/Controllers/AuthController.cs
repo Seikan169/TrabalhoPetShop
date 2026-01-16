@@ -1,5 +1,6 @@
 ﻿using BCrypt.Net; // Importante para criptografia
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Mysql.PetShop.Data;
 using Mysql.PetShop.Models;
 using System.Linq;
@@ -119,7 +120,31 @@ namespace PetShop.API.Controllers
 
             return Ok(lista);
         }
+
+        // GET: api/usuarios/clientes
+        [HttpGet("clientes")]
+        public async Task<ActionResult<IEnumerable<Usuario>>> GetClientes()
+        {
+            var clientes = await _context.TbUsuarios
+                .Where(u => u.TipoUsuario == "Cliente")
+                .Select(u => new
+                {
+                    // Use os nomes exatamente como estão na sua classe Usuario
+                    Id = u.Id,
+                    Nome = u.Nome,
+                    Email = u.Email,
+                    Telefone = u.Telefone,
+                    DataCadastro = u.DataCadastro, // Removi o underline para bater com a classe
+                    TipoUsuario = u.TipoUsuario
+                })
+                .ToListAsync();
+
+            return Ok(clientes);
+        }
     }
+
+
+
 
     // Classe auxiliar só para receber os dados do JSON de login
     public class LoginRequest

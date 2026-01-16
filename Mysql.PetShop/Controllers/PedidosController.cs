@@ -130,6 +130,33 @@ namespace Mysql.PetShop.Controllers
 
             return Ok(pedidos);
         }
+        // GET: api/pedidos/dashboard-resumo
+        [HttpGet("dashboard-resumo")]
+        public async Task<ActionResult<object>> GetResumoDashboard()
+        {
+            var hoje = DateTime.Today; // 00:00 de hoje
+
+            // 1. Total Vendas Hoje (Soma os pedidos de hoje que não foram cancelados)
+            var vendasHoje = await _context.TbPedidos
+                .Where(p => p.DataAgendamento.Date == hoje && p.Status != "cancelado")
+                .SumAsync(p => p.ValorTotal);
+
+            // 2. Pedidos Pendentes (Conta quantos estão na fila)
+            var pendentes = await _context.TbPedidos
+                .CountAsync(p => p.Status == "pendente");
+
+            // 3. Total de Clientes (Conta usuários do tipo Cliente)
+            var totalClientes = await _context.TbUsuarios // Ou TbClientes
+                .CountAsync(u => u.TipoUsuario == "Cliente");
+
+            // Retorna um objeto anônimo (JSON) simples
+            return Ok(new
+            {
+                VendasHoje = vendasHoje,
+                Pendentes = pendentes,
+                NovosClientes = totalClientes
+            });
+        }
 
         public class PedidoRequestDto
         {

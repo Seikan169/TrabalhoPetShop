@@ -86,7 +86,30 @@ namespace Shop.TelaFuncionarios
             }
 
         }
-        // No arquivo ApiService.cs
+        // Busca a lista de clientes
+        public async Task<List<Usuario>> GetListaClientes()
+        {
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync($"{_baseUrl}/api/Auth/clientes");
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    // Deserializa usando sua classe Usuario
+                    return JsonConvert.DeserializeObject<List<Usuario>>(json);
+                }
+                return new List<Usuario>();
+            }
+        }
+
+
+        // Busca TODOS os agendamentos (reutiliza a lógica do funcionário)
+        public async Task<DataTable> GetTodosAgendamentos()
+        {
+            // Chama a mesma rota que usamos na tela do funcionário
+            // Pode passar "todos" ou vazio para trazer o histórico completo
+            return await GetPedidosPorStatus("todos");
+        }
 
         public async Task<bool> SalvarPedido(object pedidoCompleto)
         {
@@ -403,6 +426,23 @@ namespace Shop.TelaFuncionarios
             }
         }
 
+        public async Task<DashboardDTO> GetDadosDashboard()
+        {
+            using (var client = new HttpClient())
+            {
+                // ... suas configurações de base address ...
+                var response = await client.GetAsync($"{_baseUrl}/api/pedidos/dashboard-resumo");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<DashboardDTO>(json);
+                }
+                // Se der erro, retorna zerado para não travar o sistema
+                return new DashboardDTO { VendasHoje = 0, Pendentes = 0, NovosClientes = 0 };
+            }
+        }
+
         // Excluir
         public async Task<bool> ExcluirPet(int id)
         {
@@ -427,6 +467,12 @@ namespace Shop.TelaFuncionarios
         public string Cor { get; set; }
         public DateTime dataNascimento { get; set; }
         public decimal Peso { get; set; }
+    }
+    public class DashboardDTO
+    {
+        public decimal VendasHoje { get; set; }
+        public int Pendentes { get; set; }
+        public int NovosClientes { get; set; }
     }
 
     public class Servico
