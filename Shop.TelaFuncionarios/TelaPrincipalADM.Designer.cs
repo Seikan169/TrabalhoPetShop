@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPrincipalADM));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
@@ -44,26 +45,32 @@
             pictureBox1 = new PictureBox();
             label1 = new Label();
             PanelCentralADM = new Panel();
-            PnlGrafico = new Panel();
-            PnlCardCliente = new Panel();
-            label6 = new Label();
+            FlowPanelGrafico = new FlowLayoutPanel();
+            PnlCardVendas = new Panel();
+            label2 = new Label();
+            LblVendaHj = new Label();
+            panel2 = new Panel();
+            LblValorMes = new Label();
+            LblMes = new Label();
+            PnlVendasCard = new Panel();
             LblQtdPendentes = new Label();
-            PnlCardPendente = new Panel();
-            LblQtdClientes = new Label();
-            label3 = new Label();
-            PnlCardVenda = new Panel();
-            LblVendas = new Label();
-            LblVendasHj = new Label();
+            lBLPendente = new Label();
+            PnlCardClientes = new Panel();
+            LblQTDClientes = new Label();
+            LblClientes = new Label();
             DgvPricipal = new DataGridView();
             PnLCabeca = new Panel();
             LblTitulo = new Label();
+            LblDATA = new Label();
+            timer1 = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             PanelCentralADM.SuspendLayout();
-            PnlGrafico.SuspendLayout();
-            PnlCardCliente.SuspendLayout();
-            PnlCardPendente.SuspendLayout();
-            PnlCardVenda.SuspendLayout();
+            FlowPanelGrafico.SuspendLayout();
+            PnlCardVendas.SuspendLayout();
+            panel2.SuspendLayout();
+            PnlVendasCard.SuspendLayout();
+            PnlCardClientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DgvPricipal).BeginInit();
             PnLCabeca.SuspendLayout();
             SuspendLayout();
@@ -266,118 +273,162 @@
             // PanelCentralADM
             // 
             PanelCentralADM.BackColor = Color.Transparent;
+            PanelCentralADM.Controls.Add(FlowPanelGrafico);
             PanelCentralADM.Controls.Add(DgvPricipal);
             PanelCentralADM.Controls.Add(PnLCabeca);
-            PanelCentralADM.Controls.Add(PnlGrafico);
             PanelCentralADM.Dock = DockStyle.Fill;
             PanelCentralADM.Location = new Point(180, 0);
             PanelCentralADM.Margin = new Padding(3, 2, 3, 2);
             PanelCentralADM.Name = "PanelCentralADM";
-            PanelCentralADM.Size = new Size(1044, 555);
+            PanelCentralADM.Size = new Size(1125, 555);
             PanelCentralADM.TabIndex = 2;
             // 
-            // PnlGrafico
+            // FlowPanelGrafico
             // 
-            PnlGrafico.BackColor = Color.White;
-            PnlGrafico.BorderStyle = BorderStyle.Fixed3D;
-            PnlGrafico.Controls.Add(PnlCardCliente);
-            PnlGrafico.Controls.Add(PnlCardPendente);
-            PnlGrafico.Controls.Add(PnlCardVenda);
-            PnlGrafico.Dock = DockStyle.Fill;
-            PnlGrafico.Location = new Point(0, 0);
-            PnlGrafico.Name = "PnlGrafico";
-            PnlGrafico.Size = new Size(1044, 555);
-            PnlGrafico.TabIndex = 3;
+            FlowPanelGrafico.BackColor = Color.White;
+            FlowPanelGrafico.BorderStyle = BorderStyle.Fixed3D;
+            FlowPanelGrafico.Controls.Add(PnlCardVendas);
+            FlowPanelGrafico.Controls.Add(panel2);
+            FlowPanelGrafico.Controls.Add(PnlVendasCard);
+            FlowPanelGrafico.Controls.Add(PnlCardClientes);
+            FlowPanelGrafico.Dock = DockStyle.Top;
+            FlowPanelGrafico.Location = new Point(0, 50);
+            FlowPanelGrafico.Name = "FlowPanelGrafico";
+            FlowPanelGrafico.Padding = new Padding(20);
+            FlowPanelGrafico.Size = new Size(1125, 181);
+            FlowPanelGrafico.TabIndex = 3;
             // 
-            // PnlCardCliente
+            // PnlCardVendas
             // 
-            PnlCardCliente.BackColor = Color.SeaGreen;
-            PnlCardCliente.Controls.Add(label6);
-            PnlCardCliente.Controls.Add(LblQtdPendentes);
-            PnlCardCliente.Location = new Point(837, 127);
-            PnlCardCliente.Name = "PnlCardCliente";
-            PnlCardCliente.Size = new Size(200, 100);
-            PnlCardCliente.TabIndex = 2;
+            PnlCardVendas.BackColor = Color.RoyalBlue;
+            PnlCardVendas.Controls.Add(label2);
+            PnlCardVendas.Controls.Add(LblVendaHj);
+            PnlCardVendas.Location = new Point(23, 23);
+            PnlCardVendas.Name = "PnlCardVendas";
+            PnlCardVendas.Size = new Size(250, 140);
+            PnlCardVendas.TabIndex = 0;
             // 
-            // label6
+            // label2
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(81, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(45, 17);
-            label6.TabIndex = 3;
-            label6.Text = "label2";
+            label2.BackColor = Color.Transparent;
+            label2.Dock = DockStyle.Top;
+            label2.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Image = (Image)resources.GetObject("label2.Image");
+            label2.ImageAlign = ContentAlignment.MiddleRight;
+            label2.Location = new Point(0, 0);
+            label2.Name = "label2";
+            label2.RightToLeft = RightToLeft.No;
+            label2.Size = new Size(250, 45);
+            label2.TabIndex = 2;
+            label2.Text = "Vendas Hoje: ";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // LblVendaHj
+            // 
+            LblVendaHj.AutoSize = true;
+            LblVendaHj.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblVendaHj.Location = new Point(3, 45);
+            LblVendaHj.Name = "LblVendaHj";
+            LblVendaHj.Size = new Size(131, 45);
+            LblVendaHj.TabIndex = 1;
+            LblVendaHj.Text = "R$ 0,00";
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.BlueViolet;
+            panel2.Controls.Add(LblValorMes);
+            panel2.Controls.Add(LblMes);
+            panel2.Location = new Point(279, 23);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(250, 140);
+            panel2.TabIndex = 3;
+            // 
+            // LblValorMes
+            // 
+            LblValorMes.AutoSize = true;
+            LblValorMes.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblValorMes.Location = new Point(3, 45);
+            LblValorMes.Name = "LblValorMes";
+            LblValorMes.Size = new Size(131, 45);
+            LblValorMes.TabIndex = 5;
+            LblValorMes.Text = "R$ 0,00";
+            // 
+            // LblMes
+            // 
+            LblMes.BackColor = Color.Transparent;
+            LblMes.Dock = DockStyle.Top;
+            LblMes.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblMes.Image = (Image)resources.GetObject("LblMes.Image");
+            LblMes.ImageAlign = ContentAlignment.MiddleRight;
+            LblMes.Location = new Point(0, 0);
+            LblMes.Name = "LblMes";
+            LblMes.Size = new Size(250, 34);
+            LblMes.TabIndex = 4;
+            LblMes.Text = "Vendas do mês ";
+            // 
+            // PnlVendasCard
+            // 
+            PnlVendasCard.BackColor = Color.DarkOrange;
+            PnlVendasCard.Controls.Add(LblQtdPendentes);
+            PnlVendasCard.Controls.Add(lBLPendente);
+            PnlVendasCard.Location = new Point(535, 23);
+            PnlVendasCard.Name = "PnlVendasCard";
+            PnlVendasCard.Size = new Size(250, 140);
+            PnlVendasCard.TabIndex = 1;
             // 
             // LblQtdPendentes
             // 
             LblQtdPendentes.AutoSize = true;
-            LblQtdPendentes.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblQtdPendentes.Location = new Point(30, 38);
+            LblQtdPendentes.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblQtdPendentes.Location = new Point(3, 45);
             LblQtdPendentes.Name = "LblQtdPendentes";
-            LblQtdPendentes.Size = new Size(154, 30);
-            LblQtdPendentes.TabIndex = 2;
-            LblQtdPendentes.Text = "LblValorVenda";
+            LblQtdPendentes.Size = new Size(0, 45);
+            LblQtdPendentes.TabIndex = 4;
             // 
-            // PnlCardPendente
+            // lBLPendente
             // 
-            PnlCardPendente.BackColor = Color.DarkOrange;
-            PnlCardPendente.Controls.Add(LblQtdClientes);
-            PnlCardPendente.Controls.Add(label3);
-            PnlCardPendente.Location = new Point(404, 127);
-            PnlCardPendente.Name = "PnlCardPendente";
-            PnlCardPendente.Size = new Size(200, 100);
-            PnlCardPendente.TabIndex = 1;
+            lBLPendente.BackColor = Color.Transparent;
+            lBLPendente.Dock = DockStyle.Top;
+            lBLPendente.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lBLPendente.Image = (Image)resources.GetObject("lBLPendente.Image");
+            lBLPendente.ImageAlign = ContentAlignment.MiddleRight;
+            lBLPendente.Location = new Point(0, 0);
+            lBLPendente.Name = "lBLPendente";
+            lBLPendente.Size = new Size(250, 34);
+            lBLPendente.TabIndex = 3;
+            lBLPendente.Text = "Pendente";
             // 
-            // LblQtdClientes
+            // PnlCardClientes
             // 
-            LblQtdClientes.AutoSize = true;
-            LblQtdClientes.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblQtdClientes.Location = new Point(27, 38);
-            LblQtdClientes.Name = "LblQtdClientes";
-            LblQtdClientes.Size = new Size(154, 30);
-            LblQtdClientes.TabIndex = 2;
-            LblQtdClientes.Text = "LblValorVenda";
+            PnlCardClientes.BackColor = Color.SeaGreen;
+            PnlCardClientes.Controls.Add(LblQTDClientes);
+            PnlCardClientes.Controls.Add(LblClientes);
+            PnlCardClientes.Location = new Point(791, 23);
+            PnlCardClientes.Name = "PnlCardClientes";
+            PnlCardClientes.Size = new Size(250, 140);
+            PnlCardClientes.TabIndex = 2;
             // 
-            // label3
+            // LblQTDClientes
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(77, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(45, 17);
-            label3.TabIndex = 1;
-            label3.Text = "label2";
+            LblQTDClientes.AutoSize = true;
+            LblQTDClientes.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblQTDClientes.Location = new Point(3, 45);
+            LblQTDClientes.Name = "LblQTDClientes";
+            LblQTDClientes.Size = new Size(0, 45);
+            LblQTDClientes.TabIndex = 5;
             // 
-            // PnlCardVenda
+            // LblClientes
             // 
-            PnlCardVenda.BackColor = Color.RoyalBlue;
-            PnlCardVenda.Controls.Add(LblVendas);
-            PnlCardVenda.Controls.Add(LblVendasHj);
-            PnlCardVenda.Location = new Point(4, 127);
-            PnlCardVenda.Name = "PnlCardVenda";
-            PnlCardVenda.Size = new Size(200, 100);
-            PnlCardVenda.TabIndex = 0;
-            // 
-            // LblVendas
-            // 
-            LblVendas.AutoSize = true;
-            LblVendas.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblVendas.Location = new Point(32, 49);
-            LblVendas.Name = "LblVendas";
-            LblVendas.Size = new Size(154, 30);
-            LblVendas.TabIndex = 1;
-            LblVendas.Text = "LblValorVenda";
-            // 
-            // LblVendasHj
-            // 
-            LblVendasHj.AutoSize = true;
-            LblVendasHj.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblVendasHj.Location = new Point(67, 0);
-            LblVendasHj.Name = "LblVendasHj";
-            LblVendasHj.Size = new Size(45, 17);
-            LblVendasHj.TabIndex = 0;
-            LblVendasHj.Text = "label2";
+            LblClientes.BackColor = Color.Transparent;
+            LblClientes.Dock = DockStyle.Top;
+            LblClientes.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblClientes.Image = (Image)resources.GetObject("LblClientes.Image");
+            LblClientes.ImageAlign = ContentAlignment.MiddleRight;
+            LblClientes.Location = new Point(0, 0);
+            LblClientes.Name = "LblClientes";
+            LblClientes.Size = new Size(250, 34);
+            LblClientes.TabIndex = 4;
+            LblClientes.Text = "Clientes";
             // 
             // DgvPricipal
             // 
@@ -421,7 +472,7 @@
             DgvPricipal.RowHeadersVisible = false;
             DgvPricipal.RowHeadersWidth = 51;
             DgvPricipal.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            DgvPricipal.Size = new Size(1044, 505);
+            DgvPricipal.Size = new Size(1125, 505);
             DgvPricipal.TabIndex = 1;
             DgvPricipal.Visible = false;
             DgvPricipal.CellContentClick += DgvPricipal_CellContentClick;
@@ -431,10 +482,11 @@
             PnLCabeca.BackColor = SystemColors.Highlight;
             PnLCabeca.BorderStyle = BorderStyle.Fixed3D;
             PnLCabeca.Controls.Add(LblTitulo);
+            PnLCabeca.Controls.Add(LblDATA);
             PnLCabeca.Dock = DockStyle.Top;
             PnLCabeca.Location = new Point(0, 0);
             PnLCabeca.Name = "PnLCabeca";
-            PnLCabeca.Size = new Size(1044, 50);
+            PnLCabeca.Size = new Size(1125, 50);
             PnLCabeca.TabIndex = 2;
             // 
             // LblTitulo
@@ -445,10 +497,29 @@
             LblTitulo.ForeColor = Color.White;
             LblTitulo.Location = new Point(0, 0);
             LblTitulo.Name = "LblTitulo";
-            LblTitulo.Size = new Size(1040, 46);
-            LblTitulo.TabIndex = 12;
+            LblTitulo.Size = new Size(859, 46);
+            LblTitulo.TabIndex = 14;
             LblTitulo.Text = "label2";
             LblTitulo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // LblDATA
+            // 
+            LblDATA.BackColor = Color.DodgerBlue;
+            LblDATA.Dock = DockStyle.Right;
+            LblDATA.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblDATA.ForeColor = Color.White;
+            LblDATA.Location = new Point(859, 0);
+            LblDATA.Name = "LblDATA";
+            LblDATA.Size = new Size(262, 46);
+            LblDATA.TabIndex = 15;
+            LblDATA.Text = "label2";
+            LblDATA.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Interval = 1000;
+            timer1.Tick += timer1_Tick;
             // 
             // TelaPrincipalADM
             // 
@@ -457,7 +528,7 @@
             BackColor = SystemColors.InactiveCaption;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1224, 555);
+            ClientSize = new Size(1305, 555);
             Controls.Add(PanelCentralADM);
             Controls.Add(panel1);
             ForeColor = Color.Transparent;
@@ -469,13 +540,15 @@
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             PanelCentralADM.ResumeLayout(false);
-            PnlGrafico.ResumeLayout(false);
-            PnlCardCliente.ResumeLayout(false);
-            PnlCardCliente.PerformLayout();
-            PnlCardPendente.ResumeLayout(false);
-            PnlCardPendente.PerformLayout();
-            PnlCardVenda.ResumeLayout(false);
-            PnlCardVenda.PerformLayout();
+            FlowPanelGrafico.ResumeLayout(false);
+            PnlCardVendas.ResumeLayout(false);
+            PnlCardVendas.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            PnlVendasCard.ResumeLayout(false);
+            PnlVendasCard.PerformLayout();
+            PnlCardClientes.ResumeLayout(false);
+            PnlCardClientes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DgvPricipal).EndInit();
             PnLCabeca.ResumeLayout(false);
             ResumeLayout(false);
@@ -497,18 +570,23 @@
         private DataGridView DgvPricipal;
         private Label label1;
         private Panel PnLCabeca;
-        private Label LblTitulo;
-        private Panel PnlGrafico;
         private Panel panel4;
         private Panel panel3;
-        private Panel PnlCardVenda;
-        private Panel PnlCardCliente;
-        private Panel PnlCardPendente;
-        private Label LblVendas;
-        private Label LblVendasHj;
-        private Label label6;
+        private FlowLayoutPanel FlowPanelGrafico;
+        private Panel PnlCardVendas;
+        private Label LblVendaHj;
+        private Panel PnlVendasCard;
+        private Panel PnlCardClientes;
+        private Label label2;
         private Label LblQtdPendentes;
-        private Label LblQtdClientes;
-        private Label label3;
+        private Label lBLPendente;
+        private Label LblQTDClientes;
+        private Label LblClientes;
+        private Panel panel2;
+        private Label LblMes;
+        private Label LblValorMes;
+        private Label LblTitulo;
+        private Label LblDATA;
+        private System.Windows.Forms.Timer timer1;
     }
 }

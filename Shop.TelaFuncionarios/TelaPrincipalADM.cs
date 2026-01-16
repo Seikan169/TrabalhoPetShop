@@ -43,7 +43,7 @@ namespace Shop.TelaFuncionarios
         private async void BtnBuscarADM_Click(object sender, EventArgs e)
         {
             await CarregarGrid();
-            PnlGrafico.Visible = false; // Esconde os cards
+            FlowPanelGrafico.Visible = false; // Esconde os cards
             DgvPricipal.Visible = true;
             LblTitulo.Text = "👥 Gestão de Funcionários";
 
@@ -83,8 +83,11 @@ namespace Shop.TelaFuncionarios
         {
             // 1. Esconde o Grid e mostra o Dashboard
             DgvPricipal.Visible = false;
-            PnlGrafico.Visible = true;
-            PnlGrafico.Dock = DockStyle.Fill; // Garante que ocupe tudo
+            FlowPanelGrafico.Visible = true;
+            FlowPanelGrafico.Dock = DockStyle.Fill; // Garante que ocupe tudo
+            
+
+            LblTitulo.Text = "PAINEL ADMINISTRATIVO";
 
             // 2. Carrega os dados
             await CarregarDashboard();
@@ -96,22 +99,29 @@ namespace Shop.TelaFuncionarios
                 ApiService api = new ApiService();
                 var dados = await api.GetDadosDashboard();
 
-                // 3. Preenche os Labels
-                LblVendas.Text = dados.VendasHoje.ToString("C2"); // Formata R$
+                // CARD 1 - Vendas Hoje
+                LblVendaHj.Text = dados.VendasHoje.ToString("C2");
+
+                // CARD 2 - Vendas Mês (Crie o label lblValorMes no design!)
+                LblValorMes.Text = dados.VendasMes.ToString("C2");
+
+                // CARD 3 - Pendentes
                 LblQtdPendentes.Text = dados.Pendentes.ToString();
-                LblQtdClientes.Text = dados.NovosClientes.ToString();
+
+                // CARD 4 - Clientes
+                LblQTDClientes.Text = dados.NovosClientes.ToString();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao carregar dashboard: " + ex.Message);
+                // ... erro ...
             }
         }
 
         private async void BtnClentesCadastradosADM_Click(object sender, EventArgs e)
         {
-            
+
             LblTitulo.Text = "👥 Gestão de Clientes";
-            PnlGrafico.Visible = false; // Esconde os cards
+            FlowPanelGrafico.Visible = false; // Esconde os cards
             DgvPricipal.Visible = true;
 
 
@@ -211,7 +221,7 @@ namespace Shop.TelaFuncionarios
         private async void BtnAgendamentoADM_Click(object sender, EventArgs e)
         {
             LblTitulo.Text = "📅 Histórico Geral de Agendamentos";
-            PnlGrafico.Visible = false; // Esconde os cards
+            FlowPanelGrafico.Visible = false; // Esconde os cards
             DgvPricipal.Visible = true;
 
             ApiService api = new ApiService();
@@ -226,6 +236,11 @@ namespace Shop.TelaFuncionarios
         private void DgvPricipal_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            LblDATA.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
         }
     }
 }
