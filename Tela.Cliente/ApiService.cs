@@ -471,6 +471,7 @@ namespace Shop.TelaFuncionarios
     public class DashboardDTO
     {
         public decimal VendasHoje { get; set; }
+        public decimal VendasMes { get; set; } // <--- Nova
         public int Pendentes { get; set; }
         public int NovosClientes { get; set; }
     }

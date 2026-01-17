@@ -44,7 +44,7 @@ namespace Shop.TelaFuncionarios
         private async void BtnBuscarADM_Click(object sender, EventArgs e)
         {
             await CarregarGrid();
-            PnlGrafico.Visible = false; // Esconde os cards
+            FlowPanelGrafico.Visible = false; // Esconde os cards
             DgvPricipal.Visible = true;
             LblTitulo.Text = "👥 Gestão de Funcionários";
 
@@ -84,11 +84,89 @@ namespace Shop.TelaFuncionarios
         {
             // 1. Esconde o Grid e mostra o Dashboard
             DgvPricipal.Visible = false;
-            PnlGrafico.Visible = true;
-            PnlGrafico.Dock = DockStyle.Fill; // Garante que ocupe tudo
+            FlowPanelGrafico.Visible = true;
+            FlowPanelGrafico.Dock = DockStyle.Fill; // Garante que ocupe tudo
+            
+
+            LblTitulo.Text = "PAINEL ADMINISTRATIVO";
 
             // 2. Carrega os dados
             await CarregarDashboard();
+            await CarregarUltimosPedidos();
+        }
+        private async Task CarregarUltimosPedidos()
+        {
+            try
+            {
+                ApiService api = new ApiService();
+                // 1. Busca todos os pedidos (reaproveita o método que já existe)
+                var todosPedidos = await api.GetTodosAgendamentos();
+
+                if (todosPedidos != null && todosPedidos.Rows.Count > 0)
+                {
+                    // 2. A MÁGICA: Pega apenas os 5 primeiros registros
+                    // O .AsEnumerable() permite usar LINQ no DataTable
+                    var top5 = todosPedidos.AsEnumerable()
+                                           .Take(5)
+                                           .CopyToDataTable();
+
+                    // 3. Joga no Grid
+                    DgvUltimosPedidos.DataSource = top5;
+
+                    // 4. Aplica o visual bonito (Criaremos esse método ajustado abaixo)
+                    ConfigurarEstiloResumo(DgvUltimosPedidos);
+                }
+                else
+                {
+                    // Se não tiver pedidos, esconde o grid ou não faz nada
+                    DgvUltimosPedidos.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar últimos pedidos: " + ex.Message);
+            }
+        }
+        private void ConfigurarEstiloResumo(DataGridView dgv)
+        {
+            // Limpa estilo anterior
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.ReadOnly = true;
+            dgv.AllowUserToAddRows = false;
+            dgv.RowHeadersVisible = false;
+            dgv.BorderStyle = BorderStyle.None;
+
+            // Cabeçalho Discreto (Cinza Claro ou Branco)
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.WhiteSmoke;
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black; // Texto Preto
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            dgv.ColumnHeadersHeight = 30;
+
+            // Linhas
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+            dgv.DefaultCellStyle.SelectionBackColor = Color.AliceBlue; // Azul bem clarinho ao selecionar
+            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+            dgv.RowsDefaultCellStyle.BackColor = Color.White;
+
+            // --- ESCONDER COLUNAS DESNECESSÁRIAS ---
+            // No resumo, só precisamos ver: Cliente, Pet, Serviço, Valor e Status
+            if (dgv.Columns.Contains("Id")) dgv.Columns["Id"].Visible = false;
+            if (dgv.Columns.Contains("Data")) dgv.Columns["Data"].Visible = false; // Opcional: Se quiser economizar espaço
+
+            // Formatação de Moeda
+            if (dgv.Columns.Contains("Total"))
+            {
+                dgv.Columns["Total"].HeaderText = "Valor";
+                dgv.Columns["Total"].DefaultCellStyle.Format = "C2";
+                dgv.Columns["Total"].Width = 80;
+            }
+
+            // --- LIGA O EVENTO DE CORES DO STATUS ---
+            dgv.CellFormatting -= DgvPrincipal_CellFormatting; // Reaproveita o formatador que já criamos!
+            dgv.CellFormatting += DgvPrincipal_CellFormatting;
         }
         private async Task CarregarDashboard()
         {
@@ -97,22 +175,29 @@ namespace Shop.TelaFuncionarios
                 ApiService api = new ApiService();
                 var dados = await api.GetDadosDashboard();
 
-                // 3. Preenche os Labels
-                LblVendas.Text = dados.VendasHoje.ToString("C2"); // Formata R$
+                // CARD 1 - Vendas Hoje
+                LblVendaHj.Text = dados.VendasHoje.ToString("C2");
+
+                // CARD 2 - Vendas Mês (Crie o label lblValorMes no design!)
+                LblValorMes.Text = dados.VendasMes.ToString("C2");
+
+                // CARD 3 - Pendentes
                 LblQtdPendentes.Text = dados.Pendentes.ToString();
-                LblQtdClientes.Text = dados.NovosClientes.ToString();
+
+                // CARD 4 - Clientes
+                LblQTDClientes.Text = dados.NovosClientes.ToString();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao carregar dashboard: " + ex.Message);
+                // ... erro ...
             }
         }
 
         private async void BtnClentesCadastradosADM_Click(object sender, EventArgs e)
         {
-            
+
             LblTitulo.Text = "👥 Gestão de Clientes";
-            PnlGrafico.Visible = false; // Esconde os cards
+            FlowPanelGrafico.Visible = false; // Esconde os cards
             DgvPricipal.Visible = true;
 
 
@@ -212,7 +297,7 @@ namespace Shop.TelaFuncionarios
         private async void BtnAgendamentoADM_Click(object sender, EventArgs e)
         {
             LblTitulo.Text = "📅 Histórico Geral de Agendamentos";
-            PnlGrafico.Visible = false; // Esconde os cards
+            FlowPanelGrafico.Visible = false; // Esconde os cards
             DgvPricipal.Visible = true;
 
             ApiService api = new ApiService();
@@ -227,6 +312,11 @@ namespace Shop.TelaFuncionarios
         private void DgvPricipal_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            LblDATA.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
         }
     }
 }

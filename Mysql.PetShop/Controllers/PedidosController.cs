@@ -134,25 +134,30 @@ namespace Mysql.PetShop.Controllers
         [HttpGet("dashboard-resumo")]
         public async Task<ActionResult<object>> GetResumoDashboard()
         {
-            var hoje = DateTime.Today; // 00:00 de hoje
+            var hoje = DateTime.Today;
 
-            // 1. Total Vendas Hoje (Soma os pedidos de hoje que não foram cancelados)
+            // 1. Vendas Hoje
             var vendasHoje = await _context.TbPedidos
                 .Where(p => p.DataAgendamento.Date == hoje && p.Status != "cancelado")
                 .SumAsync(p => p.ValorTotal);
 
-            // 2. Pedidos Pendentes (Conta quantos estão na fila)
-            var pendentes = await _context.TbPedidos
-                .CountAsync(p => p.Status == "pendente");
+            // 2. Vendas Mês (NOVO) - Compara Mês e Ano atual
+            var vendasMes = await _context.TbPedidos
+                .Where(p => p.DataAgendamento.Month == hoje.Month &&
+                            p.DataAgendamento.Year == hoje.Year &&
+                            p.Status != "cancelado")
+                .SumAsync(p => p.ValorTotal);
 
-            // 3. Total de Clientes (Conta usuários do tipo Cliente)
-            var totalClientes = await _context.TbUsuarios // Ou TbClientes
-                .CountAsync(u => u.TipoUsuario == "Cliente");
+            // 3. Pendentes
+            var pendentes = await _context.TbPedidos.CountAsync(p => p.Status == "pendente");
 
-            // Retorna um objeto anônimo (JSON) simples
+            // 4. Clientes
+            var totalClientes = await _context.TbUsuarios.CountAsync(u => u.TipoUsuario == "Cliente");
+
             return Ok(new
             {
                 VendasHoje = vendasHoje,
+                VendasMes = vendasMes, // <--- Adicionei aqui
                 Pendentes = pendentes,
                 NovosClientes = totalClientes
             });
