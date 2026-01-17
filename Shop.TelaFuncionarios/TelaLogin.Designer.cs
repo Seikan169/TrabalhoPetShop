@@ -120,9 +120,9 @@
             label3.ForeColor = SystemColors.HotTrack;
             label3.Location = new Point(32, 23);
             label3.Name = "label3";
-            label3.Size = new Size(671, 69);
+            label3.Size = new Size(638, 69);
             label3.TabIndex = 6;
-            label3.Text = "Bem-Vindo à PetWORD";
+            label3.Text = "Bem-Vindo à PetWorld";
             // 
             // label4
             // 
