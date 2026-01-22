@@ -16,15 +16,59 @@ namespace Shop.TelaFuncionarios
     public partial class TelaPrincipalADM : Form
     {
         private readonly string _baseUrl = "https://localhost:7214";
+        private string _nomeadm;
+        private int _idadm;
 
-        public TelaPrincipalADM()
+
+        public TelaPrincipalADM(string Nomeadm, int Idadm)
         {
             InitializeComponent();
+            _nomeadm = Nomeadm;
+            _idadm = Idadm;
+
+            LblNomeAdm.Text = $"Olá,{_nomeadm}";
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+        private void EstilizarMenuLateral()
+        {
+            // Percorre todos os botões do painel lateral (assumindo que estão num Panel chamado panelMenu)
+            // Se não estiverem num painel, você pode configurar um por um:
+            // ConfigurarBotao(BtnControleFuncionario);
+            // ConfigurarBotao(BtnBuscarADM); ...
+
+            foreach (Control c in this.Controls)
+            {
+                // Se você tiver um Panel para o menu, mude 'this.Controls' para 'panelMenu.Controls'
+                if (c is Button btn && btn.Name != "BtnSairADM") // Ignora o botão sair se quiser manter diferente
+                {
+                    ConfigurarBotaoMenu(btn);
+                }
+            }
+
+            // Configuração específica para o botão Sair (vermelho ou destaque)
+            BtnSairADM.FlatStyle = FlatStyle.Flat;
+            BtnSairADM.FlatAppearance.BorderSize = 0;
+            BtnSairADM.BackColor = Color.FromArgb(220, 53, 69); // Vermelho moderno
+            BtnSairADM.ForeColor = Color.White;
+        }
+
+        private void ConfigurarBotaoMenu(Button btn)
+        {
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 0; // Remove a borda grossa
+            btn.BackColor = Color.FromArgb(64, 64, 64); // Fundo cinza escuro (ou a cor do seu menu)
+            btn.ForeColor = Color.White; // Texto Branco
+            btn.Font = new Font("Segoe UI", 10, FontStyle.Regular);
+            btn.TextAlign = ContentAlignment.MiddleLeft; // Texto alinhado à esquerda
+            btn.Padding = new Padding(15, 0, 0, 0); // Espaço entre a borda esquerda e o texto/ícone
+            btn.Cursor = Cursors.Hand; // Mãozinha ao passar o mouse
+
+            // Efeito Hover (Opcional se quiser fazer via código, ou use as propriedades do Designer)
+            btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 120, 215); // Azul ao passar o mouse
         }
 
 
@@ -32,6 +76,7 @@ namespace Shop.TelaFuncionarios
         {
             TelaCadastroFuncionarioADM telacadfun = new TelaCadastroFuncionarioADM();
             telacadfun.Show();
+
         }
 
         private void BtnSairADM_Click(object sender, EventArgs e)
@@ -46,6 +91,7 @@ namespace Shop.TelaFuncionarios
             await CarregarGrid();
             FlowPanelGrafico.Visible = false; // Esconde os cards
             DgvPricipal.Visible = true;
+
             LblTitulo.Text = "👥 Gestão de Funcionários";
 
         }
@@ -54,25 +100,19 @@ namespace Shop.TelaFuncionarios
         {
             try
             {
-                DgvPricipal.MultiSelect = false;
+                ApiService api = new ApiService();
+                var lista = await api.GetFuncionarios();
 
-                // 2. Seleciona a LINHA inteira (resolve o erro e fica visualmente melhor)
-                DgvPricipal.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                // 1. Configura o visual do Grid (opcional, mas bom pra ficar bonito)
-                DgvPricipal.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                // 1. Limpa e prepara
+                DgvPricipal.DataSource = null;
                 DgvPricipal.Columns.Clear();
                 DgvPricipal.AutoGenerateColumns = true;
 
-                // 2. Chama a API
-                ApiService api = new ApiService();
-                var lista = await api.GetFuncionarios();
-                ConfigurarGridPadrao();
-                // 3. Joga os dados no Grid
+                // 2. JOGA OS DADOS PRIMEIRO (Isso cria as colunas automaticamente)
                 DgvPricipal.DataSource = lista;
 
-
-                if (DgvPricipal.Columns["Id"] != null)
-                    DgvPricipal.Columns["Id"].Visible = false;
+                // 3. AGORA SIM configura o visual (Esconde colunas, muda nomes, etc)
+                ConfigurarGridPadrao();
             }
             catch (Exception ex)
             {
@@ -82,92 +122,21 @@ namespace Shop.TelaFuncionarios
 
         private async void TelaPrincipalADM_Load(object sender, EventArgs e)
         {
-            // 1. Esconde o Grid e mostra o Dashboard
+            EstilizarMenuLateral();// 1. Esconde o Grid e mostra o Dashboard
             DgvPricipal.Visible = false;
             FlowPanelGrafico.Visible = true;
             FlowPanelGrafico.Dock = DockStyle.Fill; // Garante que ocupe tudo
-            
+
+
 
             LblTitulo.Text = "PAINEL ADMINISTRATIVO";
 
             // 2. Carrega os dados
             await CarregarDashboard();
-            await CarregarUltimosPedidos();
+
         }
-        private async Task CarregarUltimosPedidos()
-        {
-            try
-            {
-                ApiService api = new ApiService();
-                // 1. Busca todos os pedidos (reaproveita o método que já existe)
-                var todosPedidos = await api.GetTodosAgendamentos();
 
-                if (todosPedidos != null && todosPedidos.Rows.Count > 0)
-                {
-                    // 2. A MÁGICA: Pega apenas os 5 primeiros registros
-                    // O .AsEnumerable() permite usar LINQ no DataTable
-                    var top5 = todosPedidos.AsEnumerable()
-                                           .Take(5)
-                                           .CopyToDataTable();
 
-                    // 3. Joga no Grid
-                    DgvUltimosPedidos.DataSource = top5;
-
-                    // 4. Aplica o visual bonito (Criaremos esse método ajustado abaixo)
-                    ConfigurarEstiloResumo(DgvUltimosPedidos);
-                }
-                else
-                {
-                    // Se não tiver pedidos, esconde o grid ou não faz nada
-                    DgvUltimosPedidos.Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao carregar últimos pedidos: " + ex.Message);
-            }
-        }
-        private void ConfigurarEstiloResumo(DataGridView dgv)
-        {
-            // Limpa estilo anterior
-            dgv.EnableHeadersVisualStyles = false;
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.ReadOnly = true;
-            dgv.AllowUserToAddRows = false;
-            dgv.RowHeadersVisible = false;
-            dgv.BorderStyle = BorderStyle.None;
-
-            // Cabeçalho Discreto (Cinza Claro ou Branco)
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.WhiteSmoke;
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black; // Texto Preto
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
-            dgv.ColumnHeadersHeight = 30;
-
-            // Linhas
-            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
-            dgv.DefaultCellStyle.SelectionBackColor = Color.AliceBlue; // Azul bem clarinho ao selecionar
-            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
-            dgv.RowsDefaultCellStyle.BackColor = Color.White;
-
-            // --- ESCONDER COLUNAS DESNECESSÁRIAS ---
-            // No resumo, só precisamos ver: Cliente, Pet, Serviço, Valor e Status
-            if (dgv.Columns.Contains("Id")) dgv.Columns["Id"].Visible = false;
-            if (dgv.Columns.Contains("Data")) dgv.Columns["Data"].Visible = false; // Opcional: Se quiser economizar espaço
-
-            // Formatação de Moeda
-            if (dgv.Columns.Contains("Total"))
-            {
-                dgv.Columns["Total"].HeaderText = "Valor";
-                dgv.Columns["Total"].DefaultCellStyle.Format = "C2";
-                dgv.Columns["Total"].Width = 80;
-            }
-
-            // --- LIGA O EVENTO DE CORES DO STATUS ---
-            dgv.CellFormatting -= DgvPrincipal_CellFormatting; // Reaproveita o formatador que já criamos!
-            dgv.CellFormatting += DgvPrincipal_CellFormatting;
-        }
         private async Task CarregarDashboard()
         {
             try
@@ -189,7 +158,7 @@ namespace Shop.TelaFuncionarios
             }
             catch (Exception ex)
             {
-                // ... erro ...
+
             }
         }
 
@@ -225,38 +194,47 @@ namespace Shop.TelaFuncionarios
             DgvPricipal.MultiSelect = false;
             DgvPricipal.RowHeadersVisible = false;
 
-            // 2. Cores das Células (Garante que os dados apareçam sem precisar clicar)
-            DgvPricipal.BackgroundColor = Color.White;
-            DgvPricipal.DefaultCellStyle.BackColor = Color.White;
-            DgvPricipal.DefaultCellStyle.ForeColor = Color.Black; // Texto sempre preto
-            DgvPricipal.DefaultCellStyle.Font = new Font("Segoe UI", 9);
-
-            // 3. Cores de Seleção (Quando você clica na linha)
-            DgvPricipal.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 120, 215); // Azul destaque
-            DgvPricipal.DefaultCellStyle.SelectionForeColor = Color.White; // Texto branco na seleção
-
-            // 4. Cabeçalho (Estilo igual ao da sua imagem)
             DgvPricipal.EnableHeadersVisualStyles = false;
-            DgvPricipal.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0, 122, 204);
-            DgvPricipal.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            DgvPricipal.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            DgvPricipal.ColumnHeadersHeight = 40;
-            DgvPricipal.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            DgvPricipal.RowHeadersVisible = false;
+            DgvPricipal.AllowUserToAddRows = false;
+            DgvPricipal.ReadOnly = true;
+            DgvPricipal.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DgvPricipal.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DgvPricipal.BorderStyle = BorderStyle.None;
 
+
+            // Permite que o texto quebre para a linha de baixo
+            DgvPricipal.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Ajusta a altura da linha automaticamente conforme o conteúdo
+            DgvPricipal.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             // 5. Organização das Colunas
             DgvPricipal.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             // Esconder colunas que poluem o visual
-            string[] ocultar = { "Id", "Senha", "Observacao", "TipoUsuario", "Cpf", "dataNascimento" };
+            string[] ocultar = { "Id", "Senha", "Observacao", "TipoUsuario" };
             foreach (var col in ocultar)
             {
                 if (DgvPricipal.Columns.Contains(col)) DgvPricipal.Columns[col].Visible = false;
             }
 
             // Nomes amigáveis
-            if (DgvPricipal.Columns.Contains("DataCadastro"))
-                DgvPricipal.Columns["DataCadastro"].HeaderText = "Data de Cadastro";
+            if (DgvPricipal.Columns.Contains("Nome")) DgvPricipal.Columns["Nome"].HeaderText = "Nome Completo";
+            if (DgvPricipal.Columns.Contains("Cpf")) DgvPricipal.Columns["Cpf"].HeaderText = "CPF";
+            if (DgvPricipal.Columns.Contains("Telefone")) DgvPricipal.Columns["Telefone"].HeaderText = "Contato";
 
+            // --- FORMATAR DATAS ---
+            if (DgvPricipal.Columns.Contains("DataNascimento"))
+            {
+                DgvPricipal.Columns["DataNascimento"].HeaderText = "Data Nasc.";
+                DgvPricipal.Columns["DataNascimento"].DefaultCellStyle.Format = "dd/MM/yyyy"; // Só dia/mes/ano
+            }
+
+            if (DgvPricipal.Columns.Contains("DataCadastro"))
+            {
+                DgvPricipal.Columns["DataCadastro"].HeaderText = "Cadastro";
+                DgvPricipal.Columns["DataCadastro"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            }
             // Garante que o evento de colorir status esteja ligado
             DgvPricipal.CellFormatting -= DgvPrincipal_CellFormatting;
             DgvPricipal.CellFormatting += DgvPrincipal_CellFormatting;
@@ -265,31 +243,41 @@ namespace Shop.TelaFuncionarios
         // --- MÉTODO PARA PINTAR O STATUS (Igual fizemos nas outras telas) ---
         private void DgvPrincipal_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            // Verifica se a coluna é "Status" ou "status"
-            if (DgvPricipal.Columns[e.ColumnIndex].Name.Equals("status", StringComparison.OrdinalIgnoreCase) && e.Value != null)
-            {
-                string status = e.Value.ToString().ToLower();
-                e.CellStyle.Font = new Font(DgvPricipal.Font, FontStyle.Bold);
+            // Recupera o grid que chamou o evento de forma segura
+            var grid = sender as DataGridView;
 
-                if (status == "pendente")
+            // CORREÇÃO DE SEGURANÇA:
+            // Verifica se o grid existe, se não é cabeçalho (index -1) e se o índice existe na coleção atual
+            if (grid != null && e.ColumnIndex >= 0 && e.ColumnIndex < grid.Columns.Count)
+            {
+                // Verifica se a coluna é "Status" ou "status" usando o objeto 'grid'
+                if (grid.Columns[e.ColumnIndex].Name.Equals("status", StringComparison.OrdinalIgnoreCase) && e.Value != null)
                 {
-                    e.CellStyle.ForeColor = Color.DarkOrange;
-                    e.Value = "Pendente";
-                }
-                else if (status == "em_andamento")
-                {
-                    e.CellStyle.ForeColor = Color.DodgerBlue;
-                    e.Value = "Em Andamento";
-                }
-                else if (status == "concluido")
-                {
-                    e.CellStyle.ForeColor = Color.SeaGreen;
-                    e.Value = "Concluído";
-                }
-                else if (status == "cancelado")
-                {
-                    e.CellStyle.ForeColor = Color.Red;
-                    e.Value = "Cancelado";
+                    string status = e.Value.ToString().ToLower();
+
+                    // Aplica Negrito (usando a fonte do grid atual)
+                    e.CellStyle.Font = new Font(grid.Font, FontStyle.Bold);
+
+                    if (status == "pendente")
+                    {
+                        e.CellStyle.ForeColor = Color.DarkOrange;
+                        e.Value = "Pendente";
+                    }
+                    else if (status == "em_andamento")
+                    {
+                        e.CellStyle.ForeColor = Color.DodgerBlue;
+                        e.Value = "Em Andamento"; // Notei que no código original tinha um espaço extra aqui, mantive corrigido
+                    }
+                    else if (status == "concluido")
+                    {
+                        e.CellStyle.ForeColor = Color.SeaGreen;
+                        e.Value = "Concluído";
+                    }
+                    else if (status == "cancelado")
+                    {
+                        e.CellStyle.ForeColor = Color.Red;
+                        e.Value = "Cancelado";
+                    }
                 }
             }
         }
@@ -317,6 +305,14 @@ namespace Shop.TelaFuncionarios
         private void timer1_Tick(object sender, EventArgs e)
         {
             LblDATA.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+        }
+
+        private async void BtnRelatorioADM_Click(object sender, EventArgs e)
+        {
+            await CarregarDashboard();
+            FlowPanelGrafico.Visible = true; // Mostra os cards
+            DgvPricipal.Visible = false;
+            LblTitulo.Text = "Relatorio";
         }
     }
 }
