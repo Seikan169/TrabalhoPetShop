@@ -113,8 +113,10 @@ namespace PetShop.API.Controllers
                     Nome = u.Nome,
                     Email = u.Email,
                     Telefone = u.Telefone,
-                    TipoUsuario = u.TipoUsuario,
-                    DataCadastro = u.DataCadastro // Se tiver esse campo no banco
+                    Cpf = u.Cpf,  // Garanta que no seu TbUsuario o nome é esse
+                    Data_Nascimento = u.dataNascimento,
+                    Tipo_Usuario = u.TipoUsuario,
+                    Data_Cadastro = u.DataCadastro // Se tiver esse campo no banco
                 })
                 .ToList();
 

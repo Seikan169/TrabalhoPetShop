@@ -484,26 +484,29 @@ namespace Shop.TelaFuncionarios
         public decimal Preco { get; set; }
         public int TempoEstimado { get; set; }
     }
-    public class FuncionarioDTO // DTO = Data Transfer Object
+    public class FuncionarioDTO
     {
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }
 
+        // O banco manda "cpf", aqui mapeamos para a propriedade CPF
+        [JsonProperty("cpf")]
         public string CPF { get; set; }
 
-        public string dataNascimento { get; set; }
+        // O banco manda "data_nascimento", mapeamos para DataNascimento (DateTime)
+        [JsonProperty("data_nascimento")]
+        public DateTime? DataNascimento { get; set; }
 
-        public string Observacao { get; set; }
-
-        // A senha geralmente NÃO deve ser retornada para o DataGrid por segurança
         public string Telefone { get; set; }
 
-        [System.Text.Json.Serialization.JsonPropertyName("tipo_usuario")]
+        [JsonProperty("tipo_usuario")]
         public string TipoUsuario { get; set; }
 
-        [System.Text.Json.Serialization.JsonPropertyName("data_cadastro")]
-        public DateTime DataCadastro { get; set; }
+        [JsonProperty("data_cadastro")]
+        public DateTime? DataCadastro { get; set; }
+
+        // Removi a propriedade Observacao como você pediu
     }
     // Classe para receber a resposta da API organizada
     public class LoginResponse
