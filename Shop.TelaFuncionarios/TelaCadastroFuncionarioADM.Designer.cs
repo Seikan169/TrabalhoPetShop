@@ -302,6 +302,7 @@
             TxtSenhaFun.Name = "TxtSenhaFun";
             TxtSenhaFun.Size = new Size(158, 27);
             TxtSenhaFun.TabIndex = 22;
+            TxtSenhaFun.UseSystemPasswordChar = true;
             // 
             // TabcEnderecoFun
             // 

@@ -38,6 +38,7 @@
             label3 = new Label();
             label4 = new Label();
             PnlTelaLogin = new Panel();
+            BtnContato = new Button();
             PnlTelaLogin.SuspendLayout();
             SuspendLayout();
             // 
@@ -140,6 +141,7 @@
             // 
             PnlTelaLogin.BackColor = Color.Transparent;
             PnlTelaLogin.BorderStyle = BorderStyle.Fixed3D;
+            PnlTelaLogin.Controls.Add(BtnContato);
             PnlTelaLogin.Controls.Add(label3);
             PnlTelaLogin.Controls.Add(BtnCadastrarCliente);
             PnlTelaLogin.Controls.Add(label4);
@@ -152,6 +154,20 @@
             PnlTelaLogin.Name = "PnlTelaLogin";
             PnlTelaLogin.Size = new Size(990, 497);
             PnlTelaLogin.TabIndex = 8;
+            // 
+            // BtnContato
+            // 
+            BtnContato.BackColor = Color.PowderBlue;
+            BtnContato.Cursor = Cursors.Hand;
+            BtnContato.FlatStyle = FlatStyle.Popup;
+            BtnContato.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BtnContato.Location = new Point(832, 431);
+            BtnContato.Name = "BtnContato";
+            BtnContato.Size = new Size(130, 38);
+            BtnContato.TabIndex = 8;
+            BtnContato.Text = "Contate-Nos";
+            BtnContato.UseVisualStyleBackColor = false;
+            BtnContato.Click += BtnContato_Click;
             // 
             // TelaLogin
             // 
@@ -185,5 +201,6 @@
         private Label label3;
         private Label label4;
         private Panel PnlTelaLogin;
+        private Button BtnContato;
     }
 }

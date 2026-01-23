@@ -70,7 +70,7 @@ namespace Shop.TelaFuncionarios
 
                     }
 
-                   
+
                 }
                 else
                 {
@@ -103,6 +103,12 @@ namespace Shop.TelaFuncionarios
         private void TelaLogin_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnContato_Click(object sender, EventArgs e)
+        {
+            InformacaoContatocs conta = new InformacaoContatocs();
+            conta.ShowDialog();
         }
     }
 }
