@@ -28,7 +28,7 @@ namespace Shop.TelaFuncionarios
 
             LblNomeAdm.Text = $"Olá,{_nomeadm}";
         }
-
+        
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -133,6 +133,17 @@ namespace Shop.TelaFuncionarios
 
             // 2. Carrega os dados
             await CarregarDashboard();
+            // 3. Carrega o gráfico de status
+            try
+            {
+                ApiService api = new ApiService();
+                var dadosPedidos = await api.GetTodosAgendamentos();
+                CarregarGraficoStatus(dadosPedidos);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar gráfico de status: " + ex.Message);
+            }
 
         }
 
@@ -150,8 +161,6 @@ namespace Shop.TelaFuncionarios
                 // CARD 2 - Vendas Mês (Crie o label lblValorMes no design!)
                 LblValorMes.Text = dados.VendasMes.ToString("C2");
 
-                // CARD 3 - Pendentes
-                LblQtdPendentes.Text = dados.Pendentes.ToString();
 
                 // CARD 4 - Clientes
                 LblQTDClientes.Text = dados.NovosClientes.ToString();
@@ -160,6 +169,69 @@ namespace Shop.TelaFuncionarios
             {
 
             }
+        }
+
+        private void CarregarGraficoStatus(DataTable dados)
+        {
+            // 1. Limpa dados antigos
+            ChartPedidos.Series[0].Points.Clear();
+
+            // 2. Conta os Status (Usando a coluna exata do seu banco: "status")
+            var contagem = dados.AsEnumerable()
+                .GroupBy(row => row.Field<string>("status")) // "status" minúsculo igual no banco
+                .Select(g => new { StatusDoBanco = g.Key, Qtd = g.Count() })
+                .ToList();
+
+            // 3. Adiciona os pontos no gráfico
+            foreach (var item in contagem)
+            {
+                string nomeExibicao = item.StatusDoBanco;
+                Color corBarra = Color.Gray;
+
+                // --- TRADUÇÃO DOS TERMOS DO BANCO PARA O VISUAL ---
+                switch (item.StatusDoBanco.ToLower())
+                {
+                    case "pendente":
+                        nomeExibicao = "Pendente";
+                        corBarra = Color.DarkOrange;
+                        break;
+
+                    case "confirmado":
+                        nomeExibicao = "Confirmado";
+                        corBarra = Color.Gold;
+                        break;
+
+                    case "em_andamento": // O termo exato do seu SQL
+                        nomeExibicao = "Em Andamento"; // Texto bonito para o usuário
+                        corBarra = Color.RoyalBlue;
+                        break;
+
+                    case "concluido":
+                        nomeExibicao = "Concluído";
+                        corBarra = Color.SeaGreen;
+                        break;
+
+                    case "cancelado":
+                        nomeExibicao = "Cancelado";
+                        corBarra = Color.Red;
+                        break;
+                }
+
+                // 4. Adiciona ao Gráfico
+                int pontoIndex = ChartPedidos.Series[0].Points.AddY(item.Qtd);
+
+                // Define o texto que aparece na legenda
+                ChartPedidos.Series[0].Points[pontoIndex].LegendText = nomeExibicao;
+
+                // Define a cor
+                ChartPedidos.Series[0].Points[pontoIndex].Color = corBarra;
+
+                // Define o rótulo (número) em cima da fatia
+                ChartPedidos.Series[0].Points[pontoIndex].Label = item.Qtd.ToString();
+            }
+
+            // Deixa a rosca mais grossa e bonita
+            ChartPedidos.Series[0]["DoughnutRadius"] = "60";
         }
 
         private async void BtnClentesCadastradosADM_Click(object sender, EventArgs e)

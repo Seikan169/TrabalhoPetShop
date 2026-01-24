@@ -30,6 +30,9 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPrincipalADM));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
@@ -45,6 +48,11 @@
             pictureBox1 = new PictureBox();
             LblNomeAdm = new Label();
             PanelCentralADM = new Panel();
+            PnlConteudoBaixo = new Panel();
+            ChartPedidos = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            PnLCabeca = new Panel();
+            LblTitulo = new Label();
+            LblDATA = new Label();
             FlowPanelGrafico = new FlowLayoutPanel();
             PnlCardVendas = new Panel();
             label2 = new Label();
@@ -55,24 +63,23 @@
             PnlVendasCard = new Panel();
             LblQtdPendentes = new Label();
             lBLPendente = new Label();
+            DgvPricipal = new DataGridView();
             PnlCardClientes = new Panel();
             LblQTDClientes = new Label();
             LblClientes = new Label();
-            DgvPricipal = new DataGridView();
-            PnLCabeca = new Panel();
-            LblTitulo = new Label();
-            LblDATA = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             PanelCentralADM.SuspendLayout();
+            PnlConteudoBaixo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ChartPedidos).BeginInit();
+            PnLCabeca.SuspendLayout();
             FlowPanelGrafico.SuspendLayout();
             PnlCardVendas.SuspendLayout();
             panel2.SuspendLayout();
             PnlVendasCard.SuspendLayout();
-            PnlCardClientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DgvPricipal).BeginInit();
-            PnLCabeca.SuspendLayout();
+            PnlCardClientes.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -274,8 +281,9 @@
             // PanelCentralADM
             // 
             PanelCentralADM.BackColor = Color.Transparent;
+            PanelCentralADM.BorderStyle = BorderStyle.Fixed3D;
+            PanelCentralADM.Controls.Add(PnlConteudoBaixo);
             PanelCentralADM.Controls.Add(FlowPanelGrafico);
-            PanelCentralADM.Controls.Add(DgvPricipal);
             PanelCentralADM.Controls.Add(PnLCabeca);
             PanelCentralADM.Dock = DockStyle.Fill;
             PanelCentralADM.Location = new Point(180, 0);
@@ -283,6 +291,80 @@
             PanelCentralADM.Name = "PanelCentralADM";
             PanelCentralADM.Size = new Size(1125, 555);
             PanelCentralADM.TabIndex = 2;
+            // 
+            // PnlConteudoBaixo
+            // 
+            PnlConteudoBaixo.BorderStyle = BorderStyle.Fixed3D;
+            PnlConteudoBaixo.Controls.Add(ChartPedidos);
+            PnlConteudoBaixo.Dock = DockStyle.Fill;
+            PnlConteudoBaixo.Location = new Point(0, 231);
+            PnlConteudoBaixo.Name = "PnlConteudoBaixo";
+            PnlConteudoBaixo.Size = new Size(1121, 320);
+            PnlConteudoBaixo.TabIndex = 4;
+            // 
+            // ChartPedidos
+            // 
+            chartArea1.BackColor = Color.White;
+            chartArea1.BorderColor = Color.Transparent;
+            chartArea1.Name = "ChartArea1";
+            ChartPedidos.ChartAreas.Add(chartArea1);
+            legend1.Alignment = StringAlignment.Center;
+            legend1.BackColor = Color.Transparent;
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            legend1.IsTextAutoFit = false;
+            legend1.Name = "Legend1";
+            ChartPedidos.Legends.Add(legend1);
+            ChartPedidos.Location = new Point(333, 6);
+            ChartPedidos.Name = "ChartPedidos";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series1.CustomProperties = "DoughnutRadius=70";
+            series1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            series1.LabelForeColor = Color.White;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            ChartPedidos.Series.Add(series1);
+            ChartPedidos.Size = new Size(300, 300);
+            ChartPedidos.TabIndex = 0;
+            ChartPedidos.Text = "chart1";
+            // 
+            // PnLCabeca
+            // 
+            PnLCabeca.BackColor = SystemColors.Highlight;
+            PnLCabeca.BorderStyle = BorderStyle.Fixed3D;
+            PnLCabeca.Controls.Add(LblTitulo);
+            PnLCabeca.Controls.Add(LblDATA);
+            PnLCabeca.Dock = DockStyle.Top;
+            PnLCabeca.Location = new Point(0, 0);
+            PnLCabeca.Name = "PnLCabeca";
+            PnLCabeca.Size = new Size(1121, 50);
+            PnLCabeca.TabIndex = 2;
+            // 
+            // LblTitulo
+            // 
+            LblTitulo.BackColor = Color.DodgerBlue;
+            LblTitulo.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblTitulo.ForeColor = Color.White;
+            LblTitulo.Location = new Point(41, 0);
+            LblTitulo.Name = "LblTitulo";
+            LblTitulo.Size = new Size(814, 46);
+            LblTitulo.TabIndex = 14;
+            LblTitulo.Text = "label2";
+            LblTitulo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // LblDATA
+            // 
+            LblDATA.BackColor = Color.DodgerBlue;
+            LblDATA.Dock = DockStyle.Right;
+            LblDATA.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblDATA.ForeColor = Color.White;
+            LblDATA.Location = new Point(855, 0);
+            LblDATA.Name = "LblDATA";
+            LblDATA.Size = new Size(262, 46);
+            LblDATA.TabIndex = 15;
+            LblDATA.Text = "label2";
+            LblDATA.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // FlowPanelGrafico
             // 
@@ -296,7 +378,7 @@
             FlowPanelGrafico.Location = new Point(0, 50);
             FlowPanelGrafico.Name = "FlowPanelGrafico";
             FlowPanelGrafico.Padding = new Padding(20);
-            FlowPanelGrafico.Size = new Size(1125, 181);
+            FlowPanelGrafico.Size = new Size(1121, 181);
             FlowPanelGrafico.TabIndex = 3;
             // 
             // PnlCardVendas
@@ -375,6 +457,7 @@
             PnlVendasCard.BorderStyle = BorderStyle.Fixed3D;
             PnlVendasCard.Controls.Add(LblQtdPendentes);
             PnlVendasCard.Controls.Add(lBLPendente);
+            PnlVendasCard.Controls.Add(DgvPricipal);
             PnlVendasCard.Location = new Point(535, 23);
             PnlVendasCard.Name = "PnlVendasCard";
             PnlVendasCard.Size = new Size(250, 140);
@@ -394,13 +477,58 @@
             lBLPendente.BackColor = Color.Transparent;
             lBLPendente.Dock = DockStyle.Top;
             lBLPendente.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lBLPendente.Image = (Image)resources.GetObject("lBLPendente.Image");
             lBLPendente.ImageAlign = ContentAlignment.MiddleRight;
             lBLPendente.Location = new Point(0, 0);
             lBLPendente.Name = "lBLPendente";
             lBLPendente.Size = new Size(246, 34);
             lBLPendente.TabIndex = 3;
             lBLPendente.Text = "Pendente";
+            // 
+            // DgvPricipal
+            // 
+            DgvPricipal.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DgvPricipal.BackgroundColor = Color.WhiteSmoke;
+            DgvPricipal.BorderStyle = BorderStyle.Fixed3D;
+            DgvPricipal.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            DgvPricipal.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.Lime;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.Padding = new Padding(0, 0, 40, 0);
+            dataGridViewCellStyle1.SelectionBackColor = Color.Lime;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            DgvPricipal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            DgvPricipal.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.Padding = new Padding(0, 0, 35, 0);
+            dataGridViewCellStyle2.SelectionBackColor = Color.DarkOrange;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            DgvPricipal.DefaultCellStyle = dataGridViewCellStyle2;
+            DgvPricipal.EnableHeadersVisualStyles = false;
+            DgvPricipal.GridColor = Color.Black;
+            DgvPricipal.Location = new Point(136, 45);
+            DgvPricipal.Name = "DgvPricipal";
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.Salmon;
+            dataGridViewCellStyle3.SelectionForeColor = Color.RoyalBlue;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            DgvPricipal.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            DgvPricipal.RowHeadersVisible = false;
+            DgvPricipal.RowHeadersWidth = 51;
+            DgvPricipal.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DgvPricipal.Size = new Size(368, 343);
+            DgvPricipal.TabIndex = 1;
+            DgvPricipal.Visible = false;
+            DgvPricipal.CellContentClick += DgvPricipal_CellContentClick;
             // 
             // PnlCardClientes
             // 
@@ -435,91 +563,6 @@
             LblClientes.TabIndex = 4;
             LblClientes.Text = "Clientes";
             // 
-            // DgvPricipal
-            // 
-            DgvPricipal.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            DgvPricipal.BackgroundColor = Color.WhiteSmoke;
-            DgvPricipal.BorderStyle = BorderStyle.Fixed3D;
-            DgvPricipal.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            DgvPricipal.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.Lime;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dataGridViewCellStyle1.Padding = new Padding(0, 0, 40, 0);
-            dataGridViewCellStyle1.SelectionBackColor = Color.Lime;
-            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            DgvPricipal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            DgvPricipal.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.Padding = new Padding(0, 0, 35, 0);
-            dataGridViewCellStyle2.SelectionBackColor = Color.DarkOrange;
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            DgvPricipal.DefaultCellStyle = dataGridViewCellStyle2;
-            DgvPricipal.Dock = DockStyle.Fill;
-            DgvPricipal.EnableHeadersVisualStyles = false;
-            DgvPricipal.GridColor = Color.Black;
-            DgvPricipal.Location = new Point(0, 50);
-            DgvPricipal.Name = "DgvPricipal";
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = Color.Salmon;
-            dataGridViewCellStyle3.SelectionForeColor = Color.RoyalBlue;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            DgvPricipal.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            DgvPricipal.RowHeadersVisible = false;
-            DgvPricipal.RowHeadersWidth = 51;
-            DgvPricipal.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            DgvPricipal.Size = new Size(1125, 505);
-            DgvPricipal.TabIndex = 1;
-            DgvPricipal.Visible = false;
-            DgvPricipal.CellContentClick += DgvPricipal_CellContentClick;
-            // 
-            // PnLCabeca
-            // 
-            PnLCabeca.BackColor = SystemColors.Highlight;
-            PnLCabeca.BorderStyle = BorderStyle.Fixed3D;
-            PnLCabeca.Controls.Add(LblTitulo);
-            PnLCabeca.Controls.Add(LblDATA);
-            PnLCabeca.Dock = DockStyle.Top;
-            PnLCabeca.Location = new Point(0, 0);
-            PnLCabeca.Name = "PnLCabeca";
-            PnLCabeca.Size = new Size(1125, 50);
-            PnLCabeca.TabIndex = 2;
-            // 
-            // LblTitulo
-            // 
-            LblTitulo.BackColor = Color.DodgerBlue;
-            LblTitulo.Dock = DockStyle.Fill;
-            LblTitulo.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblTitulo.ForeColor = Color.White;
-            LblTitulo.Location = new Point(0, 0);
-            LblTitulo.Name = "LblTitulo";
-            LblTitulo.Size = new Size(859, 46);
-            LblTitulo.TabIndex = 14;
-            LblTitulo.Text = "label2";
-            LblTitulo.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // LblDATA
-            // 
-            LblDATA.BackColor = Color.DodgerBlue;
-            LblDATA.Dock = DockStyle.Right;
-            LblDATA.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblDATA.ForeColor = Color.White;
-            LblDATA.Location = new Point(859, 0);
-            LblDATA.Name = "LblDATA";
-            LblDATA.Size = new Size(262, 46);
-            LblDATA.TabIndex = 15;
-            LblDATA.Text = "label2";
-            LblDATA.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // timer1
             // 
             timer1.Enabled = true;
@@ -545,6 +588,9 @@
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             PanelCentralADM.ResumeLayout(false);
+            PnlConteudoBaixo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ChartPedidos).EndInit();
+            PnLCabeca.ResumeLayout(false);
             FlowPanelGrafico.ResumeLayout(false);
             PnlCardVendas.ResumeLayout(false);
             PnlCardVendas.PerformLayout();
@@ -552,10 +598,9 @@
             panel2.PerformLayout();
             PnlVendasCard.ResumeLayout(false);
             PnlVendasCard.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)DgvPricipal).EndInit();
             PnlCardClientes.ResumeLayout(false);
             PnlCardClientes.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)DgvPricipal).EndInit();
-            PnLCabeca.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -576,7 +621,7 @@
         private Label LblNomeAdm;
         private Panel PnLCabeca;
         private Panel panel4;
-        private Panel panel3;
+        private Panel PnlConteudoBaixo;
         private FlowLayoutPanel FlowPanelGrafico;
         private Panel PnlCardVendas;
         private Label LblVendaHj;
@@ -593,5 +638,6 @@
         private Label LblTitulo;
         private Label LblDATA;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart ChartPedidos;
     }
 }

@@ -456,6 +456,8 @@ namespace Shop.TelaFuncionarios
                 catch { return false; }
             }
         }
+
+        //------------------------------------------------------------------- Classes para puxar os dados do banco ------------------------------------------------------------------------------------------------
     }
     public class PetDTO
     {
