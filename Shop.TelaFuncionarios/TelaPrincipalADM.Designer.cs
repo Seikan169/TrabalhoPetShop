@@ -33,6 +33,9 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -54,27 +57,32 @@
             LblDATA = new Label();
             DgvPricipal = new DataGridView();
             PnlConteudoBaixo = new Panel();
-            ChartPedidos = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            PnlCardClientes = new Panel();
-            LblClientes = new Label();
-            LblQTDClientes = new Label();
-            panel2 = new Panel();
-            LblMes = new Label();
-            LblValorMes = new Label();
-            PnlCardVendas = new Panel();
-            LblVendaHj = new Label();
-            label2 = new Label();
+            DgvUltimosPedidos = new DataGridView();
+            label1 = new Label();
+            PnlCimaCard = new Panel();
             FlowPanelGrafico = new FlowLayoutPanel();
+            PnlCardVendas = new Panel();
+            label2 = new Label();
+            LblVendaHj = new Label();
+            panel2 = new Panel();
+            LblValorMes = new Label();
+            LblMes = new Label();
+            PnlCardClientes = new Panel();
+            LblQTDClientes = new Label();
+            LblClientes = new Label();
+            ChartPedidos = new System.Windows.Forms.DataVisualization.Charting.Chart();
             PnlBotoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             PnLCabeca.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DgvPricipal).BeginInit();
             PnlConteudoBaixo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)ChartPedidos).BeginInit();
-            PnlCardClientes.SuspendLayout();
-            panel2.SuspendLayout();
-            PnlCardVendas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DgvUltimosPedidos).BeginInit();
+            PnlCimaCard.SuspendLayout();
             FlowPanelGrafico.SuspendLayout();
+            PnlCardVendas.SuspendLayout();
+            panel2.SuspendLayout();
+            PnlCardClientes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ChartPedidos).BeginInit();
             SuspendLayout();
             // 
             // timer1
@@ -384,13 +392,204 @@
             // 
             PnlConteudoBaixo.BackColor = Color.White;
             PnlConteudoBaixo.BorderStyle = BorderStyle.Fixed3D;
-            PnlConteudoBaixo.Controls.Add(FlowPanelGrafico);
+            PnlConteudoBaixo.Controls.Add(DgvUltimosPedidos);
+            PnlConteudoBaixo.Controls.Add(label1);
+            PnlConteudoBaixo.Controls.Add(PnlCimaCard);
             PnlConteudoBaixo.Controls.Add(ChartPedidos);
             PnlConteudoBaixo.Dock = DockStyle.Fill;
             PnlConteudoBaixo.Location = new Point(180, 50);
             PnlConteudoBaixo.Name = "PnlConteudoBaixo";
             PnlConteudoBaixo.Size = new Size(1270, 505);
             PnlConteudoBaixo.TabIndex = 4;
+            // 
+            // DgvUltimosPedidos
+            // 
+            DgvUltimosPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DgvUltimosPedidos.BackgroundColor = Color.White;
+            DgvUltimosPedidos.BorderStyle = BorderStyle.Fixed3D;
+            DgvUltimosPedidos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            DgvUltimosPedidos.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = Color.DimGray;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.Padding = new Padding(0, 0, 40, 0);
+            dataGridViewCellStyle4.SelectionBackColor = Color.DimGray;
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            DgvUltimosPedidos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            DgvUltimosPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dataGridViewCellStyle5.Padding = new Padding(0, 0, 35, 0);
+            dataGridViewCellStyle5.SelectionBackColor = Color.DarkOrange;
+            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            DgvUltimosPedidos.DefaultCellStyle = dataGridViewCellStyle5;
+            DgvUltimosPedidos.Dock = DockStyle.Fill;
+            DgvUltimosPedidos.EnableHeadersVisualStyles = false;
+            DgvUltimosPedidos.GridColor = Color.Black;
+            DgvUltimosPedidos.Location = new Point(0, 239);
+            DgvUltimosPedidos.Name = "DgvUltimosPedidos";
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.White;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = Color.Salmon;
+            dataGridViewCellStyle6.SelectionForeColor = Color.RoyalBlue;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            DgvUltimosPedidos.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            DgvUltimosPedidos.RowHeadersVisible = false;
+            DgvUltimosPedidos.RowHeadersWidth = 51;
+            DgvUltimosPedidos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DgvUltimosPedidos.Size = new Size(908, 262);
+            DgvUltimosPedidos.TabIndex = 16;
+            DgvUltimosPedidos.CellFormatting += DgvUltimosPedidos_CellFormatting;
+            // 
+            // label1
+            // 
+            label1.BackColor = Color.DodgerBlue;
+            label1.BorderStyle = BorderStyle.Fixed3D;
+            label1.Dock = DockStyle.Top;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Image = (Image)resources.GetObject("label1.Image");
+            label1.ImageAlign = ContentAlignment.MiddleLeft;
+            label1.Location = new Point(0, 203);
+            label1.Name = "label1";
+            label1.Size = new Size(908, 36);
+            label1.TabIndex = 15;
+            label1.Text = "Últimos Pedidos";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // PnlCimaCard
+            // 
+            PnlCimaCard.BorderStyle = BorderStyle.Fixed3D;
+            PnlCimaCard.Controls.Add(FlowPanelGrafico);
+            PnlCimaCard.Dock = DockStyle.Top;
+            PnlCimaCard.Location = new Point(0, 0);
+            PnlCimaCard.Name = "PnlCimaCard";
+            PnlCimaCard.Size = new Size(908, 203);
+            PnlCimaCard.TabIndex = 1;
+            // 
+            // FlowPanelGrafico
+            // 
+            FlowPanelGrafico.BackColor = Color.White;
+            FlowPanelGrafico.BorderStyle = BorderStyle.Fixed3D;
+            FlowPanelGrafico.Controls.Add(PnlCardVendas);
+            FlowPanelGrafico.Controls.Add(panel2);
+            FlowPanelGrafico.Controls.Add(PnlCardClientes);
+            FlowPanelGrafico.Dock = DockStyle.Top;
+            FlowPanelGrafico.Location = new Point(0, 0);
+            FlowPanelGrafico.Name = "FlowPanelGrafico";
+            FlowPanelGrafico.Padding = new Padding(20);
+            FlowPanelGrafico.Size = new Size(904, 203);
+            FlowPanelGrafico.TabIndex = 5;
+            // 
+            // PnlCardVendas
+            // 
+            PnlCardVendas.BackColor = Color.RoyalBlue;
+            PnlCardVendas.BorderStyle = BorderStyle.Fixed3D;
+            PnlCardVendas.Controls.Add(label2);
+            PnlCardVendas.Controls.Add(LblVendaHj);
+            PnlCardVendas.Location = new Point(23, 23);
+            PnlCardVendas.Name = "PnlCardVendas";
+            PnlCardVendas.Size = new Size(250, 140);
+            PnlCardVendas.TabIndex = 0;
+            // 
+            // label2
+            // 
+            label2.BackColor = Color.Transparent;
+            label2.Dock = DockStyle.Top;
+            label2.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Image = (Image)resources.GetObject("label2.Image");
+            label2.ImageAlign = ContentAlignment.MiddleRight;
+            label2.Location = new Point(0, 0);
+            label2.Name = "label2";
+            label2.RightToLeft = RightToLeft.No;
+            label2.Size = new Size(246, 45);
+            label2.TabIndex = 2;
+            label2.Text = "Vendas Hoje: ";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // LblVendaHj
+            // 
+            LblVendaHj.AutoSize = true;
+            LblVendaHj.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblVendaHj.Location = new Point(3, 45);
+            LblVendaHj.Name = "LblVendaHj";
+            LblVendaHj.Size = new Size(131, 45);
+            LblVendaHj.TabIndex = 1;
+            LblVendaHj.Text = "R$ 0,00";
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.BlueViolet;
+            panel2.BorderStyle = BorderStyle.Fixed3D;
+            panel2.Controls.Add(LblValorMes);
+            panel2.Controls.Add(LblMes);
+            panel2.Location = new Point(279, 23);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(261, 140);
+            panel2.TabIndex = 3;
+            // 
+            // LblValorMes
+            // 
+            LblValorMes.AutoSize = true;
+            LblValorMes.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblValorMes.Location = new Point(3, 45);
+            LblValorMes.Name = "LblValorMes";
+            LblValorMes.Size = new Size(131, 45);
+            LblValorMes.TabIndex = 5;
+            LblValorMes.Text = "R$ 0,00";
+            // 
+            // LblMes
+            // 
+            LblMes.BackColor = Color.Transparent;
+            LblMes.Dock = DockStyle.Top;
+            LblMes.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblMes.Image = (Image)resources.GetObject("LblMes.Image");
+            LblMes.ImageAlign = ContentAlignment.MiddleRight;
+            LblMes.Location = new Point(0, 0);
+            LblMes.Name = "LblMes";
+            LblMes.Size = new Size(257, 34);
+            LblMes.TabIndex = 4;
+            LblMes.Text = "Vendas do mês ";
+            // 
+            // PnlCardClientes
+            // 
+            PnlCardClientes.BackColor = Color.SeaGreen;
+            PnlCardClientes.BorderStyle = BorderStyle.Fixed3D;
+            PnlCardClientes.Controls.Add(LblQTDClientes);
+            PnlCardClientes.Controls.Add(LblClientes);
+            PnlCardClientes.Location = new Point(546, 23);
+            PnlCardClientes.Name = "PnlCardClientes";
+            PnlCardClientes.Size = new Size(249, 140);
+            PnlCardClientes.TabIndex = 2;
+            // 
+            // LblQTDClientes
+            // 
+            LblQTDClientes.AutoSize = true;
+            LblQTDClientes.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblQTDClientes.Location = new Point(3, 45);
+            LblQTDClientes.Name = "LblQTDClientes";
+            LblQTDClientes.Size = new Size(0, 45);
+            LblQTDClientes.TabIndex = 5;
+            // 
+            // LblClientes
+            // 
+            LblClientes.BackColor = Color.Transparent;
+            LblClientes.Dock = DockStyle.Top;
+            LblClientes.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblClientes.Image = (Image)resources.GetObject("LblClientes.Image");
+            LblClientes.ImageAlign = ContentAlignment.MiddleRight;
+            LblClientes.Location = new Point(0, 0);
+            LblClientes.Name = "LblClientes";
+            LblClientes.Size = new Size(245, 34);
+            LblClientes.TabIndex = 4;
+            LblClientes.Text = "Clientes Cadastrados";
             // 
             // ChartPedidos
             // 
@@ -421,123 +620,6 @@
             ChartPedidos.TabIndex = 0;
             ChartPedidos.Text = "chart1";
             // 
-            // PnlCardClientes
-            // 
-            PnlCardClientes.BackColor = Color.SeaGreen;
-            PnlCardClientes.BorderStyle = BorderStyle.Fixed3D;
-            PnlCardClientes.Controls.Add(LblQTDClientes);
-            PnlCardClientes.Controls.Add(LblClientes);
-            PnlCardClientes.Location = new Point(535, 23);
-            PnlCardClientes.Name = "PnlCardClientes";
-            PnlCardClientes.Size = new Size(250, 140);
-            PnlCardClientes.TabIndex = 2;
-            // 
-            // LblClientes
-            // 
-            LblClientes.BackColor = Color.Transparent;
-            LblClientes.Dock = DockStyle.Top;
-            LblClientes.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblClientes.Image = (Image)resources.GetObject("LblClientes.Image");
-            LblClientes.ImageAlign = ContentAlignment.MiddleRight;
-            LblClientes.Location = new Point(0, 0);
-            LblClientes.Name = "LblClientes";
-            LblClientes.Size = new Size(246, 34);
-            LblClientes.TabIndex = 4;
-            LblClientes.Text = "Clientes Cadastrados";
-            // 
-            // LblQTDClientes
-            // 
-            LblQTDClientes.AutoSize = true;
-            LblQTDClientes.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblQTDClientes.Location = new Point(3, 45);
-            LblQTDClientes.Name = "LblQTDClientes";
-            LblQTDClientes.Size = new Size(0, 45);
-            LblQTDClientes.TabIndex = 5;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.BlueViolet;
-            panel2.BorderStyle = BorderStyle.Fixed3D;
-            panel2.Controls.Add(LblValorMes);
-            panel2.Controls.Add(LblMes);
-            panel2.Location = new Point(279, 23);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(250, 140);
-            panel2.TabIndex = 3;
-            // 
-            // LblMes
-            // 
-            LblMes.BackColor = Color.Transparent;
-            LblMes.Dock = DockStyle.Top;
-            LblMes.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblMes.Image = (Image)resources.GetObject("LblMes.Image");
-            LblMes.ImageAlign = ContentAlignment.MiddleRight;
-            LblMes.Location = new Point(0, 0);
-            LblMes.Name = "LblMes";
-            LblMes.Size = new Size(246, 34);
-            LblMes.TabIndex = 4;
-            LblMes.Text = "Vendas do mês ";
-            // 
-            // LblValorMes
-            // 
-            LblValorMes.AutoSize = true;
-            LblValorMes.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblValorMes.Location = new Point(3, 45);
-            LblValorMes.Name = "LblValorMes";
-            LblValorMes.Size = new Size(131, 45);
-            LblValorMes.TabIndex = 5;
-            LblValorMes.Text = "R$ 0,00";
-            // 
-            // PnlCardVendas
-            // 
-            PnlCardVendas.BackColor = Color.RoyalBlue;
-            PnlCardVendas.BorderStyle = BorderStyle.Fixed3D;
-            PnlCardVendas.Controls.Add(label2);
-            PnlCardVendas.Controls.Add(LblVendaHj);
-            PnlCardVendas.Location = new Point(23, 23);
-            PnlCardVendas.Name = "PnlCardVendas";
-            PnlCardVendas.Size = new Size(250, 140);
-            PnlCardVendas.TabIndex = 0;
-            // 
-            // LblVendaHj
-            // 
-            LblVendaHj.AutoSize = true;
-            LblVendaHj.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblVendaHj.Location = new Point(3, 45);
-            LblVendaHj.Name = "LblVendaHj";
-            LblVendaHj.Size = new Size(131, 45);
-            LblVendaHj.TabIndex = 1;
-            LblVendaHj.Text = "R$ 0,00";
-            // 
-            // label2
-            // 
-            label2.BackColor = Color.Transparent;
-            label2.Dock = DockStyle.Top;
-            label2.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Image = (Image)resources.GetObject("label2.Image");
-            label2.ImageAlign = ContentAlignment.MiddleRight;
-            label2.Location = new Point(0, 0);
-            label2.Name = "label2";
-            label2.RightToLeft = RightToLeft.No;
-            label2.Size = new Size(246, 45);
-            label2.TabIndex = 2;
-            label2.Text = "Vendas Hoje: ";
-            label2.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // FlowPanelGrafico
-            // 
-            FlowPanelGrafico.BackColor = Color.White;
-            FlowPanelGrafico.BorderStyle = BorderStyle.Fixed3D;
-            FlowPanelGrafico.Controls.Add(PnlCardVendas);
-            FlowPanelGrafico.Controls.Add(panel2);
-            FlowPanelGrafico.Controls.Add(PnlCardClientes);
-            FlowPanelGrafico.Dock = DockStyle.Top;
-            FlowPanelGrafico.Location = new Point(0, 0);
-            FlowPanelGrafico.Name = "FlowPanelGrafico";
-            FlowPanelGrafico.Padding = new Padding(20);
-            FlowPanelGrafico.Size = new Size(908, 217);
-            FlowPanelGrafico.TabIndex = 4;
-            // 
             // TelaPrincipalADM
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -561,14 +643,16 @@
             PnLCabeca.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)DgvPricipal).EndInit();
             PnlConteudoBaixo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)ChartPedidos).EndInit();
-            PnlCardClientes.ResumeLayout(false);
-            PnlCardClientes.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)DgvUltimosPedidos).EndInit();
+            PnlCimaCard.ResumeLayout(false);
+            FlowPanelGrafico.ResumeLayout(false);
             PnlCardVendas.ResumeLayout(false);
             PnlCardVendas.PerformLayout();
-            FlowPanelGrafico.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            PnlCardClientes.ResumeLayout(false);
+            PnlCardClientes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)ChartPedidos).EndInit();
             ResumeLayout(false);
         }
 
@@ -594,6 +678,7 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartVendas;
         private Button BtnAtualizar;
         private Label lblUltimaAtualizacao;
+        private Panel PnlCimaCard;
         private FlowLayoutPanel FlowPanelGrafico;
         private Panel PnlCardVendas;
         private Label label2;
@@ -604,5 +689,7 @@
         private Panel PnlCardClientes;
         private Label LblQTDClientes;
         private Label LblClientes;
+        private DataGridView DgvUltimosPedidos;
+        private Label label1;
     }
 }

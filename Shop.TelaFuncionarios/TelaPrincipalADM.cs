@@ -143,6 +143,44 @@ namespace Shop.TelaFuncionarios
             {
                 ApiService api = new ApiService();
 
+                var ultimos = await api.GetUltimosPedidos(); // Crie esse método no ApiService
+                if (ultimos != null)
+                {
+                    DgvUltimosPedidos.DataSource = ultimos;
+                    // 1. RESETAR CONFIGURAÇÕES ANTIGAS (Importante para não travar)
+                    DgvUltimosPedidos.AutoGenerateColumns = true;
+
+                    // 2. CENTRALIZAR TUDO (Cabeçalho e Dados) 🎯
+                    // Alinha o texto das células no centro
+                    DgvUltimosPedidos.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    // Alinha os títulos das colunas no centro
+                    DgvUltimosPedidos.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                    // 3. RESOLVER O CORTE DA COLUNA (Preencher a tela) ↔️
+                    DgvUltimosPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                    // 4. AJUSTES FINOS (Opcional - Para garantir que fique perfeito)
+                    // Força a coluna da Hora a ter um tamanho fixo para não ficar espremida demais ou larga demais
+                    if (DgvUltimosPedidos.Columns.Contains("Hora"))
+                    {
+                        DgvUltimosPedidos.Columns["Hora"].HeaderText = "Horário";
+                        DgvUltimosPedidos.Columns["Hora"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None; // Tira do automático
+                        DgvUltimosPedidos.Columns["Hora"].Width = 100; // Define largura fixa
+                    }
+
+                    // Formata o dinheiro
+                    if (DgvUltimosPedidos.Columns.Contains("Valor"))
+                    {
+                        DgvUltimosPedidos.Columns["Valor"].DefaultCellStyle.Format = "C2";
+                    }
+
+                    // Remove a coluna lateral cinza inútil (RowHeader)
+                    DgvUltimosPedidos.RowHeadersVisible = false;
+
+                    // Tira a seleção azul forte quando clica (Opcional, fica mais bonito)
+                    DgvUltimosPedidos.ClearSelection();
+                }
+
                 // Essa linha busca TUDO do banco (Vem uma tabela cheia de dados)
                 var todosPedidos = await api.GetTodosAgendamentos();
 
@@ -361,6 +399,8 @@ namespace Shop.TelaFuncionarios
                     }
                 }
 
+
+
                 // -------------------------------------------------------
                 // 2. LÓGICA DA DATA DE NASCIMENTO (Esconder 01/01/0001)
                 // -------------------------------------------------------
@@ -378,6 +418,8 @@ namespace Shop.TelaFuncionarios
                     }
                 }
             }
+
+
         }
 
         private void DgvPricipal_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -689,6 +731,23 @@ namespace Shop.TelaFuncionarios
             // 4. Destrava tudo
             BtnAtualizar.Enabled = true;
             Cursor = Cursors.Default;
+        }
+
+        private void DgvUltimosPedidos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (DgvUltimosPedidos.Columns[e.ColumnIndex].Name == "Servico" && e.Value != null)
+            {
+                string status = e.Value.ToString().ToLower();
+                e.CellStyle.Font = new Font(DgvUltimosPedidos.Font, FontStyle.Bold); // Negrito
+
+                if (status == "concluido") e.CellStyle.ForeColor = Color.SeaGreen;
+                else if (status == "pendente") e.CellStyle.ForeColor = Color.DarkOrange;
+                else if (status == "cancelado") e.CellStyle.ForeColor = Color.Red;
+                else if (status == "em_andamento") e.CellStyle.ForeColor = Color.DodgerBlue;
+
+                // Truque: Deixar a primeira letra Maiúscula (ex: "concluido" -> "Concluído")
+                e.Value = char.ToUpper(status[0]) + status.Substring(1);
+            }
         }
     }
 }

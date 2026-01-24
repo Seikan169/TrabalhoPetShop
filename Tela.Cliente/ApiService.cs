@@ -479,10 +479,44 @@ namespace Shop.TelaFuncionarios
                 return null;
             }
         }
+        // Método para buscar os 10 últimos pedidos
+        public async Task<List<UltimoPedidoDTO>> GetUltimosPedidos()
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    // Chama a rota que criamos no Controller
+                    var response = await client.GetAsync($"{_baseUrl}/api/pedidos/ultimos-pedidos");
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        // Transforma o JSON na lista pronta para o Grid
+                        return JsonConvert.DeserializeObject<List<UltimoPedidoDTO>>(json);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Se der erro, retorna lista vazia para não travar o sistema
+                    System.Diagnostics.Debug.WriteLine("Erro ao buscar últimos pedidos: " + ex.Message);
+                }
+
+                return new List<UltimoPedidoDTO>();
+            }
+        }
+
 
         //------------------------------------------------------------------- Classes para puxar os dados do banco ------------------------------------------------------------------------------------------------
     }
 
+    public class UltimoPedidoDTO
+    {
+        public string Hora { get; set; }
+        public string Cliente { get; set; }
+        public string Servico { get; set; } // No controller mapeamos o Status ou Serviço aqui
+        public decimal Valor { get; set; }
+    }
     public class RelatorioDTO
     {
         // Totais Financeiros

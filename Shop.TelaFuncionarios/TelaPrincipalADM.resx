@@ -134,7 +134,7 @@
   <data name="BtnRelatorioADM.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        rQAAAK0BVE7WMAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAKaSURBVEhLxZTL
+        qAAAAKgBefSzxgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAKaSURBVEhLxZTL
         TxNRGMXrxpUL3UjQBKS6MGIQDca1KTFxpbgwkacCWkASXJjGRyIDJC4EE3yRIBhDIIQo8up0Wlpop7Qd
         ykxroWU6LVAQu/JfMNFjZpIZ7a3UEiCe5GQm3733/HLvN3d0uv+hyPp6zsrmpj4bi6J4gFyfUdKX5LXY
         RvJnbCOJbOzgQt9EUdxP5mwpaSNJkSGZbHbzmPEvzpE5W0oFRNe/go2H4YovaV5Yk+BflVJqUyyPCec8
@@ -19014,6 +19014,21 @@
         wdrhLjY4zA5bytYq2syWOwUWs7AJHqxYP5Od4uMoBIX5iOowVBoZzqjKWeTzLgf3+TsGWmHwi1jjLZhJ
         JQ6onIGnarigYtitZUEZ03LUOnI3Uk0snh3iqPad+LscWK034Khviln4pyF2Vp75VaZmMsWpjVnNRbHt
         7bcwf/tNX2VBO4dvkb2Of9ef3o8AAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="label1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        qwAAAKsB1E2SqwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAH2SURBVEhLzVbP
+        S+NAGNXD7t+grOfexaMIbRNBDx4UWn/8D3vz5rInZREU9upRmqS1FFsPC7KyUISicRdBFOwK60Fhq6AX
+        zUzTJuWTl5rUjGHbdD30wYPJzPve+2Y6Ce3r6wBRhQ/FFEOSVUMGMY5v8g+irivEVD4jacyKq4xe0plT
+        +LSoD424yr5NZVnjU9Gkl8Qc1kR9W4yl2KCksZykccPtNpHn9PWo5iPmWrvhBmqiWWNA9PODqH9cY/rk
+        Fre/lExa12uU2OaU3H4dgDmsQQMtamSNHcJDtPUgZcwIOlLP6nT90HC4XDJpXGM0m+eUfCbGmFspmZ5O
+        Oas3d5MxI6KvBzn1GIVo77IVUL63HaOP36s+Yg5rrg41qIWH6OshKKBTdh2QOq2/6t4l1no/oFP2ZsDP
+        ik36X4vm8pxyZYvO72za/WP5uH9ldRcAc4wnMoymc5yOb2xaKpq+75HLXxU7fAC6WtNrNF/gzi7w/KY7
+        EM+4Hf8rIHtep5Pb1lsbxNABOA6c+ef95rkjJOidWPxRdbRdBeDHxfPqQfOj9qYBMMTNQeficQSxs4A0
+        G4Zo56J5M8IQNU5Amg2Lvh4SWXovp1lloVC1C7/91/FfhBY1qIWH6OtDTOGjEKKbMEQNakW/QIxs0LuY
+        ykbcvyntCC1qRB/gCUfF3GBj0r6ZAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="label2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

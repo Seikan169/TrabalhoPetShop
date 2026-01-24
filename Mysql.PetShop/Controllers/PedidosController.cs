@@ -244,6 +244,25 @@ namespace Mysql.PetShop.Controllers
             return Ok(relatorio);
         }
 
+        [HttpGet("ultimos-pedidos")]
+        public async Task<IActionResult> GetUltimosPedidos()
+        {
+            var lista = await _context.TbPedidos
+                .Include(p => p.Cliente)
+                .OrderByDescending(p => p.DataAgendamento) // Do mais novo para o mais antigo
+                .Take(10) // Só os 10 últimos
+                .Select(p => new
+                {
+                    Hora = p.DataAgendamento.ToString("HH:mm"), // Só a hora
+                    Cliente = p.Cliente.Nome,
+                    Servico = p.Status, // Ou p.Itens...
+                    Valor = p.ValorTotal
+                })
+                .ToListAsync();
+
+            return Ok(lista);
+        }
+
         public class PedidoRequestDto
         {
             public int ClienteId { get; set; }
