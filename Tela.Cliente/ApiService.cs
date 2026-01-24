@@ -381,33 +381,39 @@ namespace Shop.TelaFuncionarios
             }
         }
         // Adicione dentro da classe ApiService
-        public async Task<bool> AtualizarStatus(int idPedido, string novoStatus)
+        // Adicione o parâmetro 'idFuncionario' (pode ser nulo caso não tenha funcionário)
+        public async Task<bool> AtualizarStatus(int idPedido, string novoStatus, int? idFuncionario = null)
         {
-            using (var client = new HttpClient())
+            // Ignora SSL local (Mantenha se estiver usando https localmente)
+            var handler = new HttpClientHandler();
+            handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
+
+            using (var client = new HttpClient(handler))
             {
-                // Ignora SSL local
-                var handler = new HttpClientHandler();
-                handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
-
-                using (var http = new HttpClient(handler))
+                try
                 {
-                    try
+                    // 1. A MUDANÇA PRINCIPAL ESTÁ AQUI
+                    // Em vez de mandar só o texto, montamos um objeto com os dois dados
+                    var dadosParaEnvio = new
                     {
-                        // Vamos mandar o status novo como uma string JSON
-                        // Aspas duplas são necessárias para ser um JSON válido de string
-                        var content = new StringContent($"\"{novoStatus}\"", Encoding.UTF8, "application/json");
+                        status = novoStatus,
+                        funcionarioId = idFuncionario // Envia o ID ou null se não tiver
+                    };
 
-                        // Chama a rota PUT: /api/pedidos/{id}/status
-                        var url = $"{_baseUrl}/api/pedidos/{idPedido}/status";
+                    // 2. Transforma o objeto em JSON (Ex: {"status":"concluido", "funcionarioId":5})
+                    var json = JsonConvert.SerializeObject(dadosParaEnvio);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                        var response = await http.PutAsync(url, content);
+                    // Chama a rota PUT
+                    var url = $"{_baseUrl}/api/pedidos/{idPedido}/status";
+                    var response = await client.PutAsync(url, content);
 
-                        return response.IsSuccessStatusCode;
-                    }
-                    catch
-                    {
-                        return false;
-                    }
+                    return response.IsSuccessStatusCode;
+                }
+                catch (Exception ex)
+                {
+                    // Dica: Adicione um log ou breakpoint aqui para ver o erro se falhar
+                    return false;
                 }
             }
         }
@@ -492,8 +498,7 @@ namespace Shop.TelaFuncionarios
         public string Nome { get; set; }
         public string Email { get; set; }
 
-        // O banco manda "cpf", aqui mapeamos para a propriedade CPF
-        [JsonProperty("cpf")]
+        // O banco manda "cpf", aqui mapeamos para a propriedade 
         public string CPF { get; set; }
 
         // O banco manda "data_nascimento", mapeamos para DataNascimento (DateTime)

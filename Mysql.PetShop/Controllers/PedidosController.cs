@@ -60,8 +60,9 @@ namespace Mysql.PetShop.Controllers
             var query = _context.TbPedidos
                 .Include(p => p.Cliente)
                 .Include(p => p.Pet)
-                .Include(p => p.Itens)         // Pega os itens
-                    .ThenInclude(i => i.Servico) // Pega o serviço de cada item
+                .Include(p => p.Funcionario) // <--- 1. NOVIDADE: Traz os dados do funcionário
+                .Include(p => p.Itens)
+                    .ThenInclude(i => i.Servico)
                 .AsQueryable();
 
             // 2. Aplica o filtro (se houver)
@@ -78,21 +79,24 @@ namespace Mysql.PetShop.Controllers
                     Id = p.Id,
                     Cliente = p.Cliente.Nome,
                     Pet = p.Pet.Nome,
-                    // Truque para juntar os nomes dos serviços numa string só
                     Descricao = string.Join(", ", p.Itens.Select(i => i.Servico.Nome)),
                     Data = p.DataAgendamento,
                     Total = p.ValorTotal,
-                    Status = p.Status
+                    Status = p.Status,
+
+                    // <--- 2. NOVIDADE: Lógica do LEFT JOIN (Se for nulo, manda '---')
+                    Funcionario = p.Funcionario != null ? p.Funcionario.Nome : "---"
                 })
                 .ToListAsync();
 
-            // 4. RETORNO OBRIGATÓRIO (Fora de qualquer if!)
             return Ok(listaFinal);
         }
+
         // PUT: api/pedidos/5/status
         [HttpPut("{id}/status")]
-        public async Task<IActionResult> AtualizarStatus(int id, [FromBody] string novoStatus)
+        public async Task<IActionResult> AtualizarStatus(int id, [FromBody] AtualizarStatusDto dados)
         {
+            // 1. Busca o pedido no banco
             var pedido = await _context.TbPedidos.FindAsync(id);
 
             if (pedido == null)
@@ -100,14 +104,31 @@ namespace Mysql.PetShop.Controllers
                 return NotFound();
             }
 
-            // Atualiza o status
-            pedido.Status = novoStatus;
+            // 2. Atualiza o Status
+            pedido.Status = dados.Status;
 
-            // Salva no banco
-            await _context.SaveChangesAsync();
+            // 3. Atualiza o Funcionário (Se veio um ID válido)
+            // Verifica se veio valor e se é maior que 0
+            if (dados.FuncionarioId.HasValue && dados.FuncionarioId.Value > 0)
+            {
+                pedido.FuncionarioId = dados.FuncionarioId.Value;
+            }
 
-            return NoContent(); // Retorna 204 (Sucesso sem conteúdo)
+            // 4. Salva no banco
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                // Dica: Se der erro aqui, geralmente é porque o ID do funcionário não existe na tabela usuarios
+                return BadRequest("Erro ao salvar: " + ex.Message);
+            }
+
+            return NoContent(); // Sucesso
         }
+
+
         // GET: api/pedidos/cliente/5
         [HttpGet("cliente/{clienteId}")]
         public async Task<ActionResult<IEnumerable<object>>> GetPedidosDoCliente(int clienteId)
@@ -177,6 +198,12 @@ namespace Mysql.PetShop.Controllers
         {
             public int ServicoId { get; set; }
             public decimal PrecoUnitario { get; set; }
+        }
+
+        public class AtualizarStatusDto
+        {
+            public string Status { get; set; }
+            public int? FuncionarioId { get; set; }
         }
 
 

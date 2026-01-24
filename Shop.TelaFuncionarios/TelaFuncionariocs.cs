@@ -10,9 +10,15 @@ namespace Shop.TelaFuncionarios
 {
     public partial class TelaFuncionariocs : Form
     {
-        public TelaFuncionariocs()
+        private string _nomeFuncionario;
+        private int _idFuncionario;
+        public TelaFuncionariocs(string nome, int id)
         {
             InitializeComponent();
+            _nomeFuncionario = nome;
+            _idFuncionario = id;
+
+            LblNomeFuncionario.Text = $"Seja bem-vindo {_nomeFuncionario}";
         }
 
         // --- CARREGAMENTO INICIAL ---
@@ -184,7 +190,7 @@ namespace Shop.TelaFuncionarios
                 ApiService api = new ApiService();
 
                 // AGORA VAI FUNCIONAR (porque criamos no Passo 1)
-                bool sucesso = await api.AtualizarStatus(idPedido, novoStatus);
+                bool sucesso = await api.AtualizarStatus(idPedido, novoStatus, _idFuncionario);
 
                 if (sucesso)
                 {

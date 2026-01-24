@@ -49,6 +49,7 @@
             BtnInicarAtendimento = new Button();
             BtnCancelar = new Button();
             BtnFinalizarAtendimento = new Button();
+            LblNomeFuncionario = new Label();
             PnlTelaFuncionario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DgvPedidos).BeginInit();
@@ -67,6 +68,7 @@
             PnlTelaFuncionario.Controls.Add(BtnFila);
             PnlTelaFuncionario.Controls.Add(pictureBox1);
             PnlTelaFuncionario.Controls.Add(BtnSairFuncionario);
+            PnlTelaFuncionario.Controls.Add(LblNomeFuncionario);
             PnlTelaFuncionario.Dock = DockStyle.Left;
             PnlTelaFuncionario.Location = new Point(0, 0);
             PnlTelaFuncionario.Margin = new Padding(3, 2, 3, 2);
@@ -84,7 +86,7 @@
             BtnCancelados.ForeColor = Color.White;
             BtnCancelados.Image = (Image)resources.GetObject("BtnCancelados.Image");
             BtnCancelados.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnCancelados.Location = new Point(0, 315);
+            BtnCancelados.Location = new Point(0, 351);
             BtnCancelados.Margin = new Padding(3, 2, 3, 2);
             BtnCancelados.Name = "BtnCancelados";
             BtnCancelados.Size = new Size(199, 49);
@@ -104,7 +106,7 @@
             BtnConcluidos.ForeColor = Color.White;
             BtnConcluidos.Image = (Image)resources.GetObject("BtnConcluidos.Image");
             BtnConcluidos.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnConcluidos.Location = new Point(0, 265);
+            BtnConcluidos.Location = new Point(0, 301);
             BtnConcluidos.Margin = new Padding(3, 2, 3, 2);
             BtnConcluidos.Name = "BtnConcluidos";
             BtnConcluidos.Size = new Size(199, 50);
@@ -124,7 +126,7 @@
             BtnIniciados.ForeColor = Color.White;
             BtnIniciados.Image = (Image)resources.GetObject("BtnIniciados.Image");
             BtnIniciados.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnIniciados.Location = new Point(0, 214);
+            BtnIniciados.Location = new Point(0, 250);
             BtnIniciados.Margin = new Padding(3, 2, 3, 2);
             BtnIniciados.Name = "BtnIniciados";
             BtnIniciados.Size = new Size(199, 51);
@@ -143,7 +145,7 @@
             BtnFila.ForeColor = Color.White;
             BtnFila.Image = (Image)resources.GetObject("BtnFila.Image");
             BtnFila.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnFila.Location = new Point(0, 158);
+            BtnFila.Location = new Point(0, 194);
             BtnFila.Margin = new Padding(3, 2, 3, 2);
             BtnFila.Name = "BtnFila";
             BtnFila.RightToLeft = RightToLeft.No;
@@ -161,7 +163,7 @@
             pictureBox1.Dock = DockStyle.Top;
             pictureBox1.ErrorImage = null;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Location = new Point(0, 36);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(199, 158);
@@ -371,6 +373,19 @@
             BtnFinalizarAtendimento.Visible = false;
             BtnFinalizarAtendimento.Click += BtnFinalizarAtendimento_Click;
             // 
+            // LblNomeFuncionario
+            // 
+            LblNomeFuncionario.BackColor = SystemColors.HotTrack;
+            LblNomeFuncionario.Dock = DockStyle.Top;
+            LblNomeFuncionario.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblNomeFuncionario.ForeColor = Color.White;
+            LblNomeFuncionario.Location = new Point(0, 0);
+            LblNomeFuncionario.Name = "LblNomeFuncionario";
+            LblNomeFuncionario.Size = new Size(199, 36);
+            LblNomeFuncionario.TabIndex = 12;
+            LblNomeFuncionario.Text = "label1";
+            LblNomeFuncionario.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // TelaFuncionariocs
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -415,5 +430,6 @@
         private Button BtnCancelar;
         private Button BtnInicarAtendimento;
         private Button BtnFinalizarAtendimento;
+        private Label LblNomeFuncionario;
     }
 }

@@ -128,7 +128,7 @@ namespace PetShop.API.Controllers
         public async Task<ActionResult<IEnumerable<Usuario>>> GetClientes()
         {
             var clientes = await _context.TbUsuarios
-                .Where(u => u.TipoUsuario == "Cliente")
+                .Where(u => u.TipoUsuario.ToLower() == "cliente")
                 .Select(u => new
                 {
                     // Use os nomes exatamente como estão na sua classe Usuario
@@ -136,8 +136,11 @@ namespace PetShop.API.Controllers
                     Nome = u.Nome,
                     Email = u.Email,
                     Telefone = u.Telefone,
-                    DataCadastro = u.DataCadastro, // Removi o underline para bater com a classe
-                    TipoUsuario = u.TipoUsuario
+                    DataCadastro = u.DataCadastro, 
+                    TipoUsuario = u.TipoUsuario,
+                    DataNascimento = u.dataNascimento,
+
+
                 })
                 .ToListAsync();
 

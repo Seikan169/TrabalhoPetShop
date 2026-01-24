@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 
 namespace Shop.TelaFuncionarios
@@ -28,7 +30,7 @@ namespace Shop.TelaFuncionarios
 
             LblNomeAdm.Text = $"Olá,{_nomeadm}";
         }
-        
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -71,31 +73,6 @@ namespace Shop.TelaFuncionarios
             btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 120, 215); // Azul ao passar o mouse
         }
 
-
-        private void BtnControleFuncionario_Click(object sender, EventArgs e)
-        {
-            TelaCadastroFuncionarioADM telacadfun = new TelaCadastroFuncionarioADM();
-            telacadfun.Show();
-
-        }
-
-        private void BtnSairADM_Click(object sender, EventArgs e)
-        {
-            TelaLogin sairlogin = new TelaLogin();
-            this.Close();
-            sairlogin.Show();
-        }
-
-        private async void BtnBuscarADM_Click(object sender, EventArgs e)
-        {
-            await CarregarGrid();
-            FlowPanelGrafico.Visible = false; // Esconde os cards
-            DgvPricipal.Visible = true;
-
-            LblTitulo.Text = "👥 Gestão de Funcionários";
-
-        }
-
         private async Task CarregarGrid()
         {
             try
@@ -128,6 +105,17 @@ namespace Shop.TelaFuncionarios
             FlowPanelGrafico.Dock = DockStyle.Fill; // Garante que ocupe tudo
 
 
+            ChartPedidos.Titles.Clear();
+            // 2. Adiciona o título novo
+            Title titulo = ChartPedidos.Titles.Add("Status dos Pedidos");
+
+            // 3. Estiliza para ficar bonito (Fonte Segoe UI, Negrito, Cinza Escuro)
+            titulo.Font = new Font("Segoe UI", 14, FontStyle.Bold);
+            titulo.ForeColor = Color.Black;
+            titulo.Alignment = ContentAlignment.TopCenter;
+
+
+
 
             LblTitulo.Text = "PAINEL ADMINISTRATIVO";
 
@@ -153,17 +141,17 @@ namespace Shop.TelaFuncionarios
             try
             {
                 ApiService api = new ApiService();
-                var dados = await api.GetDadosDashboard();
 
-                // CARD 1 - Vendas Hoje
-                LblVendaHj.Text = dados.VendasHoje.ToString("C2");
+                // Essa linha busca TUDO do banco (Vem uma tabela cheia de dados)
+                var todosPedidos = await api.GetTodosAgendamentos();
 
-                // CARD 2 - Vendas Mês (Crie o label lblValorMes no design!)
-                LblValorMes.Text = dados.VendasMes.ToString("C2");
+                if (todosPedidos != null && todosPedidos.Rows.Count > 0)
+                {
+                    // 1. Usa a tabela para pintar a Rosca (Status)
+                    CarregarGraficoStatus(todosPedidos);
 
-
-                // CARD 4 - Clientes
-                LblQTDClientes.Text = dados.NovosClientes.ToString();
+                   
+                }
             }
             catch (Exception ex)
             {
@@ -234,25 +222,7 @@ namespace Shop.TelaFuncionarios
             ChartPedidos.Series[0]["DoughnutRadius"] = "60";
         }
 
-        private async void BtnClentesCadastradosADM_Click(object sender, EventArgs e)
-        {
 
-            LblTitulo.Text = "👥 Gestão de Clientes";
-            FlowPanelGrafico.Visible = false; // Esconde os cards
-            DgvPricipal.Visible = true;
-
-
-            ApiService api = new ApiService();
-
-            var dados = await api.GetListaClientes();
-
-            DgvPricipal.DataSource = dados;
-
-            ConfigurarGridPadrao();
-
-            if (DgvPricipal.Columns.Contains("Telefone")) DgvPricipal.Columns["Telefone"].Width = 120;
-
-        }
 
         //------------------------------------------- Configurando datagridview -------------------------------------------
 
@@ -281,7 +251,7 @@ namespace Shop.TelaFuncionarios
             // Ajusta a altura da linha automaticamente conforme o conteúdo
             DgvPricipal.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             // 5. Organização das Colunas
-            DgvPricipal.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            
 
             // Esconder colunas que poluem o visual
             string[] ocultar = { "Id", "Senha", "Observacao", "TipoUsuario" };
@@ -292,20 +262,46 @@ namespace Shop.TelaFuncionarios
 
             // Nomes amigáveis
             if (DgvPricipal.Columns.Contains("Nome")) DgvPricipal.Columns["Nome"].HeaderText = "Nome Completo";
-            if (DgvPricipal.Columns.Contains("Cpf")) DgvPricipal.Columns["Cpf"].HeaderText = "CPF";
-            if (DgvPricipal.Columns.Contains("Telefone")) DgvPricipal.Columns["Telefone"].HeaderText = "Contato";
+            
 
             // --- FORMATAR DATAS ---
             if (DgvPricipal.Columns.Contains("DataNascimento"))
             {
-                DgvPricipal.Columns["DataNascimento"].HeaderText = "Data Nasc.";
+                DgvPricipal.Columns["DataNascimento"].HeaderText = "Data Nascimento";
                 DgvPricipal.Columns["DataNascimento"].DefaultCellStyle.Format = "dd/MM/yyyy"; // Só dia/mes/ano
+                DgvPricipal.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centraliza // Ajusta a largura se quiser
             }
 
             if (DgvPricipal.Columns.Contains("DataCadastro"))
             {
-                DgvPricipal.Columns["DataCadastro"].HeaderText = "Cadastro";
+                DgvPricipal.Columns["DataCadastro"].HeaderText = "Data de Cadastro";
                 DgvPricipal.Columns["DataCadastro"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            }
+
+            if (DgvPricipal.Columns.Contains("cpf"))
+            {
+                DgvPricipal.Columns["cpf"].Visible = false; // <--- Tchau CPF!
+            }
+
+
+            // Pode ser que venha como "DataNasc" ou "dataNascimento", confira o nome exato se não sumir.
+
+            // 3. Aproveita para renomear e bonificar o resto (Opcional)
+            if (DgvPricipal.Columns.Contains("nome"))
+                DgvPricipal.Columns["nome"].HeaderText = "Nome Completo";
+
+            if (DgvPricipal.Columns.Contains("email"))
+                DgvPricipal.Columns["email"].HeaderText = "E-mail";
+
+            if (DgvPricipal.Columns.Contains("telefone"))
+            {
+                DgvPricipal.Columns["telefone"].HeaderText = "Contato / WhatsApp";
+                var col = DgvPricipal.Columns["Telefone"];
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+                // Centraliza para ficar bonito
+                col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                ;
             }
             // Garante que o evento de colorir status esteja ligado
             DgvPricipal.CellFormatting -= DgvPrincipal_CellFormatting;
@@ -315,19 +311,22 @@ namespace Shop.TelaFuncionarios
         // --- MÉTODO PARA PINTAR O STATUS (Igual fizemos nas outras telas) ---
         private void DgvPrincipal_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            // Recupera o grid que chamou o evento de forma segura
+            // Recupera o grid de forma segura
             var grid = sender as DataGridView;
 
-            // CORREÇÃO DE SEGURANÇA:
-            // Verifica se o grid existe, se não é cabeçalho (index -1) e se o índice existe na coleção atual
+            // Verificações de segurança básicas
             if (grid != null && e.ColumnIndex >= 0 && e.ColumnIndex < grid.Columns.Count)
             {
-                // Verifica se a coluna é "Status" ou "status" usando o objeto 'grid'
-                if (grid.Columns[e.ColumnIndex].Name.Equals("status", StringComparison.OrdinalIgnoreCase) && e.Value != null)
+                string nomeColuna = grid.Columns[e.ColumnIndex].Name;
+
+                // -------------------------------------------------------
+                // 1. LÓGICA DO STATUS (Cores e Texto)
+                // -------------------------------------------------------
+                if (nomeColuna.Equals("status", StringComparison.OrdinalIgnoreCase) && e.Value != null)
                 {
                     string status = e.Value.ToString().ToLower();
 
-                    // Aplica Negrito (usando a fonte do grid atual)
+                    // Aplica Negrito
                     e.CellStyle.Font = new Font(grid.Font, FontStyle.Bold);
 
                     if (status == "pendente")
@@ -338,7 +337,7 @@ namespace Shop.TelaFuncionarios
                     else if (status == "em_andamento")
                     {
                         e.CellStyle.ForeColor = Color.DodgerBlue;
-                        e.Value = "Em Andamento"; // Notei que no código original tinha um espaço extra aqui, mantive corrigido
+                        e.Value = "Em Andamento";
                     }
                     else if (status == "concluido")
                     {
@@ -351,22 +350,24 @@ namespace Shop.TelaFuncionarios
                         e.Value = "Cancelado";
                     }
                 }
+
+                // -------------------------------------------------------
+                // 2. LÓGICA DA DATA DE NASCIMENTO (Esconder 01/01/0001)
+                // -------------------------------------------------------
+                // Verifica se é a coluna Data_Nascimento (Use o nome exato que vem do Controller)
+                else if (nomeColuna.Equals("Data_Nascimento", StringComparison.OrdinalIgnoreCase) && e.Value != null)
+                {
+                    if (DateTime.TryParse(e.Value.ToString(), out DateTime data))
+                    {
+                        // Se o ano for 1 (significa que veio vazio do banco), limpa o texto
+                        if (data.Year == 1)
+                        {
+                            e.Value = "";
+                            e.FormattingApplied = true; // Avisa o grid que a formatação está pronta
+                        }
+                    }
+                }
             }
-        }
-
-        private async void BtnAgendamentoADM_Click(object sender, EventArgs e)
-        {
-            LblTitulo.Text = "📅 Histórico Geral de Agendamentos";
-            FlowPanelGrafico.Visible = false; // Esconde os cards
-            DgvPricipal.Visible = true;
-
-            ApiService api = new ApiService();
-            // Traz tudo (Pendentes, Concluídos, Cancelados)
-            var dados = await api.GetTodosAgendamentos();
-
-            DgvPricipal.DataSource = dados;
-
-            ConfigurarGridPadrao(); // Aplica cores e fontes
         }
 
         private void DgvPricipal_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -379,12 +380,119 @@ namespace Shop.TelaFuncionarios
             LblDATA.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
         }
 
-        private async void BtnRelatorioADM_Click(object sender, EventArgs e)
+
+
+        private void PnlBotoes_Paint(object sender, PaintEventArgs e)
+        {
+           
+        }
+
+        private async void BtnBuscarADM_Click_1(object sender, EventArgs e)
+        {
+
+            DgvPricipal.Visible = true;
+            PnlConteudoBaixo.Visible = false;
+
+            await CarregarGrid();
+            LblTitulo.Text = "👥 Gestão de Funcionários";
+
+        }
+
+        private  void AtualizargridAgendamento()
+        {
+          
+
+            // 2. AGORA COLE ISSO EMBAIXO PARA RENOMEAR:
+            // Verifica se a coluna existe antes de renomear para não dar erro
+
+            if (DgvPricipal.Columns.Contains("cliente"))
+                DgvPricipal.Columns["cliente"].HeaderText = "Cliente";
+
+            if (DgvPricipal.Columns.Contains("pet"))
+                DgvPricipal.Columns["pet"].HeaderText = "Nome do Pet";
+
+            if (DgvPricipal.Columns.Contains("descricao"))
+                DgvPricipal.Columns["descricao"].HeaderText = "Serviços Realizados";
+
+            if (DgvPricipal.Columns.Contains("data"))
+            {
+                DgvPricipal.Columns["data"].HeaderText = "Data e Hora";
+                DgvPricipal.Columns["data"].Width = 140; // Dá uma ajustada na largura se quiser
+            }
+
+            if (DgvPricipal.Columns.Contains("total"))
+            {
+                DgvPricipal.Columns["total"].HeaderText = "Valor Total";
+                DgvPricipal.Columns["total"].DefaultCellStyle.Format = "C2"; // Já coloca o R$ automático
+                DgvPricipal.Columns["total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                DgvPricipal.Columns["total"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            }
+
+            if (DgvPricipal.Columns.Contains("status"))
+            {
+                DgvPricipal.Columns["status"].HeaderText = "Situação";
+                DgvPricipal.Columns["status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                
+            }
+
+            if (DgvPricipal.Columns.Contains("funcionario"))
+            {
+                DgvPricipal.Columns["funcionario"].HeaderText = "Atendido Por";
+                DgvPricipal.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            }
+        }
+
+        private async void BtnAgendamentoADM_Click(object sender, EventArgs e)
+        {
+            LblTitulo.Text = "📅 Histórico Geral de Agendamentos";
+            DgvPricipal.Visible = true;
+            PnlConteudoBaixo.Visible = false;
+
+            ApiService api = new ApiService();
+            // Traz tudo (Pendentes, Concluídos, Cancelados)
+            var dados = await api.GetTodosAgendamentos();
+
+            DgvPricipal.DataSource = dados;
+
+            AtualizargridAgendamento();
+
+            ConfigurarGridPadrao(); // Aplica cores e fontes
+        }
+
+        private async void BtnClentesCadastradosADM_Click(object sender, EventArgs e)
+        {
+            LblTitulo.Text = "👥 Gestão de Clientes";
+            DgvPricipal.Visible = true;
+            PnlConteudoBaixo.Visible = false;
+
+            ApiService api = new ApiService();
+
+            var dados = await api.GetListaClientes();
+
+            DgvPricipal.DataSource = dados;
+
+            ConfigurarGridPadrao();
+           
+        }
+
+        private void BtnSairADM_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+            TelaLogin sairlogin = new TelaLogin();
+
+            sairlogin.Show();
+        }
+
+        private async void BtnPainelFinanceiroADM_Click(object sender, EventArgs e)
         {
             await CarregarDashboard();
-            FlowPanelGrafico.Visible = true; // Mostra os cards
+            PnlConteudoBaixo.Visible = true; // Mostra os cards
             DgvPricipal.Visible = false;
             LblTitulo.Text = "Relatorio";
         }
+        
+
+
     }
 }

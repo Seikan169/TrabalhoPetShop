@@ -57,7 +57,8 @@ namespace Shop.TelaFuncionarios
                     }
                     else if (resultado.TipoUsuario == "funcionario")
                     {
-
+                        TelaFuncionariocs funcionario = new TelaFuncionariocs(resultado.Nome, resultado.Id);
+                        funcionario.Show();
                         MessageBox.Show("Abrindo painel do Funcionário...");
                         this.Hide(); // Esconde o login
                     }

@@ -34,6 +34,10 @@ namespace Mysql.PetShop.Models
         public string Observacoes { get; set; }
 
         // --- RELACIONAMENTOS ---
+        [Column("funcionario_id")] // Caso o nome no banco seja snake_case
+        public int? FuncionarioId { get; set; }
+        [ForeignKey("FuncionarioId")]
+        public virtual Usuario Funcionario { get; set; }
 
         [ForeignKey("PetId")]
         public virtual Pet Pet { get; set; }
