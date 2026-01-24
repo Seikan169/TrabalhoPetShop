@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tela.Cliente;
@@ -22,6 +23,33 @@ namespace Shop.TelaFuncionarios
         {
 
         }
+        private bool ValidarDados(string email, string senha)
+        {
+            // 1. Validação de E-mail (Formato padrao: texto@texto.com)
+            string modeloEmail = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (!Regex.IsMatch(email, modeloEmail))
+            {
+                MessageBox.Show("Por favor, insira um e-mail válido (ex: nome@gmail.com).", "E-mail Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false; // Falhou
+            }
+
+            // 2. Validação de Senha (> 8 caracteres)
+            if (senha.Length <= 8)
+            {
+                MessageBox.Show("A senha deve ter MAIS de 8 caracteres.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false; // Falhou
+            }
+
+            // 3. Validação de Caractere Especial (Ex: @, #, !, $)
+            // Verifica se NÃO tem nenhum símbolo
+            if (!Regex.IsMatch(senha, @"[!@#$%^&*(),.?""{}|<>]"))
+            {
+                MessageBox.Show("A senha precisa ter pelo menos um caractere especial (Ex: @, #, !).", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false; // Falhou
+            }
+
+            return true; // Passou em tudo!
+        }
 
         private async void BtnSalvarCadastroCliente_Click(object sender, EventArgs e)
         {
@@ -35,6 +63,15 @@ namespace Shop.TelaFuncionarios
             {
                 MessageBox.Show("Preencha todos os campos obrigatórios!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
+            }
+
+            string email = TxtEmailCliente.Text.Trim(); // Trim remove espaços acidentais no começo/fim
+            string senha = TxtSenhaCliente.Text.Trim();
+
+            if (ValidarDados(email, senha) == false)
+            {
+                return; // SE A VALIDAÇÃO FALHAR, O CÓDIGO PARA AQUI. NÃO SALVA NADA.
+                
             }
 
             // 2. Trava a UI para evitar cliques duplos
@@ -54,8 +91,8 @@ namespace Shop.TelaFuncionarios
                 // Ordem: Nome, Email, Senha, Tel, Cep, Rua, Num, BAIRRO, CIDADE, UF, COMPLEMENTO, Cpf, Data, Tipo
                 bool sucesso = await api.CadastrarUsuario(
                     TxtNomeCliente.Text,
-                    TxtEmailCliente.Text,
-                    TxtSenhaCliente.Text,
+                    email,
+                    senha,
                     MkBoxTeleCLiente.Text,
 
                     MkBoxCep.Text,

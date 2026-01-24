@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tela.Cliente;
+using System.Text.RegularExpressions; // Necessário para validar e-mail
 
 namespace Shop.TelaFuncionarios
 {
@@ -33,6 +34,7 @@ namespace Shop.TelaFuncionarios
                 MessageBox.Show("Preencha usuário e senha!");
                 return;
             }
+
 
             BtnEntrarLogin.Enabled = false;
             BtnEntrarLogin.Text = "Verificando...";

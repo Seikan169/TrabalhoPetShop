@@ -95,13 +95,13 @@
             // 
             PnlBotoes.BackColor = Color.DodgerBlue;
             PnlBotoes.BorderStyle = BorderStyle.Fixed3D;
-            PnlBotoes.Controls.Add(BtnSairADM);
             PnlBotoes.Controls.Add(BtnRelatorioADM);
+            PnlBotoes.Controls.Add(BtnPainelFinanceiroADM);
+            PnlBotoes.Controls.Add(BtnControleFuncionario);
             PnlBotoes.Controls.Add(BtnClentesCadastradosADM);
             PnlBotoes.Controls.Add(BtnAgendamentoADM);
             PnlBotoes.Controls.Add(BtnBuscarFuncionario);
-            PnlBotoes.Controls.Add(BtnControleFuncionario);
-            PnlBotoes.Controls.Add(BtnPainelFinanceiroADM);
+            PnlBotoes.Controls.Add(BtnSairADM);
             PnlBotoes.Controls.Add(pictureBox1);
             PnlBotoes.Controls.Add(LblNomeAdm);
             PnlBotoes.Dock = DockStyle.Left;
@@ -141,10 +141,10 @@
             BtnRelatorioADM.ForeColor = Color.FromArgb(128, 255, 128);
             BtnRelatorioADM.Image = (Image)resources.GetObject("BtnRelatorioADM.Image");
             BtnRelatorioADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnRelatorioADM.Location = new Point(0, 349);
+            BtnRelatorioADM.Location = new Point(0, 352);
             BtnRelatorioADM.Margin = new Padding(3, 2, 3, 2);
             BtnRelatorioADM.Name = "BtnRelatorioADM";
-            BtnRelatorioADM.Size = new Size(176, 36);
+            BtnRelatorioADM.Size = new Size(176, 43);
             BtnRelatorioADM.TabIndex = 1;
             BtnRelatorioADM.Text = "Relatório Detalhado";
             BtnRelatorioADM.UseVisualStyleBackColor = false;
@@ -161,7 +161,7 @@
             BtnClentesCadastradosADM.ForeColor = Color.White;
             BtnClentesCadastradosADM.Image = (Image)resources.GetObject("BtnClentesCadastradosADM.Image");
             BtnClentesCadastradosADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnClentesCadastradosADM.Location = new Point(0, 301);
+            BtnClentesCadastradosADM.Location = new Point(0, 201);
             BtnClentesCadastradosADM.Margin = new Padding(3, 2, 3, 2);
             BtnClentesCadastradosADM.Name = "BtnClentesCadastradosADM";
             BtnClentesCadastradosADM.Size = new Size(176, 48);
@@ -181,12 +181,12 @@
             BtnAgendamentoADM.ForeColor = Color.White;
             BtnAgendamentoADM.Image = (Image)resources.GetObject("BtnAgendamentoADM.Image");
             BtnAgendamentoADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnAgendamentoADM.Location = new Point(0, 253);
+            BtnAgendamentoADM.Location = new Point(0, 153);
             BtnAgendamentoADM.Margin = new Padding(3, 2, 3, 2);
             BtnAgendamentoADM.Name = "BtnAgendamentoADM";
             BtnAgendamentoADM.Size = new Size(176, 48);
             BtnAgendamentoADM.TabIndex = 4;
-            BtnAgendamentoADM.Text = "    Agendamento Clientes";
+            BtnAgendamentoADM.Text = "    Agendamentos de  Clientes";
             BtnAgendamentoADM.UseVisualStyleBackColor = false;
             BtnAgendamentoADM.Click += BtnAgendamentoADM_Click;
             // 
@@ -201,7 +201,7 @@
             BtnBuscarFuncionario.ForeColor = Color.White;
             BtnBuscarFuncionario.Image = (Image)resources.GetObject("BtnBuscarFuncionario.Image");
             BtnBuscarFuncionario.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnBuscarFuncionario.Location = new Point(0, 205);
+            BtnBuscarFuncionario.Location = new Point(0, 105);
             BtnBuscarFuncionario.Margin = new Padding(3, 2, 3, 2);
             BtnBuscarFuncionario.Name = "BtnBuscarFuncionario";
             BtnBuscarFuncionario.Size = new Size(176, 48);
@@ -221,14 +221,15 @@
             BtnControleFuncionario.ForeColor = Color.White;
             BtnControleFuncionario.Image = (Image)resources.GetObject("BtnControleFuncionario.Image");
             BtnControleFuncionario.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnControleFuncionario.Location = new Point(0, 145);
+            BtnControleFuncionario.Location = new Point(0, 249);
             BtnControleFuncionario.Margin = new Padding(3, 2, 3, 2);
             BtnControleFuncionario.Name = "BtnControleFuncionario";
             BtnControleFuncionario.Size = new Size(176, 60);
             BtnControleFuncionario.TabIndex = 1;
-            BtnControleFuncionario.Text = "Cadastro de Funcionário";
+            BtnControleFuncionario.Text = "Cadastrar Funcionário";
             BtnControleFuncionario.TextAlign = ContentAlignment.MiddleRight;
             BtnControleFuncionario.UseVisualStyleBackColor = false;
+            BtnControleFuncionario.Click += BtnControleFuncionario_Click;
             // 
             // BtnPainelFinanceiroADM
             // 
@@ -241,10 +242,10 @@
             BtnPainelFinanceiroADM.ForeColor = Color.White;
             BtnPainelFinanceiroADM.Image = (Image)resources.GetObject("BtnPainelFinanceiroADM.Image");
             BtnPainelFinanceiroADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnPainelFinanceiroADM.Location = new Point(0, 105);
+            BtnPainelFinanceiroADM.Location = new Point(0, 309);
             BtnPainelFinanceiroADM.Margin = new Padding(3, 2, 3, 2);
             BtnPainelFinanceiroADM.Name = "BtnPainelFinanceiroADM";
-            BtnPainelFinanceiroADM.Size = new Size(176, 40);
+            BtnPainelFinanceiroADM.Size = new Size(176, 43);
             BtnPainelFinanceiroADM.TabIndex = 1;
             BtnPainelFinanceiroADM.Text = "Relatório Rapido ";
             BtnPainelFinanceiroADM.UseVisualStyleBackColor = false;
@@ -300,7 +301,7 @@
             LblTitulo.ForeColor = Color.White;
             LblTitulo.Location = new Point(0, 0);
             LblTitulo.Name = "LblTitulo";
-            LblTitulo.Size = new Size(709, 46);
+            LblTitulo.Size = new Size(715, 46);
             LblTitulo.TabIndex = 14;
             LblTitulo.Text = "label2";
             LblTitulo.TextAlign = ContentAlignment.MiddleCenter;
@@ -311,7 +312,7 @@
             lblUltimaAtualizacao.Dock = DockStyle.Right;
             lblUltimaAtualizacao.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblUltimaAtualizacao.ForeColor = Color.White;
-            lblUltimaAtualizacao.Location = new Point(709, 0);
+            lblUltimaAtualizacao.Location = new Point(715, 0);
             lblUltimaAtualizacao.Name = "lblUltimaAtualizacao";
             lblUltimaAtualizacao.Size = new Size(146, 46);
             lblUltimaAtualizacao.TabIndex = 16;
@@ -321,9 +322,9 @@
             // 
             BtnAtualizar.Dock = DockStyle.Right;
             BtnAtualizar.Image = (Image)resources.GetObject("BtnAtualizar.Image");
-            BtnAtualizar.Location = new Point(855, 0);
+            BtnAtualizar.Location = new Point(861, 0);
             BtnAtualizar.Name = "BtnAtualizar";
-            BtnAtualizar.Size = new Size(53, 46);
+            BtnAtualizar.Size = new Size(47, 46);
             BtnAtualizar.TabIndex = 4;
             BtnAtualizar.UseVisualStyleBackColor = true;
             BtnAtualizar.Click += BtnAtualizar_Click;

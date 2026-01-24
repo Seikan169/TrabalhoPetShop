@@ -530,10 +530,12 @@ namespace Shop.TelaFuncionarios
 
         private void BtnSairADM_Click_1(object sender, EventArgs e)
         {
-            this.Close();
-            TelaLogin sairlogin = new TelaLogin();
+            this.Hide();
+            TelaLogin login = new TelaLogin();
 
-            sairlogin.Show();
+            login.FormClosed += (s, args) => this.Close();
+
+            login.Show();
         }
 
         private async void BtnPainelFinanceiroADM_Click(object sender, EventArgs e)
@@ -748,6 +750,13 @@ namespace Shop.TelaFuncionarios
                 // Truque: Deixar a primeira letra Maiúscula (ex: "concluido" -> "Concluído")
                 e.Value = char.ToUpper(status[0]) + status.Substring(1);
             }
+        }
+
+        private void BtnControleFuncionario_Click(object sender, EventArgs e)
+        {
+            TelaCadastroFuncionarioADM Telacadastro = new TelaCadastroFuncionarioADM();
+
+            Telacadastro.ShowDialog();
         }
     }
 }
