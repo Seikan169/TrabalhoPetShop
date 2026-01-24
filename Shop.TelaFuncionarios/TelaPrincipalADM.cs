@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -145,12 +146,21 @@ namespace Shop.TelaFuncionarios
                 // Essa linha busca TUDO do banco (Vem uma tabela cheia de dados)
                 var todosPedidos = await api.GetTodosAgendamentos();
 
+                var PnlCard = await api.GetDadosDashboard();
+
+                LblValorMes.Text = PnlCard.VendasMes.ToString("C2");
+                LblVendaHj.Text = PnlCard.VendasHoje.ToString("C2");
+                LblQTDClientes.Text = PnlCard.NovosClientes.ToString();
+
+
+
                 if (todosPedidos != null && todosPedidos.Rows.Count > 0)
                 {
                     // 1. Usa a tabela para pintar a Rosca (Status)
                     CarregarGraficoStatus(todosPedidos);
 
-                   
+
+
                 }
             }
             catch (Exception ex)
@@ -251,7 +261,7 @@ namespace Shop.TelaFuncionarios
             // Ajusta a altura da linha automaticamente conforme o conteúdo
             DgvPricipal.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             // 5. Organização das Colunas
-            
+
 
             // Esconder colunas que poluem o visual
             string[] ocultar = { "Id", "Senha", "Observacao", "TipoUsuario" };
@@ -262,7 +272,7 @@ namespace Shop.TelaFuncionarios
 
             // Nomes amigáveis
             if (DgvPricipal.Columns.Contains("Nome")) DgvPricipal.Columns["Nome"].HeaderText = "Nome Completo";
-            
+
 
             // --- FORMATAR DATAS ---
             if (DgvPricipal.Columns.Contains("DataNascimento"))
@@ -384,7 +394,7 @@ namespace Shop.TelaFuncionarios
 
         private void PnlBotoes_Paint(object sender, PaintEventArgs e)
         {
-           
+
         }
 
         private async void BtnBuscarADM_Click_1(object sender, EventArgs e)
@@ -398,9 +408,9 @@ namespace Shop.TelaFuncionarios
 
         }
 
-        private  void AtualizargridAgendamento()
+        private void AtualizargridAgendamento()
         {
-          
+
 
             // 2. AGORA COLE ISSO EMBAIXO PARA RENOMEAR:
             // Verifica se a coluna existe antes de renomear para não dar erro
@@ -432,7 +442,7 @@ namespace Shop.TelaFuncionarios
             {
                 DgvPricipal.Columns["status"].HeaderText = "Situação";
                 DgvPricipal.Columns["status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                
+
             }
 
             if (DgvPricipal.Columns.Contains("funcionario"))
@@ -473,7 +483,7 @@ namespace Shop.TelaFuncionarios
             DgvPricipal.DataSource = dados;
 
             ConfigurarGridPadrao();
-           
+
         }
 
         private void BtnSairADM_Click_1(object sender, EventArgs e)
@@ -491,8 +501,194 @@ namespace Shop.TelaFuncionarios
             DgvPricipal.Visible = false;
             LblTitulo.Text = "Relatorio";
         }
-        
 
+        private async void BtnRelatorioADM_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BtnRelatorioADM.Enabled = false; // Trava o botão
+                MessageBox.Show("Gerando relatório... Aguarde.", "Aguarde");
 
+                // 1. Busca os dados da API
+                ApiService api = new ApiService();
+                // Crie esse método no ApiService parecido com os outros, retornando RelatorioDTO
+                // var dados = await api.GetRelatorioGeral(); 
+                // *** PARA TESTE, VOU SIMULAR OS DADOS ABAIXO, MAS VOCÊ DEVE BUSCAR DA API ***
+                var dados = await api.GetRelatorioDashboard(); // <--- Crie esse método no ApiService chamando a rota nova
+
+                if (dados == null) return;
+
+                // 2. CRIA O ARQUIVO EXCEL NA MEMÓRIA
+                using (var workbook = new XLWorkbook())
+                {
+                    // ==========================================
+                    // ABA 1: DASHBOARD (Resumo e Top Serviços)
+                    // ==========================================
+                    var wsDash = workbook.Worksheets.Add("Dashboard Financeiro");
+
+                    // --- Título ---
+                    wsDash.Cell("B2").Value = "RELATÓRIO GERENCIAL - PET SHOP";
+                    wsDash.Range("B2:E2").Merge().Style.Font.Bold = true;
+                    wsDash.Range("B2:E2").Style.Font.FontSize = 16;
+                    wsDash.Range("B2:E2").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                    wsDash.Range("B2:E2").Style.Fill.BackgroundColor = XLColor.FromHtml("#0078D7"); // Azul
+                    wsDash.Range("B2:E2").Style.Font.FontColor = XLColor.White;
+
+                    // --- Card: Vendas Hoje ---
+                    wsDash.Cell("B4").Value = "Vendas Hoje";
+                    wsDash.Cell("B5").Value = dados.FaturamentoHoje;
+                    wsDash.Cell("B5").Style.NumberFormat.Format = "R$ #,##0.00";
+                    wsDash.Cell("B6").Value = $"{dados.PedidosHoje} Pedidos";
+                    EstilizarCard(wsDash, "B4", XLColor.LightBlue);
+
+                    // --- Card: 7 Dias ---
+                    wsDash.Cell("D4").Value = "Últimos 7 Dias";
+                    wsDash.Cell("D5").Value = dados.Faturamento7Dias;
+                    wsDash.Cell("D5").Style.NumberFormat.Format = "R$ #,##0.00";
+                    wsDash.Cell("D6").Value = $"{dados.Pedidos7Dias} Pedidos";
+                    EstilizarCard(wsDash, "D4", XLColor.LightGreen);
+
+                    // --- Card: Mês ---
+                    wsDash.Cell("F4").Value = "Este Mês";
+                    wsDash.Cell("F5").Value = dados.FaturamentoMes;
+                    wsDash.Cell("F5").Style.NumberFormat.Format = "R$ #,##0.00";
+                    wsDash.Cell("F6").Value = $"{dados.PedidosMes} Pedidos";
+                    EstilizarCard(wsDash, "F4", XLColor.LightCoral);
+
+                    // --- Tabela: TOP SERVIÇOS (O "Gráfico" em forma de tabela) ---
+                    wsDash.Cell("B9").Value = "TOP 5 SERVIÇOS MAIS VENDIDOS";
+                    wsDash.Range("B9:D9").Merge().Style.Font.Bold = true;
+
+                    // Cabeçalhos
+                    wsDash.Cell("B10").Value = "Serviço";
+                    wsDash.Cell("C10").Value = "Qtd";
+                    wsDash.Cell("D10").Value = "Total Gerado";
+                    wsDash.Range("B10:D10").Style.Fill.BackgroundColor = XLColor.Gray;
+                    wsDash.Range("B10:D10").Style.Font.FontColor = XLColor.White;
+
+                    int linha = 11;
+                    foreach (var item in dados.TopServicos)
+                    {
+                        wsDash.Cell($"B{linha}").Value = item.NomeServico;
+                        wsDash.Cell($"C{linha}").Value = item.Quantidade;
+                        wsDash.Cell($"D{linha}").Value = item.ValorTotal;
+                        wsDash.Cell($"D{linha}").Style.NumberFormat.Format = "R$ #,##0.00";
+                        linha++;
+                    }
+                    // Borda na tabela
+                    var tabelaTop = wsDash.Range($"B10:D{linha - 1}");
+                    tabelaTop.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                    tabelaTop.Style.Border.InsideBorder = XLBorderStyleValues.Thin;
+
+                    // Ajusta larguras
+                    wsDash.Columns().AdjustToContents();
+
+                    // ==========================================
+                    // ABA 2: LISTAGEM COMPLETA
+                    // ==========================================
+                    var wsLista = workbook.Worksheets.Add("Histórico Detalhado");
+
+                    // Cabeçalho
+                    wsLista.Cell("A1").Value = "ID";
+                    wsLista.Cell("B1").Value = "Data";
+                    wsLista.Cell("C1").Value = "Cliente";
+                    wsLista.Cell("D1").Value = "Itens / Serviços";
+                    wsLista.Cell("E1").Value = "Valor";
+                    wsLista.Cell("F1").Value = "Status";
+
+                    var header = wsLista.Range("A1:F1");
+                    header.Style.Font.Bold = true;
+                    header.Style.Fill.BackgroundColor = XLColor.DarkBlue;
+                    header.Style.Font.FontColor = XLColor.White;
+
+                    int l = 2;
+                    foreach (var p in dados.ListaCompleta)
+                    {
+                        wsLista.Cell($"A{l}").Value = p.Id;
+                        wsLista.Cell($"B{l}").Value = p.Data;
+                        wsLista.Cell($"C{l}").Value = p.Cliente;
+                        wsLista.Cell($"D{l}").Value = p.Itens;
+                        wsLista.Cell($"E{l}").Value = p.Valor;
+                        wsLista.Cell($"E{l}").Style.NumberFormat.Format = "R$ #,##0.00";
+                        wsLista.Cell($"F{l}").Value = p.Status;
+
+                        // Pinta de vermelho se cancelado
+                        if (p.Status == "cancelado")
+                            wsLista.Row(l).Style.Font.FontColor = XLColor.Red;
+
+                        l++;
+                    }
+
+                    wsLista.Columns().AdjustToContents();
+
+                    // 3. SALVAR O ARQUIVO
+                    SaveFileDialog saveDialog = new SaveFileDialog();
+                    saveDialog.Filter = "Excel Files|*.xlsx";
+                    saveDialog.FileName = $"Relatorio_PetShop_{DateTime.Now:ddMMyyyy}.xlsx";
+
+                    if (saveDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        workbook.SaveAs(saveDialog.FileName);
+                        MessageBox.Show("Relatório gerado com sucesso!", "Sucesso");
+
+                        // Tenta abrir o arquivo automaticamente
+                        try { System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(saveDialog.FileName) { UseShellExecute = true }); } catch { }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao gerar relatório: " + ex.Message);
+            }
+            finally
+            {
+                BtnRelatorioADM.Enabled = true;
+            }
+        }
+        // Método auxiliar para deixar os cards bonitos
+        private void EstilizarCard(IXLWorksheet ws, string cellInicio, XLColor corFundo)
+        {
+            // Pega a linha e a coluna base (ex: "B4" -> linha 4, col 2)
+            var cell = ws.Cell(cellInicio);
+            int r = cell.Address.RowNumber;
+            int c = cell.Address.ColumnNumber;
+
+            // Define o intervalo do card (3 linhas de altura)
+            var range = ws.Range(r, c, r + 2, c + 1); // Pega 2 colunas de largura
+
+            range.Style.Border.OutsideBorder = XLBorderStyleValues.Medium;
+            range.Style.Fill.BackgroundColor = corFundo;
+            range.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            range.Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+
+            // Negrito no título (1ª linha do card)
+            ws.Cell(r, c).Style.Font.Bold = true;
+            ws.Cell(r, c).Style.Font.FontSize = 11;
+
+            // Tamanho grande no valor (2ª linha)
+            ws.Cell(r + 1, c).Style.Font.Bold = true;
+            ws.Cell(r + 1, c).Style.Font.FontSize = 14;
+
+            // Mescla as células horizontalmente
+            ws.Range(r, c, r, c + 1).Merge();   // Título
+            ws.Range(r + 1, c, r + 1, c + 1).Merge(); // Valor
+            ws.Range(r + 2, c, r + 2, c + 1).Merge(); // Qtd
+        }
+
+        private async void BtnAtualizar_Click(object sender, EventArgs e)
+        {
+            BtnAtualizar.Enabled = false; // Trava o botão para não clicar mil vezes
+            Cursor = Cursors.WaitCursor;  // Muda o mouse para "Carregando"
+
+            // 2. Chama a função que busca no banco (REAPROVEITAMENTO)
+            await CarregarDashboard();
+
+            // 3. Atualiza a hora
+            lblUltimaAtualizacao.Text = "Atualizado às: " + DateTime.Now.ToString("HH:mm:ss");
+
+            // 4. Destrava tudo
+            BtnAtualizar.Enabled = true;
+            Cursor = Cursors.Default;
+        }
     }
 }

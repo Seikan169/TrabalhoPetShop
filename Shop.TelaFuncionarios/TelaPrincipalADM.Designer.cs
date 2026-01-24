@@ -40,44 +40,41 @@
             PnlBotoes = new Panel();
             BtnSairADM = new Button();
             BtnRelatorioADM = new Button();
-            BtnPainelFinanceiroADM = new Button();
             BtnClentesCadastradosADM = new Button();
-            BtnTelaFuncionario = new Button();
             BtnAgendamentoADM = new Button();
             BtnBuscarFuncionario = new Button();
             BtnControleFuncionario = new Button();
+            BtnPainelFinanceiroADM = new Button();
             pictureBox1 = new PictureBox();
             LblNomeAdm = new Label();
             PnLCabeca = new Panel();
             LblTitulo = new Label();
+            lblUltimaAtualizacao = new Label();
+            BtnAtualizar = new Button();
             LblDATA = new Label();
             DgvPricipal = new DataGridView();
             PnlConteudoBaixo = new Panel();
-            FlowPanelGrafico = new FlowLayoutPanel();
-            PnlCardVendas = new Panel();
-            label2 = new Label();
-            LblVendaHj = new Label();
-            panel2 = new Panel();
-            LblValorMes = new Label();
-            LblMes = new Label();
-            PnlVendasCard = new Panel();
-            LblQtdPendentes = new Label();
-            lBLPendente = new Label();
-            PnlCardClientes = new Panel();
-            LblQTDClientes = new Label();
-            LblClientes = new Label();
             ChartPedidos = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            PnlCardClientes = new Panel();
+            LblClientes = new Label();
+            LblQTDClientes = new Label();
+            panel2 = new Panel();
+            LblMes = new Label();
+            LblValorMes = new Label();
+            PnlCardVendas = new Panel();
+            LblVendaHj = new Label();
+            label2 = new Label();
+            FlowPanelGrafico = new FlowLayoutPanel();
             PnlBotoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             PnLCabeca.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DgvPricipal).BeginInit();
             PnlConteudoBaixo.SuspendLayout();
-            FlowPanelGrafico.SuspendLayout();
-            PnlCardVendas.SuspendLayout();
-            panel2.SuspendLayout();
-            PnlVendasCard.SuspendLayout();
-            PnlCardClientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ChartPedidos).BeginInit();
+            PnlCardClientes.SuspendLayout();
+            panel2.SuspendLayout();
+            PnlCardVendas.SuspendLayout();
+            FlowPanelGrafico.SuspendLayout();
             SuspendLayout();
             // 
             // timer1
@@ -92,12 +89,11 @@
             PnlBotoes.BorderStyle = BorderStyle.Fixed3D;
             PnlBotoes.Controls.Add(BtnSairADM);
             PnlBotoes.Controls.Add(BtnRelatorioADM);
-            PnlBotoes.Controls.Add(BtnPainelFinanceiroADM);
             PnlBotoes.Controls.Add(BtnClentesCadastradosADM);
-            PnlBotoes.Controls.Add(BtnTelaFuncionario);
             PnlBotoes.Controls.Add(BtnAgendamentoADM);
             PnlBotoes.Controls.Add(BtnBuscarFuncionario);
             PnlBotoes.Controls.Add(BtnControleFuncionario);
+            PnlBotoes.Controls.Add(BtnPainelFinanceiroADM);
             PnlBotoes.Controls.Add(pictureBox1);
             PnlBotoes.Controls.Add(LblNomeAdm);
             PnlBotoes.Dock = DockStyle.Left;
@@ -137,33 +133,14 @@
             BtnRelatorioADM.ForeColor = Color.FromArgb(128, 255, 128);
             BtnRelatorioADM.Image = (Image)resources.GetObject("BtnRelatorioADM.Image");
             BtnRelatorioADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnRelatorioADM.Location = new Point(0, 404);
+            BtnRelatorioADM.Location = new Point(0, 349);
             BtnRelatorioADM.Margin = new Padding(3, 2, 3, 2);
             BtnRelatorioADM.Name = "BtnRelatorioADM";
             BtnRelatorioADM.Size = new Size(176, 36);
             BtnRelatorioADM.TabIndex = 1;
-            BtnRelatorioADM.Text = "Relatórios ";
+            BtnRelatorioADM.Text = "Relatório Detalhado";
             BtnRelatorioADM.UseVisualStyleBackColor = false;
-            // 
-            // BtnPainelFinanceiroADM
-            // 
-            BtnPainelFinanceiroADM.BackColor = SystemColors.ControlDarkDark;
-            BtnPainelFinanceiroADM.Cursor = Cursors.Hand;
-            BtnPainelFinanceiroADM.Dock = DockStyle.Top;
-            BtnPainelFinanceiroADM.FlatAppearance.BorderSize = 0;
-            BtnPainelFinanceiroADM.FlatStyle = FlatStyle.Flat;
-            BtnPainelFinanceiroADM.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BtnPainelFinanceiroADM.ForeColor = Color.White;
-            BtnPainelFinanceiroADM.Image = (Image)resources.GetObject("BtnPainelFinanceiroADM.Image");
-            BtnPainelFinanceiroADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnPainelFinanceiroADM.Location = new Point(0, 364);
-            BtnPainelFinanceiroADM.Margin = new Padding(3, 2, 3, 2);
-            BtnPainelFinanceiroADM.Name = "BtnPainelFinanceiroADM";
-            BtnPainelFinanceiroADM.Size = new Size(176, 40);
-            BtnPainelFinanceiroADM.TabIndex = 1;
-            BtnPainelFinanceiroADM.Text = "Painel Financeiro";
-            BtnPainelFinanceiroADM.UseVisualStyleBackColor = false;
-            BtnPainelFinanceiroADM.Click += BtnPainelFinanceiroADM_Click;
+            BtnRelatorioADM.Click += BtnRelatorioADM_Click;
             // 
             // BtnClentesCadastradosADM
             // 
@@ -176,7 +153,7 @@
             BtnClentesCadastradosADM.ForeColor = Color.White;
             BtnClentesCadastradosADM.Image = (Image)resources.GetObject("BtnClentesCadastradosADM.Image");
             BtnClentesCadastradosADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnClentesCadastradosADM.Location = new Point(0, 316);
+            BtnClentesCadastradosADM.Location = new Point(0, 301);
             BtnClentesCadastradosADM.Margin = new Padding(3, 2, 3, 2);
             BtnClentesCadastradosADM.Name = "BtnClentesCadastradosADM";
             BtnClentesCadastradosADM.Size = new Size(176, 48);
@@ -184,25 +161,6 @@
             BtnClentesCadastradosADM.Text = "    Clientes Cadastrados";
             BtnClentesCadastradosADM.UseVisualStyleBackColor = false;
             BtnClentesCadastradosADM.Click += BtnClentesCadastradosADM_Click;
-            // 
-            // BtnTelaFuncionario
-            // 
-            BtnTelaFuncionario.BackColor = SystemColors.ControlDarkDark;
-            BtnTelaFuncionario.Cursor = Cursors.Hand;
-            BtnTelaFuncionario.Dock = DockStyle.Top;
-            BtnTelaFuncionario.FlatAppearance.BorderSize = 0;
-            BtnTelaFuncionario.FlatStyle = FlatStyle.Flat;
-            BtnTelaFuncionario.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BtnTelaFuncionario.ForeColor = Color.White;
-            BtnTelaFuncionario.Image = (Image)resources.GetObject("BtnTelaFuncionario.Image");
-            BtnTelaFuncionario.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnTelaFuncionario.Location = new Point(0, 261);
-            BtnTelaFuncionario.Margin = new Padding(3, 2, 3, 2);
-            BtnTelaFuncionario.Name = "BtnTelaFuncionario";
-            BtnTelaFuncionario.Size = new Size(176, 55);
-            BtnTelaFuncionario.TabIndex = 8;
-            BtnTelaFuncionario.Text = "Tela Funcionário";
-            BtnTelaFuncionario.UseVisualStyleBackColor = false;
             // 
             // BtnAgendamentoADM
             // 
@@ -215,7 +173,7 @@
             BtnAgendamentoADM.ForeColor = Color.White;
             BtnAgendamentoADM.Image = (Image)resources.GetObject("BtnAgendamentoADM.Image");
             BtnAgendamentoADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnAgendamentoADM.Location = new Point(0, 213);
+            BtnAgendamentoADM.Location = new Point(0, 253);
             BtnAgendamentoADM.Margin = new Padding(3, 2, 3, 2);
             BtnAgendamentoADM.Name = "BtnAgendamentoADM";
             BtnAgendamentoADM.Size = new Size(176, 48);
@@ -235,7 +193,7 @@
             BtnBuscarFuncionario.ForeColor = Color.White;
             BtnBuscarFuncionario.Image = (Image)resources.GetObject("BtnBuscarFuncionario.Image");
             BtnBuscarFuncionario.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnBuscarFuncionario.Location = new Point(0, 165);
+            BtnBuscarFuncionario.Location = new Point(0, 205);
             BtnBuscarFuncionario.Margin = new Padding(3, 2, 3, 2);
             BtnBuscarFuncionario.Name = "BtnBuscarFuncionario";
             BtnBuscarFuncionario.Size = new Size(176, 48);
@@ -255,7 +213,7 @@
             BtnControleFuncionario.ForeColor = Color.White;
             BtnControleFuncionario.Image = (Image)resources.GetObject("BtnControleFuncionario.Image");
             BtnControleFuncionario.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnControleFuncionario.Location = new Point(0, 105);
+            BtnControleFuncionario.Location = new Point(0, 145);
             BtnControleFuncionario.Margin = new Padding(3, 2, 3, 2);
             BtnControleFuncionario.Name = "BtnControleFuncionario";
             BtnControleFuncionario.Size = new Size(176, 60);
@@ -263,6 +221,26 @@
             BtnControleFuncionario.Text = "Cadastro de Funcionário";
             BtnControleFuncionario.TextAlign = ContentAlignment.MiddleRight;
             BtnControleFuncionario.UseVisualStyleBackColor = false;
+            // 
+            // BtnPainelFinanceiroADM
+            // 
+            BtnPainelFinanceiroADM.BackColor = SystemColors.ControlDarkDark;
+            BtnPainelFinanceiroADM.Cursor = Cursors.Hand;
+            BtnPainelFinanceiroADM.Dock = DockStyle.Top;
+            BtnPainelFinanceiroADM.FlatAppearance.BorderSize = 0;
+            BtnPainelFinanceiroADM.FlatStyle = FlatStyle.Flat;
+            BtnPainelFinanceiroADM.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnPainelFinanceiroADM.ForeColor = Color.White;
+            BtnPainelFinanceiroADM.Image = (Image)resources.GetObject("BtnPainelFinanceiroADM.Image");
+            BtnPainelFinanceiroADM.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnPainelFinanceiroADM.Location = new Point(0, 105);
+            BtnPainelFinanceiroADM.Margin = new Padding(3, 2, 3, 2);
+            BtnPainelFinanceiroADM.Name = "BtnPainelFinanceiroADM";
+            BtnPainelFinanceiroADM.Size = new Size(176, 40);
+            BtnPainelFinanceiroADM.TabIndex = 1;
+            BtnPainelFinanceiroADM.Text = "Relatório Rapido ";
+            BtnPainelFinanceiroADM.UseVisualStyleBackColor = false;
+            BtnPainelFinanceiroADM.Click += BtnPainelFinanceiroADM_Click;
             // 
             // pictureBox1
             // 
@@ -297,6 +275,8 @@
             PnLCabeca.BackColor = SystemColors.Highlight;
             PnLCabeca.BorderStyle = BorderStyle.Fixed3D;
             PnLCabeca.Controls.Add(LblTitulo);
+            PnLCabeca.Controls.Add(lblUltimaAtualizacao);
+            PnLCabeca.Controls.Add(BtnAtualizar);
             PnLCabeca.Controls.Add(LblDATA);
             PnLCabeca.Dock = DockStyle.Top;
             PnLCabeca.Location = new Point(180, 0);
@@ -312,10 +292,33 @@
             LblTitulo.ForeColor = Color.White;
             LblTitulo.Location = new Point(0, 0);
             LblTitulo.Name = "LblTitulo";
-            LblTitulo.Size = new Size(1004, 46);
+            LblTitulo.Size = new Size(709, 46);
             LblTitulo.TabIndex = 14;
             LblTitulo.Text = "label2";
             LblTitulo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblUltimaAtualizacao
+            // 
+            lblUltimaAtualizacao.BackColor = Color.DodgerBlue;
+            lblUltimaAtualizacao.Dock = DockStyle.Right;
+            lblUltimaAtualizacao.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblUltimaAtualizacao.ForeColor = Color.White;
+            lblUltimaAtualizacao.Location = new Point(709, 0);
+            lblUltimaAtualizacao.Name = "lblUltimaAtualizacao";
+            lblUltimaAtualizacao.Size = new Size(146, 46);
+            lblUltimaAtualizacao.TabIndex = 16;
+            lblUltimaAtualizacao.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // BtnAtualizar
+            // 
+            BtnAtualizar.Dock = DockStyle.Right;
+            BtnAtualizar.Image = (Image)resources.GetObject("BtnAtualizar.Image");
+            BtnAtualizar.Location = new Point(855, 0);
+            BtnAtualizar.Name = "BtnAtualizar";
+            BtnAtualizar.Size = new Size(53, 46);
+            BtnAtualizar.TabIndex = 4;
+            BtnAtualizar.UseVisualStyleBackColor = true;
+            BtnAtualizar.Click += BtnAtualizar_Click;
             // 
             // LblDATA
             // 
@@ -323,9 +326,9 @@
             LblDATA.Dock = DockStyle.Right;
             LblDATA.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LblDATA.ForeColor = Color.White;
-            LblDATA.Location = new Point(1004, 0);
+            LblDATA.Location = new Point(908, 0);
             LblDATA.Name = "LblDATA";
-            LblDATA.Size = new Size(262, 46);
+            LblDATA.Size = new Size(358, 46);
             LblDATA.TabIndex = 15;
             LblDATA.Text = "label2";
             LblDATA.TextAlign = ContentAlignment.MiddleCenter;
@@ -389,156 +392,6 @@
             PnlConteudoBaixo.Size = new Size(1270, 505);
             PnlConteudoBaixo.TabIndex = 4;
             // 
-            // FlowPanelGrafico
-            // 
-            FlowPanelGrafico.BackColor = Color.White;
-            FlowPanelGrafico.BorderStyle = BorderStyle.Fixed3D;
-            FlowPanelGrafico.Controls.Add(PnlCardVendas);
-            FlowPanelGrafico.Controls.Add(panel2);
-            FlowPanelGrafico.Controls.Add(PnlVendasCard);
-            FlowPanelGrafico.Controls.Add(PnlCardClientes);
-            FlowPanelGrafico.Dock = DockStyle.Top;
-            FlowPanelGrafico.Location = new Point(0, 0);
-            FlowPanelGrafico.Name = "FlowPanelGrafico";
-            FlowPanelGrafico.Padding = new Padding(20);
-            FlowPanelGrafico.Size = new Size(908, 468);
-            FlowPanelGrafico.TabIndex = 4;
-            // 
-            // PnlCardVendas
-            // 
-            PnlCardVendas.BackColor = Color.RoyalBlue;
-            PnlCardVendas.BorderStyle = BorderStyle.Fixed3D;
-            PnlCardVendas.Controls.Add(label2);
-            PnlCardVendas.Controls.Add(LblVendaHj);
-            PnlCardVendas.Location = new Point(23, 23);
-            PnlCardVendas.Name = "PnlCardVendas";
-            PnlCardVendas.Size = new Size(250, 140);
-            PnlCardVendas.TabIndex = 0;
-            // 
-            // label2
-            // 
-            label2.BackColor = Color.Transparent;
-            label2.Dock = DockStyle.Top;
-            label2.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Image = (Image)resources.GetObject("label2.Image");
-            label2.ImageAlign = ContentAlignment.MiddleRight;
-            label2.Location = new Point(0, 0);
-            label2.Name = "label2";
-            label2.RightToLeft = RightToLeft.No;
-            label2.Size = new Size(246, 45);
-            label2.TabIndex = 2;
-            label2.Text = "Vendas Hoje: ";
-            label2.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // LblVendaHj
-            // 
-            LblVendaHj.AutoSize = true;
-            LblVendaHj.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblVendaHj.Location = new Point(3, 45);
-            LblVendaHj.Name = "LblVendaHj";
-            LblVendaHj.Size = new Size(131, 45);
-            LblVendaHj.TabIndex = 1;
-            LblVendaHj.Text = "R$ 0,00";
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.BlueViolet;
-            panel2.BorderStyle = BorderStyle.Fixed3D;
-            panel2.Controls.Add(LblValorMes);
-            panel2.Controls.Add(LblMes);
-            panel2.Location = new Point(279, 23);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(250, 140);
-            panel2.TabIndex = 3;
-            // 
-            // LblValorMes
-            // 
-            LblValorMes.AutoSize = true;
-            LblValorMes.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblValorMes.Location = new Point(3, 45);
-            LblValorMes.Name = "LblValorMes";
-            LblValorMes.Size = new Size(131, 45);
-            LblValorMes.TabIndex = 5;
-            LblValorMes.Text = "R$ 0,00";
-            // 
-            // LblMes
-            // 
-            LblMes.BackColor = Color.Transparent;
-            LblMes.Dock = DockStyle.Top;
-            LblMes.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblMes.Image = (Image)resources.GetObject("LblMes.Image");
-            LblMes.ImageAlign = ContentAlignment.MiddleRight;
-            LblMes.Location = new Point(0, 0);
-            LblMes.Name = "LblMes";
-            LblMes.Size = new Size(246, 34);
-            LblMes.TabIndex = 4;
-            LblMes.Text = "Vendas do mês ";
-            // 
-            // PnlVendasCard
-            // 
-            PnlVendasCard.BackColor = Color.DarkOrange;
-            PnlVendasCard.BorderStyle = BorderStyle.Fixed3D;
-            PnlVendasCard.Controls.Add(LblQtdPendentes);
-            PnlVendasCard.Controls.Add(lBLPendente);
-            PnlVendasCard.Location = new Point(535, 23);
-            PnlVendasCard.Name = "PnlVendasCard";
-            PnlVendasCard.Size = new Size(250, 140);
-            PnlVendasCard.TabIndex = 1;
-            // 
-            // LblQtdPendentes
-            // 
-            LblQtdPendentes.AutoSize = true;
-            LblQtdPendentes.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblQtdPendentes.Location = new Point(3, 45);
-            LblQtdPendentes.Name = "LblQtdPendentes";
-            LblQtdPendentes.Size = new Size(0, 45);
-            LblQtdPendentes.TabIndex = 4;
-            // 
-            // lBLPendente
-            // 
-            lBLPendente.BackColor = Color.Transparent;
-            lBLPendente.Dock = DockStyle.Top;
-            lBLPendente.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lBLPendente.ImageAlign = ContentAlignment.MiddleRight;
-            lBLPendente.Location = new Point(0, 0);
-            lBLPendente.Name = "lBLPendente";
-            lBLPendente.Size = new Size(246, 34);
-            lBLPendente.TabIndex = 3;
-            lBLPendente.Text = "Pendente";
-            // 
-            // PnlCardClientes
-            // 
-            PnlCardClientes.BackColor = Color.SeaGreen;
-            PnlCardClientes.BorderStyle = BorderStyle.Fixed3D;
-            PnlCardClientes.Controls.Add(LblQTDClientes);
-            PnlCardClientes.Controls.Add(LblClientes);
-            PnlCardClientes.Location = new Point(23, 169);
-            PnlCardClientes.Name = "PnlCardClientes";
-            PnlCardClientes.Size = new Size(250, 140);
-            PnlCardClientes.TabIndex = 2;
-            // 
-            // LblQTDClientes
-            // 
-            LblQTDClientes.AutoSize = true;
-            LblQTDClientes.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblQTDClientes.Location = new Point(3, 45);
-            LblQTDClientes.Name = "LblQTDClientes";
-            LblQTDClientes.Size = new Size(0, 45);
-            LblQTDClientes.TabIndex = 5;
-            // 
-            // LblClientes
-            // 
-            LblClientes.BackColor = Color.Transparent;
-            LblClientes.Dock = DockStyle.Top;
-            LblClientes.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblClientes.Image = (Image)resources.GetObject("LblClientes.Image");
-            LblClientes.ImageAlign = ContentAlignment.MiddleRight;
-            LblClientes.Location = new Point(0, 0);
-            LblClientes.Name = "LblClientes";
-            LblClientes.Size = new Size(246, 34);
-            LblClientes.TabIndex = 4;
-            LblClientes.Text = "Clientes";
-            // 
             // ChartPedidos
             // 
             ChartPedidos.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
@@ -568,6 +421,123 @@
             ChartPedidos.TabIndex = 0;
             ChartPedidos.Text = "chart1";
             // 
+            // PnlCardClientes
+            // 
+            PnlCardClientes.BackColor = Color.SeaGreen;
+            PnlCardClientes.BorderStyle = BorderStyle.Fixed3D;
+            PnlCardClientes.Controls.Add(LblQTDClientes);
+            PnlCardClientes.Controls.Add(LblClientes);
+            PnlCardClientes.Location = new Point(535, 23);
+            PnlCardClientes.Name = "PnlCardClientes";
+            PnlCardClientes.Size = new Size(250, 140);
+            PnlCardClientes.TabIndex = 2;
+            // 
+            // LblClientes
+            // 
+            LblClientes.BackColor = Color.Transparent;
+            LblClientes.Dock = DockStyle.Top;
+            LblClientes.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblClientes.Image = (Image)resources.GetObject("LblClientes.Image");
+            LblClientes.ImageAlign = ContentAlignment.MiddleRight;
+            LblClientes.Location = new Point(0, 0);
+            LblClientes.Name = "LblClientes";
+            LblClientes.Size = new Size(246, 34);
+            LblClientes.TabIndex = 4;
+            LblClientes.Text = "Clientes Cadastrados";
+            // 
+            // LblQTDClientes
+            // 
+            LblQTDClientes.AutoSize = true;
+            LblQTDClientes.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblQTDClientes.Location = new Point(3, 45);
+            LblQTDClientes.Name = "LblQTDClientes";
+            LblQTDClientes.Size = new Size(0, 45);
+            LblQTDClientes.TabIndex = 5;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.BlueViolet;
+            panel2.BorderStyle = BorderStyle.Fixed3D;
+            panel2.Controls.Add(LblValorMes);
+            panel2.Controls.Add(LblMes);
+            panel2.Location = new Point(279, 23);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(250, 140);
+            panel2.TabIndex = 3;
+            // 
+            // LblMes
+            // 
+            LblMes.BackColor = Color.Transparent;
+            LblMes.Dock = DockStyle.Top;
+            LblMes.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblMes.Image = (Image)resources.GetObject("LblMes.Image");
+            LblMes.ImageAlign = ContentAlignment.MiddleRight;
+            LblMes.Location = new Point(0, 0);
+            LblMes.Name = "LblMes";
+            LblMes.Size = new Size(246, 34);
+            LblMes.TabIndex = 4;
+            LblMes.Text = "Vendas do mês ";
+            // 
+            // LblValorMes
+            // 
+            LblValorMes.AutoSize = true;
+            LblValorMes.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblValorMes.Location = new Point(3, 45);
+            LblValorMes.Name = "LblValorMes";
+            LblValorMes.Size = new Size(131, 45);
+            LblValorMes.TabIndex = 5;
+            LblValorMes.Text = "R$ 0,00";
+            // 
+            // PnlCardVendas
+            // 
+            PnlCardVendas.BackColor = Color.RoyalBlue;
+            PnlCardVendas.BorderStyle = BorderStyle.Fixed3D;
+            PnlCardVendas.Controls.Add(label2);
+            PnlCardVendas.Controls.Add(LblVendaHj);
+            PnlCardVendas.Location = new Point(23, 23);
+            PnlCardVendas.Name = "PnlCardVendas";
+            PnlCardVendas.Size = new Size(250, 140);
+            PnlCardVendas.TabIndex = 0;
+            // 
+            // LblVendaHj
+            // 
+            LblVendaHj.AutoSize = true;
+            LblVendaHj.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblVendaHj.Location = new Point(3, 45);
+            LblVendaHj.Name = "LblVendaHj";
+            LblVendaHj.Size = new Size(131, 45);
+            LblVendaHj.TabIndex = 1;
+            LblVendaHj.Text = "R$ 0,00";
+            // 
+            // label2
+            // 
+            label2.BackColor = Color.Transparent;
+            label2.Dock = DockStyle.Top;
+            label2.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Image = (Image)resources.GetObject("label2.Image");
+            label2.ImageAlign = ContentAlignment.MiddleRight;
+            label2.Location = new Point(0, 0);
+            label2.Name = "label2";
+            label2.RightToLeft = RightToLeft.No;
+            label2.Size = new Size(246, 45);
+            label2.TabIndex = 2;
+            label2.Text = "Vendas Hoje: ";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // FlowPanelGrafico
+            // 
+            FlowPanelGrafico.BackColor = Color.White;
+            FlowPanelGrafico.BorderStyle = BorderStyle.Fixed3D;
+            FlowPanelGrafico.Controls.Add(PnlCardVendas);
+            FlowPanelGrafico.Controls.Add(panel2);
+            FlowPanelGrafico.Controls.Add(PnlCardClientes);
+            FlowPanelGrafico.Dock = DockStyle.Top;
+            FlowPanelGrafico.Location = new Point(0, 0);
+            FlowPanelGrafico.Name = "FlowPanelGrafico";
+            FlowPanelGrafico.Padding = new Padding(20);
+            FlowPanelGrafico.Size = new Size(908, 217);
+            FlowPanelGrafico.TabIndex = 4;
+            // 
             // TelaPrincipalADM
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -591,16 +561,14 @@
             PnLCabeca.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)DgvPricipal).EndInit();
             PnlConteudoBaixo.ResumeLayout(false);
-            FlowPanelGrafico.ResumeLayout(false);
-            PnlCardVendas.ResumeLayout(false);
-            PnlCardVendas.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            PnlVendasCard.ResumeLayout(false);
-            PnlVendasCard.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)ChartPedidos).EndInit();
             PnlCardClientes.ResumeLayout(false);
             PnlCardClientes.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)ChartPedidos).EndInit();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            PnlCardVendas.ResumeLayout(false);
+            PnlCardVendas.PerformLayout();
+            FlowPanelGrafico.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -612,7 +580,6 @@
         private Button BtnRelatorioADM;
         private Button BtnPainelFinanceiroADM;
         private Button BtnClentesCadastradosADM;
-        private Button BtnTelaFuncionario;
         private Button BtnAgendamentoADM;
         private Button BtnBuscarFuncionario;
         private Button BtnControleFuncionario;
@@ -624,6 +591,9 @@
         private DataGridView DgvPricipal;
         private Panel PnlConteudoBaixo;
         private System.Windows.Forms.DataVisualization.Charting.Chart ChartPedidos;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartVendas;
+        private Button BtnAtualizar;
+        private Label lblUltimaAtualizacao;
         private FlowLayoutPanel FlowPanelGrafico;
         private Panel PnlCardVendas;
         private Label label2;
@@ -631,12 +601,8 @@
         private Panel panel2;
         private Label LblValorMes;
         private Label LblMes;
-        private Panel PnlVendasCard;
-        private Label LblQtdPendentes;
-        private Label lBLPendente;
         private Panel PnlCardClientes;
         private Label LblQTDClientes;
         private Label LblClientes;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartVendas;
     }
 }

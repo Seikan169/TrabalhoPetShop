@@ -28,10 +28,10 @@ namespace Mysql.PetShop.Models
         public decimal ValorTotal { get; set; }
 
         [Column("status")]
-        public string Status { get; set; }
+        public string? Status { get; set; }
 
         [Column("observacoes")] // Adicionei o mapeamento da coluna caso falte
-        public string Observacoes { get; set; }
+        public string? Observacoes { get; set; }
 
         // --- RELACIONAMENTOS ---
         [Column("funcionario_id")] // Caso o nome no banco seja snake_case
