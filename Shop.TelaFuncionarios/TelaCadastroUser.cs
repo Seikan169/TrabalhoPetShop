@@ -107,7 +107,7 @@ namespace Shop.TelaFuncionarios
 
                     cpf,
                     DatapickNascimento.Value,
-                    "Cliente",
+                    "cliente",
                     ""
                 );
 
