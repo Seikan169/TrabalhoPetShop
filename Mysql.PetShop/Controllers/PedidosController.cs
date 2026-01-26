@@ -29,7 +29,8 @@ namespace Mysql.PetShop.Controllers
                 DataAgendamento = dados.DataAgendamento,
                 ValorTotal = dados.ValorTotal,
                 Status = "pendente", // Como definimos aqui, a API parará de exigir que venha do front
-                Observacoes = dados.Observacoes
+                Observacoes = dados.Observacoes,
+                FormaPagamento = dados.FormaPagamento,
             };
 
             _context.TbPedidos.Add(novoPedido);
@@ -271,6 +272,8 @@ namespace Mysql.PetShop.Controllers
             public decimal ValorTotal { get; set; }
             public string Observacoes { get; set; }
             public List<ItemPedidoRequestDto> Itens { get; set; }
+            public string FormaPagamento { get; set; }
+
         }
 
         public class ItemPedidoRequestDto

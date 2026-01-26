@@ -45,6 +45,9 @@ namespace Mysql.PetShop.Models
         [ForeignKey("ClienteId")]
         public virtual Usuario Cliente { get; set; }
 
+        [Column("forma_pagamento")]
+        public string? FormaPagamento { get; set; }
+
         // Mantenha APENAS esta linha para a lista de itens
         public virtual ICollection<ItemPedido> Itens { get; set; }
     }
