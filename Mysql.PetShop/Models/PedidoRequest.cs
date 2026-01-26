@@ -9,7 +9,7 @@ namespace Mysql.PetShop.Models
         public DateTime DataAgendamento { get; set; }
         public decimal ValorTotal { get; set; }
         public string Observacoes { get; set; }
-        [Column("forma_pagamento")]
+        
         public string? FormaPagamento { get; set; }
         public List<Pedido> Itens { get; set; }
     }

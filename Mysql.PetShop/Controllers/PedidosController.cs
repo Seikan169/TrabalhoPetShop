@@ -273,7 +273,7 @@ namespace Mysql.PetShop.Controllers
             public string Observacoes { get; set; }
             public List<ItemPedidoRequestDto> Itens { get; set; }
             public string FormaPagamento { get; set; }
-
+            
         }
 
         public class ItemPedidoRequestDto

@@ -318,6 +318,7 @@ namespace Tela.Cliente
 
         private async void BtnFinalizar_Click(object sender, EventArgs e)
         {
+            // 1. VALIDAÇÕES INICIAIS (Mantém igual)
             if (carrinho.Count == 0)
             {
                 MessageBox.Show("Seu carrinho está vazio!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -329,66 +330,95 @@ namespace Tela.Cliente
                 MessageBox.Show("Por favor, selecione qual Pet receberá o cuidado.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            int idPetSelecionado = Convert.ToInt32(CmbPetAgendar.SelectedValue);
 
-            BtnFinalizar.Enabled = false; // Evita cliques múltiplos
+            // Travamos o botão para evitar cliques duplos
+            BtnFinalizar.Enabled = false;
             BtnFinalizar.Text = "Processando...";
 
             try
             {
+                // 2. CALCULAR O TOTAL (Precisamos dele AGORA para mandar pra tela de pagamento)
                 decimal valortotal = carrinho.Sum(x => x.Preco);
+                int idPetSelecionado = Convert.ToInt32(CmbPetAgendar.SelectedValue);
+
+                // =================================================================
+                // AQUI ENTRA A MÁGICA DA TELA DE PAGAMENTO 💳
+                // =================================================================
+
+                // Cria a tela passando o valor total
+                TelaPagamento telaPag = new TelaPagamento(valortotal);
+
+                // Exibe a tela e PAUSA o código aqui até o usuário fechar a janelinha
+                var resultado = telaPag.ShowDialog();
+
+                // Se o usuário fechou ou clicou em Cancelar, abortamos o salvamento
+                if (resultado != DialogResult.OK)
+                {
+                    // Reabilita o botão e sai
+                    BtnFinalizar.Enabled = true;
+                    BtnFinalizar.Text = "Finalizar Agendamento";
+                    return;
+                }
+
+                // Se chegou aqui, ele escolheu uma forma de pagamento!
+                string formaPagamentoEscolhida = telaPag.MetodoEscolhido;
+
+                // =================================================================
+                // CONTINUA O PROCESSO DE SALVAR (Agora com o pagamento)
+                // =================================================================
+
                 var listaItens = carrinho.Select(item => new
                 {
                     ServicoId = item.Id,
                     PrecoUnitario = item.Preco
                 }).ToList();
 
-                string dataselec = DtpData.Value.ToString("yyyy-MM-dd");
+               
+                string dataselec = DtpData.Value.ToString("yyyy-MM-dd HH:mm:ss");
+
+                // Montamos o DTO para enviar a API
                 var pedidoDto = new
                 {
                     ClienteId = _usuarioIdLogado,
-                    PetId = idPetSelecionado, // <--- O NOVO CAMPO OBRIGATÓRIO
-                    DataAgendamento = DtpData.Value,
+                    PetId = idPetSelecionado,
+                    DataAgendamento = DateTime.Now,
                     ValorTotal = valortotal,
                     Observacoes = TxtObservacoes.Text,
                     Itens = listaItens,
-                    Data_Escolhida = dataselec
+                    Data_Escolhida = dataselec,
+
+                    // ---> CAMPO NOVO AQUI <---
+                    FormaPagamento = formaPagamentoEscolhida
                 };
 
-
-
-                string Obs = TxtObservacoes.Text;
-
-                //chama a api 
-
+                // Chama a API 
                 ApiService api = new ApiService();
-
                 bool sucesso = await api.SalvarPedido(pedidoDto);
 
                 if (sucesso)
                 {
-                    MessageBox.Show("Agendamento realizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Mostra a mensagem confirmando também o pagamento
+                    MessageBox.Show($"Agendamento realizado com sucesso!\nPagamento: {formaPagamentoEscolhida}", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Limpa tudo
                     carrinho.Clear();
                     TxtObservacoes.Clear();
                     DgvCarrinho.Rows.Clear();
-                    AtualizarTotal(); // Zera o label de total
-                    CmbPetAgendar.SelectedIndex = -1; // Reseta o combo
+                    AtualizarTotal();
+                    CmbPetAgendar.SelectedIndex = -1;
                 }
                 else
                 {
-
-                    MessageBox.Show("Falha ao realizar o agendamento. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    MessageBox.Show("Falha ao realizar o agendamento no sistema. O pagamento não foi processado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show("Erro técnico: " + ex.Message);
             }
             finally
             {
+                // Garante que o botão volta ao normal sempre
                 BtnFinalizar.Enabled = true;
                 BtnFinalizar.Text = "Finalizar Agendamento";
             }
