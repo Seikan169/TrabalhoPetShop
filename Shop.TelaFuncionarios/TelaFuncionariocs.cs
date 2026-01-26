@@ -337,5 +337,16 @@ namespace Shop.TelaFuncionarios
         {
             await MudarStatusPedido("concluido");
         }
+
+        private void BtnSairFuncionario_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            TelaLogin Log = new TelaLogin();
+
+            Log.FormClosed += (s, args) => this.Close();
+
+            Log.Show();
+
+        }
     }
 }

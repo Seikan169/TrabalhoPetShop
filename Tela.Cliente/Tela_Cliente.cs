@@ -1,4 +1,4 @@
-﻿using Mysql.PetShop.Models;
+﻿    using Mysql.PetShop.Models;
 using Shop.TelaFuncionarios;
 using System;
 using System.Collections.Generic;
@@ -635,7 +635,7 @@ namespace Tela.Cliente
         private void BtnSair_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Saindo...");
-            this.Close();
+            this.Hide();
         }
 
         private async void BtnBuscar_Click(object sender, EventArgs e)
