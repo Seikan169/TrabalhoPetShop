@@ -18,7 +18,7 @@ namespace Shop.TelaFuncionarios
 {
     public partial class TelaPrincipalADM : Form
     {
-        private readonly string _baseUrl = "https://localhost:7214";
+        private readonly string _baseUrl = "https://trabalhopetshop-production.up.railway.app/";
         private string _nomeadm;
         private int _idadm;
 

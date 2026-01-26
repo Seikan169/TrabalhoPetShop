@@ -21,7 +21,7 @@ namespace Shop.TelaFuncionarios
     public class ApiService
     {
         
-        private readonly string _baseUrl = "https://localhost:7214";
+        private readonly string _baseUrl = "https://trabalhopetshop-production.up.railway.app";
 
 
         
