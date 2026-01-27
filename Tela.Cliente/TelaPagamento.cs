@@ -27,7 +27,7 @@ namespace Tela.Cliente
         private void DestacarBotao(Button botaoEscolhido)
         {
             // 1. Reseta todos os botões para o estilo "Desativado" (Cinza claro)
-            ResetarEstilo(BtnPix);
+
             ResetarEstilo(BtnCredito);
             ResetarEstilo(BtnDebito);
             ResetarEstilo(BtnPagarEntrega);
@@ -39,17 +39,7 @@ namespace Tela.Cliente
             botaoEscolhido.FlatAppearance.BorderSize = 2;
             botaoEscolhido.FlatAppearance.BorderColor = Color.DodgerBlue;
 
-            // 3. Controle de visibilidade do QR Code
-            if (botaoEscolhido == BtnPix)
-            {
-                PbQrcode.Visible = true;
-                // lblInstrucao.Text = "Escaneie o QR Code no app do seu banco";
-            }
-            else
-            {
-                PbQrcode.Visible = false;
-                // lblInstrucao.Text = "Pague na maquininha ao finalizar.";
-            }
+
         }
         private void ResetarEstilo(Button btn)
         {
@@ -63,6 +53,9 @@ namespace Tela.Cliente
         {
             MetodoEscolhido = "Pix";
             DestacarBotao(BtnPix);
+            LblInformacao.Text = "Aponte a câmera do seu celular \n para o QR Code ou copie o código Pix.";
+            PbIntrucao.Visible = false;
+           
             // 1. CONFIGURAR DADOS DO PIX (Coloque seus dados reais aqui para testar!)
             string minhaChavePix = "15708016655"; // <--- TROPQUE PELA SUA CHAVE
             string nomeRecebedor = "PetShop Mundo Animal";
@@ -71,47 +64,72 @@ namespace Tela.Cliente
             // O valor já vem lá do construtor da tela, lembra?
             // Vamos limpar o R$ do texto da label ou usar a variável original se tiver guardado
             // Supondo que você guardou o valor numa variável global '_valorTotal'
+            try
+            {
 
-            // 2. GERAR O TEXTO DO PIX (O Código Copia e Cola)
-            var gerador = new GeradorPix(minhaChavePix, nomeRecebedor, cidade, _valorTotal);
-            payloadPix = gerador.GerarPayload();
 
-            // 3. GERAR A IMAGEM DO QR CODE
-            QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(payloadPix, QRCodeGenerator.ECCLevel.Q);
-            QRCode qrCode = new QRCode(qrCodeData);
-            Bitmap qrCodeImage = qrCode.GetGraphic(20);
 
-            // 4. MOSTRAR NA TELA
-            PbQrcode.Image = qrCodeImage;
-            PbQrcode.Visible = true; // Mostra a imagem
+                // 2. GERAR O TEXTO DO PIX (O Código Copia e Cola)
+                var gerador = new GeradorPix(minhaChavePix, nomeRecebedor, cidade, _valorTotal);
+                payloadPix = gerador.GerarPayload();
 
-            // Opcional: Copiar o código para a área de transferência
-            Clipboard.SetText(payloadPix);
-            MessageBox.Show("QR Code Gerado! O código 'Copia e Cola' foi copiado para sua área de transferência.");
+                // 3. GERAR A IMAGEM DO QR CODE
+                QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                QRCodeData qrCodeData = qrGenerator.CreateQrCode(payloadPix, QRCodeGenerator.ECCLevel.Q);
+                QRCode qrCode = new QRCode(qrCodeData);
+                Bitmap qrCodeImage = qrCode.GetGraphic(20);
 
+                // 4. MOSTRAR NA TELA
+                PbQrcode.Image = qrCodeImage;
+                PbQrcode.Visible = true; // Mostra a imagem
+                BtnCopiar.Visible = true;
+                BtnComfirma.Enabled = false;
+                BtnComfirma.Text = "Aguardando Pagamento...";
+                BtnComfirma.BackColor = Color.Gray; // Deixa cinza para parecer desativado
+                                                    // Inicia o cronômetro para simular a confirmação do pagamento
+
+                Clipboard.SetText(payloadPix);
+                MessageBox.Show("QR Code Gerado! O código 'Copia e Cola' foi copiado para sua área de transferência.");
+                TmrPix.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao gerar o QR Code: " + ex.Message);
+
+            }
         }
 
         private void BtnPagarEntrega_Click_1(object sender, EventArgs e)
         {
-            MetodoEscolhido = "Pagar na entrega";
+            PbIntrucao.Visible = true;
+            PbIntrucao.Image = Properties.Resources.bicicleta_de_entrega; // Coloque uma imagem de entrega se tiver
+            LblInformacao.Visible = true;
+            LblInformacao.Text = "💵\n\nPagamento em Dinheiro.\nReceba o valor no balcão ou na entrega.";
+            MetodoEscolhido = "Dinheiro";
             DestacarBotao(BtnPagarEntrega);
         }
 
         private void BtnDebito_Click_1(object sender, EventArgs e)
         {
+            PbIntrucao.Image = Properties.Resources.maquina_de_cartao;// Coloque uma imagem de maquininha se tiver
+            PbIntrucao.Visible = true;
+            LblInformacao.Text =  "💳\n\nCartão de Débito.\nUtilize a maquininha para processar.";
             MetodoEscolhido = "Debito";
             DestacarBotao(BtnDebito);
         }
 
         private void BtnCredito_Click_1(object sender, EventArgs e)
         {
+            PbIntrucao.Image = Properties.Resources.maquina_de_cartao;
+            PbIntrucao.Visible = true;
+            LblInformacao.Text = "💳\n\nCartão de Crédito.\nInsira o cartão ou aproxime da maquininha.";
             MetodoEscolhido = "Credito";
             DestacarBotao(BtnCredito);
         }
 
         private void BtnComfirma_Click_1(object sender, EventArgs e)
         {
+
             if (string.IsNullOrEmpty(MetodoEscolhido))
             {
                 MessageBox.Show("Por favor, selecione uma forma de pagamento.");
@@ -134,10 +152,33 @@ namespace Tela.Cliente
             this.Close();
         }
 
-        private void label2_Click(object sender, EventArgs e)
+
+
+        private void TmrPix_Tick(object sender, EventArgs e)
+        {
+            // O Cronômetro apita depois de 5 segundos!
+
+            // 1. Para o relógio (senão ele fica apitando para sempre)
+            TmrPix.Stop();
+
+            // 2. Destrava o botão
+            BtnComfirma.Enabled = true;
+            BtnComfirma.Text = "FINALIZAR";
+            BtnComfirma.BackColor = Color.SeaGreen; // Volta a ficar verde (ou a cor original)
+
+            // 3. Toca um som de sucesso (opcional, fica chique!)
+            System.Media.SystemSounds.Exclamation.Play();
+
+            // 4. Mostra mensagem
+            MessageBox.Show("Pagamento Pix Identificado com Sucesso!", "Banco", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void BtnCopiar_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(payloadPix);
             MessageBox.Show("Código Pix copiado! Agora é só colar no banco.");
         }
     }
 }
+
+

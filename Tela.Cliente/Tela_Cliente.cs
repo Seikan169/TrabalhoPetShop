@@ -31,6 +31,8 @@ namespace Tela.Cliente
             tabControl1.ItemSize = new Size(0, 2);
             tabControl1.SizeMode = TabSizeMode.Fixed;
 
+
+
         }
 
 
@@ -314,6 +316,11 @@ namespace Tela.Cliente
             DgvCarrinho.AllowUserToDeleteRows = false;// Obriga a usar o botão X
             DgvCarrinho.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             DgvCarrinho.MultiSelect = false;
+
+
+
+
+
         }
 
         private async void BtnFinalizar_Click(object sender, EventArgs e)
@@ -380,10 +387,10 @@ namespace Tela.Cliente
                     PrecoUnitario = item.Preco
                 }).ToList();
 
-               
-                
-                
-                
+
+
+
+
                 // Montamos o DTO para enviar a API
                 var pedidoDto = new
                 {
@@ -394,7 +401,7 @@ namespace Tela.Cliente
                     ValorTotal = valortotal,
                     Observacoes = TxtObservacoes.Text,
                     Itens = listaItens,
-                    
+
 
                     // ---> CAMPO NOVO AQUI <---
                     FormaPagamento = formaPagamentoEscolhida
@@ -673,8 +680,15 @@ namespace Tela.Cliente
 
         private void BtnSair_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Saindo...");
-            this.Hide();
+            if (MessageBox.Show("Deseja realmente sair e voltar ao login?", "Sair",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                // Reinicia a aplicação inteira (volta para a tela inicial configurada no Program.cs)
+                Application.Restart();
+
+                // Garante que o processo atual morra imediatamente para não ficar travado
+                Environment.Exit(0);
+            }
         }
 
         private async void BtnBuscar_Click(object sender, EventArgs e)
@@ -728,6 +742,22 @@ namespace Tela.Cliente
         {
             tabControl1.SelectedIndex = 2; // Vai para a terceira aba
             await CarregarAcompanhar();
+
+            if (DgvAcompanhar.Columns["Pet"] != null)
+            {
+                DgvAcompanhar.Columns["Pet"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
+            DgvAcompanhar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            DgvAcompanhar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            DgvAcompanhar.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            DgvAcompanhar.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            // Configura o SERVIÇO para usar o espaço que sobrar e quebrar linha
+            if (DgvAcompanhar.Columns["Serviços"] != null) // ou o nome real da coluna
+            {
+                DgvAcompanhar.Columns["Serviços"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                DgvAcompanhar.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                DgvAcompanhar.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            }
         }
 
         private async Task CarregarAcompanhar()
@@ -833,6 +863,13 @@ namespace Tela.Cliente
                 else e.CellStyle.ForeColor = Color.DarkOrange;
             }
         }
+         
+        private void Tela_Cliente_Load(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 
 }

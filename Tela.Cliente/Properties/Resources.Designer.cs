@@ -63,6 +63,16 @@ namespace Tela.Cliente.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bicicleta_de_entrega {
+            get {
+                object obj = ResourceManager.GetObject("bicicleta-de-entrega", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icone_editar {
             get {
                 object obj = ResourceManager.GetObject("icone_editar", resourceCulture);
@@ -76,6 +86,16 @@ namespace Tela.Cliente.Properties {
         internal static System.Drawing.Bitmap icone_excluir {
             get {
                 object obj = ResourceManager.GetObject("icone_excluir", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap maquina_de_cartao {
+            get {
+                object obj = ResourceManager.GetObject("maquina-de-cartao", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

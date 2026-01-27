@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPagamento));
             LblValor = new Label();
             PbQrcode = new PictureBox();
@@ -41,17 +42,21 @@
             BtnPix = new Button();
             BtnCancelar = new Button();
             BtnComfirma = new Button();
-            label2 = new Label();
+            TmrPix = new System.Windows.Forms.Timer(components);
+            PbIntrucao = new PictureBox();
+            BtnCopiar = new Button();
+            LblInformacao = new Label();
             ((System.ComponentModel.ISupportInitialize)PbQrcode).BeginInit();
             panel1.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PbIntrucao).BeginInit();
             SuspendLayout();
             // 
             // LblValor
             // 
             LblValor.AutoSize = true;
             LblValor.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblValor.Location = new Point(353, 62);
+            LblValor.Location = new Point(353, 59);
             LblValor.Name = "LblValor";
             LblValor.Size = new Size(226, 30);
             LblValor.TabIndex = 0;
@@ -113,7 +118,7 @@
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 59);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(220, 302);
+            flowLayoutPanel1.Size = new Size(190, 302);
             flowLayoutPanel1.TabIndex = 9;
             // 
             // BtnPagarEntrega
@@ -127,10 +132,9 @@
             BtnPagarEntrega.ImageAlign = ContentAlignment.MiddleLeft;
             BtnPagarEntrega.Location = new Point(3, 3);
             BtnPagarEntrega.Name = "BtnPagarEntrega";
-            BtnPagarEntrega.Size = new Size(200, 50);
+            BtnPagarEntrega.Size = new Size(172, 50);
             BtnPagarEntrega.TabIndex = 10;
-            BtnPagarEntrega.Text = "Pagar na entrega ";
-            BtnPagarEntrega.TextImageRelation = TextImageRelation.ImageBeforeText;
+            BtnPagarEntrega.Text = "Dinheiro";
             BtnPagarEntrega.UseVisualStyleBackColor = false;
             BtnPagarEntrega.Click += BtnPagarEntrega_Click_1;
             // 
@@ -144,7 +148,7 @@
             BtnDebito.ImageAlign = ContentAlignment.MiddleLeft;
             BtnDebito.Location = new Point(3, 59);
             BtnDebito.Name = "BtnDebito";
-            BtnDebito.Size = new Size(200, 50);
+            BtnDebito.Size = new Size(172, 50);
             BtnDebito.TabIndex = 9;
             BtnDebito.Text = "Débito";
             BtnDebito.UseVisualStyleBackColor = false;
@@ -160,7 +164,7 @@
             BtnCredito.ImageAlign = ContentAlignment.MiddleLeft;
             BtnCredito.Location = new Point(3, 115);
             BtnCredito.Name = "BtnCredito";
-            BtnCredito.Size = new Size(200, 50);
+            BtnCredito.Size = new Size(172, 50);
             BtnCredito.TabIndex = 8;
             BtnCredito.Text = "Crédito";
             BtnCredito.UseVisualStyleBackColor = false;
@@ -176,7 +180,7 @@
             BtnPix.ImageAlign = ContentAlignment.MiddleLeft;
             BtnPix.Location = new Point(3, 171);
             BtnPix.Name = "BtnPix";
-            BtnPix.Size = new Size(200, 50);
+            BtnPix.Size = new Size(172, 50);
             BtnPix.TabIndex = 7;
             BtnPix.Text = "Pix";
             BtnPix.UseVisualStyleBackColor = false;
@@ -185,13 +189,15 @@
             // BtnCancelar
             // 
             BtnCancelar.BackColor = Color.Gray;
+            BtnCancelar.Cursor = Cursors.Hand;
+            BtnCancelar.FlatAppearance.BorderSize = 0;
             BtnCancelar.FlatStyle = FlatStyle.Flat;
             BtnCancelar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnCancelar.Location = new Point(3, 227);
             BtnCancelar.Name = "BtnCancelar";
             BtnCancelar.Size = new Size(99, 33);
             BtnCancelar.TabIndex = 12;
-            BtnCancelar.Text = "Voltar";
+            BtnCancelar.Text = "Cancelar";
             BtnCancelar.UseVisualStyleBackColor = false;
             BtnCancelar.Click += BtnCancelar_Click_1;
             // 
@@ -199,7 +205,7 @@
             // 
             BtnComfirma.FlatStyle = FlatStyle.Flat;
             BtnComfirma.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BtnComfirma.Location = new Point(365, 321);
+            BtnComfirma.Location = new Point(365, 328);
             BtnComfirma.Name = "BtnComfirma";
             BtnComfirma.Size = new Size(200, 33);
             BtnComfirma.TabIndex = 11;
@@ -207,24 +213,60 @@
             BtnComfirma.UseVisualStyleBackColor = true;
             BtnComfirma.Click += BtnComfirma_Click_1;
             // 
-            // label2
+            // TmrPix
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(398, 298);
-            label2.Name = "label2";
-            label2.Size = new Size(133, 20);
-            label2.TabIndex = 12;
-            label2.Text = "📋 Copiar Código";
-            label2.Click += label2_Click;
+            TmrPix.Interval = 10000;
+            TmrPix.Tick += TmrPix_Tick;
+            // 
+            // PbIntrucao
+            // 
+            PbIntrucao.Image = (Image)resources.GetObject("PbIntrucao.Image");
+            PbIntrucao.Location = new Point(365, 92);
+            PbIntrucao.Name = "PbIntrucao";
+            PbIntrucao.Size = new Size(200, 200);
+            PbIntrucao.SizeMode = PictureBoxSizeMode.StretchImage;
+            PbIntrucao.TabIndex = 13;
+            PbIntrucao.TabStop = false;
+            PbIntrucao.Visible = false;
+            // 
+            // BtnCopiar
+            // 
+            BtnCopiar.Cursor = Cursors.Hand;
+            BtnCopiar.FlatAppearance.BorderColor = Color.LightGray;
+            BtnCopiar.FlatStyle = FlatStyle.Flat;
+            BtnCopiar.ForeColor = Color.DodgerBlue;
+            BtnCopiar.Location = new Point(405, 298);
+            BtnCopiar.Name = "BtnCopiar";
+            BtnCopiar.Size = new Size(115, 30);
+            BtnCopiar.TabIndex = 14;
+            BtnCopiar.Text = "📋 Copiar Código Pix";
+            BtnCopiar.UseVisualStyleBackColor = true;
+            BtnCopiar.Visible = false;
+            BtnCopiar.Click += BtnCopiar_Click;
+            // 
+            // LblInformacao
+            // 
+            LblInformacao.BackColor = Color.Transparent;
+            LblInformacao.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblInformacao.ForeColor = Color.DimGray;
+            LblInformacao.ImageAlign = ContentAlignment.MiddleLeft;
+            LblInformacao.Location = new Point(196, 78);
+            LblInformacao.Name = "LblInformacao";
+            LblInformacao.Size = new Size(163, 241);
+            LblInformacao.TabIndex = 15;
+            LblInformacao.Text = "label2";
+            LblInformacao.TextAlign = ContentAlignment.MiddleCenter;
+            LblInformacao.Visible = false;
             // 
             // TelaPagamento
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.White;
             ClientSize = new Size(634, 361);
-            Controls.Add(label2);
+            Controls.Add(LblInformacao);
+            Controls.Add(BtnCopiar);
+            Controls.Add(PbIntrucao);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel1);
             Controls.Add(PbQrcode);
@@ -237,6 +279,7 @@
             ((System.ComponentModel.ISupportInitialize)PbQrcode).EndInit();
             panel1.ResumeLayout(false);
             flowLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)PbIntrucao).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -255,6 +298,9 @@
         private Button BtnPix;
         private Button BtnCancelar;
         private Button BtnComfirma;
-        private Label label2;
+        private System.Windows.Forms.Timer TmrPix;
+        private PictureBox PbIntrucao;
+        private Button BtnCopiar;
+        private Label LblInformacao;
     }
 }
