@@ -38,33 +38,7 @@ namespace Shop.TelaFuncionarios
         {
 
         }
-        private bool ValidarDados(string email, string senha)
-        {
-            // 1. Validação de E-mail (Formato padrao: texto@texto.com)
-            string modeloEmail = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-            if (!Regex.IsMatch(email, modeloEmail))
-            {
-                MessageBox.Show("Por favor, insira um e-mail válido (ex: nome@gmail.com).", "E-mail Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false; // Falhou
-            }
-
-            // 2. Validação de Senha (> 8 caracteres)
-            if (senha.Length <= 8)
-            {
-                MessageBox.Show("A senha deve ter MAIS de 8 caracteres.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false; // Falhou
-            }
-
-            // 3. Validação de Caractere Especial (Ex: @, #, !, $)
-            // Verifica se NÃO tem nenhum símbolo
-            if (!Regex.IsMatch(senha, @"[!@#$%^&*(),.?""{}|<>]"))
-            {
-                MessageBox.Show("A senha precisa ter pelo menos um caractere especial (Ex: @, #, !).", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false; // Falhou
-            }
-
-            return true; // Passou em tudo!
-        }
+       
 
         // Método para salvar o cadastro do funcionário
         private async void SalvarCadastroFun()
@@ -91,11 +65,16 @@ namespace Shop.TelaFuncionarios
             string email = TxtEmailFun.Text.Trim(); // Trim remove espaços acidentais no começo/fim
             string senha = TxtSenhaFun.Text.Trim();
 
-            // --- AQUI ENTRA A BLINDAGEM ---
-            if (ValidarDados(email, senha) == false)
+            if (DatapickFuncNas.Value >= DateTime.Now)
             {
-                return; // SE A VALIDAÇÃO FALHAR, O CÓDIGO PARA AQUI. NÃO SALVA NADA.
+                MessageBox.Show("A data de nascimento não pode ser no futuro.", "Data Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                DatapickFuncNas.Focus();
+                return;
+
             }
+
+            // --- AQUI ENTRA A BLINDAGEM ---
+            
             // 2. Trava a UI para evitar cliques duplos
             BtnCadatrarFun.Enabled = false;
             BtnCadatrarFun.Text = "Salvando...";
@@ -221,6 +200,34 @@ namespace Shop.TelaFuncionarios
             TxtCidadeFun.Clear();
             TxtUfFun.Clear();
             TxtCompleFun.Clear();
+        }
+
+        private void TxtEmailFun_Leave(object sender, EventArgs e)
+        {
+            string modeloEmail = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (!Regex.IsMatch(TxtEmailFun.Text, modeloEmail))
+            {
+                MessageBox.Show("Por favor, insira um e-mail válido (ex: nome@gmail.com).", "E-mail Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TxtEmailFun.Focus();
+            }
+        }
+
+        private void TxtSenhaFun_Leave(object sender, EventArgs e)
+        {
+            // 2. Validação de Senha (> 8 caracteres)
+            if (TxtSenhaFun.Text.Length <= 8)
+            {
+                MessageBox.Show("A senha deve ter MAIS de 8 caracteres.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TxtSenhaFun.Focus();
+            }
+
+            // 3. Validação de Caractere Especial (Ex: @, #, !, $)
+            // Verifica se NÃO tem nenhum símbolo
+            if (!Regex.IsMatch(TxtSenhaFun.Text, @"[!@#$%^&*(),.?""{}|<>]"))
+            {
+                MessageBox.Show("A senha precisa ter pelo menos um caractere especial (Ex: @, #, !).", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TxtSenhaFun.Focus();
+            }
         }
     }
 }
