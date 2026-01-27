@@ -27,7 +27,7 @@ namespace Mysql.PetShop.Controllers
                 ClienteId = dados.ClienteId,
                 PetId = dados.PetId,
                 DataPedido = dados.data_pedido,
-                DataAgendamento = dados.DataAgendamento,
+                DataAgendamento = horaBrasilia,
                 ValorTotal = dados.ValorTotal,
                 Status = "pendente", // Como definimos aqui, a API parará de exigir que venha do front
                 Observacoes = dados.Observacoes,

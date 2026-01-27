@@ -383,7 +383,7 @@ namespace Tela.Cliente
                     ClienteId = _usuarioIdLogado,
                     PetId = idPetSelecionado,
                     DataPedido = DtpData.Value.ToString("yyyy-MM-dd HH:mm:ss"),
-                    DataAgendamento = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                    DataAgendamento = DateTime.Now,
                     ValorTotal = valortotal,
                     Observacoes = TxtObservacoes.Text,
                     Itens = listaItens,
