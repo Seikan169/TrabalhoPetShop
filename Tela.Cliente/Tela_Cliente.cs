@@ -331,6 +331,13 @@ namespace Tela.Cliente
                 return;
             }
 
+            if (DtpData.Value < DateTime.Now)
+            {
+                MessageBox.Show("Por favor, selecione uma data válida para o agendamento.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+
+            }
+
             // Travamos o botão para evitar cliques duplos
             BtnFinalizar.Enabled = false;
             BtnFinalizar.Text = "Processando...";
@@ -382,8 +389,8 @@ namespace Tela.Cliente
                 {
                     ClienteId = _usuarioIdLogado,
                     PetId = idPetSelecionado,
-                    DataPedido = DtpData.Value,
-                    DataAgendamento = DateTime.Now,
+                    DataPedido = DateTime.Now,
+                    DataAgendamento = DtpData.Value,
                     ValorTotal = valortotal,
                     Observacoes = TxtObservacoes.Text,
                     Itens = listaItens,
