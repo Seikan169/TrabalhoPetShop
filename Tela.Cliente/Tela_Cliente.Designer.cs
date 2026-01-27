@@ -232,7 +232,7 @@
             PnlCabeca.Dock = DockStyle.Top;
             PnlCabeca.Location = new Point(200, 0);
             PnlCabeca.Name = "PnlCabeca";
-            PnlCabeca.Size = new Size(1251, 100);
+            PnlCabeca.Size = new Size(1268, 100);
             PnlCabeca.TabIndex = 1;
             // 
             // LblBemvindo
@@ -243,7 +243,7 @@
             LblBemvindo.ForeColor = Color.White;
             LblBemvindo.Location = new Point(0, 0);
             LblBemvindo.Name = "LblBemvindo";
-            LblBemvindo.Size = new Size(1247, 96);
+            LblBemvindo.Size = new Size(1264, 96);
             LblBemvindo.TabIndex = 0;
             LblBemvindo.Text = "label1";
             LblBemvindo.TextAlign = ContentAlignment.MiddleCenter;
@@ -255,7 +255,7 @@
             PnlPricipal.Dock = DockStyle.Fill;
             PnlPricipal.Location = new Point(200, 100);
             PnlPricipal.Name = "PnlPricipal";
-            PnlPricipal.Size = new Size(1251, 543);
+            PnlPricipal.Size = new Size(1268, 543);
             PnlPricipal.TabIndex = 2;
             // 
             // tabControl1
@@ -268,7 +268,7 @@
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1251, 543);
+            tabControl1.Size = new Size(1268, 543);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -280,7 +280,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1243, 515);
+            tabPage1.Size = new Size(1260, 515);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "TbpAgendar";
             // 
@@ -303,8 +303,8 @@
             splitContainer1.Panel2.Controls.Add(DgvCarrinho);
             splitContainer1.Panel2.Controls.Add(PnlRodapePagar);
             splitContainer1.Panel2.Controls.Add(PnlCabecaPagamneto);
-            splitContainer1.Size = new Size(1233, 505);
-            splitContainer1.SplitterDistance = 699;
+            splitContainer1.Size = new Size(1250, 505);
+            splitContainer1.SplitterDistance = 708;
             splitContainer1.SplitterWidth = 5;
             splitContainer1.TabIndex = 11;
             // 
@@ -349,7 +349,7 @@
             DgvServicos.RowHeadersVisible = false;
             DgvServicos.RowHeadersWidth = 51;
             DgvServicos.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
-            DgvServicos.Size = new Size(695, 351);
+            DgvServicos.Size = new Size(704, 351);
             DgvServicos.TabIndex = 0;
             // 
             // panel2
@@ -358,7 +358,7 @@
             panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 451);
             panel2.Name = "panel2";
-            panel2.Size = new Size(695, 50);
+            panel2.Size = new Size(704, 50);
             panel2.TabIndex = 9;
             // 
             // BtnAdicionar
@@ -371,7 +371,7 @@
             BtnAdicionar.ForeColor = Color.White;
             BtnAdicionar.Image = (Image)resources.GetObject("BtnAdicionar.Image");
             BtnAdicionar.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnAdicionar.Location = new Point(515, 6);
+            BtnAdicionar.Location = new Point(524, 6);
             BtnAdicionar.Name = "BtnAdicionar";
             BtnAdicionar.Size = new Size(178, 32);
             BtnAdicionar.TabIndex = 0;
@@ -389,7 +389,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(695, 100);
+            panel1.Size = new Size(704, 100);
             panel1.TabIndex = 8;
             // 
             // BtnBuscar
@@ -487,7 +487,7 @@
             DgvCarrinho.RowHeadersVisible = false;
             DgvCarrinho.RowHeadersWidth = 51;
             DgvCarrinho.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            DgvCarrinho.Size = new Size(525, 287);
+            DgvCarrinho.Size = new Size(533, 287);
             DgvCarrinho.TabIndex = 2;
             DgvCarrinho.CellContentClick += DgvCarrinho_CellContentClick;
             // 
@@ -502,7 +502,7 @@
             PnlRodapePagar.Dock = DockStyle.Bottom;
             PnlRodapePagar.Location = new Point(0, 344);
             PnlRodapePagar.Name = "PnlRodapePagar";
-            PnlRodapePagar.Size = new Size(525, 157);
+            PnlRodapePagar.Size = new Size(533, 157);
             PnlRodapePagar.TabIndex = 1;
             // 
             // LblObservacao
@@ -575,7 +575,7 @@
             PnlCabecaPagamneto.Dock = DockStyle.Top;
             PnlCabecaPagamneto.Location = new Point(0, 0);
             PnlCabecaPagamneto.Name = "PnlCabecaPagamneto";
-            PnlCabecaPagamneto.Size = new Size(525, 57);
+            PnlCabecaPagamneto.Size = new Size(533, 57);
             PnlCabecaPagamneto.TabIndex = 0;
             // 
             // LblPedido
@@ -585,7 +585,7 @@
             LblPedido.ForeColor = Color.White;
             LblPedido.Location = new Point(0, 0);
             LblPedido.Name = "LblPedido";
-            LblPedido.Size = new Size(525, 57);
+            LblPedido.Size = new Size(533, 57);
             LblPedido.TabIndex = 1;
             LblPedido.Text = "Resumo do Pedido";
             LblPedido.TextAlign = ContentAlignment.MiddleCenter;
@@ -979,7 +979,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1451, 643);
+            ClientSize = new Size(1468, 643);
             Controls.Add(PnlPricipal);
             Controls.Add(PnlCabeca);
             Controls.Add(PnlLateral);

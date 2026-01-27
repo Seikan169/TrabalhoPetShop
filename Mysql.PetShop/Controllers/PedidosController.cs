@@ -20,12 +20,13 @@ namespace Mysql.PetShop.Controllers
         [HttpPost]
         public async Task<IActionResult> CriarPedido([FromBody] PedidoRequestDto dados) // <--- MUDOU AQUI
         {
+            DateTime horaBrasilia = DateTime.UtcNow.AddHours(-3);
             // 1. Cria o Cabeçalho do Pedido (TbPedido)
             var novoPedido = new Pedido
             {
                 ClienteId = dados.ClienteId,
                 PetId = dados.PetId,
-                DataPedido = DateTime.Now,
+                DataPedido = horaBrasilia,
                 DataAgendamento = dados.DataAgendamento,
                 ValorTotal = dados.ValorTotal,
                 Status = "pendente", // Como definimos aqui, a API parará de exigir que venha do front

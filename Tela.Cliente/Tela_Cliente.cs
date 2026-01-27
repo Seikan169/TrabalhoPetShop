@@ -375,6 +375,7 @@ namespace Tela.Cliente
 
                
                 string dataselec = DtpData.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                
 
                 // Montamos o DTO para enviar a API
                 var pedidoDto = new
