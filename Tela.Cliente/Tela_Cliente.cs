@@ -383,14 +383,14 @@ namespace Tela.Cliente
                
                 
                 
-                string DataEhora = DtpData.Value.ToString("dd/MM/yyyy HH:mm:ss");
+                
                 // Montamos o DTO para enviar a API
                 var pedidoDto = new
                 {
                     ClienteId = _usuarioIdLogado,
                     PetId = idPetSelecionado,
                     DataPedido = DateTime.Now,
-                    DataAgendamento = DataEhora,
+                    DataAgendamento = DtpData.Value,
                     ValorTotal = valortotal,
                     Observacoes = TxtObservacoes.Text,
                     Itens = listaItens,

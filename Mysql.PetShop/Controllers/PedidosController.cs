@@ -27,7 +27,7 @@ namespace Mysql.PetShop.Controllers
                 ClienteId = dados.ClienteId,
                 PetId = dados.PetId,
                 DataPedido = horaBrasilia,
-                DataAgendamento = dados.data_agendamento,
+                DataAgendamento = dados.DataAgendamento,
                 ValorTotal = dados.ValorTotal,
                 Status = "pendente", // Como definimos aqui, a API parará de exigir que venha do front
                 Observacoes = dados.Observacoes,
@@ -269,8 +269,8 @@ namespace Mysql.PetShop.Controllers
         {
             public int ClienteId { get; set; }
             public int PetId { get; set; }
-            public DateTime data_agendamento { get; set; }
-            public DateTime data_pedido { get; set; }
+            public DateTime DataAgendamento { get; set; }
+            public DateTime DataPedido { get; set; }
             public decimal ValorTotal { get; set; }
             public string Observacoes { get; set; }
             public List<ItemPedidoRequestDto> Itens { get; set; }
