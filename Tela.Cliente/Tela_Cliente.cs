@@ -374,7 +374,7 @@ namespace Tela.Cliente
                 }).ToList();
 
                
-                string dataselec = DtpData.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                
                 
 
                 // Montamos o DTO para enviar a API
@@ -382,11 +382,12 @@ namespace Tela.Cliente
                 {
                     ClienteId = _usuarioIdLogado,
                     PetId = idPetSelecionado,
-                    DataAgendamento = DateTime.Now,
+                    DataPedido = DtpData.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+                    DataAgendamento = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                     ValorTotal = valortotal,
                     Observacoes = TxtObservacoes.Text,
                     Itens = listaItens,
-                    Data_Escolhida = dataselec,
+                    
 
                     // ---> CAMPO NOVO AQUI <---
                     FormaPagamento = formaPagamentoEscolhida
