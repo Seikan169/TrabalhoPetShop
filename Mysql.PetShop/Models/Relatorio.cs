@@ -34,5 +34,6 @@
         public decimal Valor { get; set; }
         public string Status { get; set; }
         public string Itens { get; set; }
+        public string FormaPagamneto { get; set; }
     }
 }

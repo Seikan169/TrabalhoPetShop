@@ -493,6 +493,12 @@ namespace Shop.TelaFuncionarios
                 DgvPricipal.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             }
+            if (DgvPricipal.Columns.Contains("pagamento"))
+            {
+                DgvPricipal.Columns["pagamento"].HeaderText = "Pagamento";
+                DgvPricipal.Columns["pagamento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                
+            }
         }
 
         private async void BtnAgendamentoADM_Click(object sender, EventArgs e)
@@ -632,15 +638,17 @@ namespace Shop.TelaFuncionarios
                     // ==========================================
                     var wsLista = workbook.Worksheets.Add("Histórico Detalhado");
 
-                    // Cabeçalho
+                    // Cabeçalho (Adicionei a coluna G)
                     wsLista.Cell("A1").Value = "ID";
                     wsLista.Cell("B1").Value = "Data";
                     wsLista.Cell("C1").Value = "Cliente";
                     wsLista.Cell("D1").Value = "Itens / Serviços";
                     wsLista.Cell("E1").Value = "Valor";
-                    wsLista.Cell("F1").Value = "Status";
+                    wsLista.Cell("F1").Value = "Pagamento"; // <--- NOVA COLUNA
+                    wsLista.Cell("G1").Value = "Status";    // <--- JOGUEI O STATUS PRA G
 
-                    var header = wsLista.Range("A1:F1");
+                    // Ajusta o estilo do cabeçalho para pegar até a G
+                    var header = wsLista.Range("A1:G1");
                     header.Style.Font.Bold = true;
                     header.Style.Fill.BackgroundColor = XLColor.DarkBlue;
                     header.Style.Font.FontColor = XLColor.White;
@@ -652,9 +660,14 @@ namespace Shop.TelaFuncionarios
                         wsLista.Cell($"B{l}").Value = p.Data;
                         wsLista.Cell($"C{l}").Value = p.Cliente;
                         wsLista.Cell($"D{l}").Value = p.Itens;
+
                         wsLista.Cell($"E{l}").Value = p.Valor;
                         wsLista.Cell($"E{l}").Style.NumberFormat.Format = "R$ #,##0.00";
-                        wsLista.Cell($"F{l}").Value = p.Status;
+
+                        // 👇 PREENCHENDO A NOVA COLUNA
+                        wsLista.Cell($"F{l}").Value = p.FormaPagamento;
+
+                        wsLista.Cell($"G{l}").Value = p.Status; // Status agora é na G
 
                         // Pinta de vermelho se cancelado
                         if (p.Status == "cancelado")
@@ -746,6 +759,7 @@ namespace Shop.TelaFuncionarios
                 else if (status == "pendente") e.CellStyle.ForeColor = Color.DarkOrange;
                 else if (status == "cancelado") e.CellStyle.ForeColor = Color.Red;
                 else if (status == "em_andamento") e.CellStyle.ForeColor = Color.DodgerBlue;
+                else if (status == "confirmado") e.CellStyle.ForeColor = Color.Goldenrod;
 
                 // Truque: Deixar a primeira letra Maiúscula (ex: "concluido" -> "Concluído")
                 e.Value = char.ToUpper(status[0]) + status.Substring(1);

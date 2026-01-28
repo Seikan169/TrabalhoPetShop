@@ -241,7 +241,8 @@ namespace Mysql.PetShop.Controllers
                     Data = p.DataAgendamento.ToString("dd/MM/yyyy HH:mm"),
                     Valor = p.ValorTotal,
                     Status = p.Status,
-                    Itens = string.Join(", ", p.Itens.Select(i => i.Servico.Nome))
+                    Itens = string.Join(", ", p.Itens.Select(i => i.Servico.Nome)),
+                    FormaPagamneto = p.FormaPagamento ?? "Não Informado"
                 }).ToList();
 
             return Ok(relatorio);
