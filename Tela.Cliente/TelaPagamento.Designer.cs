@@ -273,6 +273,7 @@
             Controls.Add(LblValor);
             Controls.Add(BtnComfirma);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TelaPagamento";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TelaPagamento";

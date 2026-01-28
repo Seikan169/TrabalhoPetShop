@@ -398,6 +398,7 @@
             Controls.Add(PnlRodaPe);
             Controls.Add(PnlCabeca);
             Controls.Add(PnlTelaFuncionario);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "TelaFuncionariocs";
             Text = "TelaFuncionariocs";
