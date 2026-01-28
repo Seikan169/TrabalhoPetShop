@@ -98,7 +98,7 @@
             TxtSenha.Margin = new Padding(3, 2, 3, 2);
             TxtSenha.Name = "TxtSenha";
             TxtSenha.Size = new Size(205, 24);
-            TxtSenha.TabIndex = 4;
+            TxtSenha.TabIndex = 1;
             TxtSenha.UseSystemPasswordChar = true;
             // 
             // BtnCadastrarCliente
