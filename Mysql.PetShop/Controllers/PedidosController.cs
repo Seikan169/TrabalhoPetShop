@@ -186,6 +186,7 @@ namespace Mysql.PetShop.Controllers
                 NovosClientes = totalClientes
             });
         }
+        // Relatorio 
         [HttpGet("relatorio-completo")]
         public async Task<IActionResult> GetRelatorioCompleto()
         {
@@ -195,67 +196,92 @@ namespace Mysql.PetShop.Controllers
                 var data7Dias = hoje.AddDays(-7);
                 var primeiroDiaMes = new DateTime(hoje.Year, hoje.Month, 1);
 
-                // 1. Busca os pedidos com Include (Trazendo dados relacionados)
-                var pedidos = await _context.TbPedidos
-                    .Include(p => p.Itens).ThenInclude(i => i.Servico)
-                    .Include(p => p.Cliente)
+                // =================================================================================
+                // A MÁGICA ACONTECE AQUI: O .Select vem ANTES de trazer os dados
+                // Isso impede que o erro de conversão aconteça nas suas Classes de Entidade
+                // =================================================================================
+                var dadosBrutos = await _context.TbPedidos
                     .Where(p => p.Status != null && p.Status != "cancelado")
-                    .ToListAsync();
+                    .Select(p => new
+                    {
+                        p.Id,
+                        p.DataAgendamento,
+                        p.ValorTotal,
+                        p.Status,
 
-                // 2. Monta o Relatório
-                var relatorio = new Relatorio // Certifique-se que o nome da classe está certo
+                        // Tratamento de Nulos DIRETO NO BANCO
+                        FormaPagamento = p.FormaPagamento ?? "Não Informado",
+                        Observacoes = p.Observacoes ?? "",
+
+                        // Cliente (Garante que se telefone for null, venha vazio)
+                        NomeCliente = p.Cliente.Nome,
+                        TelefoneCliente = p.Cliente.Telefone ?? "Não Inf.",
+
+                        // Funcionário (Se for null, retorna texto padrão)
+                        NomeFuncionario = p.Funcionario != null ? p.Funcionario.Nome : "Sem Atendente",
+
+                        // Serviços (Traz apenas a lista de nomes para evitar trazer o objeto inteiro)
+                        NomesServicos = p.Itens.Select(i => i.Servico.Nome).ToList(),
+
+                        // Preços para o Top Serviços
+                        ItensInfo = p.Itens.Select(i => new { NomeServico = i.Servico.Nome, Preco = i.PrecoUnitario }).ToList()
+                    })
+                    .ToListAsync(); // <--- Agora o ToListAsync roda seguro!
+
+                // =================================================================================
+                // DAQUI PRA BAIXO É SÓ CÁLCULO NA MEMÓRIA (MUITO RÁPIDO)
+                // =================================================================================
+
+                var relatorio = new Relatorio
                 {
-                    FaturamentoHoje = pedidos.Where(p => p.DataAgendamento.Date == hoje).Sum(p => p.ValorTotal),
-                    Faturamento7Dias = pedidos.Where(p => p.DataAgendamento.Date >= data7Dias).Sum(p => p.ValorTotal),
-                    FaturamentoMes = pedidos.Where(p => p.DataAgendamento.Date >= primeiroDiaMes).Sum(p => p.ValorTotal),
+                    // Cálculos Financeiros
+                    FaturamentoHoje = dadosBrutos.Where(p => p.DataAgendamento.Date == hoje).Sum(p => p.ValorTotal),
+                    Faturamento7Dias = dadosBrutos.Where(p => p.DataAgendamento.Date >= data7Dias).Sum(p => p.ValorTotal),
+                    FaturamentoMes = dadosBrutos.Where(p => p.DataAgendamento.Date >= primeiroDiaMes).Sum(p => p.ValorTotal),
 
-                    PedidosHoje = pedidos.Count(p => p.DataAgendamento.Date == hoje),
-                    Pedidos7Dias = pedidos.Count(p => p.DataAgendamento.Date >= data7Dias),
-                    PedidosMes = pedidos.Count(p => p.DataAgendamento.Date >= primeiroDiaMes),
+                    // Contagem de Pedidos
+                    PedidosHoje = dadosBrutos.Count(p => p.DataAgendamento.Date == hoje),
+                    Pedidos7Dias = dadosBrutos.Count(p => p.DataAgendamento.Date >= data7Dias),
+                    PedidosMes = dadosBrutos.Count(p => p.DataAgendamento.Date >= primeiroDiaMes),
                 };
 
-                // 3. Top Serviços (Com verificação de nulo)
-                var todosItens = pedidos.SelectMany(p => p.Itens).ToList();
+                // Monta Top Serviços (Desmembrando a lista que trouxemos)
+                var todosItensFlat = dadosBrutos.SelectMany(p => p.ItensInfo).ToList();
 
-                relatorio.TopServicos = todosItens
-                    .Where(i => i.Servico != null) // <--- PROTEÇÃO CONTRA NULO
-                    .GroupBy(i => i.Servico.Nome)
+                relatorio.TopServicos = todosItensFlat
+                    .Where(i => i.NomeServico != null)
+                    .GroupBy(i => i.NomeServico)
                     .Select(grupo => new TopServicoDTO
                     {
                         NomeServico = grupo.Key,
                         Quantidade = grupo.Count(),
-                        ValorTotal = grupo.Sum(x => x.PrecoUnitario)
+                        ValorTotal = grupo.Sum(x => x.Preco)
                     })
                     .OrderByDescending(x => x.Quantidade)
                     .Take(5)
                     .ToList();
 
-                // 4. Lista Completa (Adicionando Pagamento e Proteções)
-                relatorio.ListaCompleta = pedidos
+                // Monta a Lista Completa
+                relatorio.ListaCompleta = dadosBrutos
                     .OrderByDescending(p => p.DataAgendamento)
                     .Select(p => new PedidoRelatorioDTO
                     {
                         Id = p.Id,
-                        // Proteção: Se cliente for null, escreve "Cliente Removido"
-                        Cliente = p.Cliente != null ? p.Cliente.Nome : "Cliente Removido",
+                        Cliente = p.NomeCliente ?? "Cliente Removido",
                         Data = p.DataAgendamento.ToString("dd/MM/yyyy HH:mm"),
                         Valor = p.ValorTotal,
-                        Status = p.Status ?? "Indefinido",
-
-                        // Junta os nomes dos serviços, ignorando nulos
-                        Itens = string.Join(", ", p.Itens.Where(i => i.Servico != null).Select(i => i.Servico.Nome)),
-
-                        // 👇 AQUI ESTÁ A COLUNA NOVA QUE VOCÊ QUER
-                        FormaPagamneto = p.FormaPagamento ?? "Não Informado"
+                        Status = p.Status,
+                        FormaPagamento = p.FormaPagamento,
+                        // Junta os nomes dos serviços numa string só
+                        Itens = string.Join(", ", p.NomesServicos.Where(s => s != null))
                     }).ToList();
 
                 return Ok(relatorio);
             }
             catch (Exception ex)
             {
-                // Isso vai mostrar o erro real no console do backend se quebrar
-                Console.WriteLine("ERRO NO RELATÓRIO: " + ex.Message);
-                return StatusCode(500, "Erro interno ao gerar relatório: " + ex.Message);
+                Console.WriteLine("ERRO CRÍTICO: " + ex.ToString()); // Mostra o erro detalhado no console
+                return StatusCode(500, new { message = "Erro ao gerar relatório", error = ex.Message });
             }
         }
 
@@ -288,7 +314,7 @@ namespace Mysql.PetShop.Controllers
             public string Observacoes { get; set; }
             public List<ItemPedidoRequestDto> Itens { get; set; }
             public string FormaPagamento { get; set; }
-            
+
         }
 
         public class ItemPedidoRequestDto

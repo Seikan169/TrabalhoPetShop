@@ -21,10 +21,10 @@ namespace Shop.TelaFuncionarios
     public class ApiService
     {
         
-        private readonly string _baseUrl = "https://trabalhopetshop-production.up.railway.app";
+        private readonly string _baseUrl = "https://trabalhopetshop-production.up.railway.app/";
 
 
-        
+
         public async Task<List<Servico>> GetServicos()
         {
             using (var client = new HttpClient())
@@ -533,6 +533,7 @@ namespace Shop.TelaFuncionarios
         public int PedidosHoje { get; set; }
         public int Pedidos7Dias { get; set; }
         public int PedidosMes { get; set; }
+        public string FormaPagamento { get; set; }
 
         // Lista dos Top Serviços (Para fazer a análise)
         public List<TopServicoDTO> TopServicos { get; set; } = new List<TopServicoDTO>();
