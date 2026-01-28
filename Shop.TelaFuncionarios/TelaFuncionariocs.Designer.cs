@@ -288,7 +288,7 @@
             // 
             // TxtBuscarPorNome
             // 
-            TxtBuscarPorNome.Cursor = Cursors.Hand;
+            TxtBuscarPorNome.Cursor = Cursors.IBeam;
             TxtBuscarPorNome.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             TxtBuscarPorNome.Location = new Point(4, 22);
             TxtBuscarPorNome.Name = "TxtBuscarPorNome";

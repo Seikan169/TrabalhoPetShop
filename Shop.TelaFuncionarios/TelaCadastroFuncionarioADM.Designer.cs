@@ -261,6 +261,7 @@
             // RdoValidarADM
             // 
             RdoValidarADM.AutoSize = true;
+            RdoValidarADM.Cursor = Cursors.Hand;
             RdoValidarADM.Location = new Point(449, 77);
             RdoValidarADM.Margin = new Padding(3, 2, 3, 2);
             RdoValidarADM.Name = "RdoValidarADM";
@@ -421,6 +422,7 @@
             // 
             // TxtCompleFun
             // 
+            TxtCompleFun.Cursor = Cursors.IBeam;
             TxtCompleFun.Location = new Point(29, 128);
             TxtCompleFun.Margin = new Padding(3, 2, 3, 2);
             TxtCompleFun.Name = "TxtCompleFun";
@@ -437,6 +439,7 @@
             // 
             // TxtNumFun
             // 
+            TxtNumFun.Cursor = Cursors.IBeam;
             TxtNumFun.Location = new Point(29, 76);
             TxtNumFun.Margin = new Padding(3, 2, 3, 2);
             TxtNumFun.Name = "TxtNumFun";
@@ -477,6 +480,7 @@
             // 
             // MaskCepFun
             // 
+            MaskCepFun.Cursor = Cursors.IBeam;
             MaskCepFun.Location = new Point(29, 23);
             MaskCepFun.Margin = new Padding(3, 2, 3, 2);
             MaskCepFun.Mask = "00000-000";
