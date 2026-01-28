@@ -54,14 +54,12 @@ namespace Shop.TelaFuncionarios
                     {
                         Tela_Cliente tela = new Tela_Cliente(resultado.Nome, resultado.Id);
                         tela.Show();
-                        MessageBox.Show("Abrindo painel do Cliente...");
                         this.Hide(); // Esconde o login
                     }
                     else if (resultado.TipoUsuario == "funcionario")
                     {
                         TelaFuncionariocs funcionario = new TelaFuncionariocs(resultado.Nome, resultado.Id);
                         funcionario.Show();
-                        MessageBox.Show("Abrindo painel do Funcionário...");
                         this.Hide(); // Esconde o login
                     }
                     else if (resultado.TipoUsuario == "adm")
