@@ -189,63 +189,74 @@ namespace Mysql.PetShop.Controllers
         [HttpGet("relatorio-completo")]
         public async Task<IActionResult> GetRelatorioCompleto()
         {
-            var hoje = DateTime.Today;
-            var data7Dias = hoje.AddDays(-7);
-            var primeiroDiaMes = new DateTime(hoje.Year, hoje.Month, 1);
-
-            // 1. Busca TODOS os pedidos (exceto cancelados) para calcular
-            var pedidos = await _context.TbPedidos
-                .Include(p => p.Itens).ThenInclude(i => i.Servico)
-                .Include(p => p.Cliente)
-                // BLINDAGEM: Verifica se Status não é nulo ANTES de comparar
-                .Where(p => p.Status != null && p.Status != "cancelado")
-                .ToListAsync();
-
-            // 2. Monta o Objeto de Resposta
-            var relatorio = new Relatorio
+            try
             {
-                // Faturamento
-                FaturamentoHoje = pedidos.Where(p => p.DataAgendamento.Date == hoje).Sum(p => p.ValorTotal),
-                Faturamento7Dias = pedidos.Where(p => p.DataAgendamento.Date >= data7Dias).Sum(p => p.ValorTotal),
-                FaturamentoMes = pedidos.Where(p => p.DataAgendamento.Date >= primeiroDiaMes).Sum(p => p.ValorTotal),
+                var hoje = DateTime.Today;
+                var data7Dias = hoje.AddDays(-7);
+                var primeiroDiaMes = new DateTime(hoje.Year, hoje.Month, 1);
 
-                // Contagem
-                PedidosHoje = pedidos.Count(p => p.DataAgendamento.Date == hoje),
-                Pedidos7Dias = pedidos.Count(p => p.DataAgendamento.Date >= data7Dias),
-                PedidosMes = pedidos.Count(p => p.DataAgendamento.Date >= primeiroDiaMes),
-            };
+                // 1. Busca os pedidos com Include (Trazendo dados relacionados)
+                var pedidos = await _context.TbPedidos
+                    .Include(p => p.Itens).ThenInclude(i => i.Servico)
+                    .Include(p => p.Cliente)
+                    .Where(p => p.Status != null && p.Status != "cancelado")
+                    .ToListAsync();
 
-            // 3. Calcula os TOP SERVIÇOS (A Lógica do Gráfico de Pizza)
-            // Pega todos os itens de todos os pedidos, agrupa por nome do serviço
-            var todosItens = pedidos.SelectMany(p => p.Itens).ToList();
-
-            relatorio.TopServicos = todosItens
-                .GroupBy(i => i.Servico.Nome)
-                .Select(grupo => new TopServicoDTO
+                // 2. Monta o Relatório
+                var relatorio = new Relatorio // Certifique-se que o nome da classe está certo
                 {
-                    NomeServico = grupo.Key,
-                    Quantidade = grupo.Count(),
-                    ValorTotal = grupo.Sum(x => x.PrecoUnitario)
-                })
-                .OrderByDescending(x => x.Quantidade) // Os mais vendidos primeiro
-                .Take(5) // Pega só os top 5
-                .ToList();
+                    FaturamentoHoje = pedidos.Where(p => p.DataAgendamento.Date == hoje).Sum(p => p.ValorTotal),
+                    Faturamento7Dias = pedidos.Where(p => p.DataAgendamento.Date >= data7Dias).Sum(p => p.ValorTotal),
+                    FaturamentoMes = pedidos.Where(p => p.DataAgendamento.Date >= primeiroDiaMes).Sum(p => p.ValorTotal),
 
-            // 4. Lista detalhada para auditoria
-            relatorio.ListaCompleta = pedidos
-                .OrderByDescending(p => p.DataAgendamento)
-                .Select(p => new PedidoRelatorioDTO
-                {
-                    Id = p.Id,
-                    Cliente = p.Cliente.Nome,
-                    Data = p.DataAgendamento.ToString("dd/MM/yyyy HH:mm"),
-                    Valor = p.ValorTotal,
-                    Status = p.Status,
-                    Itens = string.Join(", ", p.Itens.Select(i => i.Servico.Nome)),
-                    FormaPagamneto = p.FormaPagamento ?? "Não Informado"
-                }).ToList();
+                    PedidosHoje = pedidos.Count(p => p.DataAgendamento.Date == hoje),
+                    Pedidos7Dias = pedidos.Count(p => p.DataAgendamento.Date >= data7Dias),
+                    PedidosMes = pedidos.Count(p => p.DataAgendamento.Date >= primeiroDiaMes),
+                };
 
-            return Ok(relatorio);
+                // 3. Top Serviços (Com verificação de nulo)
+                var todosItens = pedidos.SelectMany(p => p.Itens).ToList();
+
+                relatorio.TopServicos = todosItens
+                    .Where(i => i.Servico != null) // <--- PROTEÇÃO CONTRA NULO
+                    .GroupBy(i => i.Servico.Nome)
+                    .Select(grupo => new TopServicoDTO
+                    {
+                        NomeServico = grupo.Key,
+                        Quantidade = grupo.Count(),
+                        ValorTotal = grupo.Sum(x => x.PrecoUnitario)
+                    })
+                    .OrderByDescending(x => x.Quantidade)
+                    .Take(5)
+                    .ToList();
+
+                // 4. Lista Completa (Adicionando Pagamento e Proteções)
+                relatorio.ListaCompleta = pedidos
+                    .OrderByDescending(p => p.DataAgendamento)
+                    .Select(p => new PedidoRelatorioDTO
+                    {
+                        Id = p.Id,
+                        // Proteção: Se cliente for null, escreve "Cliente Removido"
+                        Cliente = p.Cliente != null ? p.Cliente.Nome : "Cliente Removido",
+                        Data = p.DataAgendamento.ToString("dd/MM/yyyy HH:mm"),
+                        Valor = p.ValorTotal,
+                        Status = p.Status ?? "Indefinido",
+
+                        // Junta os nomes dos serviços, ignorando nulos
+                        Itens = string.Join(", ", p.Itens.Where(i => i.Servico != null).Select(i => i.Servico.Nome)),
+
+                        // 👇 AQUI ESTÁ A COLUNA NOVA QUE VOCÊ QUER
+                        FormaPagamneto = p.FormaPagamento ?? "Não Informado"
+                    }).ToList();
+
+                return Ok(relatorio);
+            }
+            catch (Exception ex)
+            {
+                // Isso vai mostrar o erro real no console do backend se quebrar
+                Console.WriteLine("ERRO NO RELATÓRIO: " + ex.Message);
+                return StatusCode(500, "Erro interno ao gerar relatório: " + ex.Message);
+            }
         }
 
         [HttpGet("ultimos-pedidos")]
