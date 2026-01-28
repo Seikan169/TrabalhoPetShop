@@ -343,6 +343,7 @@ namespace Shop.TelaFuncionarios
 
             if (DgvPricipal.Columns.Contains("telefone"))
             {
+
                 DgvPricipal.Columns["telefone"].HeaderText = "Contato / WhatsApp";
                 var col = DgvPricipal.Columns["Telefone"];
                 col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -359,61 +360,84 @@ namespace Shop.TelaFuncionarios
         // --- MÉTODO PARA PINTAR O STATUS (Igual fizemos nas outras telas) ---
         private void DgvPrincipal_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            // Recupera o grid de forma segura
-            var grid = sender as DataGridView;
 
-            // Verificações de segurança básicas
-            if (grid != null && e.ColumnIndex >= 0 && e.ColumnIndex < grid.Columns.Count)
+            if (DgvPricipal.Columns[e.ColumnIndex].Name.Equals("telefone", StringComparison.OrdinalIgnoreCase) && e.Value != null)
             {
-                string nomeColuna = grid.Columns[e.ColumnIndex].Name;
+                string valorOriginal = e.Value.ToString();
 
-                // -------------------------------------------------------
-                // 1. LÓGICA DO STATUS (Cores e Texto)
-                // -------------------------------------------------------
-                if (nomeColuna.Equals("status", StringComparison.OrdinalIgnoreCase) && e.Value != null)
+                // Remove tudo que não é número (limpeza de segurança)
+                string numeros = System.Text.RegularExpressions.Regex.Replace(valorOriginal, @"[^\d]", "");
+
+                if (long.TryParse(numeros, out long numeroLimpo))
                 {
-                    string status = e.Value.ToString().ToLower();
-
-                    // Aplica Negrito
-                    e.CellStyle.Font = new Font(grid.Font, FontStyle.Bold);
-
-                    if (status == "pendente")
+                    // Aplica a máscara dependendo do tamanho (Celular 11 dígitos ou Fixo 10 dígitos)
+                    if (numeros.Length == 11)
                     {
-                        e.CellStyle.ForeColor = Color.DarkOrange;
-                        e.Value = "Pendente";
+                        e.Value = numeroLimpo.ToString(@"(00) 00000-0000");
+                        e.FormattingApplied = true;
                     }
-                    else if (status == "em_andamento")
+                    else if (numeros.Length == 10)
                     {
-                        e.CellStyle.ForeColor = Color.DodgerBlue;
-                        e.Value = "Em Andamento";
-                    }
-                    else if (status == "concluido")
-                    {
-                        e.CellStyle.ForeColor = Color.SeaGreen;
-                        e.Value = "Concluído";
-                    }
-                    else if (status == "cancelado")
-                    {
-                        e.CellStyle.ForeColor = Color.Red;
-                        e.Value = "Cancelado";
+                        e.Value = numeroLimpo.ToString(@"(00) 0000-0000");
+                        e.FormattingApplied = true;
                     }
                 }
+                // Recupera o grid de forma segura
+                var grid = sender as DataGridView;
 
-
-
-                // -------------------------------------------------------
-                // 2. LÓGICA DA DATA DE NASCIMENTO (Esconder 01/01/0001)
-                // -------------------------------------------------------
-                // Verifica se é a coluna Data_Nascimento (Use o nome exato que vem do Controller)
-                else if (nomeColuna.Equals("Data_Nascimento", StringComparison.OrdinalIgnoreCase) && e.Value != null)
+                // Verificações de segurança básicas
+                if (grid != null && e.ColumnIndex >= 0 && e.ColumnIndex < grid.Columns.Count)
                 {
-                    if (DateTime.TryParse(e.Value.ToString(), out DateTime data))
+                    string nomeColuna = grid.Columns[e.ColumnIndex].Name;
+
+                    // -------------------------------------------------------
+                    // 1. LÓGICA DO STATUS (Cores e Texto)
+                    // -------------------------------------------------------
+                    if (nomeColuna.Equals("status", StringComparison.OrdinalIgnoreCase) && e.Value != null)
                     {
-                        // Se o ano for 1 (significa que veio vazio do banco), limpa o texto
-                        if (data.Year == 1)
+                        string status = e.Value.ToString().ToLower();
+
+                        // Aplica Negrito
+                        e.CellStyle.Font = new Font(grid.Font, FontStyle.Bold);
+
+                        if (status == "pendente")
                         {
-                            e.Value = "";
-                            e.FormattingApplied = true; // Avisa o grid que a formatação está pronta
+                            e.CellStyle.ForeColor = Color.DarkOrange;
+                            e.Value = "Pendente";
+                        }
+                        else if (status == "em_andamento")
+                        {
+                            e.CellStyle.ForeColor = Color.DodgerBlue;
+                            e.Value = "Em Andamento";
+                        }
+                        else if (status == "concluido")
+                        {
+                            e.CellStyle.ForeColor = Color.SeaGreen;
+                            e.Value = "Concluído";
+                        }
+                        else if (status == "cancelado")
+                        {
+                            e.CellStyle.ForeColor = Color.Red;
+                            e.Value = "Cancelado";
+                        }
+                    }
+
+
+
+                    // -------------------------------------------------------
+                    // 2. LÓGICA DA DATA DE NASCIMENTO (Esconder 01/01/0001)
+                    // -------------------------------------------------------
+                    // Verifica se é a coluna Data_Nascimento (Use o nome exato que vem do Controller)
+                    else if (nomeColuna.Equals("Data_Nascimento", StringComparison.OrdinalIgnoreCase) && e.Value != null)
+                    {
+                        if (DateTime.TryParse(e.Value.ToString(), out DateTime data))
+                        {
+                            // Se o ano for 1 (significa que veio vazio do banco), limpa o texto
+                            if (data.Year == 1)
+                            {
+                                e.Value = "";
+                                e.FormattingApplied = true; // Avisa o grid que a formatação está pronta
+                            }
                         }
                     }
                 }
