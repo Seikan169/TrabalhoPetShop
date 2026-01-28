@@ -85,6 +85,7 @@ namespace Mysql.PetShop.Controllers
                     Data = p.DataAgendamento,
                     Total = p.ValorTotal,
                     Status = p.Status,
+                    Pagamento = p.FormaPagamento,
 
                     // <--- 2. NOVIDADE: Lógica do LEFT JOIN (Se for nulo, manda '---')
                     Funcionario = p.Funcionario != null ? p.Funcionario.Nome : "---"

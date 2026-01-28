@@ -71,8 +71,9 @@
             PnlTelaFuncionario.Controls.Add(LblNomeFuncionario);
             PnlTelaFuncionario.Dock = DockStyle.Left;
             PnlTelaFuncionario.Location = new Point(0, 0);
+            PnlTelaFuncionario.Margin = new Padding(3, 2, 3, 2);
             PnlTelaFuncionario.Name = "PnlTelaFuncionario";
-            PnlTelaFuncionario.Size = new Size(229, 712);
+            PnlTelaFuncionario.Size = new Size(201, 534);
             PnlTelaFuncionario.TabIndex = 0;
             // 
             // BtnCancelados
@@ -85,9 +86,10 @@
             BtnCancelados.ForeColor = Color.White;
             BtnCancelados.Image = (Image)resources.GetObject("BtnCancelados.Image");
             BtnCancelados.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnCancelados.Location = new Point(0, 467);
+            BtnCancelados.Location = new Point(0, 351);
+            BtnCancelados.Margin = new Padding(3, 2, 3, 2);
             BtnCancelados.Name = "BtnCancelados";
-            BtnCancelados.Size = new Size(227, 65);
+            BtnCancelados.Size = new Size(199, 49);
             BtnCancelados.TabIndex = 6;
             BtnCancelados.Text = "     Cancelados";
             BtnCancelados.TextAlign = ContentAlignment.MiddleLeft;
@@ -104,9 +106,10 @@
             BtnConcluidos.ForeColor = Color.White;
             BtnConcluidos.Image = (Image)resources.GetObject("BtnConcluidos.Image");
             BtnConcluidos.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnConcluidos.Location = new Point(0, 400);
+            BtnConcluidos.Location = new Point(0, 301);
+            BtnConcluidos.Margin = new Padding(3, 2, 3, 2);
             BtnConcluidos.Name = "BtnConcluidos";
-            BtnConcluidos.Size = new Size(227, 67);
+            BtnConcluidos.Size = new Size(199, 50);
             BtnConcluidos.TabIndex = 5;
             BtnConcluidos.Text = "     Concluídos";
             BtnConcluidos.TextAlign = ContentAlignment.MiddleLeft;
@@ -123,9 +126,10 @@
             BtnIniciados.ForeColor = Color.White;
             BtnIniciados.Image = (Image)resources.GetObject("BtnIniciados.Image");
             BtnIniciados.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnIniciados.Location = new Point(0, 332);
+            BtnIniciados.Location = new Point(0, 250);
+            BtnIniciados.Margin = new Padding(3, 2, 3, 2);
             BtnIniciados.Name = "BtnIniciados";
-            BtnIniciados.Size = new Size(227, 68);
+            BtnIniciados.Size = new Size(199, 51);
             BtnIniciados.TabIndex = 4;
             BtnIniciados.Text = "  Atendimento Iniciado";
             BtnIniciados.UseVisualStyleBackColor = false;
@@ -141,10 +145,11 @@
             BtnFila.ForeColor = Color.White;
             BtnFila.Image = (Image)resources.GetObject("BtnFila.Image");
             BtnFila.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnFila.Location = new Point(0, 257);
+            BtnFila.Location = new Point(0, 194);
+            BtnFila.Margin = new Padding(3, 2, 3, 2);
             BtnFila.Name = "BtnFila";
             BtnFila.RightToLeft = RightToLeft.No;
-            BtnFila.Size = new Size(227, 75);
+            BtnFila.Size = new Size(199, 56);
             BtnFila.TabIndex = 1;
             BtnFila.Text = " Fila de Atendimentos";
             BtnFila.UseVisualStyleBackColor = false;
@@ -158,9 +163,10 @@
             pictureBox1.Dock = DockStyle.Top;
             pictureBox1.ErrorImage = null;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(0, 48);
+            pictureBox1.Location = new Point(0, 36);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(227, 209);
+            pictureBox1.Size = new Size(199, 158);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
@@ -176,9 +182,10 @@
             BtnSairFuncionario.ForeColor = Color.White;
             BtnSairFuncionario.Image = (Image)resources.GetObject("BtnSairFuncionario.Image");
             BtnSairFuncionario.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnSairFuncionario.Location = new Point(0, 661);
+            BtnSairFuncionario.Location = new Point(0, 495);
+            BtnSairFuncionario.Margin = new Padding(3, 2, 3, 2);
             BtnSairFuncionario.Name = "BtnSairFuncionario";
-            BtnSairFuncionario.Size = new Size(227, 49);
+            BtnSairFuncionario.Size = new Size(199, 37);
             BtnSairFuncionario.TabIndex = 1;
             BtnSairFuncionario.Text = "Sair";
             BtnSairFuncionario.UseVisualStyleBackColor = false;
@@ -192,7 +199,7 @@
             LblNomeFuncionario.ForeColor = Color.White;
             LblNomeFuncionario.Location = new Point(0, 0);
             LblNomeFuncionario.Name = "LblNomeFuncionario";
-            LblNomeFuncionario.Size = new Size(227, 48);
+            LblNomeFuncionario.Size = new Size(199, 36);
             LblNomeFuncionario.TabIndex = 12;
             LblNomeFuncionario.Text = "label1";
             LblNomeFuncionario.TextAlign = ContentAlignment.MiddleCenter;
@@ -225,8 +232,8 @@
             DgvPedidos.DefaultCellStyle = dataGridViewCellStyle2;
             DgvPedidos.Dock = DockStyle.Fill;
             DgvPedidos.EnableHeadersVisualStyles = false;
-            DgvPedidos.Location = new Point(229, 77);
-            DgvPedidos.Margin = new Padding(11, 7, 11, 7);
+            DgvPedidos.Location = new Point(201, 59);
+            DgvPedidos.Margin = new Padding(10, 5, 10, 5);
             DgvPedidos.Name = "DgvPedidos";
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = SystemColors.Control;
@@ -239,7 +246,7 @@
             DgvPedidos.RowHeadersVisible = false;
             DgvPedidos.RowHeadersWidth = 51;
             DgvPedidos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            DgvPedidos.Size = new Size(873, 558);
+            DgvPedidos.Size = new Size(763, 416);
             DgvPedidos.TabIndex = 1;
             DgvPedidos.CellContentClick += DgvPedidos_CellContentClick;
             DgvPedidos.CellFormatting += DgvPedidos_CellFormatting;
@@ -252,19 +259,18 @@
             PnlCabeca.Controls.Add(LblTitulo);
             PnlCabeca.Controls.Add(PnlBuscarNome);
             PnlCabeca.Dock = DockStyle.Top;
-            PnlCabeca.Location = new Point(229, 0);
-            PnlCabeca.Margin = new Padding(3, 4, 3, 4);
+            PnlCabeca.Location = new Point(201, 0);
             PnlCabeca.Name = "PnlCabeca";
-            PnlCabeca.Size = new Size(873, 77);
+            PnlCabeca.Size = new Size(763, 59);
             PnlCabeca.TabIndex = 2;
             // 
             // LblTitulo
             // 
             LblTitulo.Dock = DockStyle.Fill;
             LblTitulo.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblTitulo.Location = new Point(192, 0);
+            LblTitulo.Location = new Point(168, 0);
             LblTitulo.Name = "LblTitulo";
-            LblTitulo.Size = new Size(677, 73);
+            LblTitulo.Size = new Size(591, 55);
             LblTitulo.TabIndex = 0;
             LblTitulo.Text = "label1";
             LblTitulo.TextAlign = ContentAlignment.MiddleCenter;
@@ -276,19 +282,17 @@
             PnlBuscarNome.Controls.Add(BtnBuscar);
             PnlBuscarNome.Dock = DockStyle.Left;
             PnlBuscarNome.Location = new Point(0, 0);
-            PnlBuscarNome.Margin = new Padding(3, 4, 3, 4);
             PnlBuscarNome.Name = "PnlBuscarNome";
-            PnlBuscarNome.Size = new Size(192, 73);
+            PnlBuscarNome.Size = new Size(168, 55);
             PnlBuscarNome.TabIndex = 5;
             // 
             // TxtBuscarPorNome
             // 
             TxtBuscarPorNome.Cursor = Cursors.Hand;
             TxtBuscarPorNome.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TxtBuscarPorNome.Location = new Point(5, 29);
-            TxtBuscarPorNome.Margin = new Padding(3, 4, 3, 4);
+            TxtBuscarPorNome.Location = new Point(4, 22);
             TxtBuscarPorNome.Name = "TxtBuscarPorNome";
-            TxtBuscarPorNome.Size = new Size(117, 32);
+            TxtBuscarPorNome.Size = new Size(103, 27);
             TxtBuscarPorNome.TabIndex = 3;
             TxtBuscarPorNome.TextChanged += TxtBuscarPorNome_TextChanged;
             // 
@@ -297,10 +301,9 @@
             BtnBuscar.BackgroundImage = (Image)resources.GetObject("BtnBuscar.BackgroundImage");
             BtnBuscar.BackgroundImageLayout = ImageLayout.Stretch;
             BtnBuscar.Cursor = Cursors.Hand;
-            BtnBuscar.Location = new Point(125, 29);
-            BtnBuscar.Margin = new Padding(3, 4, 3, 4);
+            BtnBuscar.Location = new Point(109, 22);
             BtnBuscar.Name = "BtnBuscar";
-            BtnBuscar.Size = new Size(27, 36);
+            BtnBuscar.Size = new Size(24, 27);
             BtnBuscar.TabIndex = 4;
             BtnBuscar.UseVisualStyleBackColor = true;
             BtnBuscar.Click += BtnBuscar_Click;
@@ -313,10 +316,9 @@
             PnlRodaPe.Controls.Add(BtnCancelar);
             PnlRodaPe.Controls.Add(BtnFinalizarAtendimento);
             PnlRodaPe.Dock = DockStyle.Bottom;
-            PnlRodaPe.Location = new Point(229, 635);
-            PnlRodaPe.Margin = new Padding(3, 4, 3, 4);
+            PnlRodaPe.Location = new Point(201, 475);
             PnlRodaPe.Name = "PnlRodaPe";
-            PnlRodaPe.Size = new Size(873, 77);
+            PnlRodaPe.Size = new Size(763, 59);
             PnlRodaPe.TabIndex = 3;
             // 
             // BtnInicarAtendimento
@@ -329,10 +331,10 @@
             BtnInicarAtendimento.ForeColor = Color.White;
             BtnInicarAtendimento.Image = (Image)resources.GetObject("BtnInicarAtendimento.Image");
             BtnInicarAtendimento.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnInicarAtendimento.Location = new Point(-2, 5);
-            BtnInicarAtendimento.Margin = new Padding(11, 7, 11, 7);
+            BtnInicarAtendimento.Location = new Point(-2, 4);
+            BtnInicarAtendimento.Margin = new Padding(10, 5, 10, 5);
             BtnInicarAtendimento.Name = "BtnInicarAtendimento";
-            BtnInicarAtendimento.Size = new Size(229, 64);
+            BtnInicarAtendimento.Size = new Size(200, 48);
             BtnInicarAtendimento.TabIndex = 5;
             BtnInicarAtendimento.Text = "Iniciar Atendimento";
             BtnInicarAtendimento.TextAlign = ContentAlignment.MiddleRight;
@@ -351,10 +353,10 @@
             BtnCancelar.ForeColor = Color.White;
             BtnCancelar.Image = (Image)resources.GetObject("BtnCancelar.Image");
             BtnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnCancelar.Location = new Point(480, 5);
-            BtnCancelar.Margin = new Padding(11, 7, 11, 7);
+            BtnCancelar.Location = new Point(420, 4);
+            BtnCancelar.Margin = new Padding(10, 5, 10, 5);
             BtnCancelar.Name = "BtnCancelar";
-            BtnCancelar.Size = new Size(217, 64);
+            BtnCancelar.Size = new Size(190, 48);
             BtnCancelar.TabIndex = 2;
             BtnCancelar.Text = "Cancelar Pedido";
             BtnCancelar.TextAlign = ContentAlignment.MiddleRight;
@@ -373,10 +375,10 @@
             BtnFinalizarAtendimento.ForeColor = Color.White;
             BtnFinalizarAtendimento.Image = (Image)resources.GetObject("BtnFinalizarAtendimento.Image");
             BtnFinalizarAtendimento.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnFinalizarAtendimento.Location = new Point(239, 5);
-            BtnFinalizarAtendimento.Margin = new Padding(11, 7, 11, 7);
+            BtnFinalizarAtendimento.Location = new Point(209, 4);
+            BtnFinalizarAtendimento.Margin = new Padding(10, 5, 10, 5);
             BtnFinalizarAtendimento.Name = "BtnFinalizarAtendimento";
-            BtnFinalizarAtendimento.Size = new Size(229, 64);
+            BtnFinalizarAtendimento.Size = new Size(200, 48);
             BtnFinalizarAtendimento.TabIndex = 4;
             BtnFinalizarAtendimento.Text = "Finalizar Serviço";
             BtnFinalizarAtendimento.TextAlign = ContentAlignment.MiddleRight;
@@ -387,15 +389,16 @@
             // 
             // TelaFuncionariocs
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1102, 712);
+            ClientSize = new Size(964, 534);
             Controls.Add(DgvPedidos);
             Controls.Add(PnlRodaPe);
             Controls.Add(PnlCabeca);
             Controls.Add(PnlTelaFuncionario);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "TelaFuncionariocs";
             Text = "TelaFuncionariocs";
             Load += TelaFuncionariocs_Load;

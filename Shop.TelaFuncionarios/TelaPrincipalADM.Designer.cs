@@ -41,13 +41,13 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             timer1 = new System.Windows.Forms.Timer(components);
             PnlBotoes = new Panel();
-            BtnSairADM = new Button();
             BtnRelatorioADM = new Button();
+            BtnPainelFinanceiroADM = new Button();
+            BtnControleFuncionario = new Button();
             BtnClentesCadastradosADM = new Button();
             BtnAgendamentoADM = new Button();
             BtnBuscarFuncionario = new Button();
-            BtnControleFuncionario = new Button();
-            BtnPainelFinanceiroADM = new Button();
+            BtnSairADM = new Button();
             pictureBox1 = new PictureBox();
             LblNomeAdm = new Label();
             PnLCabeca = new Panel();
@@ -112,24 +112,6 @@
             PnlBotoes.TabIndex = 5;
             PnlBotoes.Paint += PnlBotoes_Paint;
             // 
-            // BtnSairADM
-            // 
-            BtnSairADM.BackColor = Color.DodgerBlue;
-            BtnSairADM.Cursor = Cursors.Hand;
-            BtnSairADM.Dock = DockStyle.Bottom;
-            BtnSairADM.FlatStyle = FlatStyle.Popup;
-            BtnSairADM.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BtnSairADM.Image = (Image)resources.GetObject("BtnSairADM.Image");
-            BtnSairADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnSairADM.Location = new Point(0, 511);
-            BtnSairADM.Margin = new Padding(3, 2, 3, 2);
-            BtnSairADM.Name = "BtnSairADM";
-            BtnSairADM.Size = new Size(176, 40);
-            BtnSairADM.TabIndex = 10;
-            BtnSairADM.Text = "Sair";
-            BtnSairADM.UseVisualStyleBackColor = false;
-            BtnSairADM.Click += BtnSairADM_Click_1;
-            // 
             // BtnRelatorioADM
             // 
             BtnRelatorioADM.BackColor = SystemColors.ControlDarkDark;
@@ -149,6 +131,47 @@
             BtnRelatorioADM.Text = "Relatório Detalhado";
             BtnRelatorioADM.UseVisualStyleBackColor = false;
             BtnRelatorioADM.Click += BtnRelatorioADM_Click;
+            // 
+            // BtnPainelFinanceiroADM
+            // 
+            BtnPainelFinanceiroADM.BackColor = SystemColors.ControlDarkDark;
+            BtnPainelFinanceiroADM.Cursor = Cursors.Hand;
+            BtnPainelFinanceiroADM.Dock = DockStyle.Top;
+            BtnPainelFinanceiroADM.FlatAppearance.BorderSize = 0;
+            BtnPainelFinanceiroADM.FlatStyle = FlatStyle.Flat;
+            BtnPainelFinanceiroADM.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnPainelFinanceiroADM.ForeColor = Color.White;
+            BtnPainelFinanceiroADM.Image = (Image)resources.GetObject("BtnPainelFinanceiroADM.Image");
+            BtnPainelFinanceiroADM.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnPainelFinanceiroADM.Location = new Point(0, 309);
+            BtnPainelFinanceiroADM.Margin = new Padding(3, 2, 3, 2);
+            BtnPainelFinanceiroADM.Name = "BtnPainelFinanceiroADM";
+            BtnPainelFinanceiroADM.Size = new Size(176, 43);
+            BtnPainelFinanceiroADM.TabIndex = 1;
+            BtnPainelFinanceiroADM.Text = "Relatório Rapido ";
+            BtnPainelFinanceiroADM.UseVisualStyleBackColor = false;
+            BtnPainelFinanceiroADM.Click += BtnPainelFinanceiroADM_Click;
+            // 
+            // BtnControleFuncionario
+            // 
+            BtnControleFuncionario.BackColor = SystemColors.ControlDarkDark;
+            BtnControleFuncionario.Cursor = Cursors.Hand;
+            BtnControleFuncionario.Dock = DockStyle.Top;
+            BtnControleFuncionario.FlatAppearance.BorderSize = 0;
+            BtnControleFuncionario.FlatStyle = FlatStyle.Flat;
+            BtnControleFuncionario.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnControleFuncionario.ForeColor = Color.White;
+            BtnControleFuncionario.Image = (Image)resources.GetObject("BtnControleFuncionario.Image");
+            BtnControleFuncionario.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnControleFuncionario.Location = new Point(0, 249);
+            BtnControleFuncionario.Margin = new Padding(3, 2, 3, 2);
+            BtnControleFuncionario.Name = "BtnControleFuncionario";
+            BtnControleFuncionario.Size = new Size(176, 60);
+            BtnControleFuncionario.TabIndex = 1;
+            BtnControleFuncionario.Text = "Cadastrar Funcionário";
+            BtnControleFuncionario.TextAlign = ContentAlignment.MiddleRight;
+            BtnControleFuncionario.UseVisualStyleBackColor = false;
+            BtnControleFuncionario.Click += BtnControleFuncionario_Click;
             // 
             // BtnClentesCadastradosADM
             // 
@@ -210,46 +233,23 @@
             BtnBuscarFuncionario.UseVisualStyleBackColor = false;
             BtnBuscarFuncionario.Click += BtnBuscarADM_Click_1;
             // 
-            // BtnControleFuncionario
+            // BtnSairADM
             // 
-            BtnControleFuncionario.BackColor = SystemColors.ControlDarkDark;
-            BtnControleFuncionario.Cursor = Cursors.Hand;
-            BtnControleFuncionario.Dock = DockStyle.Top;
-            BtnControleFuncionario.FlatAppearance.BorderSize = 0;
-            BtnControleFuncionario.FlatStyle = FlatStyle.Flat;
-            BtnControleFuncionario.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BtnControleFuncionario.ForeColor = Color.White;
-            BtnControleFuncionario.Image = (Image)resources.GetObject("BtnControleFuncionario.Image");
-            BtnControleFuncionario.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnControleFuncionario.Location = new Point(0, 249);
-            BtnControleFuncionario.Margin = new Padding(3, 2, 3, 2);
-            BtnControleFuncionario.Name = "BtnControleFuncionario";
-            BtnControleFuncionario.Size = new Size(176, 60);
-            BtnControleFuncionario.TabIndex = 1;
-            BtnControleFuncionario.Text = "Cadastrar Funcionário";
-            BtnControleFuncionario.TextAlign = ContentAlignment.MiddleRight;
-            BtnControleFuncionario.UseVisualStyleBackColor = false;
-            BtnControleFuncionario.Click += BtnControleFuncionario_Click;
-            // 
-            // BtnPainelFinanceiroADM
-            // 
-            BtnPainelFinanceiroADM.BackColor = SystemColors.ControlDarkDark;
-            BtnPainelFinanceiroADM.Cursor = Cursors.Hand;
-            BtnPainelFinanceiroADM.Dock = DockStyle.Top;
-            BtnPainelFinanceiroADM.FlatAppearance.BorderSize = 0;
-            BtnPainelFinanceiroADM.FlatStyle = FlatStyle.Flat;
-            BtnPainelFinanceiroADM.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BtnPainelFinanceiroADM.ForeColor = Color.White;
-            BtnPainelFinanceiroADM.Image = (Image)resources.GetObject("BtnPainelFinanceiroADM.Image");
-            BtnPainelFinanceiroADM.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnPainelFinanceiroADM.Location = new Point(0, 309);
-            BtnPainelFinanceiroADM.Margin = new Padding(3, 2, 3, 2);
-            BtnPainelFinanceiroADM.Name = "BtnPainelFinanceiroADM";
-            BtnPainelFinanceiroADM.Size = new Size(176, 43);
-            BtnPainelFinanceiroADM.TabIndex = 1;
-            BtnPainelFinanceiroADM.Text = "Relatório Rapido ";
-            BtnPainelFinanceiroADM.UseVisualStyleBackColor = false;
-            BtnPainelFinanceiroADM.Click += BtnPainelFinanceiroADM_Click;
+            BtnSairADM.BackColor = Color.DodgerBlue;
+            BtnSairADM.Cursor = Cursors.Hand;
+            BtnSairADM.Dock = DockStyle.Bottom;
+            BtnSairADM.FlatStyle = FlatStyle.Popup;
+            BtnSairADM.Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BtnSairADM.Image = (Image)resources.GetObject("BtnSairADM.Image");
+            BtnSairADM.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnSairADM.Location = new Point(0, 511);
+            BtnSairADM.Margin = new Padding(3, 2, 3, 2);
+            BtnSairADM.Name = "BtnSairADM";
+            BtnSairADM.Size = new Size(176, 40);
+            BtnSairADM.TabIndex = 10;
+            BtnSairADM.Text = "Sair";
+            BtnSairADM.UseVisualStyleBackColor = false;
+            BtnSairADM.Click += BtnSairADM_Click_1;
             // 
             // pictureBox1
             // 

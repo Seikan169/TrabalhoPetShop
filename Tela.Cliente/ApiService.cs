@@ -556,6 +556,7 @@ namespace Shop.TelaFuncionarios
         public decimal Valor { get; set; }
         public string Status { get; set; }
         public string Itens { get; set; }
+        public string FormaPagamento { get; set; }
     }
 
     public class PetDTO
