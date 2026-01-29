@@ -747,8 +747,8 @@ namespace Tela.Cliente
             {
                 DgvAcompanhar.Columns["Pet"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
-            DgvAcompanhar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            DgvAcompanhar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            DgvAcompanhar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DgvAcompanhar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DgvAcompanhar.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             DgvAcompanhar.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             // Configura o SERVIÇO para usar o espaço que sobrar e quebrar linha
